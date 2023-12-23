@@ -1,0 +1,157 @@
+.STTextOne {
+  position: absolute;
+  left: 3.75rem;
+  top: 2.6875rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.STTextTwo {
+  position: absolute;
+  left: 3.75rem;
+  top: 5.6875rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.InputFrame {
+  position: absolute;
+  left: 4rem;
+  top: 9.3125rem;
+  width: 26.75rem;
+  height: 14.5625rem;
+}
+
+.EmailInputFrame {
+  width: 26.75rem;
+  height: 4.0625rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.EmailAdressText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SignUpEmail {
+  margin-top: 0.625rem;
+  width: 26.75rem;
+  height: 2.3125rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.7);
+
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  text-indent: 0.625rem;
+}
+
+.PasswordFrame {
+  margin-top: 1.25rem;
+  width: 26.75rem;
+  height: 4.0625rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.SignUpPasswordFrame {
+  width: 12.8125rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.SignUpRepasswordFrame {
+  width: 12.8125rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.SignUpPassword {
+  margin-top: 0.625rem;
+  width: 12.8125rem;
+  height: 2.3125rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.7);
+  padding: 0%;
+
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  text-indent: 0.625rem;
+}
+
+.LocationFrame {
+  margin-top: 1.25rem;
+  width: 26.75rem;
+  height: 4.0625rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.LocationSelectBox {
+  margin-top: 0.625rem;
+  width: 26.75rem;
+  height: 2.3125rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.7);
+
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  text-indent: 0.625rem;
+}
+
+.StepThreeButton {
+  position: absolute;
+  bottom: 2.6875rem;
+  left: 3.75rem;
+  width: 26.75rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  border: none;
+  background: var(--Primary, #730ef4);
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}

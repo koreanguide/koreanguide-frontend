@@ -1,0 +1,124 @@
+.MainFrameOne {
+  width: 100%;
+  height: 50rem;
+  background: var(--Primary, #730ef4);
+  display: flex;
+  justify-content: center;
+}
+
+.InnerBox {
+  position: relative;
+  width: 62.5rem;
+  height: 100%;
+}
+
+.FirstText {
+  position: relative;
+  width: 35.4375rem;
+  height: 13.75rem;
+  top: 16.8125rem;
+  margin: 0%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.FirstText p {
+  position: absolute;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 3.125rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  margin: 0%;
+}
+
+.POne {
+  top: 0%;
+}
+
+.PThree {
+  bottom: 0%;
+}
+
+.MainOneImg {
+  position: absolute;
+  right: 0%;
+  width: 23.1875rem;
+  height: 23.1875rem;
+}
+
+.SecondText {
+  position: absolute;
+  top: 32.8125rem;
+  width: 26.6875rem;
+  height: 4.25rem;
+}
+
+.PFour {
+  top: 0%;
+  margin: 0%;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.PFive {
+  position: absolute;
+  bottom: 0%;
+  margin: 0%;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.3125rem);
+  }
+}
+
+.MoreButton {
+  position: absolute;
+  bottom: 2.25rem;
+  border: none;
+  background: none;
+  width: 7rem;
+  height: 4.5625rem;
+
+  animation: float 0.75s infinite;
+
+  cursor: pointer;
+}
+
+.ButtonText {
+  position: absolute;
+  margin: 0%;
+  top: 0%;
+  left: 0.7rem;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.ButtonBox img {
+  position: absolute;
+  right: 16px;
+  bottom: 0%;
+  width: 5rem;
+  height: 1.3125rem;
+}

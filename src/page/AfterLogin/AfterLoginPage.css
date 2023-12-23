@@ -1,0 +1,70 @@
+.AfterLoginPageFrame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 79.5625rem;
+  background-color: aqua;
+}
+
+.WelcomeTextBox {
+  width: 100%;
+  height: 3.125rem;
+  margin-top: 9.375rem;
+  background-color: brown;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.WelcomeText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.ProfileMuteSwitchBox {
+  width: 9.375rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: red;
+}
+
+.ProfileMuteSwitchText {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0%;
+}
+
+.react-toggle-track {
+  width: 2rem;
+  height: 1rem;
+}
+
+.react-toggle {
+  touch-action: pan-x;
+}
+
+.react-toggle-track-check,
+.react-toggle-track-x {
+  display: none !important;
+  width: 1rem;
+}
+
+.react-toggle-thumb {
+  border: none !important;
+  box-shadow: none !important;
+  width: 1rem;
+  height: 1rem;
+}

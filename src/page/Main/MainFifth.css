@@ -1,0 +1,63 @@
+.MainFifth {
+  width: 100%;
+  height: 22.375rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 9.625rem;
+}
+.MainFifthFrame {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.25rem;
+  background: linear-gradient(90deg, #f994b3 0%, #864fcd 69.79%, #730ef4 100%);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.MainFifthBigText {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 3.125rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  margin: 0%;
+}
+
+.MainFifthLitleText {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.GetStartButton {
+  width: 14.1875rem;
+  height: 2rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  backdrop-filter: blur(9px);
+  border: none;
+  margin-top: 1.25rem;
+  cursor: pointer;
+}
+
+.GetStartButton p {
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: linear-gradient(
+    90deg,
+    rgba(249, 148, 179, 0.7) -86.59%,
+    rgba(115, 14, 244, 0.7) 117.68%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}

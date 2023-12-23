@@ -1,0 +1,56 @@
+.MainFourth {
+  width: 100%;
+  height: 34.875rem;
+  display: flex;
+  justify-content: center;
+}
+
+.MainFourthFrame {
+  width: 100%;
+  height: 16.125rem;
+  margin-top: 9.375rem;
+  display: flex;
+}
+
+.MainFourthTextBox {
+  width: 35.4375rem;
+  height: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.MainFourthBigText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 3.125rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.75;
+  margin: 0%;
+}
+
+.MainFourthLitleText {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2;
+  margin: 0%;
+}
+
+.MainFourthImgBox {
+  width: 26.4375rem;
+  height: 100%;
+}
+
+.MassageOne {
+  margin-right: 10rem;
+}
+
+.MassageTwo {
+  margin-left: 4.7rem;
+  margin-top: 1.0625rem;
+}

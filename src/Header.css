@@ -1,0 +1,164 @@
+.HeaderBoxFrame {
+  position: fixed;
+  width: 100%;
+  height: 6.375rem;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(0.3125rem);
+  background-color: #720ef4bb;
+  z-index: 7;
+}
+
+.HeaderBox {
+  position: relative;
+  width: 62.5rem;
+  height: 6.375rem;
+  display: flex;
+  align-items: center;
+  backdrop-filter: none;
+}
+
+.HomeButton {
+  width: 11rem;
+  height: 1.5625rem;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  padding: 0%;
+
+  cursor: pointer;
+}
+
+.HomeButtonImg {
+  width: 1.4375rem;
+  height: 1.375rem;
+  margin-right: 0.5rem;
+}
+
+.HomeButtonText {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.StartButtonFrame {
+  width: 6.375rem;
+  height: 2rem;
+}
+
+.StartButton {
+  width: 6.375rem;
+  height: 2rem;
+  border-radius: 1.25rem;
+  border: none;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding: 0%;
+  margin: 0%;
+  right: 0%;
+
+  cursor: pointer;
+}
+
+.StartButton p {
+  color: var(--Primary, #730ef4);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0%;
+  margin: 0%;
+  line-height: normal;
+}
+
+.language {
+  position: absolute;
+  right: 7rem;
+  width: 8.875rem;
+  height: 2rem;
+  border-radius: 1.25rem;
+  background-color: transparent;
+  border: 0.125rem solid #fff;
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.language p {
+  margin-left: 2rem;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.Globe {
+  position: absolute;
+  left: 0.5rem;
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.DownArrow {
+  position: absolute;
+  margin-top: 0.1rem;
+  right: 0.75rem;
+  width: 0.85rem;
+  height: 0.55rem;
+  transition: all ease 0.5s;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.languageSelectFrame {
+  position: absolute;
+  right: 2.5rem;
+  top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 13.25rem;
+  height: 7.4375rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid var(--Sub, #f4f4f4);
+  background: #fff;
+}
+
+.Line {
+  background-color: black;
+  width: 10.75rem;
+  height: 0.0625rem;
+}
+
+.SelectLanguage {
+  margin: 0.825rem;
+  width: 10rem;
+  height: 1.9375rem;
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+
+  cursor: pointer;
+}
+
+.SelectLanguage p {
+  margin-left: 0.625rem;
+  font-family: Inter;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

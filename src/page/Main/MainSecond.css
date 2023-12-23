@@ -1,0 +1,124 @@
+.MainSecond {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 34.875rem;
+}
+
+.Frame {
+  width: 100%;
+  height: 16.875rem;
+  margin-top: 9rem;
+  display: flex;
+}
+
+.KpopBox {
+  position: relative;
+  width: 26.875rem;
+  height: 16.875rem;
+}
+
+.KpopImgOne {
+  position: absolute;
+  width: 20rem;
+  height: 11rem;
+  top: -2rem;
+  left: 2rem;
+  z-index: 3;
+
+  animation: KpopOne 1.5s 0s infinite;
+}
+
+@keyframes KpopOne {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1.5rem);
+  }
+
+  100% {
+    transform: translateY(0rem);
+  }
+}
+
+.KpopImgTwo {
+  position: absolute;
+  width: 20rem;
+  height: 11rem;
+  top: 4rem;
+  right: -1rem;
+  z-index: 4;
+
+  animation: KpopTwo 1.5s 0.2s infinite;
+}
+
+@keyframes KpopTwo {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1.5rem);
+  }
+
+  100% {
+    transform: translateY(0rem);
+  }
+}
+
+.KpopImgThree {
+  position: absolute;
+  width: 20rem;
+  height: 11rem;
+  top: 8rem;
+  left: -1rem;
+  z-index: 5;
+
+  animation: KpopThree 1.5s 0.4s infinite;
+}
+
+@keyframes KpopThree {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1.5rem);
+  }
+
+  100% {
+    transform: translateY(0rem);
+  }
+}
+
+.TextFrame {
+  width: 35.625rem;
+  height: 16.875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.BigText {
+  color: #000;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 3.125rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.75;
+  margin: 0%;
+}
+
+.LitleText {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2;
+  margin: 0%;
+}

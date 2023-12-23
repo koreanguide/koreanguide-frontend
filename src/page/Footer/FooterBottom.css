@@ -1,0 +1,25 @@
+.FooterBottomComponent {
+  position: fixed;
+  bottom: 0rem;
+  margin-top: auto;
+}
+
+.FooterBottomBox {
+  top: 26.9375rem;
+  left: 19.9375rem;
+  width: 18.375rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.BottomText {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
