@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Toggle from "react-toggle";
+// import Toggle from "react-toggle";
 import "react-toggle/style.css";
 import "./AfterLoginPage.css";
 import HeaderTwo from "../../HeaderTwo";
@@ -29,12 +29,12 @@ function AfterLoginPage() {
             <WelcomeText UserName="김찬주"></WelcomeText>
             <div className="ProfileMuteSwitchBox">
               <p className="ProfileMuteSwitchText">프로필 공개 상태</p>
-              <Toggle
+              {/* <Toggle
                 className="ProfileSwitch"
                 defaultChecked={isChecked}
                 icons={false}
                 onChange={handleToggle}
-              />
+              /> */}
             </div>
           </div>
         </InnerBox>
