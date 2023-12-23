@@ -19,11 +19,11 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/AfterLogin" element={<AfterLoginPage />} />
-          <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/portal/signin" element={<LoginPage />} />
           <Route path="/SignUp/StepOne" element={<SignUpStepOne />} />
           <Route path="/SignUp/StepTwo" element={<SignUpStepTwo />} />
           <Route path="/SignUp/StepThree" element={<SignUpStepThree />} />
-          <Route path="/ChatPage" element={<ChatPage />} />
+          <Route path="/portal/chat" element={<ChatPage />} />
           <Route path="/HeaderTwo" element={<HeaderTwo />} />
           <Route path="/Footer" element={<Footer />} />
           <Route path="/SignUp/Last" element={<SignUpLastStep />} />

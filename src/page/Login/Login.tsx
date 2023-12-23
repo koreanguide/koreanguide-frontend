@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState } from 'react';
+import axios from 'axios';
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import FooterBottomComponent from "../Footer/FooterBottom";
 
+interface LoginData {
+  email: string;
+  password: string;
+}
+
 function LoginPage() {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    const data: LoginData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await axios.post('/v1/signin', data);
+
+      if (response.status === 200) {
+        sessionStorage.setItem("access-token", response.data.accessToken);
+        sessionStorage.setItem("refresh-token", response.data.refreshToken);
+        sessionStorage.setItem("email", response.data.email);
+        console.log("로그인 성공");
+      }
+    } catch (error) {
+      console.error('로그인 실패:', error);
+    }
+  };
+
   return (
     <div className="LoginPageFrame">
       <div className="LoginBoxOne">
@@ -40,18 +70,20 @@ function LoginPage() {
             className="EmailInput"
             type="email"
             placeholder="abc@example.com"
+            onChange={(e) => setEmail(e.target.value)}
           ></input>
           <div className="PasswordText">비밀번호</div>
           <input
             className="PasswordInput"
             type="password"
             placeholder="passwd123@"
+            onChange={(e) => setPassword(e.target.value)}
           ></input>
           <button className="FindIDButton">비밀번호를 잊어버리셨나요?</button>
           <Link to="/SignUp/StepOne">
             <button className="SignInButton">회원이 아니신가요?</button>
           </Link>
-          <button className="LoginButton">로그인</button>
+          <button className="LoginButton" onClick={handleLogin}>로그인</button>
         </div>
       </div>
       <FooterBottomComponent></FooterBottomComponent>
