@@ -5,17 +5,14 @@
   justify-content: center;
   width: 100%;
   height: 79.5625rem;
-  background-color: aqua;
 }
 
-.WelcomeTextBox {
+.WelcomeBox {
+  margin-top: 9.4375rem;
   width: 100%;
-  height: 3.125rem;
-  margin-top: 9.375rem;
-  background-color: brown;
+  height: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .WelcomeText {
@@ -27,44 +24,120 @@
   line-height: normal;
 }
 
-.ProfileMuteSwitchBox {
-  width: 9.375rem;
-  height: 1.25rem;
+.ScheduleBox {
+  margin-top: 2.3125rem;
+  width: 100%;
+  height: 4.25rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(90deg, #730ef4 0%, #6f37b7 100%);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: red;
 }
 
-.ProfileMuteSwitchText {
-  color: rgba(0, 0, 0, 0.7);
+.ScheduleBoxImg {
+  margin-left: 2.5rem;
+}
+
+.ScheduleBoxText {
+  margin-left: 1.25rem;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.ScheduleBoxTextTwo {
+  margin-left: 30.625rem;
+  color: rgba(255, 255, 255, 0.7);
   text-align: right;
   font-family: Pretendard;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin: 0%;
 }
 
-.react-toggle-track {
-  width: 2rem;
-  height: 1rem;
+.ProgressChartBox {
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+  width: 100%;
+  height: 4.25rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(90deg, #96c272 0%, #55a36b 100%);
+  display: flex;
+  align-items: center;
 }
 
-.react-toggle {
-  touch-action: pan-x;
+.ProgressChartBoxImg {
+  margin-left: 2.5rem;
 }
 
-.react-toggle-track-check,
-.react-toggle-track-x {
-  display: none !important;
-  width: 1rem;
+.ProgressChartBoxText {
+  margin-left: 1.25rem;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-.react-toggle-thumb {
-  border: none !important;
-  box-shadow: none !important;
-  width: 1rem;
-  height: 1rem;
+.ProgressChartBoxTextTwo {
+  margin-left: 15.1875rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ComponentsFrame {
+  width: 62.5rem;
+  height: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.625rem;
+}
+
+.ComponentOneFrame {
+  width: 30rem;
+  height: 20.6875rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+}
+
+.ComponentBoxOne {
+  margin-top: 1.625rem;
+  width: 25rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ComponentOneTitleProps {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.TextMore {
+  color: var(--Primary, #730ef4);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
 }
