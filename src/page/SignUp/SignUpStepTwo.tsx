@@ -57,15 +57,47 @@ function SignUpStepTwo() {
     }
   };
 
+  const cityData = [
+    { kr: "강서구", en: "GANGSEO" },
+    { kr: "양천구", en: "YANGCHEON" },
+    { kr: "구로구", en: "GURO" },
+    { kr: "영등포구", en: "YONGDENGPO" },
+    { kr: "금천구", en: "GEUMCHEON" },
+    { kr: "관악구", en: "GWANAK" },
+    { kr: "동작구", en: "DONGJAK" },
+    { kr: "서초구", en: "SEOCHO" },
+    { kr: "강남구", en: "GANGNAM" },
+    { kr: "송파구", en: "SONGPA" },
+    { kr: "강동구", en: "GANGDONG" },
+    { kr: "은평구", en: "EUNPYEONG" },
+    { kr: "서대문구", en: "SEODAEMUN" },
+    { kr: "마포구", en: "MAPO" },
+    { kr: "종로구", en: "JONGNO" },
+    { kr: "중구", en: "JUNG" },
+    { kr: "용산구", en: "YONGSAN" },
+    { kr: "강북구", en: "GANGBUK" },
+    { kr: "성북구", en: "SEONGBUK" },
+    { kr: "동대문구", en: "DONGDAEMUN" },
+    { kr: "성동구", en: "SEONGDONG" },
+    { kr: "도봉구", en: "DOBONG" },
+    { kr: "노원구", en: "NOWON" },
+    { kr: "중랑구", en: "JUNGNANG" },
+    { kr: "광진구", en: "GWANGJIN" },
+  ];
+  
+
   interface CityListBoxProps {
     CityName: string;
+    CityNameEn: string;
     setSelectedCity: any;
     setShowCityList: (show: boolean) => void;
   }
 
   const CityListBox: React.FC<CityListBoxProps> = ({
     CityName,
+    CityNameEn,
     setSelectedCity,
+    setShowCityList,
   }) => {
     return (
       <div
@@ -73,6 +105,7 @@ function SignUpStepTwo() {
         onClick={() => {
           setSelectedCity(CityName);
           setShowCityList(false);
+          console.log(`선택된 도시: ${CityNameEn}`);
         }}
       >
         <div className="ListBoxCityName">{CityName}</div>
@@ -160,131 +193,15 @@ function SignUpStepTwo() {
                 className="CitySelectListFrame"
                 style={{ display: showCityList ? "block" : "none" }}
               >
-                <CityListBox
-                  CityName="강서구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="양천구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="구로구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="영등포구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="금천구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="관악구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="동작구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="서초구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="강남구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="송파구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="강동구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="은평구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="서대문구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="마포구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="종로구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="종구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="용산구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="강북구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="성북구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="동대문구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="성동구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="도봉구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="노원구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="중량구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
-                <CityListBox
-                  CityName="광진구"
-                  setSelectedCity={setSelectedCity}
-                  setShowCityList={setShowCityList}
-                ></CityListBox>
+                {cityData.map((city) => (
+                  <CityListBox
+                    key={city.en}
+                    CityName={city.kr}
+                    CityNameEn={city.en}
+                    setSelectedCity={setSelectedCity}
+                    setShowCityList={setShowCityList}
+                  ></CityListBox>
+                ))}
               </div>
             </div>
           </div>
