@@ -25,14 +25,15 @@
 .InputFrame {
   position: absolute;
   left: 4rem;
-  top: 9.3125rem;
+  top: 8rem;
   width: 26.75rem;
-  height: 14.5625rem;
+  height: 16rem;
+  /* background-color: aqua; */
 }
 
 .EmailInputFrame {
   width: 26.75rem;
-  height: 4.0625rem;
+  height: auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -53,7 +54,7 @@
   height: 2.3125rem;
   flex-shrink: 0;
   border-radius: 0.625rem;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.7);
+  border: 0.0625rem solid rgba(0, 0, 0, 0.4);
 
   color: rgba(0, 0, 0, 0.7);
   font-family: Pretendard;
@@ -65,10 +66,23 @@
   text-indent: 0.625rem;
 }
 
+.EmailWarning {
+  margin-top: 0.3rem;
+  display: flex;
+  width: 100%;
+  height: auto;
+  font-family: Pretendard;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: red;
+}
+
 .PasswordFrame {
-  margin-top: 1.25rem;
+  margin-top: 0.65rem;
   width: 26.75rem;
-  height: 4.0625rem;
+  height: 5.5rem;
   display: flex;
   justify-content: space-between;
 }
@@ -90,12 +104,11 @@
 }
 
 .SignUpPassword {
-  margin-top: 0.625rem;
   width: 12.8125rem;
   height: 2.3125rem;
   flex-shrink: 0;
   border-radius: 0.625rem;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.7);
+  border: 0.0625rem solid rgba(0, 0, 0, 0.4);
   padding: 0%;
 
   color: rgba(0, 0, 0, 0.7);
@@ -108,31 +121,158 @@
   text-indent: 0.625rem;
 }
 
-.LocationFrame {
-  margin-top: 1.25rem;
-  width: 26.75rem;
-  height: 4.0625rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.PasswordGuide {
+  width: 100%;
+  height: auto;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-.LocationSelectBox {
+.PasswordCheckText {
+  width: 100%;
+  height: auto;
+  font-family: Pretendard;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.PasswordMatch {
+  color: green;
+}
+
+.PasswordMismatch {
+  color: red;
+}
+
+.SelectLocationFrame {
+  display: inline-block;
+  text-align: left;
+  margin-top: 0.625rem;
+  width: 100%;
+  height: 4.375rem;
+}
+
+.SelectLocationFrameText {
+  color: #000;
+  width: 26.75rem;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.listFrame {
+  position: relative;
   margin-top: 0.625rem;
   width: 26.75rem;
   height: 2.3125rem;
-  flex-shrink: 0;
-  border-radius: 0.625rem;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.7);
+}
 
+.SoulSelectFrame {
+  position: absolute;
+  left: 0rem;
+  display: flex;
+  align-items: center;
+  width: 12.8125rem;
+  height: 2.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.4);
+}
+
+.SoulSelectFrameText {
+  margin-left: 1.25rem;
   color: rgba(0, 0, 0, 0.7);
   font-family: Pretendard;
   font-size: 0.9375rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
 
-  text-indent: 0.625rem;
+.CitySelectFrame {
+  position: absolute;
+  right: 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12.8125rem;
+  height: 2.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.4);
+}
+
+.CitySelectFrameTwo {
+  display: flex;
+  justify-content: space-between;
+  width: 11.3125rem;
+}
+
+.CityText {
+  margin-left: 0.55rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.CitySelectButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+
+  cursor: pointer;
+}
+
+.CitySelectListFrame {
+  position: absolute;
+  right: 0rem;
+  top: 2.8rem;
+  width: 12.8125rem;
+  height: 11.5625rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.4);
+  overflow: auto;
+  background-color: #fff;
+  z-index: 3;
+}
+
+.CitySelectListFrame::-webkit-scrollbar {
+  display: none;
+}
+
+.CityListBox {
+  width: 12.8125rem;
+  height: 2.3125rem;
+  border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.CityListBox:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.ListBoxCityName {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 1.25rem;
 }
 
 .StepThreeButton {
@@ -152,6 +292,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  z-index: 1;
 
   cursor: pointer;
 }
