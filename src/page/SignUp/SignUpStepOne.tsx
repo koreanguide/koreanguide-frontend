@@ -4,12 +4,21 @@ import { useNavigate } from "react-router-dom";
 import FooterBottomComponent from "../Footer/FooterBottom";
 
 function SignUpStepOne() {
+  const navigate = useNavigate();
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
   const [showMessage, setShowMessage] = useState<boolean>(false);
-  const navigate = useNavigate();
+  const [handImage, setHandImage] = useState("../img/BlackHand.svg");
+  const [jetImage, setJetImage] = useState("../img/BlackJet.svg");
 
   const handleButtonClick = (buttonName: string) => {
     setSelectedButton(buttonName);
+    if (buttonName === "guide") {
+      setHandImage("../img/PurpleHand.svg");
+      setJetImage("../img/BlackJet.svg");
+    } else {
+      setJetImage("../img/PurpleJet.svg");
+      setHandImage("../img/BlackHand.svg");
+    }
   };
 
   const handleNextStep = () => {
@@ -35,8 +44,18 @@ function SignUpStepOne() {
               selectedButton === "guide" ? "selected" : ""
             }`}
             onClick={() => handleButtonClick("guide")}
+            onMouseOver={() => {
+              if (selectedButton !== "guide") {
+                setHandImage("../img/PurpleHand.svg");
+              }
+            }}
+            onMouseOut={() => {
+              if (selectedButton !== "guide") {
+                setHandImage("../img/BlackHand.svg");
+              }
+            }}
           >
-            <img src="../img/hand-solid 1.svg" alt="" className="HandImg"></img>
+            <img src={handImage} alt="오류" className="HandImg" />
             <div className="SelectGuideTextOne">가이드</div>
           </button>
           <button
@@ -44,8 +63,18 @@ function SignUpStepOne() {
               selectedButton === "tourist" ? "selected" : ""
             }`}
             onClick={() => handleButtonClick("tourist")}
+            onMouseOver={() => {
+              if (selectedButton !== "tourist") {
+                setJetImage("../img/PurpleJet.svg");
+              }
+            }}
+            onMouseOut={() => {
+              if (selectedButton !== "tourist") {
+                setJetImage("../img/BlackJet.svg");
+              }
+            }}
           >
-            <img src="../img/jet.svg" alt="" className="JetImg"></img>
+            <img src={jetImage} alt="" className="JetImg"></img>
             <div className="SelectGuideTextTwo">관광객</div>
           </button>
           <div className="NextStepButtonLink">
