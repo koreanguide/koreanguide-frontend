@@ -65,8 +65,8 @@
   height: 12.8125rem;
   border-radius: 0.625rem;
   box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
-  background-color: #fff;
   border: none;
+  background-color: #fff;
   display: flex;
   justify-content: center;
 
@@ -74,7 +74,7 @@
 }
 
 .SelectGuide:hover {
-  background-color: #d9d9d9;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem #730ef4;
 }
 
 .HandImg {
@@ -84,13 +84,17 @@
 
 .SelectGuideTextOne {
   position: absolute;
-  color: var(--Primary, #730ef4);
+  color: rgba(0, 0, 0, 0.7);
   font-family: Pretendard;
   font-size: 0.9375rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin-top: 10.4375rem;
+}
+
+.SelectGuide:hover .SelectGuideTextOne {
+  color: #730ef4;
 }
 
 .SelectTourist {
@@ -107,7 +111,7 @@
 }
 
 .SelectTourist:hover {
-  background-color: #d9d9d9;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem #730ef4;
 }
 
 .JetImg {
@@ -124,6 +128,10 @@
   font-weight: 500;
   line-height: normal;
   margin-top: 10.4375rem;
+}
+
+.SelectTourist:hover .SelectGuideTextTwo {
+  color: #730ef4;
 }
 
 .NextStepButton {
@@ -152,7 +160,12 @@
 
 .SelectGuide.selected,
 .SelectTourist.selected {
-  background-color: #d9d9d9;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem #730ef4;
+}
+
+.SelectGuide.selected .SelectGuideTextOne,
+.SelectTourist.selected .SelectGuideTextTwo {
+  color: #730ef4;
 }
 
 .NotionText {
