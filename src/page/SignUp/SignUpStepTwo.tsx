@@ -84,7 +84,6 @@ function SignUpStepTwo() {
     { kr: "중랑구", en: "JUNGNANG" },
     { kr: "광진구", en: "GWANGJIN" },
   ];
-  
 
   interface CityListBoxProps {
     CityName: string;

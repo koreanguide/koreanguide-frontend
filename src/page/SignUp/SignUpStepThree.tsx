@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignUpStepThree.css";
-import FooterBottomComponent from "../Footer/FooterBottom";
 
 function SignUpStepThree() {
   const navigate = useNavigate();
@@ -40,7 +39,6 @@ function SignUpStepThree() {
           </div>
         </div>
       </div>
-      <FooterBottomComponent></FooterBottomComponent>
     </div>
   );
 }

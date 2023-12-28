@@ -277,7 +277,7 @@
 
 .StepThreeButton {
   position: absolute;
-  bottom: 2.6875rem;
+  bottom: 3.75rem;
   left: 3.75rem;
   width: 26.75rem;
   height: 2.625rem;
@@ -293,6 +293,7 @@
   font-weight: 500;
   line-height: normal;
   z-index: 1;
+  padding: 0;
 
   cursor: pointer;
 }
