@@ -1,16 +1,63 @@
 import React, { ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./SignUpStepOne.css";
 import "./SignUpStepTwo.css";
 import "./SignUpStepThree.css";
 import "./SignUpLastStep.css";
 
 function SignUp() {
+  const [authKey, setAuthKey] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [userRole, setUserRole] = useState<string>("");
+
+  interface SignUpData {
+    authKey: string;
+    country: string;
+    email: string;
+    nickname: string;
+    password: string;
+    userRole: string;
+  }
+
+  const handleSignUp = async () => {
+    const data: SignUpData = {
+      authKey: authKey,
+      country: country,
+      email: email,
+      nickname: nickname,
+      password: password,
+      userRole: userRole,
+    };
+
+    try {
+      const response = await axios.post("/v1/signup", data);
+
+      if (response.status === 200) {
+        sessionStorage.setItem("access-token", response.data.accessToken);
+        sessionStorage.setItem("refresh-token", response.data.refreshToken);
+        sessionStorage.setItem("email", response.data.email);
+        console.log("로그인 성공");
+      }
+    } catch (error) {
+      console.error("로그인 실패:", error);
+    }
+  };
+
   const navigate = useNavigate();
 
   const handleNextStep = () => {
     navigate("/SignUp/Last");
   };
+
+  // ===============================================================================
+  // ===============================================================================
+  // ===============================================================================
+  // ===============================================================================
+
   function SignUpStepThree() {
     return (
       <div className="SignUpStepThreeFrame">
@@ -44,8 +91,8 @@ function SignUp() {
   // ===============================================================================
 
   const SignUpStepTwo = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
     const [rePassword, setRePassword] = useState("");
     const [passwordText, setPasswordText] = useState(
       "8자리, 특수문자, 대문자, 숫자 포함"
@@ -102,7 +149,33 @@ function SignUp() {
       }
     };
 
-    const cityData = [{ kr: "강서구", en: "GANGSEO" }];
+    const cityData = [
+      { kr: "강서구", en: "GANGSEO" },
+      { kr: "양천구", en: "YANGCHEON" },
+      { kr: "구로구", en: "GURO" },
+      { kr: "영등포구", en: "YONGDENGPO" },
+      { kr: "금천구", en: "GEUMCHEON" },
+      { kr: "관악구", en: "GWANAK" },
+      { kr: "동작구", en: "DONGJAK" },
+      { kr: "서초구", en: "SEOCHO" },
+      { kr: "강남구", en: "GANGNAM" },
+      { kr: "송파구", en: "SONGPA" },
+      { kr: "강동구", en: "GANGDONG" },
+      { kr: "은평구", en: "EUNPYEONG" },
+      { kr: "서대문구", en: "SEODAEMUN" },
+      { kr: "마포구", en: "MAPO" },
+      { kr: "종로구", en: "JONGNO" },
+      { kr: "중구", en: "JUNG" },
+      { kr: "용산구", en: "YONGSAN" },
+      { kr: "강북구", en: "GANGBUK" },
+      { kr: "성북구", en: "SEONGBUK" },
+      { kr: "동대문구", en: "DONGDAEMUN" },
+      { kr: "성동구", en: "SEONGDONG" },
+      { kr: "도봉구", en: "DOBONG" },
+      { kr: "노원구", en: "NOWON" },
+      { kr: "중랑구", en: "JUNGNANG" },
+      { kr: "광진구", en: "GWANGJIN" },
+    ];
 
     interface CityListBoxProps {
       CityName: string;
@@ -249,9 +322,13 @@ function SignUp() {
     const handleButtonClick = (buttonName: string) => {
       setSelectedButton(buttonName);
       if (buttonName === "guide") {
+        setUserRole("GUIDE");
+        console.log("GUIDE");
         setHandImage("../img/PurpleHand.svg");
         setJetImage("../img/BlackJet.svg");
       } else {
+        setUserRole("VISITOR");
+        console.log("VISITOR");
         setJetImage("../img/PurpleJet.svg");
         setHandImage("../img/BlackHand.svg");
       }
@@ -328,6 +405,11 @@ function SignUp() {
       </div>
     );
   };
+
+  // ===============================================================================
+  // ===============================================================================
+  // ===============================================================================
+  // ===============================================================================
 
   interface CustomProps {
     children: ReactNode;
