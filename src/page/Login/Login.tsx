@@ -12,7 +12,6 @@ interface LoginData {
 function LoginPage() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const navigate = useNavigate();
 
   const handleLogin = async () => {
     const data: LoginData = {
@@ -31,6 +30,23 @@ function LoginPage() {
       }
     } catch (error) {
       console.error('로그인 실패:', error);
+    }
+  };
+
+  const handleCreditTest = async () => {
+    try {
+      const token = sessionStorage.getItem("access-token");
+      const response = await axios.get('/v1/credit/', {
+        headers: {
+          'X-AUTH-TOKEN': token
+        }
+      })
+
+      if (response.status === 200) {
+        console.log(response.data.amount);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -84,6 +100,7 @@ function LoginPage() {
             <button className="SignInButton">회원이 아니신가요?</button>
           </Link>
           <button className="LoginButton" onClick={handleLogin}>로그인</button>
+          <button onClick={handleCreditTest}>크레딧 불러오기</button>
         </div>
       </div>
       <FooterBottomComponent></FooterBottomComponent>
