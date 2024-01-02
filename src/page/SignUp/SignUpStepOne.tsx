@@ -1,10 +1,19 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SignUpStepOne.css";
 import "./SignUpStepTwo.css";
 import "./SignUpStepThree.css";
 import "./SignUpLastStep.css";
+
+interface SignUpData {
+  authKey: string;
+  country: string;
+  email: string;
+  nickname: string;
+  password: string;
+  userRole: string;
+}
 
 function SignUp() {
   const [authKey, setAuthKey] = useState<string>("");
@@ -13,15 +22,6 @@ function SignUp() {
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [userRole, setUserRole] = useState<string>("");
-
-  interface SignUpData {
-    authKey: string;
-    country: string;
-    email: string;
-    nickname: string;
-    password: string;
-    userRole: string;
-  }
 
   const handleSignUp = async () => {
     const data: SignUpData = {
@@ -91,18 +91,26 @@ function SignUp() {
   // ===============================================================================
 
   const SignUpStepTwo = () => {
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+    // const [email, setEmail] = useState<string>("");
+    // const [password, setPassword] = useState<string>("");
     const [rePassword, setRePassword] = useState("");
     const [passwordText, setPasswordText] = useState(
       "8자리, 특수문자, 대문자, 숫자 포함"
     );
+    const emailInputRef = useRef<HTMLInputElement>(null);
     const [passwordTextColor, setPasswordTextColor] = useState("darkgray");
     const [showEmailWarning, setShowEmailWarning] = useState(false);
     const [showCityList, setShowCityList] = useState(false);
     const [selectedCity, setSelectedCity] = useState("강동구");
     const [stepTwoDisplay, setStepTwoDisplay] = useState<boolean>(true);
     const [stepThreeDisplay, setStepThreeDisplay] = useState<boolean>(false);
+
+    const handleEmailChange = () => {
+      if (emailInputRef.current) {
+        const newEmail = emailInputRef.current.value;
+        setEmail(newEmail);
+      }
+    };
 
     const isPasswordMatch = () => {
       if (rePassword) {
@@ -219,8 +227,8 @@ function SignUp() {
                   type="email"
                   className="SignUpEmail"
                   placeholder="abc@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  ref={emailInputRef}
+                  onBlur={handleEmailChange}
                 ></input>
                 <div
                   className="EmailWarning"
