@@ -312,5 +312,53 @@ input:focus {
   line-height: normal;
 }
 
-.listFrame {
+.CitySelectFrame {
+  width: 19.4375rem;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CityText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 0.5rem;
+}
+
+.CitySelectButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.CitySelectFrameTwo {
+  width: 16.4375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.locationContainerTwo {
+  display: inline;
+}
+
+.CitySelectListFrame {
+  width: 19.4375rem;
+  height: auto;
+  background-color: #730ef4;
+}
+
+.locationContainerThree {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.625rem;
+  width: 32.6875rem;
+  height: auto;
 }

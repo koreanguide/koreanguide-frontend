@@ -1,8 +1,51 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./SignUp.css";
 import Footer from "../Footer/Footer";
 
 function SignUpPage() {
+  interface SignUpData {
+    email: string;
+    password: string;
+    authKey: string;
+    country: string;
+    nickname: string;
+    userRole: string;
+  }
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [authKey, setAuthKey] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
+  const [userRole, setUserRole] = useState<string>("");
+  const [SignUpFailed, setSignUpFailed] = useState<boolean>(false);
+
+  const handleSignUp = async () => {
+    const data: SignUpData = {
+      authKey: authKey,
+      country: "GANGNAM",
+      email: email,
+      nickname: nickname,
+      password: password,
+      userRole: userRole,
+    };
+
+    try {
+      const response = await axios.post("/v1/signup", data);
+
+      if (response.status === 200) {
+        sessionStorage.setItem("access-token", response.data.accessToken);
+        sessionStorage.setItem("refresh-token", response.data.refreshToken);
+        console.log("회원가입 성공");
+        setSignUpFailed(false);
+      }
+    } catch (error) {
+      console.error("회원가입 실패:", error);
+      setSignUpFailed(true);
+    }
+  };
+
   interface AlertBoxProps {
     message: string;
   }
@@ -32,6 +75,8 @@ function SignUpPage() {
   const handleClickGuide = () => {
     setActiveGuide(!activeGuide);
     setActiveTourist(false);
+    setUserRole("GUIDE");
+    console.log("가이드");
   };
 
   const handleMouseEnterTourist = () => {
@@ -45,6 +90,8 @@ function SignUpPage() {
   const handleClickTourist = () => {
     setActiveTourist(!activeTourist);
     setActiveGuide(false);
+    console.log("관광객");
+    setUserRole("VISITOR");
   };
 
   const [showCityList, setShowCityList] = useState(false);
@@ -182,6 +229,7 @@ function SignUpPage() {
                   type="email"
                   className="emailInput"
                   placeholder=""
+                  onChange={(e) => setEmail(e.target.value)}
                 ></input>
                 <button className="CertifiedNumberSendButton">
                   인증 보내기
@@ -195,6 +243,7 @@ function SignUpPage() {
                   type="string"
                   className="emailCertifiedInput"
                   placeholder=""
+                  onChange={(e) => setAuthKey(e.target.value)}
                 ></input>
                 <button className="emailCertifiedButton">인증하기</button>
               </div>
@@ -206,7 +255,11 @@ function SignUpPage() {
                   8자리 이상, 특수문자, 대문자, 숫자 포함
                 </div>
               </div>
-              <input className="passwordInput" type="password"></input>
+              <input
+                className="passwordInput"
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
             </div>
             <div className="rePasswordContainer">
               <div className="containerText">비밀번호 재입력</div>
@@ -214,13 +267,17 @@ function SignUpPage() {
             </div>
             <div className="nickNameContainer">
               <div className="containerText">닉네임</div>
-              <input className="nickNameInput" type="string"></input>
+              <input
+                className="nickNameInput"
+                type="string"
+                onChange={(e) => setNickname(e.target.value)}
+              ></input>
             </div>
             <div className="locationContainer">
               <div className="containerText">활동 선호 지역</div>
-              <div className="">
+              <div className="locationContainerThree">
                 <div className="SoulBox">서울특별시</div>
-                <div className="listFrame">
+                <div className="locationContainerTwo">
                   <div className="CitySelectFrame">
                     <div className="CitySelectFrameTwo">
                       <div className="CityText">{selectedCity}</div>
@@ -250,6 +307,9 @@ function SignUpPage() {
               </div>
             </div>
           </div>
+          <button className="SignupButton" onClick={handleSignUp}>
+            Sign Up
+          </button>
         </div>
       </div>
       <Footer></Footer>
