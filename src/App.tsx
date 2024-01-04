@@ -11,6 +11,8 @@ import Footer from "./page/Footer/Footer";
 import SignUpStepThree from "./page/SignUp/SignUpStepThree";
 import SignUpLastStep from "./page/SignUp/SignUpLastStep";
 import SignUp from "./page/SignUp/SignUpStepOne";
+import Login from "./page/Login/LoginPage";
+import SignUpPage from "./page/SignUp/SignUp";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/HeaderTwo" element={<HeaderTwo />} />
           <Route path="/Footer" element={<Footer />} />
           <Route path="/SignUp/Last" element={<SignUpLastStep />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup/page" element={<SignUpPage />} />
         </Routes>
       </BrowserRouter>
     </div>
