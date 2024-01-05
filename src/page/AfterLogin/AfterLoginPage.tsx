@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "react-toggle/style.css";
 import "./AfterLoginPage.css";
 import HeaderTwo from "../../HeaderTwo";

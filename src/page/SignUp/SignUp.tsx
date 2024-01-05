@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import "./SignUp.css";
 import Footer from "../Footer/Footer";
 
@@ -25,18 +25,36 @@ function SignUpPage() {
     userRole: string;
   }
 
+  interface CertifiedNumberData {
+    email: string;
+  }
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [authKey, setAuthKey] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [userRole, setUserRole] = useState<string>("");
+  const [country, setcountry] = useState<string>("");
   const [SignUpFailed, setSignUpFailed] = useState<boolean>(false);
   const [message, setmessage] = useState<string>("");
+
+  const CertifiedNumberSendClick = async () => {
+    try {
+      const response = await axios.post("/api/v1/verify/request", email);
+
+      if (response.status === 200) {
+        console.log("인증번호 전송 성공");
+        setmessage(response.data.ko);
+      }
+    } catch (error: any) {
+      console.log("인증전송 실패");
+    }
+  };
 
   const handleSignUp = async () => {
     const data: SignUpData = {
       authKey: authKey,
-      country: selectedCity,
+      country: "GANGNAM",
       email: email,
       nickname: nickname,
       password: password,
@@ -52,30 +70,13 @@ function SignUpPage() {
         console.log("회원가입 성공");
         setSignUpFailed(false);
       }
-    } catch (error) {
-      const axiosError = error as AxiosError;
-      console.error("회원가입 실패:", axiosError);
-      setSignUpFailed(true);
-      if (axiosError.response?.status === 403) {
-        setmessage(
-          "이미 서비스에 등록된 이메일 주소입니다. 다른 이메일 주소를 사용하거나 로그인을 시도하십시오."
-        );
-      } else if (axiosError.response?.status === 406) {
-        setmessage(
-          "사용할 수 없는 비밀번호입니다. 영문 8자리 이상, 1개 이상의 특수문자, 1자 이상의 대문자, 1자 이상의 숫자를 이용하여 비밀번호를 구성하십시오."
-        );
-      } else if (axiosError.response?.status === 409) {
-        setmessage("사용할 수 없는 닉네임입니다. 다른 닉네임을 선택하십시오.");
-      } else if (axiosError.response?.status === 423) {
-        setmessage("3분 후에 이메일 인증 재발송이 가능합니다.");
-      } else if (axiosError.response?.status === 408) {
-        setmessage(
-          "이메일 인증 유효 시간이 만료되었습니다. 이메일 인증을 다시 시도하십시오."
-        );
-      } else {
-        setmessage(
-          "회원가입을 완료할 수 없습니다. 오류가 계속되면 관리자에게 문의하십시오."
-        );
+    } catch (error: any) {
+      if (error.response?.data) {
+        console.log("--------------------------------");
+        console.log(error.response.data.ko);
+        console.error("회원가입 실패:", error);
+        setmessage(error.response.data.ko);
+        setSignUpFailed(true);
       }
     }
   };
@@ -252,7 +253,10 @@ function SignUpPage() {
                   placeholder=""
                   onChange={(e) => setEmail(e.target.value)}
                 ></input>
-                <button className="CertifiedNumberSendButton">
+                <button
+                  className="CertifiedNumberSendButton"
+                  onClick={CertifiedNumberSendClick}
+                >
                   인증 보내기
                 </button>
               </div>
