@@ -85,14 +85,14 @@
   line-height: normal;
 }
 
-.secondContainer {
+.LoginSecondContainer {
   display: flex;
   margin-top: 1.875rem;
   width: 100%;
   height: 16.125rem;
 }
 
-.thirdContainer {
+.LoginThirdContainer {
   display: inline-block;
   text-align: start;
   width: 32.75rem;
@@ -108,7 +108,7 @@
   line-height: normal;
 }
 
-.emailInput {
+.loginEmailInput {
   margin-top: 0.625rem;
   width: 32rem;
   height: 3.2rem;
@@ -130,7 +130,7 @@
   line-height: normal;
 }
 
-.passwordInput {
+.loginPasswordInput {
   margin-top: 0.625rem;
   width: 32rem;
   height: 3.2rem;

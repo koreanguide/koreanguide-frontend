@@ -1,9 +1,21 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import "./SignUp.css";
 import Footer from "../Footer/Footer";
 
 function SignUpPage() {
+  interface AlertBoxProps {
+    message: string;
+  }
+
+  const AlertBox = ({ message }: AlertBoxProps) => {
+    return (
+      <div className="alertContainer">
+        <img className="alertImg" src="../img/alertImg.svg" alt="오류"></img>
+        <div className="alertText">{message}</div>
+      </div>
+    );
+  };
   interface SignUpData {
     email: string;
     password: string;
@@ -16,15 +28,15 @@ function SignUpPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [authKey, setAuthKey] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [userRole, setUserRole] = useState<string>("");
   const [SignUpFailed, setSignUpFailed] = useState<boolean>(false);
+  const [message, setmessage] = useState<string>("");
 
   const handleSignUp = async () => {
     const data: SignUpData = {
       authKey: authKey,
-      country: "GANGNAM",
+      country: selectedCity,
       email: email,
       nickname: nickname,
       password: password,
@@ -41,22 +53,31 @@ function SignUpPage() {
         setSignUpFailed(false);
       }
     } catch (error) {
-      console.error("회원가입 실패:", error);
+      const axiosError = error as AxiosError;
+      console.error("회원가입 실패:", axiosError);
       setSignUpFailed(true);
+      if (axiosError.response?.status === 403) {
+        setmessage(
+          "이미 서비스에 등록된 이메일 주소입니다. 다른 이메일 주소를 사용하거나 로그인을 시도하십시오."
+        );
+      } else if (axiosError.response?.status === 406) {
+        setmessage(
+          "사용할 수 없는 비밀번호입니다. 영문 8자리 이상, 1개 이상의 특수문자, 1자 이상의 대문자, 1자 이상의 숫자를 이용하여 비밀번호를 구성하십시오."
+        );
+      } else if (axiosError.response?.status === 409) {
+        setmessage("사용할 수 없는 닉네임입니다. 다른 닉네임을 선택하십시오.");
+      } else if (axiosError.response?.status === 423) {
+        setmessage("3분 후에 이메일 인증 재발송이 가능합니다.");
+      } else if (axiosError.response?.status === 408) {
+        setmessage(
+          "이메일 인증 유효 시간이 만료되었습니다. 이메일 인증을 다시 시도하십시오."
+        );
+      } else {
+        setmessage(
+          "회원가입을 완료할 수 없습니다. 오류가 계속되면 관리자에게 문의하십시오."
+        );
+      }
     }
-  };
-
-  interface AlertBoxProps {
-    message: string;
-  }
-
-  const AlertBox = ({ message }: AlertBoxProps) => {
-    return (
-      <div className="alertContainer">
-        <img className="alertImg" src="../img/alertImg.svg" alt="오류"></img>
-        <div className="alertText">{message}</div>
-      </div>
-    );
   };
 
   const [hoverGuide, setHoverGuide] = useState(false);
@@ -171,7 +192,7 @@ function SignUpPage() {
               <img className="arrowImg" src="../img/arrow.svg" alt="오류"></img>
             </div>
           </div>
-          {/* <AlertBox message="이미 서비스에 등록된 이메일 주소입니다. 다른 이메일 주소를 사용하거나 로그인을 시도하십시오."></AlertBox> */}
+          <AlertBox message={message}></AlertBox>
           <div className="textLoginBox">
             <div className="textLogin">어떤 사용자로 가입하시겠어요?</div>
             <div className="selectText">
@@ -308,7 +329,7 @@ function SignUpPage() {
             </div>
           </div>
           <button className="SignupButton" onClick={handleSignUp}>
-            Sign Up
+            완료하기
           </button>
         </div>
       </div>

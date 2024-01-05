@@ -75,19 +75,19 @@ function Login() {
               포털에 접근하려면 로그인이 필요합니다.
             </div>
           </div>
-          <div className="secondContainer">
-            <div className="thirdContainer">
+          <div className="LoginSecondContainer">
+            <div className="LoginThirdContainer">
               <div className="textEmailAddress">이메일 주소</div>
               <input
                 type="email"
-                className="emailInput"
+                className="loginEmailInput"
                 placeholder="abc@example.com"
                 onChange={(e) => setEmail(e.target.value)}
               ></input>
               <div className="textPassword">비밀번호</div>
               <input
                 type="password"
-                className="passwordInput"
+                className="loginPasswordInput"
                 placeholder="passwd123@"
                 onChange={(e) => setPassword(e.target.value)}
               ></input>

@@ -1,13 +1,14 @@
 .frame {
   width: 100%;
-  height: 70rem;
+  height: 80rem;
   display: flex;
   justify-content: center;
 }
 
 .inner {
   width: 67.25rem;
-  height: 70rem;
+  height: 80rem;
+  text-align: start;
 }
 
 .logoContainer {
@@ -119,6 +120,7 @@
 }
 
 .secondContainer {
+  margin-top: 1.875rem;
   width: 100%;
   height: 6.0625rem;
   display: flex;
@@ -347,12 +349,38 @@ input:focus {
 
 .locationContainerTwo {
   display: inline;
+  width: 20rem;
 }
 
 .CitySelectListFrame {
+  width: 20rem;
+  height: 15rem;
+  overflow: auto;
+}
+
+.CitySelectListFrame::-webkit-scrollbar {
+  display: none;
+}
+
+.CityListBox {
   width: 19.4375rem;
-  height: auto;
-  background-color: #730ef4;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.ListBoxCityName {
+  margin-left: 1.875rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .locationContainerThree {
@@ -361,4 +389,21 @@ input:focus {
   margin-top: 0.625rem;
   width: 32.6875rem;
   height: auto;
+}
+
+.SignupButton {
+  width: 10.125rem;
+  margin-top: 3.75rem;
+  height: 2.625rem;
+  border-radius: 0.3125rem 1.25rem 1.25rem 0.3125rem;
+  background: var(--Primary, #730ef4);
+  border: none;
+  color: #fff;
+  font-family: Urbanist;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
 }
