@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SignUp.css";
 import Footer from "../Footer/Footer";
@@ -133,6 +134,8 @@ function SignUpPage() {
     }
   };
 
+  const navigate = useNavigate();
+
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
       setmessage("비밀번호 입력이 서로 일치하지 않습니다");
@@ -155,6 +158,7 @@ function SignUpPage() {
       if (response.status === 200) {
         sessionStorage.setItem("access-token", response.data.accessToken);
         sessionStorage.setItem("refresh-token", response.data.refreshToken);
+        navigate("/");
       }
     } catch (error: any) {
       if (error.response?.data) {

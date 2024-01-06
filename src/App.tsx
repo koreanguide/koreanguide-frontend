@@ -8,6 +8,7 @@ import HeaderTwo from "./HeaderTwo";
 import Footer from "./page/Footer/Footer";
 import Login from "./page/Login/LoginPage";
 import SignUpPage from "./page/SignUp/SignUp";
+import PasswordReset from "./page/PasswordReset/PasswordReset";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Footer" element={<Footer />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/signup/page" element={<SignUpPage />} />
+          <Route path="/passwordreset" element={<PasswordReset />} />
         </Routes>
       </BrowserRouter>
     </div>
