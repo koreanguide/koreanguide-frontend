@@ -1,8 +1,136 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./PasswordReset.css";
 import Footer from "../Footer/Footer";
 
 function PasswordReset() {
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [validateKey, setvalidateKey] = useState<string>("");
+
+  interface passwordResetData {
+    email: string;
+    password: string;
+    validateKey: string;
+  }
+
+  const handlepasswordReset = async () => {
+    if (password !== confirmPassword) {
+      setmessage("비밀번호 입력이 서로 일치하지 않습니다");
+      setAlertBoxShow(true);
+      return;
+    }
+
+    const data: passwordResetData = {
+      validateKey: validateKey,
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await axios.put("/v1/reset/password", data);
+
+      if (response.status === 200) {
+        console.log("put 성공");
+        setmessage(response.data.ko);
+        setPositiveAlertBoxShow(true);
+        setAlertBoxShow(false);
+      }
+    } catch (error: any) {
+      if (error.response?.data) {
+        setmessage(error.response.data.ko);
+        setPositiveAlertBoxShow(false);
+        setAlertBoxShow(true);
+      }
+    }
+  };
+
+  interface RePasswoCertifiedNumberData {
+    email: string;
+  }
+
+  const [loadBox, setloadBox] = useState(false);
+  const [sendBox, setsendBox] = useState(true);
+  const [reSendBox, setreSendBox] = useState(false);
+  const [sendFailBox, setsendFailBox] = useState(false);
+
+  const CertifiedNumberSendClick = async () => {
+    setloadBox(true);
+    setsendBox(false);
+    setreSendBox(false);
+    setsendFailBox(false);
+    setAlertBoxShow(false);
+    const data: RePasswoCertifiedNumberData = {
+      email: email,
+    };
+
+    try {
+      const response = await axios.post("/v1/verify/request/pw", data);
+
+      if (response.status === 200) {
+        setmessage(response.data.ko);
+        setreSendBox(true);
+        setloadBox(false);
+        setsendBox(false);
+        setsendFailBox(false);
+        setAlertBoxShow(false);
+        setPositiveAlertBoxShow(true);
+      }
+    } catch (error: any) {
+      setsendFailBox(false);
+      setreSendBox(true);
+      setloadBox(false);
+      setsendBox(false);
+      setmessage(error.response.data.ko);
+      setAlertBoxShow(true);
+      setPositiveAlertBoxShow(false);
+    }
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      setmessage("유효한 이메일 형식이 아닙니다.");
+      setAlertBoxShow(true);
+    }
+  };
+
+  interface RePasswordEmailCertifiedClickData {
+    email: string;
+    key: string;
+  }
+
+  const [emailCertifiedButtonShow, setemailCertifiedButtonShow] =
+    useState(true);
+  const [emailCheckedBoxShow, setemailCheckedBoxShow] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const emailCertifiedClick = async () => {
+    const data: RePasswordEmailCertifiedClickData = {
+      email: email,
+      key: validateKey,
+    };
+
+    try {
+      const response = await axios.post("/v1/verify/validate/pw", data);
+
+      if (response.status === 200) {
+        setreSendBox(false);
+        setloadBox(false);
+        setsendBox(false);
+        setsendFailBox(true);
+        setemailCertifiedButtonShow(false);
+        setemailCheckedBoxShow(true);
+        setPositiveAlertBoxShow(false);
+        setAlertBoxShow(false);
+        setIsDisabled(true);
+      }
+    } catch (error: any) {
+      setmessage(error.response.data.ko);
+      setAlertBoxShow(true);
+      setPositiveAlertBoxShow(false);
+    }
+  };
+
   interface AlertBoxProps {
     message: string;
   }
@@ -49,7 +177,6 @@ function PasswordReset() {
           </div>
           {PositiveAlertBoxShow && <PositiveAlertBox></PositiveAlertBox>}
           {AlertBoxShow && <AlertBox message={message}></AlertBox>}
-          {/* <AlertBox message={message}></AlertBox> */}
           <div className="rePasswordTextOne">
             이메일 인증을 통해 비밀번호를 재설정할 수 있습니다.
           </div>
@@ -61,16 +188,10 @@ function PasswordReset() {
                   type="email"
                   className="emailInput"
                   placeholder=""
-                  //   onChange={(e) => setEmail(e.target.value)}
-                  //   disabled={isDisabled}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isDisabled}
                 ></input>
-                <button
-                  className="CertifiedNumberSendButton"
-                  //   onClick={CertifiedNumberSendClick}
-                >
-                  인증 보내기
-                </button>
-                {/* {sendBox && (
+                {sendBox && (
                   <button
                     className="CertifiedNumberSendButton"
                     onClick={CertifiedNumberSendClick}
@@ -97,7 +218,7 @@ function PasswordReset() {
                 )}
                 {sendFailBox && (
                   <button className="CertifiedNumbeReSendfail">완료</button>
-                )} */}
+                )}
               </div>
             </div>
             <div className="emailCertifiedContainer">
@@ -107,26 +228,20 @@ function PasswordReset() {
                   type="string"
                   className="emailCertifiedInput"
                   placeholder=""
-                  //   onChange={(e) => setAuthKey(e.target.value)}
-                  //   disabled={isDisabled}
+                  onChange={(e) => setvalidateKey(e.target.value)}
+                  disabled={isDisabled}
                 ></input>
-                <button
-                  className="emailCertifiedButton"
-                  //   onClick={emailCertifiedClick}
-                >
-                  인증하기
-                </button>
-                {/* {emailCertifiedButtonShow && (
-                      <button
-                        className="emailCertifiedButton"
-                        onClick={emailCertifiedClick}
-                      >
-                        인증하기
-                      </button>
-                    )}
-                    {emailCheckedBoxShow && (
-                      <button className="emailCheckedBox">인증됨</button>
-                    )} */}
+                {emailCertifiedButtonShow && (
+                  <button
+                    className="emailCertifiedButton"
+                    onClick={emailCertifiedClick}
+                  >
+                    인증하기
+                  </button>
+                )}
+                {emailCheckedBoxShow && (
+                  <button className="emailCheckedBox">인증됨</button>
+                )}
               </div>
             </div>
             <div className="passwordContainer">
@@ -139,8 +254,8 @@ function PasswordReset() {
               <input
                 className="passwordInput"
                 type="password"
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
             <div className="rePasswordContainer">
@@ -148,13 +263,13 @@ function PasswordReset() {
               <input
                 className="repasswordInput"
                 type="password"
-                // value={confirmPassword}
-                // onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               ></input>
             </div>
             <button
               className="passwordResetButton"
-              //  onClick={handleSignUp}
+              onClick={handlepasswordReset}
             >
               완료하기
             </button>
