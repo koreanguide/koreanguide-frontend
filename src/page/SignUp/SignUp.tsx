@@ -8,6 +8,8 @@ function SignUpPage() {
     message: string;
   }
 
+  const [AlertBoxShow, setAlertBoxShow] = useState(false);
+
   const AlertBox = ({ message }: AlertBoxProps) => {
     return (
       <div className="alertContainer">
@@ -16,6 +18,18 @@ function SignUpPage() {
       </div>
     );
   };
+
+  const [PositiveAlertBoxShow, setPositiveAlertBoxShow] = useState(false);
+
+  const PositiveAlertBox = () => {
+    return (
+      <div className="alertContainerP">
+        <img className="alertImgP" src="../img/alertImgP.svg" alt="오류"></img>
+        <div className="alertTextP">{message}</div>
+      </div>
+    );
+  };
+
   interface SignUpData {
     email: string;
     password: string;
@@ -29,32 +43,106 @@ function SignUpPage() {
     email: string;
   }
 
+  interface emailCertifiedClickData {
+    email: string;
+    key: string;
+  }
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [authKey, setAuthKey] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [userRole, setUserRole] = useState<string>("");
   const [country, setcountry] = useState<string>("");
-  const [SignUpFailed, setSignUpFailed] = useState<boolean>(false);
   const [message, setmessage] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [loadBox, setloadBox] = useState(false);
+  const [sendBox, setsendBox] = useState(true);
+  const [reSendBox, setreSendBox] = useState(false);
+  const [sendFailBox, setsendFailBox] = useState(false);
 
   const CertifiedNumberSendClick = async () => {
+    setloadBox(true);
+    setsendBox(false);
+    setreSendBox(false);
+    setsendFailBox(false);
+    setAlertBoxShow(false);
+    const data: CertifiedNumberData = {
+      email: email,
+    };
+
     try {
-      const response = await axios.post("/api/v1/verify/request", email);
+      const response = await axios.post("/v1/verify/request", data);
 
       if (response.status === 200) {
-        console.log("인증번호 전송 성공");
         setmessage(response.data.ko);
+        setreSendBox(true);
+        setloadBox(false);
+        setsendBox(false);
+        setsendFailBox(false);
+        setAlertBoxShow(false);
+        setPositiveAlertBoxShow(true);
       }
     } catch (error: any) {
-      console.log("인증전송 실패");
+      setsendFailBox(false);
+      setreSendBox(true);
+      setloadBox(false);
+      setsendBox(false);
+      setmessage(error.response.data.ko);
+      setAlertBoxShow(true);
+      setPositiveAlertBoxShow(false);
+    }
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      setmessage("유효한 이메일 형식이 아닙니다.");
+      setAlertBoxShow(true);
+    }
+  };
+
+  const [emailCertifiedButtonShow, setemailCertifiedButtonShow] =
+    useState(true);
+  const [emailCheckedBoxShow, setemailCheckedBoxShow] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const emailCertifiedClick = async () => {
+    const data: emailCertifiedClickData = {
+      email: email,
+      key: authKey,
+    };
+
+    try {
+      const response = await axios.post("/v1/verify/validate", data);
+
+      if (response.status === 200) {
+        setreSendBox(false);
+        setloadBox(false);
+        setsendBox(false);
+        setsendFailBox(true);
+        setemailCertifiedButtonShow(false);
+        setemailCheckedBoxShow(true);
+        setPositiveAlertBoxShow(false);
+        setAlertBoxShow(false);
+        setIsDisabled(true);
+      }
+    } catch (error: any) {
+      setmessage(error.response.data.ko);
+      setAlertBoxShow(true);
+      setPositiveAlertBoxShow(false);
     }
   };
 
   const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      setmessage("비밀번호 입력이 서로 일치하지 않습니다");
+      setAlertBoxShow(true);
+      return;
+    }
+
     const data: SignUpData = {
       authKey: authKey,
-      country: "GANGNAM",
+      country: country,
       email: email,
       nickname: nickname,
       password: password,
@@ -67,20 +155,19 @@ function SignUpPage() {
       if (response.status === 200) {
         sessionStorage.setItem("access-token", response.data.accessToken);
         sessionStorage.setItem("refresh-token", response.data.refreshToken);
-        console.log("회원가입 성공");
-        setSignUpFailed(false);
       }
     } catch (error: any) {
       if (error.response?.data) {
-        console.log("--------------------------------");
-        console.log(error.response.data.ko);
-        console.error("회원가입 실패:", error);
         setmessage(error.response.data.ko);
-        setSignUpFailed(true);
+        setAlertBoxShow(true);
       }
     }
-  };
 
+    if (!userRole) {
+      setmessage("가이드와 관광객 중 하나를 선택하세요");
+      setAlertBoxShow(true);
+    }
+  };
   const [hoverGuide, setHoverGuide] = useState(false);
   const [hoverTourist, setHoverTourist] = useState(false);
   const [activeGuide, setActiveGuide] = useState(false);
@@ -98,7 +185,6 @@ function SignUpPage() {
     setActiveGuide(!activeGuide);
     setActiveTourist(false);
     setUserRole("GUIDE");
-    console.log("가이드");
   };
 
   const handleMouseEnterTourist = () => {
@@ -112,12 +198,11 @@ function SignUpPage() {
   const handleClickTourist = () => {
     setActiveTourist(!activeTourist);
     setActiveGuide(false);
-    console.log("관광객");
     setUserRole("VISITOR");
   };
 
   const [showCityList, setShowCityList] = useState(false);
-  const [selectedCity, setSelectedCity] = useState("강동구");
+  const [countryShow, setCountryShow] = useState<string>("강동구");
 
   const cityData = [
     { kr: "강서구", en: "GANGSEO" },
@@ -166,7 +251,8 @@ function SignUpPage() {
         onClick={() => {
           setSelectedCity(CityName);
           setShowCityList(false);
-          console.log(`선택된 도시: ${CityNameEn}`);
+          setcountry(CityNameEn);
+          setCountryShow(CityName);
         }}
       >
         <div className="ListBoxCityName">{CityName}</div>
@@ -193,7 +279,8 @@ function SignUpPage() {
               <img className="arrowImg" src="../img/arrow.svg" alt="오류"></img>
             </div>
           </div>
-          <AlertBox message={message}></AlertBox>
+          {PositiveAlertBoxShow && <PositiveAlertBox></PositiveAlertBox>}
+          {AlertBoxShow && <AlertBox message={message}></AlertBox>}
           <div className="textLoginBox">
             <div className="textLogin">어떤 사용자로 가입하시겠어요?</div>
             <div className="selectText">
@@ -252,13 +339,36 @@ function SignUpPage() {
                   className="emailInput"
                   placeholder=""
                   onChange={(e) => setEmail(e.target.value)}
+                  disabled={isDisabled}
                 ></input>
-                <button
-                  className="CertifiedNumberSendButton"
-                  onClick={CertifiedNumberSendClick}
-                >
-                  인증 보내기
-                </button>
+                {sendBox && (
+                  <button
+                    className="CertifiedNumberSendButton"
+                    onClick={CertifiedNumberSendClick}
+                  >
+                    인증 보내기
+                  </button>
+                )}
+                {loadBox && (
+                  <button className="CertifiedNumberSendButtonLoad">
+                    <img
+                      className="loadImg"
+                      src="../img/load2.svg"
+                      alt="오류"
+                    ></img>
+                  </button>
+                )}
+                {reSendBox && (
+                  <button
+                    className="CertifiedNumbeReSendButton"
+                    onClick={CertifiedNumberSendClick}
+                  >
+                    재전송
+                  </button>
+                )}
+                {sendFailBox && (
+                  <button className="CertifiedNumbeReSendfail">완료</button>
+                )}
               </div>
             </div>
             <div className="emailCertifiedContainer">
@@ -269,8 +379,19 @@ function SignUpPage() {
                   className="emailCertifiedInput"
                   placeholder=""
                   onChange={(e) => setAuthKey(e.target.value)}
+                  disabled={isDisabled}
                 ></input>
-                <button className="emailCertifiedButton">인증하기</button>
+                {emailCertifiedButtonShow && (
+                  <button
+                    className="emailCertifiedButton"
+                    onClick={emailCertifiedClick}
+                  >
+                    인증하기
+                  </button>
+                )}
+                {emailCheckedBoxShow && (
+                  <button className="emailCheckedBox">인증됨</button>
+                )}
               </div>
             </div>
             <div className="passwordContainer">
@@ -283,18 +404,25 @@ function SignUpPage() {
               <input
                 className="passwordInput"
                 type="password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
             <div className="rePasswordContainer">
               <div className="containerText">비밀번호 재입력</div>
-              <input className="repasswordInput" type="password"></input>
+              <input
+                className="repasswordInput"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              ></input>
             </div>
             <div className="nickNameContainer">
               <div className="containerText">닉네임</div>
               <input
                 className="nickNameInput"
                 type="string"
+                disabled={false}
                 onChange={(e) => setNickname(e.target.value)}
               ></input>
             </div>
@@ -305,7 +433,7 @@ function SignUpPage() {
                 <div className="locationContainerTwo">
                   <div className="CitySelectFrame">
                     <div className="CitySelectFrameTwo">
-                      <div className="CityText">{selectedCity}</div>
+                      <div className="CityText">{countryShow}</div>
                       <button
                         className="CitySelectButton"
                         onClick={() => setShowCityList(!showCityList)}
@@ -323,7 +451,7 @@ function SignUpPage() {
                         key={city.en}
                         CityName={city.kr}
                         CityNameEn={city.en}
-                        setSelectedCity={setSelectedCity}
+                        setSelectedCity={setcountry}
                         setShowCityList={setShowCityList}
                       ></CityListBox>
                     ))}

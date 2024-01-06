@@ -91,6 +91,29 @@
   line-height: normal;
 }
 
+.alertContainerP {
+  width: 100%;
+  height: 4.1875rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  border: 0.0625rem solid #730ef4;
+}
+
+.alertImgP {
+  margin-left: 1.875rem;
+  margin-right: 1.25rem;
+}
+
+.alertTextP {
+  color: #730ef4;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 .textLoginBox {
   margin-top: 1.25rem;
   display: flex;
@@ -253,7 +276,8 @@ input:focus {
 }
 
 .CertifiedNumberSendButton,
-.emailCertifiedButton {
+.emailCertifiedButton,
+.CertifiedNumbeReSendButton {
   margin-left: 0.8rem;
   width: 6.875rem;
   height: 3.4375rem;
@@ -269,6 +293,55 @@ input:focus {
 
   border: none;
   cursor: pointer;
+}
+
+.CertifiedNumberSendButtonLoad {
+  margin-left: 0.8rem;
+  width: 6.875rem;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  background: #864fcd;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+}
+
+.loadImg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.emailCheckedBox,
+.CertifiedNumbeReSendfail {
+  margin-left: 0.8rem;
+  width: 6.875rem;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  background: #e3e3e3;
+  color: #730ef4;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  border: none;
 }
 
 .passwordInput,
@@ -399,7 +472,7 @@ input:focus {
   background: var(--Primary, #730ef4);
   border: none;
   color: #fff;
-  font-family: Urbanist;
+  font-family: Pretendard;
   font-size: 0.9375rem;
   font-style: normal;
   font-weight: 500;
