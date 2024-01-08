@@ -9,6 +9,7 @@ import Footer from "./page/Footer/Footer";
 import Login from "./page/Login/LoginPage";
 import SignUpPage from "./page/SignUp/SignUp";
 import PasswordReset from "./page/PasswordReset/PasswordReset";
+import TrackCreatePage from "./page/Track/TrackCreate";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/signin" element={<Login />} />
           <Route path="/signup/page" element={<SignUpPage />} />
           <Route path="/passwordreset" element={<PasswordReset />} />
+          <Route path="/track/create" element={<TrackCreatePage />} />
         </Routes>
       </BrowserRouter>
     </div>
