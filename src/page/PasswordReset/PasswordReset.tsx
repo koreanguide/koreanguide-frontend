@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./PasswordReset.css";
 import Footer from "../Footer/Footer";
@@ -9,6 +10,13 @@ function PasswordReset() {
   const [email, setEmail] = useState<string>("");
   const [validateKey, setvalidateKey] = useState<string>("");
 
+  const navigate = useNavigate();
+
+  const goToLoginPage = () => {
+    navigate("/signin");
+    window.scrollTo(0, 0);
+  };
+
   interface passwordResetData {
     email: string;
     password: string;
@@ -16,6 +24,13 @@ function PasswordReset() {
   }
 
   const handlepasswordReset = async () => {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      setmessage("유효한 이메일 형식이 아닙니다.");
+      setAlertBoxShow(true);
+      return;
+    }
+
     if (password !== confirmPassword) {
       setmessage("비밀번호 입력이 서로 일치하지 않습니다");
       setAlertBoxShow(true);
@@ -170,7 +185,7 @@ function PasswordReset() {
           </div>
           <div className="firstContainer">
             <div className="textWelcome">비밀번호 재설정</div>
-            <div className="boxOne">
+            <div className="boxOne" onClick={goToLoginPage}>
               <div className="textBackToLogin">로그인 페이지로 돌아가기</div>
               <img className="arrowImg" src="../img/arrow.svg" alt="오류"></img>
             </div>

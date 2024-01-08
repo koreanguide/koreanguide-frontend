@@ -295,6 +295,24 @@ input:focus {
   cursor: pointer;
 }
 
+.CertifiedNumberSendButton:hover {
+  background: #fff;
+  border: 0.0625rem solid #730ef4;
+  color: #730ef4;
+}
+
+.emailCertifiedButton:hover {
+  background: #fff;
+  border: 0.0625rem solid #730ef4;
+  color: #730ef4;
+}
+
+.CertifiedNumbeReSendButton:hover {
+  background: #fff;
+  border: 0.0625rem solid #730ef4;
+  color: #730ef4;
+}
+
 .CertifiedNumberSendButtonLoad {
   margin-left: 0.8rem;
   width: 6.875rem;
@@ -479,4 +497,10 @@ input:focus {
   line-height: normal;
 
   cursor: pointer;
+}
+
+.SignupButton:hover {
+  background: #fff;
+  border: 0.0625rem solid #730ef4;
+  color: #730ef4;
 }

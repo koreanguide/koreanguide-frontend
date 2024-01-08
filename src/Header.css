@@ -63,11 +63,6 @@
   padding: 0%;
   margin: 0%;
   right: 0%;
-
-  cursor: pointer;
-}
-
-.StartButton p {
   color: var(--Primary, #730ef4);
   font-family: Pretendard;
   font-size: 0.875rem;
@@ -76,6 +71,14 @@
   padding: 0%;
   margin: 0%;
   line-height: normal;
+
+  cursor: pointer;
+}
+
+.StartButton:hover {
+  background-color: #730ef4;
+  color: white;
+  border: 0.125rem solid #fff;
 }
 
 .language {

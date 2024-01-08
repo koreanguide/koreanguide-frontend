@@ -136,6 +136,11 @@ function SignUpPage() {
 
   const navigate = useNavigate();
 
+  const goToLoginPage = () => {
+    navigate("/signin");
+    window.scrollTo(0, 0);
+  };
+
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
       setmessage("비밀번호 입력이 서로 일치하지 않습니다");
@@ -278,7 +283,7 @@ function SignUpPage() {
           </div>
           <div className="firstContainer">
             <div className="textWelcome">회원가입</div>
-            <div className="boxOne">
+            <div className="boxOne" onClick={goToLoginPage}>
               <div className="textBackToLogin">로그인 페이지로 돌아가기</div>
               <img className="arrowImg" src="../img/arrow.svg" alt="오류"></img>
             </div>

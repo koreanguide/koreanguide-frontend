@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./LoginPage.css";
 import Footer from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 interface LoginData {
   email: string;
@@ -9,6 +10,18 @@ interface LoginData {
 }
 
 function Login() {
+  const navigate = useNavigate();
+
+  window.scrollTo(0, 0);
+  const goToPasswordReset = () => {
+    navigate("/passwordreset");
+    window.scrollTo(0, 0);
+  };
+  const goToSignUpPage = () => {
+    navigate("/signup/page");
+    window.scrollTo(0, 0);
+  };
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loginFailed, setLoginFailed] = useState<boolean>(false);
@@ -27,6 +40,8 @@ function Login() {
         sessionStorage.setItem("refresh-token", response.data.refreshToken);
         sessionStorage.setItem("email", response.data.email);
         console.log("로그인 성공");
+        navigate("/");
+        window.scrollTo(0, 0);
         setLoginFailed(false);
       }
     } catch (error) {
@@ -35,17 +50,25 @@ function Login() {
     }
   };
 
-  const LoginIcon = () => {
+  interface LoginIconProps {
+    imageName: string;
+  }
+
+  const LoginIcon = ({ imageName }: LoginIconProps) => {
     return (
       <div className="LoginIconFrame">
-        <div></div>
+        <img
+          className="signinCompanyLogoImg"
+          src={`../img/${imageName}.svg`}
+          alt="오류"
+        ></img>
       </div>
     );
   };
 
   return (
     <div className="mainFrame">
-      <div className="frame">
+      <div className="signinframe">
         <div className="inner">
           <div className="logoContainer">
             <img
@@ -100,14 +123,14 @@ function Login() {
                 또는 다음의 로그인 방법을 사용할 수 있습니다.
               </div>
               <div className="iconContainer">
-                <LoginIcon></LoginIcon>
-                <LoginIcon></LoginIcon>
-                <LoginIcon></LoginIcon>
-                <LoginIcon></LoginIcon>
-                <LoginIcon></LoginIcon>
+                <LoginIcon imageName="kakaoLogo"></LoginIcon>
+                <LoginIcon imageName="L2"></LoginIcon>
+                <LoginIcon imageName="L3"></LoginIcon>
+                <LoginIcon imageName="L4"></LoginIcon>
+                <LoginIcon imageName="L5"></LoginIcon>
               </div>
               <div className="textAnotherOption">다른 옵션이 필요하신가요?</div>
-              <div className="findPasswordBox">
+              <div className="findPasswordBox" onClick={goToPasswordReset}>
                 <img
                   className="AnotherOptionImg"
                   src="../img/AnotherOptionImg.svg"
@@ -117,7 +140,7 @@ function Login() {
                   비밀번호를 잊어버리셨나요?
                 </div>
               </div>
-              <div className="gotoSignUpBox">
+              <div className="gotoSignUpBox" onClick={goToSignUpPage}>
                 <img
                   className="AnotherOptionImg"
                   src="../img/AnotherOptionImg.svg"

@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
+  const navigate = useNavigate();
+  const goToStart = () => {
+    navigate("/signin");
+    window.scrollTo(0, 0);
+  };
+
   interface LanguageProps {
     ImgSrc: any;
     LanguageText: React.ReactNode;
@@ -37,11 +43,9 @@ function Header() {
           <p className="HomeButtonText">KOREAN GUIDE</p>
         </button>
         <div className="StartButtonFrame">
-          <Link to="/LoginPage">
-            <button className="StartButton">
-              <p>시작하기</p>
-            </button>
-          </Link>
+          <button className="StartButton" onClick={goToStart}>
+            <p>시작하기</p>
+          </button>
         </div>
         <button className="language" onClick={toggleBox}>
           <p>Language</p>
