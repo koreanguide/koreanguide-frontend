@@ -11,17 +11,50 @@ function TrackCreatePage() {
     consentCheckBoxText,
   }) => {
     const [isChecked, setIsChecked] = useState(false);
+    const [checkBoxImage, setCheckBoxImage] = useState("../img/nonChecked.svg");
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked(e.target.checked);
+    const handleCheckBoxClick = () => {
+      setIsChecked(!isChecked);
     };
+
+    React.useEffect(() => {
+      if (isChecked) {
+        setCheckBoxImage("../img/Checked.svg");
+      } else {
+        setCheckBoxImage("../img/nonChecked.svg");
+      }
+    }, [isChecked]);
 
     return (
       <div className="consentCheckBoxContainer">
-        <label className="customCheckbox">
-          <input type="checkbox" checked={isChecked} onChange={handleChange} />
-        </label>
-        <div className="consentCheckBoxText">{consentCheckBoxText}</div>
+        <img
+          className="consentCheckBoxImg"
+          src={checkBoxImage}
+          alt="오류"
+          onClick={handleCheckBoxClick}
+        ></img>
+        <p className="consentCheckBoxText">
+          <span className="highlight">{consentCheckBoxText}</span>에 동의합니다.
+        </p>
+      </div>
+    );
+  };
+
+  const AddImgComponent = () => {
+    return (
+      <div className="AddImgComponentFrame">
+        <div className="AddImgComponentInnerBox">
+          <img className="plusImg" src="../img/plusImg.svg" alt="오류"></img>
+          <div className="AddImgComponentText">새 이미지 추가</div>
+        </div>
+      </div>
+    );
+  };
+
+  const TrackInputComponent = () => {
+    return (
+      <div className="trackInputComponentFrame">
+        <div className=""></div>
       </div>
     );
   };
@@ -42,8 +75,49 @@ function TrackCreatePage() {
                 추가를 시작하기 전, 아래 내용을 반드시 동의해야 합니다.
               </div>
               <div className="consentCheckBox">
-                <ConsentCheckBox consentCheckBoxText="이 트랙은 대한민국을 방문하는 외국인에게 공개되는 트랙임을 확인했습니다."></ConsentCheckBox>
+                <ConsentCheckBox consentCheckBoxText="서비스 이용약관"></ConsentCheckBox>
+                <ConsentCheckBox consentCheckBoxText="개인정보 처리방침"></ConsentCheckBox>
+                <ConsentCheckBox consentCheckBoxText="트랙 서비스 이용약관"></ConsentCheckBox>
               </div>
+            </div>
+          </div>
+          <div className="trackAddImgContainer">
+            <div className="trackAddImgInnerContainer">
+              <div className="textIncludeImgContainer">
+                <div className="textIncludeImg">
+                  트랙을 잘 소개할 수 있는 이미지를 선택해 주세요.
+                </div>
+                <div className="textEssentialInput">* 필수 입력 섹션</div>
+              </div>
+              <div className="textIncludeImgServ">
+                트랙의 이미지를 첨부해 주세요. 대표 이미지는 반드시 업로드가
+                필요합니다.
+              </div>
+              <div className="trackAddImgContainerTwo">
+                <div className="trackAddImgContainerThree">
+                  <div className="textMainImg">대표 이미지</div>
+                  <div className="mainImgAddContainer">
+                    <div className="mainImgAddInnerContainer">
+                      <img
+                        className="plusImg"
+                        src="../img/plusImg.svg"
+                        alt="오류"
+                      ></img>
+                      <div className="plusImgText">새 대표 이미지 추가</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="trackAddImgContainerFour">
+                  <div className="textAddImg">추가 이미지</div>
+                  <div className="trackAddImgContainerFive">
+                    <AddImgComponent></AddImgComponent>
+                    <AddImgComponent></AddImgComponent>
+                    <AddImgComponent></AddImgComponent>
+                    <AddImgComponent></AddImgComponent>
+                  </div>
+                </div>
+              </div>
+              <TrackCreatePage></TrackCreatePage>
             </div>
           </div>
         </div>
