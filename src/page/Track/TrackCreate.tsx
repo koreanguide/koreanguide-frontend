@@ -1,23 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TrackCreate.css";
 import HeaderTwo from "../../HeaderTwo";
+import axios from "axios";
 
 function TrackCreatePage() {
-  interface consentCheckBoxProps {
-    consentCheckBoxText: string;
-  }
+  const apiClient = axios.create({
+    baseURL:
+      "http://localhost:8080/swagger-ui.html#/track-controller/applyTrackUsingPOST/api/v1",
+  });
 
-  const ConsentCheckBox: React.FC<consentCheckBoxProps> = ({
+  const token = sessionStorage.getItem("access-token");
+  useEffect(() => {
+    apiClient
+      .get("/v1/track", {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log("토큰성공");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("에러 발생");
+      });
+  }, [token]);
+
+  type ConsentCheckBoxProps = {
+    consentCheckBoxText: string;
+    onCheckChange: (isChecked: boolean) => void;
+  };
+
+  type CheckBoxItem = {
+    name: string;
+    text: string;
+  };
+
+  const ConsentCheckBox: React.FC<ConsentCheckBoxProps> = ({
     consentCheckBoxText,
+    onCheckChange,
   }) => {
     const [isChecked, setIsChecked] = useState(false);
     const [checkBoxImage, setCheckBoxImage] = useState("../img/nonChecked.svg");
 
     const handleCheckBoxClick = () => {
-      setIsChecked(!isChecked);
+      setIsChecked((prev) => !prev);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (isChecked) {
         setCheckBoxImage("../img/Checked.svg");
       } else {
@@ -39,6 +70,31 @@ function TrackCreatePage() {
       </div>
     );
   };
+  // ---------------------------------------------------------------------------
+  const checkBoxItems: CheckBoxItem[] = [
+    { name: "termsOfService", text: "서비스 이용약관" },
+    { name: "privacyPolicy", text: "개인정보 처리방침" },
+    { name: "trackTermsOfService", text: "트랙 서비스 이용약관" },
+  ];
+
+  const [consentCheckAlert, setConsentCheckAlert] = useState(true);
+  const [checkBoxStatus, setCheckBoxStatus] = useState<Record<string, boolean>>(
+    checkBoxItems.reduce((acc, item) => {
+      acc[item.name] = false;
+      return acc;
+    }, {} as Record<string, boolean>)
+  );
+
+  const handleCheckBoxChange = (name: string, isChecked: boolean) => {
+    setCheckBoxStatus((prevState) => ({ ...prevState, [name]: isChecked }));
+  };
+
+  useEffect(() => {
+    const allChecked = checkBoxItems.every((item) => checkBoxStatus[item.name]);
+    setConsentCheckAlert(!allChecked);
+  }, [checkBoxStatus]);
+
+  // ---------------------------------------------------------------------------
 
   const AddImgComponent = () => {
     return (
@@ -202,11 +258,11 @@ function TrackCreatePage() {
     );
   };
 
-  interface TagComponent {
+  interface TagComponentProps {
     tagText: string;
   }
 
-  const TagComponent: React.FC<TagComponent> = ({ tagText }) => {
+  const TagComponent: React.FC<TagComponentProps> = ({ tagText }) => {
     return (
       <div className="tagDisplayBox">
         <div className="tagText">{tagText}</div>
@@ -224,15 +280,32 @@ function TrackCreatePage() {
             <div className="serviceConsentInnerContainer">
               <div className="serviceConsentBoxOne">
                 <div className="textServiceConsent">서비스 이용약관 동의</div>
-                <div className="textEssentialInput">* 필수 입력 섹션</div>
+                {consentCheckAlert && (
+                  <div className="TrackInputComponentContainer">
+                    <img
+                      className="plusImg"
+                      src="../img/redNotionIcon.svg"
+                      alt="오류"
+                    />
+                    <div className="trackInputComponentTextBoxThree">
+                      모든 약관에 동의해야 합니다
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="textServiceConsentServ">
                 추가를 시작하기 전, 아래 내용을 반드시 동의해야 합니다.
               </div>
               <div className="consentCheckBox">
-                <ConsentCheckBox consentCheckBoxText="서비스 이용약관"></ConsentCheckBox>
-                <ConsentCheckBox consentCheckBoxText="개인정보 처리방침"></ConsentCheckBox>
-                <ConsentCheckBox consentCheckBoxText="트랙 서비스 이용약관"></ConsentCheckBox>
+                {checkBoxItems.map((item) => (
+                  <ConsentCheckBox
+                    key={item.name}
+                    consentCheckBoxText={item.text}
+                    onCheckChange={(isChecked) =>
+                      handleCheckBoxChange(item.name, isChecked)
+                    }
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -242,7 +315,16 @@ function TrackCreatePage() {
                 <div className="textIncludeImg">
                   트랙을 잘 소개할 수 있는 이미지를 선택해 주세요.
                 </div>
-                <div className="textEssentialInput">* 필수 입력 섹션</div>
+                <div className="TrackInputComponentContainer">
+                  <img
+                    className="plusImg"
+                    src="../img/redNotionIcon.svg"
+                    alt="오류"
+                  />
+                  <div className="trackInputComponentTextBoxThree">
+                    대표 이미지가 첨부되지 않았습니다.
+                  </div>
+                </div>
               </div>
               <div className="textIncludeImgServ">
                 트랙의 이미지를 첨부해 주세요. 대표 이미지는 반드시 업로드가

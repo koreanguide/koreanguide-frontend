@@ -10,6 +10,7 @@ import Login from "./page/Login/LoginPage";
 import SignUpPage from "./page/SignUp/SignUp";
 import PasswordReset from "./page/PasswordReset/PasswordReset";
 import TrackCreatePage from "./page/Track/TrackCreate";
+import CreditManagement from "./page/Credit/CreditManagement";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signup/page" element={<SignUpPage />} />
           <Route path="/passwordreset" element={<PasswordReset />} />
           <Route path="/track/create" element={<TrackCreatePage />} />
+          <Route path="/credit/management" element={<CreditManagement />} />
         </Routes>
       </BrowserRouter>
     </div>
