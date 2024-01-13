@@ -27,6 +27,15 @@ function CreditManagement() {
     );
   };
 
+  const RecentPayment = () => {
+    return (
+      <div className="RecentPaymentFrame">
+        <div className="RecentPaymentDate">2023.09.11 16:18</div>
+        <div className="RecentPaymentAmount">150,000원</div>
+      </div>
+    );
+  };
+
   return (
     <div className="creditManagementMainFrame">
       <HeaderTwo></HeaderTwo>
@@ -52,6 +61,44 @@ function CreditManagement() {
           </div>
           <div className="creditManagementFirstContainerInnerTwo">
             <div className="myIncomeAccount">{Amount.toLocaleString()}원</div>
+          </div>
+        </div>
+        <div className="CreditManagementThridContainer">
+          <div className="CreditManagementSecondContainer">
+            <div className="CreditManagementSecondContainerText">최근 지급</div>
+            <div className="CreditManagementSecondInnerContainer">
+              <RecentPayment></RecentPayment>
+              <RecentPayment></RecentPayment>
+              <RecentPayment></RecentPayment>
+              <RecentPayment></RecentPayment>
+            </div>
+          </div>
+          <div className="CreditManagementSecondContainer">
+            <div className="CreditManagementBankContainerText">지급 방법</div>
+            <div className="CreditManagementBankContainer">
+              <div className="CreditManagementBankInnerContainer">
+                <div className="BankMarkBox">
+                  <img
+                    className="BankLogo"
+                    src="../img/BankLogo.svg"
+                    alt="오류"
+                  />
+                  <div className="textBackName">신한은행</div>
+                  <div className="UserAccountText">000000000000 김찬주</div>
+                </div>
+                <div className="BankIconBox">
+                  <img
+                    className="BankIcon"
+                    src="../img/BankIcon.svg"
+                    alt="오류"
+                  />
+                </div>
+              </div>
+              <div className="CreditManagementButtonBox">
+                <div className="ChangeBUtton">변경</div>
+                <div className="RemoveButton">삭제</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@
   height: 100%;
   display: inline;
   text-align: start;
-  /* background-color: red; */
+  background-color: red;
 }
 
 .textCreditManagement {
@@ -149,4 +149,144 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+.CreditManagementThridContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CreditManagementSecondContainer {
+  margin-top: 1.5625rem;
+  width: 30rem;
+  height: 16.9375rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
+  display: inline-block;
+}
+
+.CreditManagementSecondContainerText {
+  margin-top: 3.5rem;
+  margin-left: 3.75rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.CreditManagementSecondInnerContainer {
+  margin-top: 1.9375rem;
+  margin-left: 3.75rem;
+  width: 23.125rem;
+  height: 6.625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.RecentPaymentFrame {
+  width: 100%;
+  height: 1.1875rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.CreditManagementBankContainerText {
+  margin-top: 3.5rem;
+  margin-left: 3.125rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.CreditManagementBankContainer {
+  margin-top: 1.4375rem;
+  margin-left: 3.125rem;
+  width: 23.75rem;
+  height: 7.0625rem;
+}
+
+.CreditManagementBankInnerContainer {
+  width: 100%;
+  height: 4.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.BankMarkBox {
+  width: 7.6875rem;
+  height: 3.125rem;
+  position: relative;
+}
+
+.textBackName {
+  position: absolute;
+  left: 1.75rem;
+  top: 0.1875rem;
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.UserAccountText {
+  position: absolute;
+  bottom: 0rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.BankIconBox {
+  width: 9.125rem;
+  height: 4.75rem;
+  border-radius: 1.25rem;
+  background: var(--Sub, #f4f4f4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CreditManagementButtonBox {
+  margin-top: 2.125rem;
+  width: 4.5rem;
+  height: 1.125rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ChangeBUtton {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.RemoveButton {
+  color: #f94747;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
 }
