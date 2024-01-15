@@ -84,10 +84,41 @@ function CreditManagement() {
       }
     };
 
+    const UserAccountDelete = async () => {
+      try {
+        const response = await axios.delete("/v1/credit/bank", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("계좌삭제", response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const UserRefundApplication = async () => {
+      try {
+        const response = await axios.post("/v1/credit/refund", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+          params: {
+            amount: 50000,
+          },
+        });
+        console.log("환급신청", response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     fetchAmount();
     LastProvision();
     UsedHistory();
     UserAccount();
+    UserAccountDelete();
+    UserRefundApplication();
   }, []);
 
   const [Amount, setAmount] = useState(80000);

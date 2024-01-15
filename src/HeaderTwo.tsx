@@ -1,5 +1,6 @@
 import React from "react";
 import "./HeaderTwo.css";
+import { useNavigate } from "react-router-dom";
 
 interface UserInformationButtonProps {
   UserName: any;
@@ -19,10 +20,27 @@ const UserInformationButton = (props: UserInformationButtonProps) => {
 };
 
 function HeaderTwo() {
+  const navigate = useNavigate();
+
+  const goToMyPage = () => {
+    navigate("/AfterLogin");
+    window.scrollTo(0, 0);
+  };
+
+  const goToCreditManagementPage = () => {
+    navigate("/credit/management");
+    window.scrollTo(0, 0);
+  };
+
+  const goToMainPage = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="HeaderTwoBoxFrame">
       <div className="HeaderTwoBox">
-        <button className="HomeButtonTwo">
+        <button className="HomeButtonTwo" onClick={goToMainPage}>
           <img
             src="../img/HTL2.png"
             alt="none"
@@ -30,13 +48,16 @@ function HeaderTwo() {
           ></img>
           <p className="HomeButtonTextTwo">KOREAN GUIDE</p>
         </button>
-        <button className="HeaderProfileButton">
+        <button className="HeaderProfileButton" onClick={goToMyPage}>
           <p className="HeaderProfileButtonText">프로필 관리</p>
         </button>
         <button className="HeaderReviewButton">
           <p className="HeaderReviewButtonText">리뷰 관리</p>
         </button>
-        <button className="HeaderCreditButton">
+        <button
+          className="HeaderCreditButton"
+          onClick={goToCreditManagementPage}
+        >
           <p className="HeaderCreditButtonText">크레딧 관리</p>
         </button>
         <button className="HeaderMypageButton">

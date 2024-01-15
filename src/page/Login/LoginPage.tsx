@@ -41,7 +41,7 @@ function Login() {
         sessionStorage.setItem("email", response.data.email);
         console.log("로그인 성공");
         console.log(response.data.accessToken);
-        navigate("/");
+        navigate("/AfterLogin");
         window.scrollTo(0, 0);
         setLoginFailed(false);
       }
