@@ -4,29 +4,6 @@ import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 
 function TrackCreatePage() {
-  const apiClient = axios.create({
-    baseURL:
-      "http://localhost:8080/swagger-ui.html#/track-controller/applyTrackUsingPOST/api/v1",
-  });
-
-  const token = sessionStorage.getItem("access-token");
-  useEffect(() => {
-    apiClient
-      .get("/v1/track", {
-        headers: {
-          "X-AUTH-TOKEN": token,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        console.log("토큰성공");
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("에러 발생");
-      });
-  }, [token]);
-
   type ConsentCheckBoxProps = {
     consentCheckBoxText: string;
     onCheckChange: (isChecked: boolean) => void;

@@ -1,8 +1,95 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CreditManagement.css";
 import HeaderTwo from "../../HeaderTwo";
+import axios from "axios";
 
 function CreditManagement() {
+  const [bankAccountNumber, setbankAccountNumber] =
+    useState<string>("000000000000");
+  const [bankAccountProvider, setbankAccountProvider] =
+    useState<string>("KYONGNAMBANK");
+  const [name, setname] = useState<string>("홍길동");
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("access-token");
+
+    if (token === null) {
+      console.log("세션 스토리지에 토큰이 없습니다.");
+      return;
+    } else {
+      console.log("토큰", token);
+    }
+
+    const fetchAmount = async () => {
+      try {
+        const response = await axios.get("/v1/credit/", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("잔액조회", response.data);
+        setAmount(response.data.amount);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const LastProvision = async () => {
+      try {
+        const response = await axios.get("/v1/credit/refund", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("지급조회", response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const UsedHistory = async () => {
+      try {
+        const response = await axios.get("/v1/credit/history", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("사용내역", response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const UserAccount = async () => {
+      setbankAccountNumber("94160201519981");
+      setbankAccountProvider("KYONGNAMBANK");
+      setname("김찬주");
+      try {
+        const response = await axios.post(
+          "/v1/credit/bank",
+          {
+            bankAccountNumber: bankAccountNumber,
+            bankAccountProvider: bankAccountProvider,
+            name: name,
+          },
+          {
+            headers: {
+              "X-AUTH-TOKEN": token,
+            },
+          }
+        );
+        console.log("계좌등록", response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchAmount();
+    LastProvision();
+    UsedHistory();
+    UserAccount();
+  }, []);
+
   const [Amount, setAmount] = useState(80000);
 
   interface GaugeBarProps {
@@ -32,6 +119,21 @@ function CreditManagement() {
       <div className="RecentPaymentFrame">
         <div className="RecentPaymentDate">2023.09.11 16:18</div>
         <div className="RecentPaymentAmount">150,000원</div>
+      </div>
+    );
+  };
+
+  const UseredHistoryInfo = () => {
+    return (
+      <div className="UseredHistoryInfoFrame">
+        <div className="UseredHistoryInfoInner">
+          <div className="UseredHistoryInfoNum">5</div>
+          <div className="UseredHistoryInfoAmount">-10,000</div>
+          <div className="UseredHistoryInfoAcount">계좌로 크레딧 출금</div>
+          <div className="UseredHistoryInfoDate">
+            2023년 9월 21일 오후 12시 10분
+          </div>
+        </div>
       </div>
     );
   };
@@ -100,6 +202,21 @@ function CreditManagement() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="CreditManagementFourContainer">
+          <div className="UseredHistoryTextBox">
+            <div className="TextUseredHistory">사용 내역</div>
+            <div className="UseredHistoryAllBox">
+              <div className="UseredHistoryAllText">전체</div>
+              <img className="AllBTN" src="../img/AllBTN.svg" alt="오류" />
+            </div>
+          </div>
+          <div className=""></div>
+          <UseredHistoryInfo></UseredHistoryInfo>
+          <UseredHistoryInfo></UseredHistoryInfo>
+          <UseredHistoryInfo></UseredHistoryInfo>
+          <UseredHistoryInfo></UseredHistoryInfo>
+          <UseredHistoryInfo></UseredHistoryInfo>
         </div>
       </div>
     </div>
