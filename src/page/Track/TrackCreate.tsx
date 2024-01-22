@@ -4,74 +4,106 @@ import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 
 function TrackCreatePage() {
-  type ConsentCheckBoxProps = {
-    consentCheckBoxText: string;
-    onCheckChange: (isChecked: boolean) => void;
-  };
+  interface Image {
+    imageUrl: string;
+  }
 
-  type CheckBoxItem = {
-    name: string;
-    text: string;
-  };
+  interface Tag {
+    tagName: string;
+  }
 
-  const ConsentCheckBox: React.FC<ConsentCheckBoxProps> = ({
-    consentCheckBoxText,
-    onCheckChange,
-  }) => {
-    const [isChecked, setIsChecked] = useState(false);
-    const [checkBoxImage, setCheckBoxImage] = useState("../img/nonChecked.svg");
+  interface TrackCreateSubmitData {
+    agreePrivacyPolicy: boolean;
+    agreePublicTerms: boolean;
+    agreeTerms: boolean;
+    images: Image[];
+    primaryImageUrl: string;
+    tags: Tag[];
+    trackContent: string;
+    trackPreview: string;
+    trackTitle: string;
+  }
 
-    const handleCheckBoxClick = () => {
-      setIsChecked((prev) => !prev);
+  const token = sessionStorage.getItem("access-token");
+  console.log(token);
+
+  const [agreePrivacyPolicy, setAgreePrivacyPolicy] = useState<boolean>(false);
+  const [agreePublicTerms, setAgreePublicTerms] = useState<boolean>(false);
+  const [agreeTerms, setAgreeTerms] = useState<boolean>(false);
+  const [images, setImages] = useState<Image[]>([{ imageUrl: "images" }]);
+  const [primaryImageUrl, setPrimaryImageUrl] = useState<string>("images");
+  const [tags, setTags] = useState<Tag[]>([{ tagName: "tag1" }]);
+  const [trackContent, setTrackContent] = useState<string>("images");
+  const [trackPreview, setTrackPreview] = useState<string>("images");
+  const [trackTitle, setTrackTitle] = useState<string>("images");
+
+  const [NoneAgreeAlert, setNoneAgreeAlert] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (agreePrivacyPolicy && agreePublicTerms && agreeTerms) {
+      setNoneAgreeAlert(false);
+    } else {
+      setNoneAgreeAlert(true);
+    }
+  }, [agreePrivacyPolicy, agreePublicTerms, agreeTerms]);
+
+  const TrackCreateSubmitClick = async () => {
+    const data: TrackCreateSubmitData = {
+      agreePrivacyPolicy: agreePrivacyPolicy,
+      agreePublicTerms: agreePublicTerms,
+      agreeTerms: agreeTerms,
+      images: images,
+      primaryImageUrl: primaryImageUrl,
+      tags: tags,
+      trackContent: trackContent,
+      trackPreview: trackPreview,
+      trackTitle: trackTitle,
     };
 
-    useEffect(() => {
-      if (isChecked) {
-        setCheckBoxImage("../img/Checked.svg");
-      } else {
-        setCheckBoxImage("../img/nonChecked.svg");
+    try {
+      const response = await axios.post("/v1/track/", data, {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("트랙 생성 반환:", response.data);
       }
-    }, [isChecked]);
+    } catch (error) {
+      console.error("트랙 생성 반환 실패:", error);
+    }
+  };
+
+  interface CheckData {
+    ConsentCheckText: string;
+    isChecked: boolean;
+    setIsChecked: (value: boolean) => void;
+  }
+
+  const UseConsentCheckBox: React.FC<CheckData> = ({
+    ConsentCheckText,
+    isChecked,
+    setIsChecked,
+  }) => {
+    const handleCheckBoxClick = () => {
+      setIsChecked(!isChecked);
+    };
 
     return (
       <div className="consentCheckBoxContainer">
         <img
           className="consentCheckBoxImg"
-          src={checkBoxImage}
+          src={isChecked ? "../img/Checked.svg" : "../img/nonChecked.svg"}
           alt="오류"
           onClick={handleCheckBoxClick}
         ></img>
         <p className="consentCheckBoxText">
-          <span className="highlight">{consentCheckBoxText}</span>에 동의합니다.
+          <span className="highlight">{ConsentCheckText}</span>에 동의합니다.
         </p>
       </div>
     );
   };
-  // ---------------------------------------------------------------------------
-  const checkBoxItems: CheckBoxItem[] = [
-    { name: "termsOfService", text: "서비스 이용약관" },
-    { name: "privacyPolicy", text: "개인정보 처리방침" },
-    { name: "trackTermsOfService", text: "트랙 서비스 이용약관" },
-  ];
-
-  const [consentCheckAlert, setConsentCheckAlert] = useState(true);
-  const [checkBoxStatus, setCheckBoxStatus] = useState<Record<string, boolean>>(
-    checkBoxItems.reduce((acc, item) => {
-      acc[item.name] = false;
-      return acc;
-    }, {} as Record<string, boolean>)
-  );
-
-  const handleCheckBoxChange = (name: string, isChecked: boolean) => {
-    setCheckBoxStatus((prevState) => ({ ...prevState, [name]: isChecked }));
-  };
-
-  useEffect(() => {
-    const allChecked = checkBoxItems.every((item) => checkBoxStatus[item.name]);
-    setConsentCheckAlert(!allChecked);
-  }, [checkBoxStatus]);
-
-  // ---------------------------------------------------------------------------
 
   const AddImgComponent = () => {
     return (
@@ -257,7 +289,7 @@ function TrackCreatePage() {
             <div className="serviceConsentInnerContainer">
               <div className="serviceConsentBoxOne">
                 <div className="textServiceConsent">서비스 이용약관 동의</div>
-                {consentCheckAlert && (
+                {NoneAgreeAlert && (
                   <div className="TrackInputComponentContainer">
                     <img
                       className="plusImg"
@@ -274,15 +306,21 @@ function TrackCreatePage() {
                 추가를 시작하기 전, 아래 내용을 반드시 동의해야 합니다.
               </div>
               <div className="consentCheckBox">
-                {checkBoxItems.map((item) => (
-                  <ConsentCheckBox
-                    key={item.name}
-                    consentCheckBoxText={item.text}
-                    onCheckChange={(isChecked) =>
-                      handleCheckBoxChange(item.name, isChecked)
-                    }
-                  />
-                ))}
+                <UseConsentCheckBox
+                  ConsentCheckText="서비스 이용 약관"
+                  isChecked={agreePrivacyPolicy}
+                  setIsChecked={setAgreePrivacyPolicy}
+                />
+                <UseConsentCheckBox
+                  ConsentCheckText="개인정보 처리방침"
+                  isChecked={agreePublicTerms}
+                  setIsChecked={setAgreePublicTerms}
+                />
+                <UseConsentCheckBox
+                  ConsentCheckText="트랙 서비스 이용약관"
+                  isChecked={agreeTerms}
+                  setIsChecked={setAgreeTerms}
+                />
               </div>
             </div>
           </div>
@@ -405,7 +443,12 @@ function TrackCreatePage() {
             </div>
             <TextAreaComponent maxText={1000}></TextAreaComponent>
           </div>
-          <div className="trackInputCompeletButton">완료하기</div>
+          <div
+            className="trackInputCompeletButton"
+            onClick={TrackCreateSubmitClick}
+          >
+            완료하기
+          </div>
         </div>
       </div>
     </div>

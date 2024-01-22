@@ -23,6 +23,31 @@
   line-height: normal;
 }
 
+.creditManagementAlert {
+  display: flex;
+  align-items: center;
+  margin-top: 1.875rem;
+  width: 61.875rem;
+  height: 4.1875rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #fdacac;
+}
+
+.creditManagementAlertImg {
+  margin-left: 1.875rem;
+}
+
+.creditManagementAlertMassage {
+  margin-left: 1.25rem;
+  color: #fdacac;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 .CreditManagementFirstContainer {
   margin-top: 2.0625rem;
   width: 61.875rem;
@@ -43,6 +68,18 @@
   text-align: start;
 }
 
+.textMyIncomeContainer {
+  display: flex;
+  align-items: center;
+}
+
+.textMyIncomeContainerLine {
+  height: 1rem;
+  width: 0.1rem;
+  margin-left: 1.25rem;
+  background-color: #000;
+}
+
 .textMyIncome {
   color: #000;
   font-family: Pretendard;
@@ -50,6 +87,27 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+.refundApplicationButton {
+  display: flex;
+  align-items: center;
+  margin-left: 1.25rem;
+  cursor: pointer;
+}
+
+.refundApplicationButtonText {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.refundImg {
+  margin-left: 0.5rem;
 }
 
 .textMyIncomeSurv {
@@ -153,12 +211,22 @@
 .CreditManagementThridContainer {
   display: flex;
   justify-content: space-between;
+  height: 20.1875rem;
+}
+
+.CreditManagementThridContainerAlert {
+  width: 30rem;
+  height: 5.3125rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: var(--color-ui-0, #fff);
+  margin-top: 1.875rem;
 }
 
 .CreditManagementSecondContainer {
-  margin-top: 1.5625rem;
+  margin-top: 0.875rem;
   width: 30rem;
-  height: 16.9375rem;
+  height: 12.125rem;
   border-radius: 1.25rem;
   background: #fff;
   box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
@@ -177,10 +245,10 @@
 }
 
 .CreditManagementSecondInnerContainer {
-  margin-top: 1.9375rem;
+  margin-top: 1.25rem;
   margin-left: 3.75rem;
   width: 23.125rem;
-  height: 6.625rem;
+  height: 8.5625rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -190,11 +258,27 @@
   width: 100%;
   height: 1.1875rem;
   display: flex;
-  justify-content: space-between;
+}
+
+.RecentPaymentFrame div {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.RecentPaymentAmount {
+  margin-left: 2.9rem;
+}
+
+.RecentPaymentState {
+  margin-left: 6rem;
 }
 
 .CreditManagementBankContainerText {
-  margin-top: 3.5rem;
+  margin-top: 2.0625rem;
   margin-left: 3.125rem;
   color: #000;
   font-family: Pretendard;
@@ -212,11 +296,10 @@
 }
 
 .CreditManagementBankInnerContainer {
-  width: 100%;
+  width: 20rem;
   height: 4.75rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .BankMarkBox {
@@ -346,7 +429,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border-top: 0.0625rem solid #e3e3e3; */
   border-bottom: 0.0625rem solid #e3e3e3;
 }
 
@@ -400,4 +482,352 @@
   line-height: normal;
 
   margin-left: 15rem;
+}
+
+.CreditManagementFiveContainer {
+  width: 30rem;
+  height: 18.3125rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: var(--color-ui-0, #fff);
+  margin-top: 1.875rem;
+}
+
+.CreditManagementStateMenuBox {
+  width: 22.5rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CreditManagementStateMenuBox p {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.CreditManagementStateBox {
+  width: 100%;
+  height: 6.625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.NoneAcountRegister {
+  width: 13.4375rem;
+  height: 5.1875rem;
+  margin-left: 5rem;
+}
+
+.NoneAcountRegisterText {
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2;
+}
+
+.RegisterButton {
+  margin-top: 0.5rem;
+  margin-left: 4.5rem;
+  display: flex;
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.RegisterButtonImg {
+  margin-left: 0.625rem;
+}
+
+.AccountRegisterAndFixFrame {
+  width: 56.6875rem;
+  height: 34rem;
+  position: fixed;
+  top: 9rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: var(--color-ui-0, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AccountRegisterAndFixFrameInner {
+  width: 47.9375rem;
+  height: 25.9375rem;
+  display: inline-block;
+}
+
+.TextAddAccountAndFix {
+  width: 13.0625rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.NotionAddAcountBox {
+  width: 22.8125rem;
+  height: 1.3125rem;
+  margin-top: 0.625rem;
+  display: flex;
+  align-items: center;
+}
+
+.NotionAddAcountBoxText {
+  margin-left: 0.625rem;
+  color: #ff8080;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SelectBankFrame {
+  width: 47.9375rem;
+  height: 5.875rem;
+  margin-top: 2.5rem;
+  display: inline-block;
+}
+
+.TextBankAgent {
+  width: 4rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%; /* 31.974px */
+}
+
+.TextBankAgent span {
+  color: #f94747;
+}
+
+.SelectBankList {
+  position: relative;
+  margin-top: 0.1875rem;
+  width: 47.9375rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  display: flex;
+  align-items: center;
+}
+
+.TextSelectBankAgent {
+  margin-left: 1.875rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  cursor: pointer;
+}
+
+.BankAgentSelectImg {
+  margin-left: 34.3125rem;
+
+  cursor: pointer;
+}
+
+.AddAccountAndHolder {
+  margin-top: 1.25rem;
+  width: 47.9375rem;
+  height: 5.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.AccountTypeFrame {
+  width: 27.625rem;
+  height: 5.875rem;
+}
+
+.AccountTypeFrameTextAccount {
+  display: flex;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+  width: 10rem;
+}
+
+.AccountTypeFrameTextAccount span {
+  color: #f94747;
+  margin-left: 0.35rem;
+}
+
+.AccountTypeFrameAccountInput {
+  width: 25rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  padding-left: 1.875rem;
+  margin-top: 0.1875rem;
+}
+
+.AddHolderFrame {
+  width: 18.4375rem;
+  height: 5.875rem;
+}
+
+.HolderInput {
+  width: 16.4375rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  padding-left: 1.875rem;
+  margin-top: 0.1875rem;
+}
+
+.AccountRegisterButtonContainer {
+  width: 47.9375rem;
+  height: 3rem;
+  margin-top: 3.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CancellationButton {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #f4f4f4;
+
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.AccountRegisterButton {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #730ef4;
+
+  color: var(--color-ui-0, #fff);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.NoneTransactionDataFrame {
+  width: 13.5625rem;
+  height: 2.875rem;
+  margin-top: 4rem;
+  margin-left: 8.5rem;
+}
+
+.NoneTransactionDataText {
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2;
+}
+
+.BankListBox {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0rem;
+  width: 47.9375rem;
+  height: 19.875rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: var(--color-ui-0, #fff);
+  overflow: auto;
+}
+
+.BankLogo {
+  width: 1.4375rem;
+  height: 1.4375rem;
+}
+
+.BankNameAndLogoFrame {
+  display: flex;
+  align-items: center;
+  width: 42.875rem;
+  height: 3.3125rem;
+  border-bottom: 0.0625rem solid #e3e3e3;
+
+  cursor: pointer;
+}
+
+.BankCompanyName {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 1.25rem;
+}
+
+.SelectedBankFrame {
+  width: 44rem;
+  margin-left: 2.1rem;
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.BankAgentReSelectImg {
+  margin-left: 25rem;
+
+  cursor: pointer;
+}
+
+.BankCompanyNameFrame {
+  width: 18.75rem;
+  display: flex;
+}
+
+.NoneUseredHistory {
 }
