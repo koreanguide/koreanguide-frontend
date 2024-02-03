@@ -1,9 +1,112 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent, useRef } from "react";
 import "./TrackCreate.css";
 import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 
 function TrackCreatePage() {
+  const [unicornText, setUnicornText] = useState<string>("");
+
+  const rainbowClick = () => {
+    console.log(unicornText);
+  };
+
+  const FantasticInput: React.FC = () => {
+    const [isChecked, setIsChecked] = useState(false);
+    const [checkBoxImage, setCheckBoxImage] = useState(
+      "../img/purpleCircle.svg"
+    );
+
+    const handleCheckBoxClick = () => {
+      setIsChecked(!isChecked);
+    };
+
+    React.useEffect(() => {
+      if (isChecked) {
+        setCheckBoxImage("../img/purpleCircleCheck.svg");
+      } else {
+        setCheckBoxImage("../img/purpleCircle.svg");
+      }
+    }, [isChecked]);
+
+    const magicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setUnicornText(event.target.value);
+    };
+
+    return (
+      <div>
+        <input
+          type="text"
+          className="TrackInputComponentInput"
+          value={unicornText}
+          onChange={magicChange}
+        />
+        <div className="InputUnderBox">
+          <div className="translationBox" onClick={handleCheckBoxClick}>
+            <img
+              className="purpleCircleImg"
+              src={checkBoxImage}
+              alt="오류"
+            ></img>
+            <div className="translationBoxText">자동 번역 사용 끔</div>
+          </div>
+          <div className="textCount"></div>
+        </div>
+      </div>
+    );
+  };
+
+  const FantasticInputTwo: React.FC = () => {
+    const [isChecked, setIsChecked] = useState(false);
+    const [checkBoxImage, setCheckBoxImage] = useState(
+      "../img/purpleCircle.svg"
+    );
+
+    const handleCheckBoxClick = () => {
+      setIsChecked(!isChecked);
+    };
+
+    React.useEffect(() => {
+      if (isChecked) {
+        setCheckBoxImage("../img/purpleCircleCheck.svg");
+      } else {
+        setCheckBoxImage("../img/purpleCircle.svg");
+      }
+    }, [isChecked]);
+
+    const [unicornText, setUnicornText] = useState<string>("");
+
+    const magicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setUnicornText(event.target.value);
+    };
+
+    const rainbowClick = () => {
+      setTrackPreview(unicornText);
+    };
+
+    return (
+      <div>
+        <input
+          type="text"
+          className="TrackInputComponentInput"
+          value={unicornText}
+          onChange={magicChange}
+        />
+        <button onClick={rainbowClick}>보물상자에 넣기</button>
+        <div className="InputUnderBox">
+          <div className="translationBox" onClick={handleCheckBoxClick}>
+            <img
+              className="purpleCircleImg"
+              src={checkBoxImage}
+              alt="오류"
+            ></img>
+            <div className="translationBoxText">자동 번역 사용 끔</div>
+          </div>
+          <div className="textCount"></div>
+        </div>
+      </div>
+    );
+  };
+
   interface Image {
     imageUrl: string;
   }
@@ -25,7 +128,6 @@ function TrackCreatePage() {
   }
 
   const token = sessionStorage.getItem("access-token");
-  console.log(token);
 
   const [agreePrivacyPolicy, setAgreePrivacyPolicy] = useState<boolean>(false);
   const [agreePublicTerms, setAgreePublicTerms] = useState<boolean>(false);
@@ -105,17 +207,6 @@ function TrackCreatePage() {
     );
   };
 
-  const AddImgComponent = () => {
-    return (
-      <div className="AddImgComponentFrame">
-        <div className="AddImgComponentInnerBox">
-          <img className="plusImg" src="../img/plusImg.svg" alt="오류"></img>
-          <div className="AddImgComponentText">새 이미지 추가</div>
-        </div>
-      </div>
-    );
-  };
-
   interface TrackInputComponentProps {
     titleText: string;
     warningText: string;
@@ -146,68 +237,6 @@ function TrackCreatePage() {
           <div className="trackInputComponentServText">{guideText}</div>
         </div>
         {children}
-      </div>
-    );
-  };
-
-  interface InputComponentProps {
-    maxText: number;
-    textPlaceholder: string;
-  }
-
-  const InputComponent: React.FC<InputComponentProps> = ({
-    maxText,
-    textPlaceholder,
-  }) => {
-    const [inputValue, setInputValue] = useState<string>("");
-    const [isChecked, setIsChecked] = useState(false);
-    const [checkBoxImage, setCheckBoxImage] = useState(
-      "../img/purpleCircle.svg"
-    );
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(e.target.value);
-    };
-
-    const handleCheckBoxClick = () => {
-      setIsChecked(!isChecked);
-    };
-
-    React.useEffect(() => {
-      if (isChecked) {
-        setCheckBoxImage("../img/purpleCircleCheck.svg");
-      } else {
-        setCheckBoxImage("../img/purpleCircle.svg");
-      }
-    }, [isChecked]);
-
-    const inputClass =
-      inputValue.length > maxText
-        ? "TrackInputComponentInput error"
-        : "TrackInputComponentInput";
-
-    return (
-      <div>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          className={inputClass}
-          placeholder={textPlaceholder}
-        />
-        <div className="InputUnderBox">
-          <div className="translationBox" onClick={handleCheckBoxClick}>
-            <img
-              className="purpleCircleImg"
-              src={checkBoxImage}
-              alt="오류"
-            ></img>
-            <div className="translationBoxText">자동 번역 사용 끔</div>
-          </div>
-          <div className="textCount">
-            {inputValue.length}자 / {maxText}자
-          </div>
-        </div>
       </div>
     );
   };
@@ -279,6 +308,29 @@ function TrackCreatePage() {
     );
   };
 
+  const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | null>(null);
+
+  const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImageSrc(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleDivClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   return (
     <div>
       <div className="TrackCreatePageFrame">
@@ -348,25 +400,41 @@ function TrackCreatePage() {
               <div className="trackAddImgContainerTwo">
                 <div className="trackAddImgContainerThree">
                   <div className="textMainImg">대표 이미지</div>
-                  <div className="mainImgAddContainer">
-                    <div className="mainImgAddInnerContainer">
+                  <div className="mainImgAddContainer" onClick={handleDivClick}>
+                    <input
+                      style={{ display: "none" }}
+                      id="fileInput"
+                      type="file"
+                      onChange={handleFileInput}
+                      ref={fileInputRef}
+                    />
+                    {imageSrc ? (
                       <img
-                        className="plusImg"
-                        src="../img/plusImg.svg"
-                        alt="오류"
-                      ></img>
-                      <div className="plusImgText">새 대표 이미지 추가</div>
-                    </div>
+                        src={imageSrc.toString()}
+                        alt="chosen"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "1.25rem",
+                        }}
+                      />
+                    ) : (
+                      <label htmlFor="fileInput">
+                        <div className="mainImgAddInnerContainer">
+                          <img
+                            className="plusImg"
+                            src="../img/plusImg.svg"
+                            alt="오류"
+                          ></img>
+                          <div className="plusImgText">새 대표 이미지 추가</div>
+                        </div>
+                      </label>
+                    )}
                   </div>
                 </div>
                 <div className="trackAddImgContainerFour">
                   <div className="textAddImg">추가 이미지</div>
-                  <div className="trackAddImgContainerFive">
-                    <AddImgComponent></AddImgComponent>
-                    <AddImgComponent></AddImgComponent>
-                    <AddImgComponent></AddImgComponent>
-                    <AddImgComponent></AddImgComponent>
-                  </div>
+                  <div className="trackAddImgContainerFive"></div>
                 </div>
               </div>
             </div>
@@ -377,10 +445,8 @@ function TrackCreatePage() {
             guideText="관광객에게 보여질 트랙 이름을 설정합니다. 최대 25자까지 입력할 수 있습니다."
           >
             <div className="trackInputComponentTextBoxFive">
-              <InputComponent
-                maxText={25}
-                textPlaceholder="트랙 이름을 입력하세요."
-              ></InputComponent>
+              <FantasticInput />
+              <button onClick={rainbowClick}>보물상자에 넣기</button>
             </div>
           </TrackInputComponent>
           <TrackInputComponent
@@ -389,10 +455,7 @@ function TrackCreatePage() {
             guideText="관광객에게 보여질 트랙 설명을 설정합니다. 최대 20자까지 입력할 수 있습니다."
           >
             <div className="trackInputComponentTextBoxFive">
-              <InputComponent
-                maxText={20}
-                textPlaceholder="트랙 소개를 입력하세요."
-              ></InputComponent>
+              <FantasticInputTwo></FantasticInputTwo>
             </div>
           </TrackInputComponent>
           <TrackInputComponent

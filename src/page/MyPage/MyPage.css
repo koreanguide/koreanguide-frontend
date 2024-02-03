@@ -1,0 +1,277 @@
+.MyPageFrame {
+  width: 100%;
+  height: 200rem;
+  display: inline-block;
+  justify-content: center;
+}
+
+.MyPageInner {
+  margin-top: 6rem;
+  width: 61.875rem;
+  height: 51.5rem;
+  display: inline-block;
+  text-align: start;
+}
+
+.TextMyInfo {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.MyInfoFrame {
+  margin-top: 2.0625rem;
+  width: 61.875rem;
+  height: 43.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.MyInfoContainer {
+  width: 30rem;
+  height: 6.3125rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MyInfoInnerContainer {
+  position: relative;
+  width: 25rem;
+  height: 1.5625rem;
+  display: flex;
+  align-items: center;
+}
+
+.MyInfoCategory {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.MyInfoCategoryContent {
+  margin-left: 1.6875rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.MyInfoContainerInput {
+  width: 15rem;
+  margin-left: 1.6875rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 0.5rem;
+}
+
+.MyInfoFixButton {
+  position: absolute;
+  right: 0rem;
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.ProfileImgContainer {
+  width: 30rem;
+  height: 10rem;
+  border-radius: 1.25rem;
+  /* background: var(--color-ui-0, #fff); */
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+}
+
+.ProfileImgContainerText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  margin-left: 2.5rem;
+}
+
+.ProfileImgContainerImgBox {
+  width: 6.8125rem;
+  height: 6.8125rem;
+  border-radius: 6.8125rem;
+  overflow: hidden;
+
+  margin-left: 7.875rem;
+}
+
+.ProfileImgContainerImg {
+  width: 100%;
+  height: 100%;
+}
+
+.ProfileImgContainerButton {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-left: 1.875rem;
+  cursor: pointer;
+}
+
+.MyInfoContainerFrame {
+  height: 18.4375rem;
+  width: 61.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MyInfoSecondContainer {
+  width: 30rem;
+  height: 18.4375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.IntroductionContainer {
+  width: 30rem;
+  height: 18.4375rem;
+  border-radius: 1.25rem;
+  background: var(--color-ui-0, #fff);
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.IntroductionInnerContainer {
+  width: 25.5rem;
+  height: 13.6875rem;
+}
+
+.TestIntroductionBox {
+  width: 25.5rem;
+  height: 1.5625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TestIntroduction {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.IntroductionReplace {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.IntroductionTextArea {
+  width: 25.5rem;
+  height: 10.875rem;
+  resize: none;
+  border: none;
+  outline: none;
+  margin-top: 1.3125rem;
+
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+}
+
+.toggle-switch-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.toggle-switch-inner {
+  position: absolute;
+  left: 4px;
+  width: 52px;
+  height: 22px;
+  transition: 0.4s;
+  background-color: #fff;
+  border-radius: 30px;
+}
+
+.toggle-switch-switch {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  height: 22px;
+  width: 22px;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label {
+  background-color: #4caf50;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
+  transform: translateX(26px);
+  background-color: #fff;
+}

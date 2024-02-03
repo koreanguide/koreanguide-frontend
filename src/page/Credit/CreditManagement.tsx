@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./CreditManagement.css";
 import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
+import cx from "classnames";
 
 function CreditManagement() {
   const token = sessionStorage.getItem("access-token");
@@ -35,7 +36,7 @@ function CreditManagement() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("지급조회", response.data);
+        console.log("크레딧 환급 상태", response.data);
 
         if (response.data.length === 0) {
           setNoneTransactionDataShow(true);
@@ -43,34 +44,77 @@ function CreditManagement() {
         } else {
           setNoneTransactionDataShow(false);
           setNoneTransactionData(true);
+          setCreditData(response.data);
         }
       } catch (error) {
         console.error(error);
       }
     };
 
-    const UsedHistory = async () => {
+    const UsedHistory = async (): Promise<HistoryData[]> => {
       try {
-        const response = await axios.get("/v1/credit/history", {
+        const response = await axios.get<HistoryData[]>("/v1/credit/history", {
           headers: {
             "X-AUTH-TOKEN": token,
           },
         });
         console.log("사용내역", response.data);
-        setHistoryAmount(response.data[0].amount);
-        setHistoryInfoAcount(response.data[0].content);
-        setHistoryInfoDate(response.data[0].date);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    };
+
+    const fetchHistory = async () => {
+      const data = await UsedHistory();
+      setHistoryData(data);
+    };
+
+    fetchHistory();
+
+    const PaymentWay = async () => {
+      try {
+        const response = await axios.get("/v1/credit/bank", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("지급방법", response.data);
+        setAccountProvider(response.data.accountProvider);
+        setAccountNumber(response.data.accountNumber);
+        setAccountHolderName(response.data.accountHolderName);
+        setNoneAccountRegisteredComponent(false);
+        setAccountRegisteredComponent(true);
+      } catch (error) {
+        console.error(error);
+        setNoneAccountRegisteredComponent(true);
+        setAccountRegisteredComponent(false);
+      }
+    };
+
+    const LastTransactionRequest = async () => {
+      try {
+        const response = await axios.get("/v1/credit/refund/recent", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("리센트 데이터", response.data);
+        setRecentData(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
+    LastTransactionRequest();
     fetchAmount();
     LastProvision();
     UsedHistory();
+    PaymentWay();
   }, [token]);
 
-  const [Amount, setAmount] = useState(80000);
+  const [Amount, setAmount] = useState(0);
 
   interface GaugeBarProps {
     value: number;
@@ -94,28 +138,89 @@ function CreditManagement() {
     );
   };
 
-  const RecentPayment = () => {
+  const [creditData, setCreditData] = React.useState<any[]>([]);
+
+  interface RecentPaymentProps {
+    data: {
+      requestDate: string;
+      amount: number;
+      returningStatus: string;
+    };
+  }
+
+  const RecentPayment: React.FC<RecentPaymentProps> = ({ data }) => {
+    const date = new Date(data.requestDate);
+    const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+
     return (
       <div className="RecentPaymentFrame">
-        <div className="RecentPaymentDate">2023.09.11 16:18</div>
-        <div className="RecentPaymentAmount">150,000원</div>
-        <div className="RecentPaymentState">요청</div>
+        <div className="RecentPaymentDate">{formattedDate}</div>
+        <div className="RecentPaymentAmount">{data.amount}</div>
+        <div className="RecentPaymentState">{data.returningStatus}</div>
       </div>
     );
   };
 
-  const [HistoryAmount, setHistoryAmount] = useState<string>("");
-  const [HistoryInfoAcount, setHistoryInfoAcount] = useState<string>("");
-  const [HistoryInfoDate, setHistoryInfoDate] = useState<string>("");
+  type HistoryData = {
+    amount: string;
+    content: string;
+    date: string;
+    transactionType: string;
+  };
 
-  const UseredHistoryInfo = () => {
+  const [selectedTransactionType, setSelectedTransactionType] =
+    React.useState<string>("전체");
+  const [historyData, setHistoryData] = useState<HistoryData[]>([]);
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedTransactionType(event.target.value);
+  };
+
+  let filteredData = historyData;
+  if (selectedTransactionType !== "전체") {
+    filteredData = historyData.filter(
+      (data) => data.transactionType === selectedTransactionType
+    );
+  }
+
+  type UseredHistoryInfoProps = {
+    data: HistoryData;
+    index: number;
+  };
+
+  const UseredHistoryInfo: React.FC<UseredHistoryInfoProps> = ({
+    data,
+    index,
+  }) => {
+    const isDeposit = data.transactionType === "입금";
+
+    const date = new Date(data.date);
+    const formattedDate = date.toISOString().split("T")[0];
+
     return (
       <div className="UseredHistoryInfoFrame">
         <div className="UseredHistoryInfoInner">
-          <div className="UseredHistoryInfoNum">5</div>
-          <div className="UseredHistoryInfoAmount">{HistoryAmount}</div>
-          <div className="UseredHistoryInfoAcount">{HistoryInfoAcount}</div>
-          <div className="UseredHistoryInfoDate">{HistoryInfoDate}</div>
+          <div className="UseredHistoryInfoNum">{index + 1}</div>
+          <div
+            className={cx("UseredHistoryInfoAmount", {
+              "UseredHistoryInfoAcount-positive": isDeposit,
+              "UseredHistoryInfoAcount-negative": !isDeposit,
+            })}
+          >
+            {data.amount}
+          </div>
+          <div className="UseredHistoryInfoAcount">{data.content}</div>
+          <div className="UseredHistoryInfoDate">{formattedDate}</div>
+        </div>
+        <div
+          className={cx("TransactionType", {
+            "TransactionType-deposit": isDeposit,
+            "TransactionType-withdraw": !isDeposit,
+          })}
+        >
+          {data.transactionType}
         </div>
       </div>
     );
@@ -170,18 +275,21 @@ function CreditManagement() {
     }
   };
   const [AccountRegisteredComponent, setAccountRegisteredComponent] =
-    useState<boolean>(true);
-  const [NoneAccountRegisteredComponent, setNoneAccountRegisteredComponent] =
     useState<boolean>(false);
+  const [NoneAccountRegisteredComponent, setNoneAccountRegisteredComponent] =
+    useState<boolean>(true);
 
   const RegisterButtonClick = () => {
     console.log("등록하기 버튼 클릭");
     setCancellationButton(true);
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0, 0);
   };
 
   const [CancellationButton, setCancellationButton] = useState<boolean>(false);
   const CancellationButtonOnClick = () => {
     setCancellationButton(false);
+    document.body.style.overflow = "auto";
   };
 
   const [NoneTransactionData, setNoneTransactionData] =
@@ -214,15 +322,16 @@ function CreditManagement() {
   }
 
   const [bankAccountNumber, setbankAccountNumber] =
-    useState<string>("94160201519981");
+    useState<string>("계좌번호를 입력해주세요");
   const [bankAccountProvider, setbankAccountProvider] =
-    useState<string>("KOOKMIN");
-  const [name, setname] = useState<string>("김찬주");
+    useState<string>("은행을 기입해주세요");
+  const [name, setname] = useState<string>("");
 
   const RealRegisterButtonClick = async () => {
     console.log(bankAccountNumber);
     console.log(bankAccountProvider);
     console.log(name);
+    window.location.reload();
 
     const data: RegisterData = {
       bankAccountNumber: bankAccountNumber,
@@ -242,12 +351,6 @@ function CreditManagement() {
     } catch (error) {
       console.error("계좌등록 실패:", error);
     }
-  };
-
-  type Bank = {
-    name: string;
-    value: string;
-    img: string;
   };
 
   const [selectedBankShow, setselectedBankShow] = useState<Bank | null>(null);
@@ -270,30 +373,36 @@ function CreditManagement() {
     );
   };
 
-  const BankList: React.FC = () => {
-    const banks: Bank[] = [
-      { name: "경남은행", value: "KYONGNAMBANK", img: "1" },
-      { name: "광주은행", value: "GWANGJUBANK", img: "2" },
-      { name: "새마을금고", value: "SAEMAUL", img: "3" },
-      { name: "산림조합", value: "SANLIM", img: "4" },
-      { name: "신한은행", value: "SHINHAN", img: "5" },
-      { name: "신협은행", value: "SHINHYEOP", img: "6" },
-      { name: "씨티은행", value: "CITI", img: "7" },
-      { name: "우리은행", value: "WOORI", img: "8" },
-      { name: "우체국예금보험", value: "POST", img: "9" },
-      { name: "저축은행중앙회", value: "SAVINGBANK", img: "10" },
-      { name: "카카오뱅크", value: "KAKAOBANK", img: "11" },
-      { name: "토스뱅크", value: "TOSSBANK", img: "12" },
-      { name: "하나은행", value: "HANA", img: "13" },
-      { name: "IBK기업은행", value: "IBK", img: "14" },
-      { name: "KB국민은행", value: "KOOKMIN", img: "15" },
-      { name: "DGB대구은행", value: "DAEGUBANK", img: "16" },
-      { name: "KDB산업은행", value: "KDBBANK", img: "17" },
-      { name: "NH농협은행", value: "NONGHYEOP", img: "18" },
-      { name: "SC제일은행", value: "SC", img: "19" },
-      { name: "Sh수협은행", value: "SUHYEOP", img: "20" },
-    ];
+  type Bank = {
+    name: string;
+    value: string;
+    img: string;
+  };
 
+  const banks: Bank[] = [
+    { name: "경남은행", value: "KYONGNAMBANK", img: "1" },
+    { name: "광주은행", value: "GWANGJUBANK", img: "2" },
+    { name: "새마을금고", value: "SAEMAUL", img: "3" },
+    { name: "산림조합", value: "SANLIM", img: "4" },
+    { name: "신한은행", value: "SHINHAN", img: "5" },
+    { name: "신협은행", value: "SHINHYEOP", img: "6" },
+    { name: "씨티은행", value: "CITI", img: "7" },
+    { name: "우리은행", value: "WOORI", img: "8" },
+    { name: "우체국예금보험", value: "POST", img: "9" },
+    { name: "저축은행중앙회", value: "SAVINGBANK", img: "10" },
+    { name: "카카오뱅크", value: "KAKAOBANK", img: "11" },
+    { name: "토스뱅크", value: "TOSSBANK", img: "12" },
+    { name: "하나은행", value: "HANA", img: "13" },
+    { name: "IBK기업은행", value: "IBK", img: "14" },
+    { name: "KB국민은행", value: "KOOKMIN", img: "15" },
+    { name: "DGB대구은행", value: "DAEGUBANK", img: "16" },
+    { name: "KDB산업은행", value: "KDBBANK", img: "17" },
+    { name: "NH농협은행", value: "NONGHYEOP", img: "18" },
+    { name: "SC제일은행", value: "SC", img: "19" },
+    { name: "Sh수협은행", value: "SUHYEOP", img: "20" },
+  ];
+
+  const BankList: React.FC = () => {
     return (
       <div>
         {banks.map((bank, index) => (
@@ -301,6 +410,22 @@ function CreditManagement() {
         ))}
       </div>
     );
+  };
+
+  const BankLogoImg: React.FC = () => {
+    const bank = banks.find((bank: Bank) => bank.value === accountProvider);
+    const logo = bank ? bank.img : null;
+
+    return logo ? (
+      <img className="BankLogo" src={`../img/${logo}.svg`} alt="오류" />
+    ) : null;
+  };
+
+  const TextBackName: React.FC = () => {
+    const bank = banks.find((bank: Bank) => bank.value === accountProvider);
+    const Massage = bank ? bank.name : null;
+
+    return Massage ? <div className="textBackName">{Massage}</div> : null;
   };
 
   const [BankListBoxClick, setBankListBoxClick] = useState<boolean>(false);
@@ -311,6 +436,23 @@ function CreditManagement() {
   const [SelectedBank, setSelectedBank] = useState<boolean>(false);
   const [EarlySelectedBankState, setEarlySelectedBankState] =
     useState<boolean>(true);
+
+  const [accountProvider, setAccountProvider] = useState<string>("");
+  const [accountNumber, setAccountNumber] = useState<string>("");
+  const [accountHolderName, setAccountHolderName] = useState<string>("");
+
+  const [ShowSelectTransactionTypeBox, setShowSelectTransactionTypeBox] =
+    useState<boolean>(false);
+
+  const UseredHistoryAllBoxClick = () => {
+    if (ShowSelectTransactionTypeBox === true) {
+      setShowSelectTransactionTypeBox(false);
+    } else {
+      setShowSelectTransactionTypeBox(true);
+    }
+  };
+
+  const [RecentData, setRecentData] = useState<string>("");
 
   return (
     <div className="creditManagementMainFrame">
@@ -350,9 +492,7 @@ function CreditManagement() {
             </div>
             <div className="lastPaymentContainer">
               <img className="calImg" src="../img/cal.svg" alt="오류" />
-              <div className="lastPaymentText">
-                2023년 9월 11일, 오후 4시 18분에 마지막 결제 됨
-              </div>
+              <div className="lastPaymentText">{RecentData}</div>
             </div>
           </div>
           <div className="creditManagementFirstContainerInnerTwo">
@@ -361,7 +501,16 @@ function CreditManagement() {
         </div>
         <div className="CreditManagementThridContainer">
           <div className="">
-            <div className="CreditManagementThridContainerAlert"></div>
+            <div className="CreditManagementThridContainerAlert">
+              <div className="NonNotionBox">
+                <img
+                  className="NonNotion"
+                  src="../img/NonNotion.svg"
+                  alt="오류"
+                />
+                <div className="NonNotionText">등록된 공지사항이 없습니다.</div>
+              </div>
+            </div>
             <div className="CreditManagementSecondContainer">
               <div className="CreditManagementBankContainerText">지급 방법</div>
               <div className="CreditManagementBankContainer">
@@ -393,13 +542,11 @@ function CreditManagement() {
                       />
                     </div>
                     <div className="BankMarkBox">
-                      <img
-                        className="BankLogo"
-                        src="../img/BankLogo.svg"
-                        alt="오류"
-                      />
-                      <div className="textBackName">신한은행</div>
-                      <div className="UserAccountText">000000000000 김찬주</div>
+                      <BankLogoImg></BankLogoImg>
+                      <TextBackName></TextBackName>
+                      <div className="UserAccountText">
+                        {accountNumber} {accountHolderName}
+                      </div>
                       <div className="CreditManagementButtonBox">
                         <div
                           className="ChangeBUtton"
@@ -436,10 +583,9 @@ function CreditManagement() {
                   <p>상태</p>
                 </div>
                 <div className="CreditManagementStateBox">
-                  <RecentPayment></RecentPayment>
-                  <RecentPayment></RecentPayment>
-                  <RecentPayment></RecentPayment>
-                  <RecentPayment></RecentPayment>
+                  {creditData.map((data, index) => (
+                    <RecentPayment key={index} data={data} />
+                  ))}
                 </div>
               </div>
             )}
@@ -448,18 +594,25 @@ function CreditManagement() {
         <div className="CreditManagementFourContainer">
           <div className="UseredHistoryTextBox">
             <div className="TextUseredHistory">사용 내역</div>
-            <div className="UseredHistoryAllBox">
-              <div className="UseredHistoryAllText">전체</div>
-              <img className="AllBTN" src="../img/AllBTN.svg" alt="오류" />
+            <div
+              className="UseredHistoryAllBox"
+              onClick={UseredHistoryAllBoxClick}
+            >
+              <select
+                className="UseredHistoryAllText"
+                onChange={handleSelectChange}
+              >
+                <option className="AllTransaction">전체</option>
+                <option className="IncomeTransaction">입금</option>
+                <option className="OutcomeTransaction">출금</option>
+              </select>
             </div>
           </div>
-          <div className="NoneUseredHistory"></div>
-          <div className=""></div>
-          <UseredHistoryInfo></UseredHistoryInfo>
-          <UseredHistoryInfo></UseredHistoryInfo>
-          <UseredHistoryInfo></UseredHistoryInfo>
-          <UseredHistoryInfo></UseredHistoryInfo>
-          <UseredHistoryInfo></UseredHistoryInfo>
+          <div className="NoneUseredHistory">
+            {filteredData.map((data, index) => (
+              <UseredHistoryInfo key={index} data={data} index={index} />
+            ))}
+          </div>
         </div>
       </div>
       {CancellationButton && (

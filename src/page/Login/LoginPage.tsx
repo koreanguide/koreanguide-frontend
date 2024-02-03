@@ -67,6 +67,12 @@ function Login() {
     );
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
     <div className="mainFrame">
       <div className="signinframe">
@@ -107,6 +113,7 @@ function Login() {
                 className="loginEmailInput"
                 placeholder="abc@example.com"
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyPress={handleKeyPress}
               ></input>
               <div className="textPassword">비밀번호</div>
               <input
@@ -114,6 +121,7 @@ function Login() {
                 className="loginPasswordInput"
                 placeholder="passwd123@"
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={handleKeyPress}
               ></input>
               <button className="complishmentButton" onClick={handleLogin}>
                 완료하기
@@ -124,11 +132,11 @@ function Login() {
                 또는 다음의 로그인 방법을 사용할 수 있습니다.
               </div>
               <div className="iconContainer">
-                <LoginIcon imageName="kakaoLogo"></LoginIcon>
-                <LoginIcon imageName="L2"></LoginIcon>
-                <LoginIcon imageName="L3"></LoginIcon>
-                <LoginIcon imageName="L4"></LoginIcon>
-                <LoginIcon imageName="L5"></LoginIcon>
+                <LoginIcon imageName="Logo-1"></LoginIcon>
+                <LoginIcon imageName="Logo-2"></LoginIcon>
+                <LoginIcon imageName="Logo-3"></LoginIcon>
+                <LoginIcon imageName="Logo-4"></LoginIcon>
+                <LoginIcon imageName="Logo-5"></LoginIcon>
               </div>
               <div className="textAnotherOption">다른 옵션이 필요하신가요?</div>
               <div className="findPasswordBox" onClick={goToPasswordReset}>
@@ -157,4 +165,5 @@ function Login() {
     </div>
   );
 }
+
 export default Login;

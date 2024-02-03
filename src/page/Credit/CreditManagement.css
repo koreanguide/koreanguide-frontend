@@ -13,6 +13,10 @@
   text-align: start;
 }
 
+body::-webkit-scrollbar {
+  width: 0;
+}
+
 .textCreditManagement {
   margin-top: 9.375rem;
   color: #000;
@@ -171,9 +175,9 @@
 .lastPaymentContainer {
   margin-top: 0.625rem;
   height: 1.1875rem;
-  width: 17.9375rem;
+  width: 25.9375rem;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .calImg {
@@ -188,6 +192,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-left: 0.6875rem;
 }
 
 .creditManagementFirstContainerInnerTwo {
@@ -218,9 +223,11 @@
   width: 30rem;
   height: 5.3125rem;
   border-radius: 1.25rem;
-  border: 0.0625rem solid #e3e3e3;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
   background: var(--color-ui-0, #fff);
   margin-top: 1.875rem;
+  display: flex;
+  align-items: center;
 }
 
 .CreditManagementSecondContainer {
@@ -258,23 +265,16 @@
   width: 100%;
   height: 1.1875rem;
   display: flex;
+  justify-content: space-between;
 }
 
 .RecentPaymentFrame div {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.8);
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}
-
-.RecentPaymentAmount {
-  margin-left: 2.9rem;
-}
-
-.RecentPaymentState {
-  margin-left: 6rem;
 }
 
 .CreditManagementBankContainerText {
@@ -303,7 +303,7 @@
 }
 
 .BankMarkBox {
-  width: 7.6875rem;
+  width: 8.6875rem;
   height: 3.125rem;
   position: relative;
 }
@@ -384,7 +384,7 @@
 }
 
 .UseredHistoryTextBox {
-  width: 54.375rem;
+  width: 54rem;
   height: 1.5rem;
   margin-top: 3.125rem;
   margin-left: 3.75rem;
@@ -406,10 +406,21 @@
   color: rgba(0, 0, 0, 0.7);
   text-align: right;
   font-family: Pretendard;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  border: none;
+  outline: none;
+  display: flex;
+  text-align-last: center;
+}
+
+.UseredHistoryAllText option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .UseredHistoryAllBox {
@@ -433,6 +444,7 @@
 }
 
 .UseredHistoryInfoInner {
+  position: relative;
   height: 1.25rem;
   width: 46.875rem;
   display: flex;
@@ -447,9 +459,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  left: 0rem;
 }
 
 .UseredHistoryInfoAmount {
+  position: absolute;
   color: #f94747;
   text-align: center;
   font-family: Pretendard;
@@ -458,10 +472,11 @@
   font-weight: 500;
   line-height: normal;
 
-  margin-left: 3.6688rem;
+  left: 3.6688rem;
 }
 
 .UseredHistoryInfoAcount {
+  position: absolute;
   color: #000;
   font-family: Pretendard;
   font-size: 0.875rem;
@@ -469,10 +484,11 @@
   font-weight: 500;
   line-height: normal;
 
-  margin-left: 3.6688rem;
+  left: 12rem;
 }
 
 .UseredHistoryInfoDate {
+  position: absolute;
   color: #000;
   text-align: right;
   font-family: Pretendard;
@@ -481,14 +497,41 @@
   font-weight: 500;
   line-height: normal;
 
-  margin-left: 15rem;
+  left: 30rem;
+}
+
+.TransactionType {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-left: 3.5rem;
+}
+
+.TransactionType-deposit {
+  color: #730ef4;
+}
+
+.TransactionType-withdraw {
+  color: #ff0000;
+}
+
+.UseredHistoryInfoAcount-positive {
+  color: #730ef4;
+}
+
+.UseredHistoryInfoAcount-negative {
+  color: #ff0000;
 }
 
 .CreditManagementFiveContainer {
   width: 30rem;
   height: 18.3125rem;
   border-radius: 1.25rem;
-  border: 0.0625rem solid #e3e3e3;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
   background: var(--color-ui-0, #fff);
   margin-top: 1.875rem;
 }
@@ -830,4 +873,35 @@
 }
 
 .NoneUseredHistory {
+  width: 100%;
+  height: 30.625rem;
+  overflow: auto;
+}
+
+.NoneUseredHistory::-webkit-scrollbar {
+  width: 0;
+}
+
+.NonNotionBox {
+  display: flex;
+  align-items: center;
+  margin-left: 3.125rem;
+  width: 11.6875rem;
+  height: 1.4375rem;
+}
+
+.NonNotionText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 0.5625rem;
+}
+
+.SelectTransactionTypeBoxFrame {
+  width: 100px;
+  height: 100px;
+  background-color: #f94747;
 }

@@ -440,7 +440,10 @@ function SignUpPage() {
               <div className="locationContainerThree">
                 <div className="SoulBox">서울특별시</div>
                 <div className="locationContainerTwo">
-                  <div className="CitySelectFrame">
+                  <div
+                    className="CitySelectFrame"
+                    onClick={() => setShowCityList(!showCityList)}
+                  >
                     <div className="CitySelectFrameTwo">
                       <div className="CityText">{countryShow}</div>
                       <button

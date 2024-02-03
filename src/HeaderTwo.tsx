@@ -22,7 +22,7 @@ const UserInformationButton = (props: UserInformationButtonProps) => {
 function HeaderTwo() {
   const navigate = useNavigate();
 
-  const goToMyPage = () => {
+  const goToMyProfile = () => {
     navigate("/AfterLogin");
     window.scrollTo(0, 0);
   };
@@ -37,6 +37,11 @@ function HeaderTwo() {
     window.scrollTo(0, 0);
   };
 
+  const goToMyPage = () => {
+    navigate("/mypage");
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="HeaderTwoBoxFrame">
       <div className="HeaderTwoBox">
@@ -48,7 +53,7 @@ function HeaderTwo() {
           ></img>
           <p className="HomeButtonTextTwo">KOREAN GUIDE</p>
         </button>
-        <button className="HeaderProfileButton" onClick={goToMyPage}>
+        <button className="HeaderProfileButton" onClick={goToMyProfile}>
           <p className="HeaderProfileButtonText">프로필 관리</p>
         </button>
         <button className="HeaderReviewButton">
@@ -60,7 +65,7 @@ function HeaderTwo() {
         >
           <p className="HeaderCreditButtonText">크레딧 관리</p>
         </button>
-        <button className="HeaderMypageButton">
+        <button className="HeaderMypageButton" onClick={goToMyPage}>
           <p className="HeaderMypageButtonText">내 정보</p>
         </button>
         <button className="MassageButton">
