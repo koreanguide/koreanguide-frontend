@@ -14,7 +14,7 @@ function MyPage() {
   const [password, setPassword] = useState("************");
   const [accountInfo, setAccountInfo] = useState("신한 000000000000");
   const [blocked, setBlocked] = useState("5명의 사용자");
-  const [enable, setEnable] = useState("활성화 여부");
+  const [enable, setEnable] = useState(false);
 
   useEffect(() => {
     if (token === null) {
@@ -52,29 +52,17 @@ function MyPage() {
     category: string;
     content: string;
     setContent: React.Dispatch<React.SetStateAction<string>>;
-    editText: string;
-    saveText: string;
+    children: any;
   };
 
   const ChangeComponent: React.FC<ChangeComponentProps> = ({
     category,
     content,
     setContent,
-    editText,
-    saveText,
+    children,
   }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [tempContent, setTempContent] = useState(content);
-
-    const handleEdit = () => {
-      setIsEditing(true);
-      setTempContent(content);
-    };
-
-    const handleSave = () => {
-      setIsEditing(false);
-      setContent(tempContent);
-    };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setTempContent(event.target.value);
@@ -99,12 +87,7 @@ function MyPage() {
               {content}
             </div>
           )}
-          <button
-            className="MyInfoFixButton"
-            onClick={isEditing ? handleSave : handleEdit}
-          >
-            {isEditing ? saveText : editText}
-          </button>
+          {children}
         </div>
       </div>
     );
@@ -156,32 +139,71 @@ function MyPage() {
     );
   };
 
-  const ToggleSwitch: React.FC = () => {
-    const [isToggled, setIsToggled] = useState(false);
-
+  const ToggleButton: React.FC = () => {
+    const [isToggled, setIsToggled] = useState(enable);
     const handleToggle = () => {
-      setIsToggled(!isToggled);
+      const newState = !isToggled;
+      setIsToggled(newState);
+      setEnable(newState);
     };
 
     return (
-      <div className="toggle-switch">
-        <input
-          type="checkbox"
-          className="toggle-switch-checkbox"
-          id="toggleSwitch"
-          checked={isToggled}
-          onChange={handleToggle}
-        />
-        <label className="toggle-switch-label" htmlFor="toggleSwitch">
-          <span
-            className={`toggle-switch-inner ${
-              isToggled && "toggle-switch-checked"
-            }`}
-          />
-          <span className="toggle-switch-switch" />
-        </label>
+      <div className={`ToggleButtonMainFrame ${isToggled ? "active" : ""}`}>
+        <div
+          className={`ToggleButtonFrame ${isToggled ? "active" : ""}`}
+          onClick={handleToggle}
+        >
+          <div
+            className={`ToggleButtonCircle ${isToggled ? "active" : ""}`}
+          ></div>
+        </div>
       </div>
     );
+  };
+
+  const [FixConponentShow, setFixConponentShow] = useState(false);
+
+  const FixConponent = () => {
+    return (
+      <div className="FixConponentFrame">
+        <div className="FixConponentInner">
+          <div className="FixConponentTitle">전화번호 등록 및 변경</div>
+          <div className="FixConponentInputFrame">
+            <div className="FixConponentInputInner">
+              <div className="FixConponentInputTitle">전화번호</div>
+              <div className="FixConponentInputTitle">비밀번호</div>
+            </div>
+            <div className="FixConponentInputSecondInner">
+              <input
+                className="FixConponentFirstInput"
+                placeholder="010-XXXX-XXXX 형식으로 입력"
+              ></input>
+              <input
+                className="FixConponentSecondInput"
+                placeholder="현재 비밀번호"
+              ></input>
+            </div>
+          </div>
+          <div className="FixConponentButtonFrame">
+            <div
+              className="FixConponentCancleButton"
+              onClick={FixConponentCancleClick}
+            >
+              취소
+            </div>
+            <div className="FixConponentRegisterButton">등록</div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const NameFix = () => {
+    setFixConponentShow(true);
+  };
+
+  const FixConponentCancleClick = () => {
+    setFixConponentShow(false);
   };
 
   return (
@@ -197,9 +219,11 @@ function MyPage() {
                 category="이름"
                 content={name}
                 setContent={setName}
-                editText="수정"
-                saveText="저장"
-              />
+              >
+                <div className="ChangeComponentFixButton" onClick={NameFix}>
+                  수정
+                </div>
+              </ChangeComponent>
             </div>
             <div className="IntroductionContainer">
               <div className="IntroductionInnerContainer">
@@ -215,16 +239,17 @@ function MyPage() {
             category="전화번호"
             content={phoneNum}
             setContent={setPhoneNum}
-            editText="등록"
-            saveText="저장"
-          />
+          >
+            <div className="ChangeComponentFixButton">수정</div>
+          </ChangeComponent>
           <ChangeComponent
             category="닉네임"
             content={nickName}
             setContent={setNickName}
-            editText="수정"
-            saveText="저장"
-          />
+          >
+            <div className="ChangeComponentFixButton">수정</div>
+          </ChangeComponent>
+
           <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
               <div className="MyInfoCategory">비밀번호</div>
@@ -239,9 +264,9 @@ function MyPage() {
             category="이메일"
             content={email}
             setContent={setEmail}
-            editText="수정"
-            saveText="저장"
-          />
+          >
+            <div className="ChangeComponentFixButton">수정</div>
+          </ChangeComponent>
           <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
               <div className="MyInfoCategory">계좌번호</div>
@@ -252,16 +277,17 @@ function MyPage() {
               </button>
             </div>
           </div>
-          <ChangeComponent
-            category="공개 상태"
-            content={enable}
-            setContent={setEnable}
-            editText="&&"
-            saveText="저장"
-          />
+          <div className="MyInfoContainer">
+            <div className="MyInfoInnerContainer">
+              <div className="MyInfoCategory">활성화 상태</div>
+              <div className="ToggleButtonLocation">
+                <ToggleButton />
+              </div>
+            </div>
+          </div>
         </div>
-        <ToggleSwitch></ToggleSwitch>
       </div>
+      {FixConponentShow && <FixConponent></FixConponent>}
     </div>
   );
 }
