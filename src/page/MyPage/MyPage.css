@@ -207,6 +207,16 @@
   cursor: pointer;
 }
 
+.NoneIntroductionText {
+  margin-top: 1.3125rem;
+  color: #f94747;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
 .IntroductionTextArea {
   width: 24rem;
   height: 10.875rem;
@@ -291,12 +301,15 @@
 }
 
 .FixConponentFrame {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 56.6875rem;
   height: 24.375rem;
   border-radius: 1.25rem;
   border: 0.0625rem solid #e3e3e3;
   background: #fff;
-  margin-left: 20rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -417,6 +430,142 @@
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
+
+  cursor: pointer;
+}
+
+.ChangePasswordFrame {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56.6875rem;
+  height: 30rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ChangePasswordInner {
+  width: 47.9375rem;
+  height: 22.25rem;
+  text-align: start;
+}
+
+.TextChangePassword {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 169.836%;
+}
+
+.TextLastPassword {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+  margin-top: 1.75rem;
+}
+
+.LastPasswordInput {
+  width: 46rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  font-size: 1rem;
+
+  padding-left: 1.25rem;
+}
+
+.NewPasswordTextFrame {
+  width: 32.4375rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.625rem;
+}
+
+.NewPasswordText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+}
+
+.NewPasswordInputFrame {
+  width: 47.9375rem;
+  height: 3.3125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.1875rem;
+}
+
+.NewPasswordInput {
+  width: 22rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  padding-left: 1.25rem;
+  font-size: 1rem;
+  font-family: Pretendard;
+}
+
+.ChangePasswordButtonFrame {
+  width: 47.9375rem;
+  height: 3rem;
+  margin-top: 2.3125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ChangePasswordCancle {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  cursor: pointer;
+}
+
+.ChangePasswordRegister {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #730ef4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
 
   cursor: pointer;
 }
