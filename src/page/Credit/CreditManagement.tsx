@@ -3,9 +3,48 @@ import "./CreditManagement.css";
 import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 import cx from "classnames";
+import LoadPage from "../LoadPage/LoadPage";
 
 function CreditManagement() {
   const token = sessionStorage.getItem("access-token");
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [Amount, setAmount] = useState(0);
+  const [creditData, setCreditData] = React.useState<any[]>([]);
+  const [selectedTransactionType, setSelectedTransactionType] =
+    React.useState<string>("전체");
+  const [historyData, setHistoryData] = useState<HistoryData[]>([]);
+  const [CreditManagementAlertShow, setCreditManagementAlertShow] =
+    useState<boolean>(false);
+  const [CreditManagementAmountShortfall, setCreditManagementAmountShortfall] =
+    useState<boolean>(false);
+    const [AccountRegisteredComponent, setAccountRegisteredComponent] =
+    useState<boolean>(false);
+  const [NoneAccountRegisteredComponent, setNoneAccountRegisteredComponent] =
+    useState<boolean>(true);
+    const [CancellationButton, setCancellationButton] = useState<boolean>(false);
+    const [NoneTransactionData, setNoneTransactionData] =
+    useState<boolean>(false);
+  const [NoneTransactionDataShow, setNoneTransactionDataShow] =
+    useState<boolean>(true);
+    const [bankAccountNumber, setbankAccountNumber] =
+    useState<string>("계좌번호를 입력해주세요");
+  const [bankAccountProvider, setbankAccountProvider] =
+    useState<string>("은행을 기입해주세요");
+  const [name, setname] = useState<string>("");
+  const [selectedBankShow, setselectedBankShow] = useState<Bank | null>(null);
+  const [BankListBoxClick, setBankListBoxClick] = useState<boolean>(false);
+  const [SelectedBank, setSelectedBank] = useState<boolean>(false);
+  const [EarlySelectedBankState, setEarlySelectedBankState] =
+    useState<boolean>(true);
+
+  const [accountProvider, setAccountProvider] = useState<string>("");
+  const [accountNumber, setAccountNumber] = useState<string>("");
+  const [accountHolderName, setAccountHolderName] = useState<string>("");
+
+  const [ShowSelectTransactionTypeBox, setShowSelectTransactionTypeBox] =
+    useState<boolean>(false);
+  const [RecentData, setRecentData] = useState<string>("");
 
   useEffect(() => {
     if (token === null) {
@@ -107,14 +146,18 @@ function CreditManagement() {
       }
     };
 
-    LastTransactionRequest();
-    fetchAmount();
-    LastProvision();
-    UsedHistory();
-    PaymentWay();
+    Promise.all([
+      fetchAmount(),
+      LastProvision(),
+      fetchHistory(),
+      PaymentWay(),
+      LastTransactionRequest()
+    ]).then(() => setIsLoading(false));
   }, [token]);
 
-  const [Amount, setAmount] = useState(0);
+  if (isLoading) {
+    return <LoadPage />;
+  }
 
   interface GaugeBarProps {
     value: number;
@@ -137,8 +180,6 @@ function CreditManagement() {
       </div>
     );
   };
-
-  const [creditData, setCreditData] = React.useState<any[]>([]);
 
   interface RecentPaymentProps {
     data: {
@@ -169,10 +210,6 @@ function CreditManagement() {
     date: string;
     transactionType: string;
   };
-
-  const [selectedTransactionType, setSelectedTransactionType] =
-    React.useState<string>("전체");
-  const [historyData, setHistoryData] = useState<HistoryData[]>([]);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTransactionType(event.target.value);
@@ -245,11 +282,6 @@ function CreditManagement() {
     );
   };
 
-  const [CreditManagementAlertShow, setCreditManagementAlertShow] =
-    useState<boolean>(false);
-  const [CreditManagementAmountShortfall, setCreditManagementAmountShortfall] =
-    useState<boolean>(false);
-
   const refundApplication = async () => {
     try {
       const response = await axios({
@@ -274,10 +306,6 @@ function CreditManagement() {
       }
     }
   };
-  const [AccountRegisteredComponent, setAccountRegisteredComponent] =
-    useState<boolean>(false);
-  const [NoneAccountRegisteredComponent, setNoneAccountRegisteredComponent] =
-    useState<boolean>(true);
 
   const RegisterButtonClick = () => {
     console.log("등록하기 버튼 클릭");
@@ -286,16 +314,10 @@ function CreditManagement() {
     window.scrollTo(0, 0);
   };
 
-  const [CancellationButton, setCancellationButton] = useState<boolean>(false);
   const CancellationButtonOnClick = () => {
     setCancellationButton(false);
     document.body.style.overflow = "auto";
   };
-
-  const [NoneTransactionData, setNoneTransactionData] =
-    useState<boolean>(false);
-  const [NoneTransactionDataShow, setNoneTransactionDataShow] =
-    useState<boolean>(true);
 
   const AccountDelete = async () => {
     setNoneAccountRegisteredComponent(true);
@@ -320,12 +342,6 @@ function CreditManagement() {
     bankAccountProvider: string;
     name: string;
   }
-
-  const [bankAccountNumber, setbankAccountNumber] =
-    useState<string>("계좌번호를 입력해주세요");
-  const [bankAccountProvider, setbankAccountProvider] =
-    useState<string>("은행을 기입해주세요");
-  const [name, setname] = useState<string>("");
 
   const RealRegisterButtonClick = async () => {
     console.log(bankAccountNumber);
@@ -352,8 +368,6 @@ function CreditManagement() {
       console.error("계좌등록 실패:", error);
     }
   };
-
-  const [selectedBankShow, setselectedBankShow] = useState<Bank | null>(null);
 
   const BankItem: React.FC<Bank> = ({ name, value, img }) => {
     const handleClick = () => {
@@ -428,21 +442,9 @@ function CreditManagement() {
     return Massage ? <div className="textBackName">{Massage}</div> : null;
   };
 
-  const [BankListBoxClick, setBankListBoxClick] = useState<boolean>(false);
   const TextSelectBankAgentClick = () => {
     setBankListBoxClick(true);
   };
-
-  const [SelectedBank, setSelectedBank] = useState<boolean>(false);
-  const [EarlySelectedBankState, setEarlySelectedBankState] =
-    useState<boolean>(true);
-
-  const [accountProvider, setAccountProvider] = useState<string>("");
-  const [accountNumber, setAccountNumber] = useState<string>("");
-  const [accountHolderName, setAccountHolderName] = useState<string>("");
-
-  const [ShowSelectTransactionTypeBox, setShowSelectTransactionTypeBox] =
-    useState<boolean>(false);
 
   const UseredHistoryAllBoxClick = () => {
     if (ShowSelectTransactionTypeBox === true) {
@@ -451,8 +453,6 @@ function CreditManagement() {
       setShowSelectTransactionTypeBox(true);
     }
   };
-
-  const [RecentData, setRecentData] = useState<string>("");
 
   return (
     <div className="creditManagementMainFrame">
