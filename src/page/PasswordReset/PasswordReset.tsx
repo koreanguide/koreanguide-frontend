@@ -13,7 +13,7 @@ function PasswordReset() {
   const navigate = useNavigate();
 
   const goToLoginPage = () => {
-    navigate("/signin");
+    navigate("/portal/signin");
     window.scrollTo(0, 0);
   };
 

@@ -28,7 +28,7 @@ function HeaderTwo() {
   };
 
   const goToCreditManagementPage = () => {
-    navigate("/credit/management");
+    navigate("/portal/credit");
     window.scrollTo(0, 0);
   };
 
@@ -37,15 +37,20 @@ function HeaderTwo() {
     window.scrollTo(0, 0);
   };
 
+  const navigatePortal = () => {
+    navigate("/portal")
+    window.scrollTo(0, 0);
+  }
+
   const goToMyPage = () => {
-    navigate("/mypage");
+    navigate("/portal/mypage");
     window.scrollTo(0, 0);
   };
 
   return (
     <div className="HeaderTwoBoxFrame">
       <div className="HeaderTwoBox">
-        <button className="HomeButtonTwo" onClick={goToMainPage}>
+        <button className="HomeButtonTwo" onClick={navigatePortal}>
           <img
             src="../img/HTL2.png"
             alt="none"
@@ -53,7 +58,7 @@ function HeaderTwo() {
           ></img>
           <p className="HomeButtonTextTwo">KOREAN GUIDE</p>
         </button>
-        <button className="HeaderProfileButton" onClick={goToMyProfile}>
+        <button className="HeaderProfileButton" onClick={goToMyPage}>
           <p className="HeaderProfileButtonText">프로필 관리</p>
         </button>
         <button className="HeaderReviewButton">
@@ -66,7 +71,7 @@ function HeaderTwo() {
           <p className="HeaderCreditButtonText">크레딧 관리</p>
         </button>
         <button className="HeaderMypageButton" onClick={goToMyPage}>
-          <p className="HeaderMypageButtonText">내 정보</p>
+          <p className="HeaderMypageButtonText">내 트랙</p>
         </button>
         <button className="MassageButton">
           <img
