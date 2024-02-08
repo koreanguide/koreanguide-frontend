@@ -1,0 +1,571 @@
+.MyPageFrame {
+  width: 100%;
+  height: 200rem;
+  display: inline-block;
+  justify-content: center;
+}
+
+.MyPageInner {
+  margin-top: 6rem;
+  width: 61.875rem;
+  height: 51.5rem;
+  display: inline-block;
+  text-align: start;
+}
+
+.TextMyInfo {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.MyInfoFrame {
+  margin-top: 2.0625rem;
+  width: 61.875rem;
+  height: 43.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.MyInfoContainer {
+  width: 30rem;
+  height: 6.3125rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MyInfoInnerContainer {
+  position: relative;
+  width: 25rem;
+  height: 1.5625rem;
+  display: flex;
+  align-items: center;
+}
+
+.MyInfoCategory {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.MyInfoCategoryContent {
+  margin-left: 1.6875rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.MyInfoContainerInput {
+  width: 15rem;
+  margin-left: 1.6875rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 0.5rem;
+}
+
+.MyInfoFixButton {
+  position: absolute;
+  right: 0rem;
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.ProfileImgContainer {
+  width: 30rem;
+  height: 10rem;
+  border-radius: 1.25rem;
+  /* background: var(--color-ui-0, #fff); */
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+}
+
+.ProfileImgContainerText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  margin-left: 2.5rem;
+}
+
+.ProfileImgContainerImgBox {
+  width: 6.8125rem;
+  height: 6.8125rem;
+  border-radius: 6.8125rem;
+  overflow: hidden;
+
+  margin-left: 7.875rem;
+}
+
+.ProfileImgContainerImg {
+  width: 100%;
+  height: 100%;
+}
+
+.ProfileImgContainerButton {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-left: 1.875rem;
+  cursor: pointer;
+}
+
+.MyInfoContainerFrame {
+  height: 18.4375rem;
+  width: 61.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MyInfoSecondContainer {
+  width: 30rem;
+  height: 18.4375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.IntroductionContainer {
+  width: 30rem;
+  height: 18.4375rem;
+  border-radius: 1.25rem;
+  background: var(--color-ui-0, #fff);
+  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.IntroductionInnerContainer {
+  width: 25.5rem;
+  height: 13.6875rem;
+}
+
+.TestIntroductionBox {
+  width: 25.5rem;
+  height: 1.5625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TestIntroduction {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.IntroductionReplace {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.NoneIntroductionText {
+  margin-top: 1.3125rem;
+  color: #f94747;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.IntroductionTextArea {
+  width: 24rem;
+  height: 10.875rem;
+  resize: none;
+  border: none;
+  outline: none;
+  margin-top: 1.3125rem;
+  background-color: #eae8e8;
+  padding-top: 0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: 0.625rem;
+
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.ToggleButtonFrame {
+  width: 2.8125rem;
+  height: 1.25rem;
+  background-color: #eae8e8;
+  border-radius: 1.25rem;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  display: flex;
+}
+
+.ToggleButtonFrame.active {
+  background-color: rgb(95, 194, 95);
+}
+
+.ToggleButtonMainFrame {
+  background-color: #eae8e8;
+  width: 3rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  justify-content: center;
+}
+
+.ToggleButtonMainFrame.active {
+  background-color: rgb(95, 194, 95);
+}
+
+.ToggleButtonCircle {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left 0.3s ease-in-out;
+}
+
+.ToggleButtonCircle.active {
+  left: calc(100% - 1.25rem);
+}
+
+.ToggleButtonLocation {
+  margin-left: 16.3rem;
+}
+
+.ChangeComponentFixButton {
+  position: absolute;
+  right: 0;
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.FixConponentFrame {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56.6875rem;
+  height: 24.375rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.FixConponentInner {
+  width: 47.9375rem;
+  height: 16.6875rem;
+  text-align: start;
+}
+
+.FixConponentTitle {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.FixConponentInputFrame {
+  width: 47.9375rem;
+  height: 5.5rem;
+  margin-top: 2.6875rem;
+}
+
+.FixConponentInputInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 33rem;
+  height: 1.875rem;
+}
+
+.FixConponentInputTitle {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.FixConponentInputSecondInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.FixConponentFirstInput {
+  width: 25.625rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+
+  padding-left: 1.875rem;
+}
+
+.FixConponentSecondInput {
+  width: 16.4375rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+
+  padding-left: 1.875rem;
+}
+
+.FixConponentButtonFrame {
+  width: 47.9375rem;
+  height: 3rem;
+  margin-top: 2.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.FixConponentCancleButton {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.FixConponentRegisterButton {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #730ef4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.ChangePasswordFrame {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56.6875rem;
+  height: 30rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ChangePasswordInner {
+  width: 47.9375rem;
+  height: 22.25rem;
+  text-align: start;
+}
+
+.TextChangePassword {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 169.836%;
+}
+
+.TextLastPassword {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+  margin-top: 1.75rem;
+}
+
+.LastPasswordInput {
+  width: 46rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  font-size: 1rem;
+
+  padding-left: 1.25rem;
+}
+
+.NewPasswordTextFrame {
+  width: 32.4375rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.625rem;
+}
+
+.NewPasswordText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+}
+
+.NewPasswordInputFrame {
+  width: 47.9375rem;
+  height: 3.3125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.1875rem;
+}
+
+.NewPasswordInput {
+  width: 22rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  padding-left: 1.25rem;
+  font-size: 1rem;
+  font-family: Pretendard;
+}
+
+.ChangePasswordButtonFrame {
+  width: 47.9375rem;
+  height: 3rem;
+  margin-top: 2.3125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ChangePasswordCancle {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  cursor: pointer;
+}
+
+.ChangePasswordRegister {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #730ef4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  cursor: pointer;
+}

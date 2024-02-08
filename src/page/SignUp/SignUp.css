@@ -1,0 +1,511 @@
+.frame {
+  width: 100%;
+  height: 80rem;
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width: 67.25rem;
+  height: 80rem;
+  text-align: start;
+}
+
+.logoContainer {
+  width: 11rem;
+  height: 1.5rem;
+  margin-top: 8.625rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.textLogo {
+  color: var(--Primary, #730ef4);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.firstContainer {
+  margin-top: 1.875rem;
+  width: 100%;
+  height: 3.5625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.75rem;
+}
+
+.textWelcome {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.boxOne {
+  width: 10.9375rem;
+  height: 1.1875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+.textBackToLogin {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.alertContainer {
+  width: 100%;
+  height: 4.1875rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  border: 0.0625rem solid #fdacac;
+}
+
+.alertImg {
+  margin-left: 1.875rem;
+  margin-right: 1.25rem;
+}
+
+.alertText {
+  color: #fdacac;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.alertContainerP {
+  width: 100%;
+  height: 4.1875rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  border: 0.0625rem solid #730ef4;
+}
+
+.alertImgP {
+  margin-left: 1.875rem;
+  margin-right: 1.25rem;
+}
+
+.alertTextP {
+  color: #730ef4;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.textLoginBox {
+  margin-top: 1.25rem;
+  display: flex;
+  text-align: start;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  height: 3.5625rem;
+}
+
+.textLogin {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.selectText {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.secondContainer {
+  margin-top: 1.875rem;
+  width: 100%;
+  height: 6.0625rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectBox {
+  width: 32.625rem;
+  height: 6.0625rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  transition: border-color 0.3s ease;
+  background-color: white;
+
+  cursor: pointer;
+}
+
+.selectBox:hover,
+.selectBox.active {
+  border-color: #730ef4;
+}
+
+.selectImg {
+  margin-left: 1.875rem;
+  transition: src 0.3s ease;
+}
+
+.textRoll {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 1.125rem;
+  transition: color 0.3s ease;
+}
+
+.selectBox:hover .textRoll,
+.selectBox.active .textRoll {
+  color: #730ef4;
+}
+
+.thirdContainer {
+  width: 15.75rem;
+  height: 3.5625rem;
+  margin-top: 3.75rem;
+  display: flex;
+  text-align: start;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.textEssentialInfo {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.textEssentialInfoTwo {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.inputFrame {
+  margin-top: 1.875rem;
+  width: 100%;
+  height: 18.0625rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.emailContainer,
+.emailCertifiedContainer,
+.passwordContainer,
+.rePasswordContainer,
+.nickNameContainer,
+.locationContainer {
+  width: 32.75rem;
+  height: 5.1875rem;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: #fdacac; */
+}
+
+.containerText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+input:focus {
+  outline: none;
+  border-color: #730ef4;
+}
+
+.emailInputBox,
+.emailCertifiedInputBox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 3.4375rem;
+}
+
+.emailInput,
+.emailCertifiedInput {
+  width: 24rem;
+  height: 3.2rem;
+  font-size: 1.25rem;
+  margin: 0%;
+  padding-left: 1.25rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.3);
+}
+
+.CertifiedNumberSendButton,
+.emailCertifiedButton,
+.CertifiedNumbeReSendButton {
+  margin-left: 0.8rem;
+  width: 6.875rem;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  background: var(--Primary, #730ef4);
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  border: none;
+  cursor: pointer;
+}
+
+.CertifiedNumberSendButton:hover {
+  background: #fff;
+  border: 0.0625rem solid #730ef4;
+  color: #730ef4;
+}
+
+.emailCertifiedButton:hover {
+  background: #fff;
+  border: 0.0625rem solid #730ef4;
+  color: #730ef4;
+}
+
+.CertifiedNumbeReSendButton:hover {
+  background: #fff;
+  border: 0.0625rem solid #730ef4;
+  color: #730ef4;
+}
+
+.CertifiedNumberSendButtonLoad {
+  margin-left: 0.8rem;
+  width: 6.875rem;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  background: #864fcd;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+}
+
+.loadImg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.emailCheckedBox,
+.CertifiedNumbeReSendfail {
+  margin-left: 0.8rem;
+  width: 6.875rem;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  background: #e3e3e3;
+  color: #730ef4;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  border: none;
+}
+
+.passwordInput,
+.repasswordInput,
+.nickNameInput {
+  width: 31.5rem;
+  height: 3.2rem;
+  font-size: 1.25rem;
+  margin: 0%;
+  padding-left: 1.25rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.3);
+}
+
+.passwordSecondContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.passwordNotion {
+  color: #f94747;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SoulBox {
+  width: 12.375rem;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  background: #ebeefa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.CitySelectFrame {
+  width: 19.4375rem;
+  height: 3.4375rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.CityText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 0.5rem;
+}
+
+.CitySelectButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.CitySelectFrameTwo {
+  width: 16.4375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.locationContainerTwo {
+  display: inline;
+  width: 20rem;
+}
+
+.CitySelectListFrame {
+  width: 20rem;
+  height: 15rem;
+  overflow: auto;
+}
+
+.CitySelectListFrame::-webkit-scrollbar {
+  display: none;
+}
+
+.CityListBox {
+  width: 19.4375rem;
+  height: 3rem;
+  background-color: #f5f5f6;
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.CityListBox:hover {
+  background-color: #c9c9cb;
+}
+
+.ListBoxCityName {
+  margin-left: 1.875rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.locationContainerThree {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.625rem;
+  width: 32.6875rem;
+  height: auto;
+}
+
+.SignupButton {
+  width: 10.125rem;
+  margin-top: 3.75rem;
+  height: 2.625rem;
+  border-radius: 0.3125rem 1.25rem 1.25rem 0.3125rem;
+  background: var(--Primary, #730ef4);
+  border: none;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.SignupButton:hover {
+  background: #fff;
+  border: 0.0625rem solid #730ef4;
+  color: #730ef4;
+}
