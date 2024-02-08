@@ -5,7 +5,7 @@ import "./Header.css";
 function Header() {
   const navigate = useNavigate();
   const goToStart = () => {
-    navigate("/signin");
+    navigate("/portal/signin");
     window.scrollTo(0, 0);
   };
 

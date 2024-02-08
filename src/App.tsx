@@ -18,17 +18,24 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          {/* Guest */}
           <Route path="/" element={<MainPage />} />
-          <Route path="/AfterLogin" element={<AfterLoginPage />} />
+
+          {/* Portal Auth */}
+          <Route path="/portal/signin" element={<Login />} />
+          <Route path="/portal/signup" element={<SignUpPage />} />
+          <Route path="/portal/reset_password" element={<PasswordReset />} />
+
+          {/* Portal */}
+          <Route path="/portal" element={<AfterLoginPage />} />
           <Route path="/portal/chat" element={<ChatPage />} />
+          <Route path="/portal/track/new" element={<TrackCreatePage />} />
+          <Route path="/portal/credit" element={<CreditManagement />} />
+          <Route path="/portal/mypage" element={<MyPage />} />
+
+          {/* Etc */}
           <Route path="/HeaderTwo" element={<HeaderTwo />} />
           <Route path="/Footer" element={<Footer />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup/page" element={<SignUpPage />} />
-          <Route path="/passwordreset" element={<PasswordReset />} />
-          <Route path="/track/create" element={<TrackCreatePage />} />
-          <Route path="/credit/management" element={<CreditManagement />} />
-          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </div>

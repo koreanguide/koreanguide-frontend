@@ -14,11 +14,11 @@ function Login() {
 
   window.scrollTo(0, 0);
   const goToPasswordReset = () => {
-    navigate("/passwordreset");
+    navigate("/portal/reset_password");
     window.scrollTo(0, 0);
   };
   const goToSignUpPage = () => {
-    navigate("/signup/page");
+    navigate("/portal/signup");
     window.scrollTo(0, 0);
   };
 
@@ -41,7 +41,7 @@ function Login() {
         sessionStorage.setItem("email", response.data.email);
         console.log("로그인 성공");
         console.log(response.data.accessToken);
-        navigate("/AfterLogin");
+        navigate("/portal");
         window.scrollTo(0, 0);
         setLoginFailed(false);
       }
@@ -111,7 +111,6 @@ function Login() {
               <input
                 type="email"
                 className="loginEmailInput"
-                placeholder="abc@example.com"
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyPress={handleKeyPress}
               ></input>
@@ -119,7 +118,6 @@ function Login() {
               <input
                 type="password"
                 className="loginPasswordInput"
-                placeholder="passwd123@"
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyPress={handleKeyPress}
               ></input>
