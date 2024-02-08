@@ -3,9 +3,12 @@ import axios from "axios";
 import HeaderTwo from "../../HeaderTwo";
 import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
+import LoadPage from "../LoadPage/LoadPage";
 
 function MyPage() {
   const token = sessionStorage.getItem("access-token");
+
+  const navigate = useNavigate();
 
   const [name, setName] = useState("실명");
   const [nickName, setNickName] = useState("별명");
@@ -15,6 +18,9 @@ function MyPage() {
   const [accountInfo, setAccountInfo] = useState("신한 000000000000");
   const [blocked, setBlocked] = useState("5명의 사용자");
   const [enable, setEnable] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const [FixConponentShow, setFixConponentShow] = useState(false);
 
   useEffect(() => {
     if (token === null) {
@@ -40,6 +46,7 @@ function MyPage() {
         setAccountInfo(response.data.accountInfo);
         setBlocked(response.data.blocked);
         setEnable(response.data.enable);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -47,6 +54,10 @@ function MyPage() {
 
     MyInformation();
   }, [token]);
+
+  if (loading) {
+    return <LoadPage />;
+  }
 
   type ChangeComponentProps = {
     category: string;
@@ -93,15 +104,13 @@ function MyPage() {
     );
   };
 
-  const navigate = useNavigate();
-
   const PasswordResetPage = () => {
-    navigate("/passwordreset");
+    navigate("/portal/reset_password");
     window.scrollTo(0, 0);
   };
 
   const CreditPage = () => {
-    navigate("/credit/management");
+    navigate("/portal/credit");
     window.scrollTo(0, 0);
   };
 
@@ -160,8 +169,6 @@ function MyPage() {
       </div>
     );
   };
-
-  const [FixConponentShow, setFixConponentShow] = useState(false);
 
   const FixConponent = () => {
     return (

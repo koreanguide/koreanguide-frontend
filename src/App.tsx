@@ -12,6 +12,7 @@ import PasswordReset from "./page/PasswordReset/PasswordReset";
 import TrackCreatePage from "./page/Track/TrackCreate";
 import CreditManagement from "./page/Credit/CreditManagement";
 import MyPage from "./page/MyPage/MyPage";
+import LoadPage from "./page/LoadPage/LoadPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/portal/track/new" element={<TrackCreatePage />} />
           <Route path="/portal/credit" element={<CreditManagement />} />
           <Route path="/portal/mypage" element={<MyPage />} />
+          <Route path="/portal/load" element={<LoadPage />} />
 
           {/* Etc */}
           <Route path="/HeaderTwo" element={<HeaderTwo />} />
