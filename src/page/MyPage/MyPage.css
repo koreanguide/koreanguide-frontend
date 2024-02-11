@@ -1,16 +1,20 @@
 .MyPageFrame {
   width: 100%;
-  height: 200rem;
+  height: 70rem;
   display: inline-block;
   justify-content: center;
 }
 
 .MyPageInner {
-  margin-top: 6rem;
+  margin-top: 9.35rem;
   width: 61.875rem;
   height: 51.5rem;
   display: inline-block;
   text-align: start;
+}
+
+.MyPageInner.blur {
+  filter: blur(0.5rem);
 }
 
 .TextMyInfo {
@@ -60,6 +64,10 @@
   line-height: normal;
 }
 
+.MyInfoCategory.NoneColor {
+  color: #f94747;
+}
+
 .MyInfoCategoryContent {
   margin-left: 1.6875rem;
   color: #000;
@@ -94,6 +102,7 @@
   line-height: normal;
   background: transparent;
   border: none;
+  padding: 0;
 
   cursor: pointer;
 }
@@ -125,7 +134,7 @@
   border-radius: 6.8125rem;
   overflow: hidden;
 
-  margin-left: 7.875rem;
+  margin-left: 6rem;
 }
 
 .ProfileImgContainerImg {
@@ -143,6 +152,19 @@
   line-height: normal;
 
   margin-left: 1.875rem;
+  cursor: pointer;
+}
+
+.ImgDeleteButton {
+  color: #f94747;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 1.25rem;
+
   cursor: pointer;
 }
 
@@ -568,4 +590,166 @@
   line-height: 199.836%;
 
   cursor: pointer;
+}
+
+.IntroductionChangeContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56.6875rem;
+  height: 42.5rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.IntroductionChangeContainerInner {
+  width: 47.9375rem;
+  height: 34.9375rem;
+  text-align: start;
+}
+
+.TextIntorductionFix {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 169.836%;
+}
+
+.TextLimitContainer {
+  width: 47.9375rem;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TextIntroduction {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+}
+
+.IntroductionChangeContainerTextLimit {
+  color: #8c8c8c;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+}
+
+.IntroductionChangeTextArea {
+  margin-top: 0.3125rem;
+  width: 45.5rem;
+  height: 15.75rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  padding-left: 1.25rem;
+  padding-top: 0.625rem;
+  padding-right: 1.25rem;
+  outline: none;
+  resize: none;
+
+  color: #373737;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+}
+
+.IntroductionChangeTextPassword {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  margin-top: 1.875rem;
+}
+
+.IntroductionChangePasswordInput {
+  width: 46.5rem;
+  height: 3.3125rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e3e3e3;
+  padding-left: 1.25rem;
+  font-size: 1rem;
+  margin-top: 0.1875rem;
+}
+
+.IntroductionChangeButtonBox {
+  width: 47.9375rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2.8125rem;
+}
+
+.IntroductionChangeButtonCancle {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  cursor: pointer;
+}
+
+.IntroductionChangeButtonRegister {
+  width: 23.4375rem;
+  height: 3rem;
+  border-radius: 0.625rem;
+  background: #730ef4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+
+  cursor: pointer;
+}
+
+.IntroductionChangeTextArea.overLimit {
+  border-color: red;
+}
+
+.IntroductionChangeTextArea.focused {
+  border-color: #730ef4;
+}
+
+.ExistIntroductionText {
+  margin-top: 1.3125rem;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
 }

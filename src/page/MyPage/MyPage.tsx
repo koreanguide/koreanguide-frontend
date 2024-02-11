@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, ChangeEvent, FocusEvent } from "react";
 import axios from "axios";
 import HeaderTwo from "../../HeaderTwo";
 import "./MyPage.css";
@@ -9,26 +9,39 @@ function MyPage() {
   const token = sessionStorage.getItem("access-token");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [name, setName] = useState("실명");
-  const [nickName, setNickName] = useState("별명");
-  const [phoneNum, setPhoneNum] = useState("010-1234-1234");
-  const [email, setEmail] = useState("test1@gmail.com");
-  const [password, setPassword] = useState("************");
-  const [accountInfo, setAccountInfo] = useState("신한 000000000000");
+  const [name, setName] = useState("");
+  const [nickName, setNickName] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [accountInfo, setAccountInfo] = useState<string>("");
+  const [ProfileImg, setProfileImg] = useState("../img/NormalProfile.svg");
   const [enable, setEnable] = useState(false);
   const [IntroductionTarget, setIntroductionTarget] = useState<string>("");
   const [FixNameConponentShow, setFixNameConponentShow] = useState(false);
+  const [target, setTarget] = useState<string>("");
   const [FixPhoneNumConponentShow, setFixPhoneNumConponentShow] =
     useState(false);
   const [FixNickNameConponentShow, setFixNickNameConponentShow] =
     useState(false);
   const [isToggled, setIsToggled] = useState(enable);
-  const [image, setImage] = useState("../img/profile2.svg");
   const [ShowPasswordChange, setShowPasswordChange] = useState<boolean>(false);
   const [PasswordChange, setPasswordChange] = useState<string>("");
   const [NewPasswordChange, setNewPasswordChange] = useState<string>("");
-  const [target, setTarget] = useState<string>("");
   const [PhonenNumtarget, setPhonenNumtarget] = useState<string>("");
+  const [NameRegisterPassword, setNameRegisterPassword] = useState<string>("");
+  const [PhoneNumRegisterPassword, setPhoneNumRegisterPassword] =
+    useState<string>("");
+  const [NickNametarget, setNickNametarget] = useState<string>("");
+  const [NickNametargetRegisterPassword, setNickNametargetRegisterPassword] =
+    useState<string>("");
+  const [isFocused, setIsFocused] = useState(false);
+  const [IntroductionChangeShow, setIntroductionChangeShow] = useState(false);
+  const [IntroductionPassword, setIntroductionPassword] = useState<string>("");
+  const [IntroductionContent, setIntroductionContent] = useState<string>("");
+  const [CaseIntroducionNone, setCaseIntroducionNone] = useState(false);
+  const [CaseIntroducionExist, setCaseIntroducionExist] = useState(true);
+  const [blur, setBlur] = useState(false);
 
   useEffect(() => {
     if (token === null) {
@@ -54,6 +67,7 @@ function MyPage() {
         setAccountInfo(response.data.accountInfo);
         setEnable(response.data.enable);
         setLoading(false);
+        setIntroductionContent(response.data.introduce);
       } catch (error) {
         console.error(error);
       }
@@ -61,6 +75,16 @@ function MyPage() {
 
     MyInformation();
   }, [token]);
+
+  useEffect(() => {
+    if (IntroductionContent === "등록된 소개 글이 없습니다.") {
+      setCaseIntroducionNone(true);
+      setCaseIntroducionExist(false);
+    } else {
+      setCaseIntroducionNone(false);
+      setCaseIntroducionExist(true);
+    }
+  }, [IntroductionContent]);
 
   if (loading) {
     return <LoadPage />;
@@ -95,13 +119,8 @@ function MyPage() {
     );
   };
 
-  const PasswordResetPage = () => {
-    navigate("/passwordreset");
-    window.scrollTo(0, 0);
-  };
-
   const CreditPage = () => {
-    navigate("/credit/management");
+    navigate("/portal/credit");
     window.scrollTo(0, 0);
   };
 
@@ -111,7 +130,7 @@ function MyPage() {
       if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
-          setImage(reader.result as string);
+          setProfileImg(reader.result as string);
         };
         reader.readAsDataURL(file);
       }
@@ -121,7 +140,11 @@ function MyPage() {
       <div className="ProfileImgContainer">
         <div className="ProfileImgContainerText">프로필 이미지</div>
         <div className="ProfileImgContainerImgBox">
-          <img src={image} alt="none" className="ProfileImgContainerImg"></img>
+          <img
+            src={ProfileImg}
+            alt="none"
+            className="ProfileImgContainerImg"
+          ></img>
         </div>
         <input
           type="file"
@@ -133,9 +156,31 @@ function MyPage() {
         <label htmlFor="imageUpload" className="ProfileImgContainerButton">
           수정
         </label>
+        <div className="ImgDeleteButton" onClick={ProfileImgDel}>
+          삭제
+        </div>
       </div>
     );
   };
+
+  const ProfileImgDel = async () => {
+    try {
+      const response = await axios.delete("/v1/profile/profile", {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("이미지 삭제 성공", response.data);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("이미지 삭제 실패:", error);
+    }
+  };
+
+  // 토글 버튼
 
   const ToggleButton: React.FC = () => {
     const handleToggle = () => {
@@ -145,130 +190,53 @@ function MyPage() {
     };
 
     return (
-      <div className={`ToggleButtonMainFrame ${isToggled ? "active" : ""}`}>
+      <div className={`ToggleButtonMainFrame ${!isToggled ? "active" : ""}`}>
         <div
-          className={`ToggleButtonFrame ${isToggled ? "active" : ""}`}
+          className={`ToggleButtonFrame ${!isToggled ? "active" : ""}`}
           onClick={handleToggle}
         >
           <div
-            className={`ToggleButtonCircle ${isToggled ? "active" : ""}`}
+            className={`ToggleButtonCircle ${!isToggled ? "active" : ""}`}
           ></div>
         </div>
       </div>
     );
   };
 
-  interface FixComponentProps {
-    title: string;
-    label: string;
-    placeholder: string;
-    onCancleClick: () => void;
-    onRegisterClick: (inputValue: string) => void;
-  }
+  /*이름변경 컴포넌트*/
 
-  const FixConponent: React.FC<FixComponentProps> = ({
-    title,
-    label,
-    placeholder,
-    onCancleClick,
-    onRegisterClick,
-  }) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-
-    const handleRegisterClick = () => {
-      setFixPhoneNumConponentShow(false);
-      setFixNickNameConponentShow(false);
-      setFixNameConponentShow(false);
-      document.body.style.overflow = "auto";
-
-      if (inputRef.current) {
-        onRegisterClick(inputRef.current.value);
-      }
-    };
-
-    return (
-      <div className="FixConponentFrame">
-        <div className="FixConponentInner">
-          <div className="FixConponentTitle">{title}</div>
-          <div className="FixConponentInputFrame">
-            <div className="FixConponentInputInner">
-              <div className="FixConponentInputTitle">{label}</div>
-              <div className="FixConponentInputTitle">비밀번호</div>
-            </div>
-            <div className="FixConponentInputSecondInner">
-              <input
-                className="FixConponentFirstInput"
-                placeholder={placeholder}
-                ref={inputRef}
-              ></input>
-              <input
-                className="FixConponentSecondInput"
-                placeholder="현재 비밀번호"
-              ></input>
-            </div>
-          </div>
-          <div className="FixConponentButtonFrame">
-            <div className="FixConponentCancleButton" onClick={onCancleClick}>
-              취소
-            </div>
-            <div
-              className="FixConponentRegisterButton"
-              onClick={handleRegisterClick}
-            >
-              등록
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+  const NameRegisterClick = () => {
+    setFixNameConponentShow(false);
+    NameRegisterOnClick();
+    BackGroundBlurCancle();
+    document.body.style.overflow = "auto";
   };
 
   const NameFix = () => {
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
     setFixNameConponentShow(true);
+    BackGroundBlur();
   };
 
   const FixNameConponentCancleClick = () => {
     window.scrollTo(0, 0);
     document.body.style.overflow = "auto";
     setFixNameConponentShow(false);
-  };
-
-  const PhoneNumFix = () => {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = "hidden";
-    setFixPhoneNumConponentShow(true);
-  };
-
-  const FixPhoneNumConponentCancleClick = () => {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = "auto";
-    setFixPhoneNumConponentShow(false);
-  };
-
-  const NickNameFix = () => {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = "hidden";
-    setFixNickNameConponentShow(true);
-  };
-
-  const FixNickNameConponentCancleClick = () => {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = "auto";
-    setFixNickNameConponentShow(false);
+    BackGroundBlurCancle();
   };
 
   interface NameRegisterData {
     target: string;
+    password: string;
   }
 
   const NameRegisterOnClick = async () => {
-    // window.location.reload();
-
     const data: NameRegisterData = {
       target: target,
+      password: NameRegisterPassword,
     };
+
     try {
       const response = await axios.post("/v1/profile/name", data, {
         headers: {
@@ -278,21 +246,47 @@ function MyPage() {
 
       if (response.status === 200) {
         console.log("실명등록 성공", response.data);
+        window.location.reload();
       }
     } catch (error) {
       console.error("실명등록 실패:", error);
     }
   };
 
+  /*번호변경 컴포넌트*/
+
+  const PhoneRegisterClick = () => {
+    setFixPhoneNumConponentShow(false);
+    PhoneNumRegisterOnClick();
+    document.body.style.overflow = "auto";
+    BackGroundBlurCancle();
+  };
+
+  const PhoneNumFix = () => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
+    setFixPhoneNumConponentShow(true);
+    BackGroundBlur();
+  };
+
+  const FixPhoneNumConponentCancleClick = () => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "auto";
+    setFixPhoneNumConponentShow(false);
+    BackGroundBlurCancle();
+  };
+
   interface PhoneNumRegisterData {
     target: string;
+    password: string;
   }
 
   const PhoneNumRegisterOnClick = async () => {
-    // window.location.reload();
+    window.location.reload();
 
     const data: PhoneNumRegisterData = {
       target: PhonenNumtarget,
+      password: PhoneNumRegisterPassword,
     };
     try {
       const response = await axios.post("/v1/profile/phone", data, {
@@ -309,13 +303,60 @@ function MyPage() {
     }
   };
 
+  /*닉네임변경 컴포넌트*/
+
+  const NickNameFix = () => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
+    setFixNickNameConponentShow(true);
+    BackGroundBlur();
+  };
+
+  const FixNickNameConponentCancleClick = () => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "auto";
+    setFixNickNameConponentShow(false);
+    BackGroundBlurCancle();
+  };
+
+  interface NickNameRegisterData {
+    target: string;
+    password: string;
+  }
+
+  const NickNameRegisterOnClick = async () => {
+    window.location.reload();
+
+    const data: NickNameRegisterData = {
+      target: NickNametarget,
+      password: NickNametargetRegisterPassword,
+    };
+    try {
+      const response = await axios.post("/v1/profile/nickname", data, {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("닉네임등록 성공", response.data);
+      }
+    } catch (error) {
+      console.error("닉네임등록 실패:", error);
+    }
+  };
+
+  /*소개글변경 컴포넌트*/
+
   interface IntroductionReplaceData {
     target: string;
+    password: string;
   }
 
   const IntroductionReplaceOnClick = async () => {
     const data: IntroductionReplaceData = {
       target: IntroductionTarget,
+      password: IntroductionPassword,
     };
     try {
       const response = await axios.post("/v1/profile/introduce", data, {
@@ -326,11 +367,38 @@ function MyPage() {
 
       if (response.status === 200) {
         console.log("소개글 수정 및 등록 성공", response.data);
+        window.location.reload();
       }
     } catch (error) {
       console.error("소개글 수정 및 등록 실패:", error);
     }
   };
+
+  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setIntroductionTarget(e.target.value);
+  };
+
+  const handleInputFocus = (e: FocusEvent<HTMLTextAreaElement>) => {
+    setIsFocused(true);
+  };
+
+  const handleInputBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
+    setIsFocused(false);
+  };
+
+  const IntroductionTextClick = () => {
+    document.body.style.overflow = "hidden";
+    setIntroductionChangeShow(true);
+    BackGroundBlur();
+  };
+
+  const IntroductionCancleClick = () => {
+    document.body.style.overflow = "auto";
+    setIntroductionChangeShow(false);
+    BackGroundBlurCancle();
+  };
+
+  // 비밀번호 변경 컴포넌트
 
   interface ChangePasswordData {
     password: string;
@@ -363,18 +431,32 @@ function MyPage() {
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
     setShowPasswordChange(true);
+    BackGroundBlur();
   };
 
   const PasswordResetCancleOnClick = () => {
     window.scrollTo(0, 0);
     document.body.style.overflow = "auto";
     setShowPasswordChange(false);
+    BackGroundBlurCancle();
   };
+
+  // 블러처리
+
+  const BackGroundBlur = () => {
+    setBlur(true);
+  };
+
+  const BackGroundBlurCancle = () => {
+    setBlur(false);
+  };
+
+  //계좌번호 미등록 색상
 
   return (
     <div className="MyPageFrame">
       <HeaderTwo></HeaderTwo>
-      <div className="MyPageInner">
+      <div className={`MyPageInner ${blur ? "blur" : ""}`}>
         <div className="TextMyInfo">프로필 관리</div>
         <div className="MyInfoFrame">
           <div className="MyInfoContainerFrame">
@@ -390,37 +472,43 @@ function MyPage() {
                 </div>
               </ChangeComponent>
             </div>
-            <div className="IntroductionContainer">
-              <div className="IntroductionInnerContainer">
-                <div className="TestIntroductionBox">
-                  <div className="TestIntroduction">소개글</div>
-                  <div
-                    className="IntroductionReplace"
-                    onClick={IntroductionReplaceOnClick}
-                  >
-                    완료
+            {CaseIntroducionExist && (
+              <div className="IntroductionContainer">
+                <div className="IntroductionInnerContainer">
+                  <div className="TestIntroductionBox">
+                    <div className="TestIntroduction">소개글</div>
+                    <div
+                      className="IntroductionReplace"
+                      onClick={IntroductionTextClick}
+                    >
+                      수정
+                    </div>
+                  </div>
+                  <div className="ExistIntroductionText">
+                    {IntroductionContent}
                   </div>
                 </div>
-                <textarea
-                  className="IntroductionTextArea"
-                  onChange={(e) => setIntroductionTarget(e.target.value)}
-                ></textarea>
               </div>
-            </div>
-            {
-              //   <div className="IntroductionContainer">
-              //     <div className="IntroductionInnerContainer">
-              //       <div className="TestIntroductionBox">
-              //         <div className="TestIntroduction">소개글</div>
-              //         <div className="IntroductionReplace">작성</div>
-              //       </div>
-              //       <div className="NoneIntroductionText">
-              //         등록된 소개글이 없습니다.
-              //         <br /> 소개글을 추가하여 나를 소개하세요!
-              //       </div>
-              //     </div>
-              //   </div>
-            }
+            )}
+            {CaseIntroducionNone && (
+              <div className="IntroductionContainer">
+                <div className="IntroductionInnerContainer">
+                  <div className="TestIntroductionBox">
+                    <div className="TestIntroduction">소개글</div>
+                    <div
+                      className="IntroductionReplace"
+                      onClick={IntroductionTextClick}
+                    >
+                      작성
+                    </div>
+                  </div>
+                  <div className="NoneIntroductionText">
+                    등록된 소개글이 없습니다.
+                    <br /> 소개글을 추가하여 나를 소개하세요!
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <ChangeComponent
             category="전화번호"
@@ -464,7 +552,6 @@ function MyPage() {
           <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
               <div className="MyInfoCategory">계좌번호</div>
-
               <div className="MyInfoCategoryContent">{accountInfo}</div>
               <button className="MyInfoFixButton" onClick={CreditPage}>
                 변경
@@ -482,37 +569,127 @@ function MyPage() {
         </div>
       </div>
       {FixNameConponentShow && (
-        <FixConponent
-          title="이름 등록 및 변경"
-          label="이름"
-          placeholder="이름"
-          onCancleClick={FixNameConponentCancleClick}
-          onRegisterClick={(inputValue) => {
-            setTarget(inputValue);
-            NameRegisterOnClick();
-          }}
-        />
+        <div className="FixConponentFrame">
+          <div className="FixConponentInner">
+            <div className="FixConponentTitle">이름 등록 및 변경</div>
+            <div className="FixConponentInputFrame">
+              <div className="FixConponentInputInner">
+                <div className="FixConponentInputTitle">이름</div>
+                <div className="FixConponentInputTitle">비밀번호</div>
+              </div>
+              <div className="FixConponentInputSecondInner">
+                <input
+                  placeholder="이름"
+                  className="FixConponentFirstInput"
+                  onChange={(e) => setTarget(e.target.value)}
+                ></input>
+                <input
+                  className="FixConponentSecondInput"
+                  placeholder="현재 비밀번호"
+                  type="password"
+                  onChange={(e) => setNameRegisterPassword(e.target.value)}
+                ></input>
+              </div>
+            </div>
+            <div className="FixConponentButtonFrame">
+              <div
+                className="FixConponentCancleButton"
+                onClick={FixNameConponentCancleClick}
+              >
+                취소
+              </div>
+              <div
+                className="FixConponentRegisterButton"
+                onClick={NameRegisterClick}
+              >
+                등록
+              </div>
+            </div>
+          </div>
+        </div>
       )}
       {FixPhoneNumConponentShow && (
-        <FixConponent
-          title="전화번호 등록 및 변경"
-          label="전화번호"
-          placeholder="010-XXXX-XXXX 형식으로 입력"
-          onCancleClick={FixPhoneNumConponentCancleClick}
-          onRegisterClick={(inputValue) => {
-            setPhonenNumtarget(inputValue);
-            PhoneNumRegisterOnClick();
-          }}
-        />
+        <div className="FixConponentFrame">
+          <div className="FixConponentInner">
+            <div className="FixConponentTitle">전화번호 등록 및 변경</div>
+            <div className="FixConponentInputFrame">
+              <div className="FixConponentInputInner">
+                <div className="FixConponentInputTitle">전화번호</div>
+                <div className="FixConponentInputTitle">비밀번호</div>
+              </div>
+              <div className="FixConponentInputSecondInner">
+                <input
+                  placeholder="010-XXXX-XXXX 형식으로 입력"
+                  className="FixConponentFirstInput"
+                  onChange={(e) => setPhonenNumtarget(e.target.value)}
+                ></input>
+                <input
+                  className="FixConponentSecondInput"
+                  placeholder="현재 비밀번호"
+                  type="password"
+                  onChange={(e) => setPhoneNumRegisterPassword(e.target.value)}
+                ></input>
+              </div>
+            </div>
+            <div className="FixConponentButtonFrame">
+              <div
+                className="FixConponentCancleButton"
+                onClick={FixPhoneNumConponentCancleClick}
+              >
+                취소
+              </div>
+              <div
+                className="FixConponentRegisterButton"
+                onClick={PhoneRegisterClick}
+              >
+                등록
+              </div>
+            </div>
+          </div>
+        </div>
       )}
-      {/* {FixNickNameConponentShow && (
-        <FixConponent
-          title="닉네임 등록 및 변경"
-          label="닉네임"
-          placeholder="닉네임"
-          onCancleClick={FixNickNameConponentCancleClick}
-        />
-      )} */}
+      {FixNickNameConponentShow && (
+        <div className="FixConponentFrame">
+          <div className="FixConponentInner">
+            <div className="FixConponentTitle">닉네임 등록 및 변경</div>
+            <div className="FixConponentInputFrame">
+              <div className="FixConponentInputInner">
+                <div className="FixConponentInputTitle">닉네임</div>
+                <div className="FixConponentInputTitle">비밀번호</div>
+              </div>
+              <div className="FixConponentInputSecondInner">
+                <input
+                  placeholder="닉네임"
+                  className="FixConponentFirstInput"
+                  onChange={(e) => setNickNametarget(e.target.value)}
+                ></input>
+                <input
+                  className="FixConponentSecondInput"
+                  placeholder="현재 비밀번호"
+                  type="password"
+                  onChange={(e) =>
+                    setNickNametargetRegisterPassword(e.target.value)
+                  }
+                ></input>
+              </div>
+            </div>
+            <div className="FixConponentButtonFrame">
+              <div
+                className="FixConponentCancleButton"
+                onClick={FixNickNameConponentCancleClick}
+              >
+                취소
+              </div>
+              <div
+                className="FixConponentRegisterButton"
+                onClick={NickNameRegisterOnClick}
+              >
+                등록
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {ShowPasswordChange && (
         <div className="ChangePasswordFrame">
           <div className="ChangePasswordInner">
@@ -551,6 +728,48 @@ function MyPage() {
                 onClick={ChangePasswordRegisterOnClick}
               >
                 변경
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {IntroductionChangeShow && (
+        <div className="IntroductionChangeContainer">
+          <div className="IntroductionChangeContainerInner">
+            <div className="TextIntorductionFix">소개글 수정</div>
+            <div className="TextLimitContainer">
+              <div className="TextIntroduction">소개글</div>
+              <div className="IntroductionChangeContainerTextLimit">
+                {`${IntroductionTarget.length}자 / 100자`}
+              </div>
+            </div>
+            <textarea
+              className={`IntroductionChangeTextArea ${
+                IntroductionTarget.length > 100 ? "overLimit" : ""
+              } ${isFocused ? "focused" : ""}`}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              value={IntroductionTarget}
+            />
+            <div className="IntroductionChangeTextPassword">비밀번호</div>
+            <input
+              className="IntroductionChangePasswordInput"
+              type="password"
+              onChange={(e) => setIntroductionPassword(e.target.value)}
+            ></input>
+            <div className="IntroductionChangeButtonBox">
+              <div
+                className="IntroductionChangeButtonCancle"
+                onClick={IntroductionCancleClick}
+              >
+                취소
+              </div>
+              <div
+                className="IntroductionChangeButtonRegister"
+                onClick={IntroductionReplaceOnClick}
+              >
+                등록
               </div>
             </div>
           </div>
