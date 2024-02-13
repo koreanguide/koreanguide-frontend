@@ -87,6 +87,12 @@ function HeaderTwo() {
     window.scrollTo(0, 0);
   };
 
+  const LogOutClick = () => {
+    sessionStorage.removeItem("access-token");
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div>
       <div className="HeaderTwoBoxFrame">
@@ -149,7 +155,7 @@ function HeaderTwo() {
               </div>
               <div className="HeaderInfoUserAmountNotion">보유 크레딧</div>
             </div>
-            <div className="HeaderInfoLogoutBox">
+            <div className="HeaderInfoLogoutBox" onClick={LogOutClick}>
               <img
                 src="../img/logoutImg.svg"
                 alt="none"
