@@ -10,6 +10,7 @@ function HeaderTwo() {
   const [Amount, setAmount] = useState(0);
   const [email, setEmail] = useState("");
   const [nickName, setNickName] = useState("");
+  const [ProfileImg, setProfileImg] = useState("");
 
   useEffect(() => {
     const HeaderUserAmount = async () => {
@@ -36,6 +37,11 @@ function HeaderTwo() {
         console.log("내 정보", response.data);
         setNickName(response.data.nickName);
         setEmail(response.data.email);
+        if (response.data.profileUrl === "DEFAULT") {
+          setProfileImg("../img/NormalProfile.svg");
+        } else {
+          setProfileImg(response.data.profileUrl);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -73,7 +79,7 @@ function HeaderTwo() {
   };
 
   const goToCreateTrack = () => {
-    navigate("/portal/track/new");
+    navigate("/portal/track_new");
     window.scrollTo(0, 0);
   };
 
@@ -142,7 +148,7 @@ function HeaderTwo() {
             </div>
             <div className="HeaderInfoSecondBox">
               <img
-                src="../img/NormalProfile.svg"
+                src={ProfileImg}
                 alt="none"
                 className="HeaderNormalProfile"
               ></img>

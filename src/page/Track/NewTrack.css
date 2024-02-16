@@ -1,0 +1,236 @@
+.NewTrackpage {
+  width: 100%;
+  height: 201.0625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NewTrackpageInner {
+  width: 61.875rem;
+  height: 201.0625rem;
+  display: inline-block;
+  text-align: start;
+}
+
+.TextAddNewTrack {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.1rem;
+
+  margin-top: 9.375rem;
+}
+
+.NewTrackContainerOne {
+  width: 61.875rem;
+  height: 16.5rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 3.5625rem;
+}
+
+.NewTrackContainerOneInner {
+  width: 57.3125rem;
+  height: 11.125rem;
+}
+
+.NewTrackContainerTitleBox {
+  width: 57.3125rem;
+  height: 1.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NewTrackContainerTitle {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.055rem;
+}
+
+.NewTrackContainerNotificationBox {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 1.25rem;
+}
+
+.RedNotificationImg {
+  margin-right: 0.625rem;
+}
+
+.RedNotificationText {
+  color: #f00;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.NewTrackContainerTitleSupplementBox {
+  margin-top: 1.0625rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.04rem;
+}
+
+.NewTrackCheckBoxContainer {
+  margin-top: 1.875rem;
+  width: 40rem;
+  height: 5.375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.NewTrackCheckBox {
+  width: 25rem;
+  height: 1.375rem;
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.NewTrackCheckBoxText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 1.25rem;
+}
+
+.NewTrackCheckBoxTextSpan {
+  color: #730ef4;
+}
+
+.NewTrackContainerTwo {
+  margin-top: 0.625rem;
+  width: 61.875rem;
+  height: 35.875rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NewTrackContainerTwoInner {
+  width: 57.3125rem;
+  height: 30.5rem;
+}
+
+.ImageSelectTextBox {
+  width: 30.6875rem;
+  height: 1.1875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.875rem;
+}
+
+.MainImageText,
+.SubImageText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.04rem;
+}
+
+.NewTrackImageSelectContainer {
+  width: 57.3125rem;
+  height: 23rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5625rem;
+}
+
+.MainImageBox {
+  width: 25.5625rem;
+  height: 23rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.MainImageBox:hover {
+  background: #e3e3e3;
+}
+
+.selectedMainImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.25rem;
+  object-fit: contain;
+}
+
+.NewTrackImageComponentFrame {
+  width: 5.75rem;
+  height: 2.9375rem;
+  text-align: center;
+}
+
+.NewTrackImageComponentText {
+  margin-top: 0.45rem;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 162.836%;
+}
+
+.NewTrackAddImageContainer {
+  width: 31rem;
+  height: 23rem;
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.NewTrackAddImageBoxOne {
+  width: 15.1875rem;
+  height: 11.1875rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #fff;
+}
+
+.NewTrackAddImageBoxOne:hover {
+  background: #e3e3e3;
+}

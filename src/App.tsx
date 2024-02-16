@@ -9,10 +9,10 @@ import Footer from "./page/Footer/Footer";
 import Login from "./page/Login/LoginPage";
 import SignUpPage from "./page/SignUp/SignUp";
 import PasswordReset from "./page/PasswordReset/PasswordReset";
-import TrackCreatePage from "./page/Track/TrackCreate";
 import CreditManagement from "./page/Credit/CreditManagement";
 import MyPage from "./page/MyPage/MyPage";
 import LoadPage from "./page/LoadPage/LoadPage";
+import NewTrackpage from "./page/Track/NewTrack";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
           {/* Portal */}
           <Route path="/portal" element={<AfterLoginPage />} />
           <Route path="/portal/chat" element={<ChatPage />} />
-          <Route path="/portal/track/new" element={<TrackCreatePage />} />
+          <Route path="/portal/track_new" element={<NewTrackpage />} />
           <Route path="/portal/credit" element={<CreditManagement />} />
           <Route path="/portal/mypage" element={<MyPage />} />
           <Route path="/portal/load" element={<LoadPage />} />

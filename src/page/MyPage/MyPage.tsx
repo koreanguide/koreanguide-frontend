@@ -15,7 +15,7 @@ function MyPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accountInfo, setAccountInfo] = useState<string>("");
-  const [ProfileImg, setProfileImg] = useState("../img/NormalProfile.svg");
+  const [ProfileImg, setProfileImg] = useState("");
   const [enable, setEnable] = useState(false);
   const [IntroductionTarget, setIntroductionTarget] = useState<string>("");
   const [FixNameConponentShow, setFixNameConponentShow] = useState(false);
@@ -64,6 +64,11 @@ function MyPage() {
         setPhoneNum(response.data.phoneNum);
         setEmail(response.data.email);
         setPassword(response.data.password);
+        if (response.data.profileUrl === "DEFAULT") {
+          setProfileImg("../img/NormalProfile.svg");
+        } else {
+          setProfileImg(response.data.profileUrl);
+        }
         setAccountInfo(response.data.accountInfo);
         setEnable(response.data.enable);
         setLoading(false);
@@ -125,12 +130,46 @@ function MyPage() {
   };
 
   const ProfileImgContainer: React.FC = () => {
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageUpload = async (
+      e: React.ChangeEvent<HTMLInputElement>
+    ) => {
       const file = e.target.files?.[0];
       if (file) {
         const reader = new FileReader();
-        reader.onloadend = () => {
+        reader.onloadend = async () => {
           setProfileImg(reader.result as string);
+
+          const formData = new FormData();
+          formData.append("file", file);
+
+          try {
+            const response = await axios.post("/v1/file/", formData, {
+              headers: {
+                "X-AUTH-TOKEN": token,
+                "Content-Type": "multipart/form-data",
+              },
+            });
+
+            if (response.status === 200) {
+              const imageUrl = response.data;
+
+              const profileResponse = await axios.post(
+                "/v1/profile/profile",
+                {
+                  target: imageUrl,
+                },
+                {
+                  headers: {
+                    "X-AUTH-TOKEN": token,
+                  },
+                }
+              );
+
+              console.log(profileResponse.data);
+            }
+          } catch (error) {
+            console.error(error);
+          }
         };
         reader.readAsDataURL(file);
       }
