@@ -16,9 +16,11 @@ function NewTrackpage() {
     useState<boolean>(true);
   const [ShowNotificationFive, setShowNotificationFive] =
     useState<boolean>(true);
+  const [ShowNotificationSix, setShowNotificationSix] = useState<boolean>(true);
   const [FirstCheck, setFirstCheck] = useState<boolean>(false);
   const [SecondCheck, setSecondCheck] = useState<boolean>(false);
   const [ThirdCheck, setThirdCheck] = useState<boolean>(false);
+  const [useAutoTranslate, setUseAutoTranslate] = useState<boolean>(false);
   const [FirstCheckImg, setFirstCheckImg] = useState<string>(
     "../img/purpleCircle.svg"
   );
@@ -28,11 +30,11 @@ function NewTrackpage() {
   const [ThirdCheckImg, setThirdCheckImg] = useState<string>(
     "../img/purpleCircle.svg"
   );
-  const [primaryImageUrl, setPrimaryImageUrl] = useState<string>("images");
+  const [primaryImageUrl, setPrimaryImageUrl] = useState<string>("");
   const [tags, setTags] = useState<Tag[]>([{ tagName: "tag1" }]);
-  const [trackContent, setTrackContent] = useState<string>("images");
-  const [trackPreview, setTrackPreview] = useState<string>("images");
-  const [trackTitle, setTrackTitle] = useState<string>("images");
+  const [trackContent, setTrackContent] = useState<string>("");
+  const [trackPreview, setTrackPreview] = useState<string>("");
+  const [trackTitle, setTrackTitle] = useState<string>("");
   const [selectedMainImage, setSelectedMainImage] = useState<
     string | ArrayBuffer | null
   >(null);
@@ -53,18 +55,21 @@ function NewTrackpage() {
   const [imageFileThree, setImageFileThree] = useState<File | null>(null);
   const [imageFileFour, setImageFileFour] = useState<File | null>(null);
 
-  const [imageSource, setImageSource] = useState("../img/purpleCircle.svg");
+  // const [imageSource, setImageSource] = useState("../img/purpleCircle.svg");
   const [FirstInputText, setFirstInputText] = useState("");
   const maxCharLengthOne = 25;
 
-  const [imageSourceTwo, setImageSourceTwo] = useState(
-    "../img/purpleCircle.svg"
-  );
+  // const [imageSourceTwo, setImageSourceTwo] = useState(
+  //   "../img/purpleCircle.svg"
+  // );
   const [SecondInputText, setSecondInputText] = useState("");
   const maxCharLengthTwo = 20;
 
   const [tagList, setTagList] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState("");
+
+  const [TextAreaText, setTextAreaText] = useState("");
+  const maxCharLengthThree = 200;
 
   interface Image {
     imageUrl: string;
@@ -84,6 +89,7 @@ function NewTrackpage() {
     trackContent: string;
     trackPreview: string;
     trackTitle: string;
+    useAutoTranslate: boolean;
   }
 
   const uploadImage = async (file: File | null) => {
@@ -107,42 +113,55 @@ function NewTrackpage() {
   };
 
   const TrackCreateSubmitClick = async () => {
-    const imageUrlOne = await uploadImage(imageFileOne);
-    const imageUrlTwo = await uploadImage(imageFileTwo);
-    const imageUrlThree = await uploadImage(imageFileThree);
-    const imageUrlFour = await uploadImage(imageFileFour);
+    if (
+      ShowNotificationFirst ||
+      ShowNotificationSecond ||
+      ShowNotificationThird ||
+      ShowNotificationFour ||
+      ShowNotificationFive ||
+      ShowNotificationSix
+    ) {
+      console.log("불가능");
+    } else {
+      const imageUrlOne = await uploadImage(imageFileOne);
+      const imageUrlTwo = await uploadImage(imageFileTwo);
+      const imageUrlThree = await uploadImage(imageFileThree);
+      const imageUrlFour = await uploadImage(imageFileFour);
 
-    const images = [
-      { imageUrl: imageUrlOne },
-      { imageUrl: imageUrlTwo },
-      { imageUrl: imageUrlThree },
-      { imageUrl: imageUrlFour },
-    ].filter((image) => image.imageUrl !== null);
+      const images = [
+        { imageUrl: imageUrlOne },
+        { imageUrl: imageUrlTwo },
+        { imageUrl: imageUrlThree },
+        { imageUrl: imageUrlFour },
+      ].filter((image) => image.imageUrl !== null);
 
-    const data: TrackCreateSubmitData = {
-      agreePrivacyPolicy: FirstCheck,
-      agreePublicTerms: SecondCheck,
-      agreeTerms: ThirdCheck,
-      images: images,
-      primaryImageUrl: primaryImageUrl,
-      tags: tags,
-      trackContent: trackContent,
-      trackPreview: trackPreview,
-      trackTitle: trackTitle,
-    };
+      const data: TrackCreateSubmitData = {
+        agreePrivacyPolicy: FirstCheck,
+        agreePublicTerms: SecondCheck,
+        agreeTerms: ThirdCheck,
+        images: images,
+        primaryImageUrl: primaryImageUrl,
+        tags: tags,
+        trackContent: trackContent,
+        trackPreview: trackPreview,
+        trackTitle: trackTitle,
+        useAutoTranslate: useAutoTranslate,
+      };
 
-    try {
-      const response = await axios.post("/v1/track/", data, {
-        headers: {
-          "X-AUTH-TOKEN": token,
-        },
-      });
+      try {
+        const response = await axios.post("/v1/track/", data, {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
 
-      if (response.status === 200) {
-        console.log("트랙 생성 반환:", response.data);
+        if (response.status === 200) {
+          console.log("트랙 생성 반환 성공:", response.data);
+        }
+      } catch (error) {
+        console.error("트랙 생성 반환 실패:", error);
       }
-    } catch (error) {
-      console.error("트랙 생성 반환 실패:", error);
+      console.log("가능");
     }
   };
 
@@ -305,13 +324,13 @@ function NewTrackpage() {
 
   //트랙 이름 입력
 
-  const FirstTranslateClick = () => {
-    if (imageSource === "../img/purpleCircle.svg") {
-      setImageSource("../img/purpleCircleCheck.svg");
-    } else {
-      setImageSource("../img/purpleCircle.svg");
-    }
-  };
+  // const FirstTranslateClick = () => {
+  //   if (imageSource === "../img/purpleCircle.svg") {
+  //     setImageSource("../img/purpleCircleCheck.svg");
+  //   } else {
+  //     setImageSource("../img/purpleCircle.svg");
+  //   }
+  // };
 
   const FirstInputFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -333,13 +352,13 @@ function NewTrackpage() {
 
   // 트랙 한줄 소개
 
-  const SecondTranslateClick = () => {
-    if (imageSourceTwo === "../img/purpleCircle.svg") {
-      setImageSourceTwo("../img/purpleCircleCheck.svg");
-    } else {
-      setImageSourceTwo("../img/purpleCircle.svg");
-    }
-  };
+  // const SecondTranslateClick = () => {
+  //   if (imageSourceTwo === "../img/purpleCircle.svg") {
+  //     setImageSourceTwo("../img/purpleCircleCheck.svg");
+  //   } else {
+  //     setImageSourceTwo("../img/purpleCircle.svg");
+  //   }
+  // };
 
   const SecondInputFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -381,6 +400,29 @@ function NewTrackpage() {
     if (tagList.length <= 3) {
       setShowNotificationFive(true);
     }
+  };
+
+  // 본문 컴포넌트
+  const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTextAreaText(e.target.value);
+    setTrackContent(e.target.value);
+
+    if (e.target.value.length > 0) {
+      setShowNotificationSix(false);
+    } else {
+      setShowNotificationSix(true);
+    }
+
+    if (e.target.value.length > maxCharLengthThree) {
+      e.target.style.borderColor = "red";
+    } else {
+      e.target.style.borderColor = "";
+    }
+  };
+
+  // 변역 버튼 활성화
+  const TranslationButtonClick = () => {
+    setUseAutoTranslate(!useAutoTranslate);
   };
 
   return (
@@ -453,6 +495,51 @@ function NewTrackpage() {
             </div>
           </div>
           {/* 1번째 컴포넌트 end */}
+          {/* 3번째 컴포넌트 start*/}
+          <div className="NewTrackContainerThree">
+            <div className="NewTrackContainerThreeInner">
+              <NewTrackContainerPropsOne
+                Title="트랙이 돋보일 수 있는 트랙 명을 설정하세요."
+                TitleSub="관광객에게 보여질 트랙 이름을 설정합니다. 최대 25자까지 입력할 수 있습니다."
+              >
+                {ShowNotificationThird && (
+                  <div className="NewTrackContainerNotificationBox">
+                    <img
+                      className="RedNotificationImg"
+                      src="../img/RedNotification.svg"
+                      alt="오류"
+                    ></img>
+                    <div className="RedNotificationText">
+                      트랙 제목은 반드시 입력되어야 합니다
+                    </div>
+                  </div>
+                )}
+              </NewTrackContainerPropsOne>
+              <input
+                type="text"
+                placeholder="트랙 이름을 입력하세요."
+                className={`NewTrackFirstInput ${
+                  FirstInputText.length > maxCharLengthOne ? "error" : ""
+                }`}
+                value={FirstInputText}
+                onChange={FirstInputFunction}
+              ></input>
+              <div className="NewTrackFirstInputSubBox">
+                {/* <div
+                  className="NewTrackFirstInputTranslateBox"
+                  onClick={FirstTranslateClick}
+                >
+                  <img className="NTTTImg" src={imageSource} alt="오류"></img>
+                  <div className="NewTrackFirstInputTranslateText">
+                    자동 번역 사용 끔
+                  </div>
+                </div> */}
+                <div></div>
+                <div className="NewTrackFirstInputTextLength">{`${FirstInputText.length}자 / 25자`}</div>
+              </div>
+            </div>
+          </div>
+          {/* 3번째 컴포넌트 end */}
           {/* 2번째 컴포넌트 start*/}
           <div className="NewTrackContainerTwo">
             <div className="NewTrackContainerTwoInner">
@@ -607,55 +694,11 @@ function NewTrackpage() {
             </div>
           </div>
           {/* 2번째 컴포넌트 end */}
-          {/* 3번째 컴포넌트 start*/}
-          <div className="NewTrackContainerThree">
-            <div className="NewTrackContainerThreeInner">
-              <NewTrackContainerPropsOne
-                Title="트랙의 이름을 알려주세요."
-                TitleSub="관광객에게 보여질 트랙 이름을 설정합니다. 최대 25자까지 입력할 수 있습니다."
-              >
-                {ShowNotificationThird && (
-                  <div className="NewTrackContainerNotificationBox">
-                    <img
-                      className="RedNotificationImg"
-                      src="../img/RedNotification.svg"
-                      alt="오류"
-                    ></img>
-                    <div className="RedNotificationText">
-                      트랙 제목은 반드시 입력되어야 합니다
-                    </div>
-                  </div>
-                )}
-              </NewTrackContainerPropsOne>
-              <input
-                type="text"
-                placeholder="트랙 이름을 입력하세요."
-                className={`NewTrackFirstInput ${
-                  FirstInputText.length > maxCharLengthOne ? "error" : ""
-                }`}
-                value={FirstInputText}
-                onChange={FirstInputFunction}
-              ></input>
-              <div className="NewTrackFirstInputSubBox">
-                <div
-                  className="NewTrackFirstInputTranslateBox"
-                  onClick={FirstTranslateClick}
-                >
-                  <img className="NTTTImg" src={imageSource} alt="오류"></img>
-                  <div className="NewTrackFirstInputTranslateText">
-                    자동 번역 사용 끔
-                  </div>
-                </div>
-                <div className="NewTrackFirstInputTextLength">{`${FirstInputText.length}자 / 25자`}</div>
-              </div>
-            </div>
-          </div>
-          {/* 3번째 컴포넌트 end */}
           {/* 4번째 컴포넌트 start */}
           <div className="NewTrackContainerThree">
             <div className="NewTrackContainerThreeInner">
               <NewTrackContainerPropsOne
-                Title="어떻게 이 트랙을 소개할까요?"
+                Title="트랙을 쉽게 이해할 수 있게 간단한 소개 글을 작성해 주세요."
                 TitleSub="관광객에게 보여질 트랙 설명을 설정합니다. 최대 20자까지 입력할 수 있습니다."
               >
                 {ShowNotificationFour && (
@@ -681,7 +724,7 @@ function NewTrackpage() {
                 onChange={SecondInputFunction}
               ></input>
               <div className="NewTrackFirstInputSubBox">
-                <div
+                {/* <div
                   className="NewTrackFirstInputTranslateBox"
                   onClick={SecondTranslateClick}
                 >
@@ -693,7 +736,8 @@ function NewTrackpage() {
                   <div className="NewTrackFirstInputTranslateText">
                     자동 번역 사용 끔
                   </div>
-                </div>
+                </div> */}
+                <div></div>
                 <div className="NewTrackFirstInputTextLength">{`${SecondInputText.length}자 / 20자`}</div>
               </div>
             </div>
@@ -744,7 +788,70 @@ function NewTrackpage() {
           </div>
           {/* 5번째 컴포넌트 end */}
           {/* 6번째 컴포넌트 start */}
-          <button onClick={TrackCreateSubmitClick}>버튼</button>
+          <div className="NewTrackContainerSix">
+            <div className="NewTrackContentFrame">
+              <div className="NewTrackContentInner">
+                <NewTrackContainerPropsOne
+                  Title="관광객과 어떤 여정을 함께할 것인지 자세히 설명해 주세요."
+                  TitleSub="트랙 본문은 마크다운 형식으로 작성되어야 해요. 마크다운 형식을 작성하는 방법은 여기에서 확인할 수 있어요."
+                >
+                  {ShowNotificationSix && (
+                    <div className="NewTrackContainerNotificationBox">
+                      <img
+                        className="RedNotificationImg"
+                        src="../img/RedNotification.svg"
+                        alt="오류"
+                      ></img>
+                      <div className="RedNotificationText">
+                        트랙 본문은 반드시 입력되어야 합니다
+                      </div>
+                    </div>
+                  )}
+                </NewTrackContainerPropsOne>
+                <div className="TextAreaTextNumBox">
+                  <div className="NewTrackFirstInputTextLength">{`${TextAreaText.length}자 / 200자`}</div>
+                  <textarea
+                    placeholder="트랙 본문을 입력하세요"
+                    className={`NewTrackFirstTextArea ${
+                      TextAreaText.length > maxCharLengthThree ? "error" : ""
+                    }`}
+                    value={TextAreaText}
+                    onChange={handleTextAreaChange}
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="TextSensitiveOption">민감 설정</div>
+          {/* 6번째 컴포넌트 end */}
+          {/* 7번째 컴포넌트 start */}
+          <div className="NewTrackContainerSeven">
+            <div className="NewTrackContainerSevenInner">
+              <div className="NewTrackContainerSevenBoxOne">
+                <div className="TextAutomaticTranslation">자동 변역 설정</div>
+                <div className="TextAutomaticTranslationSub">
+                  한국어로 작성된 모든 내용이 자동으로 번역되어 관광객에게
+                  보여져요.
+                </div>
+              </div>
+              <div
+                className="TranslationButton"
+                style={{
+                  backgroundColor: useAutoTranslate ? "#f94747" : "",
+                  color: useAutoTranslate ? "#fff" : "",
+                }}
+                onClick={TranslationButtonClick}
+              >
+                비활성화
+              </div>
+            </div>
+          </div>
+          <button
+            className="NewTrackCompeletButton"
+            onClick={TrackCreateSubmitClick}
+          >
+            완료하기
+          </button>
         </div>
       </div>
     </div>

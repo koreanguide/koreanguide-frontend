@@ -1,0 +1,211 @@
+.MyTrackPage {
+  display: flex;
+  justify-content: center;
+}
+
+.MyTrackFrame {
+  width: 990px;
+  height: 1000px;
+  text-align: start;
+}
+
+.TextMyTrackBox {
+  margin-top: 151px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TextMyTrack {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.TextCreatNewTrack {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.TextMyTrackSub {
+  margin-top: 8px;
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.MyTrackComponentFrame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MyTrack-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MyTrackComponent {
+  width: 310px;
+  height: 267px;
+  margin-top: 20px;
+  margin-left: 10px;
+  background-color: #282c34;
+  color: white;
+  text-align: start;
+
+  border-radius: 20px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+}
+
+.MyTrackComponentImgBox {
+  position: relative;
+  width: 320px;
+  height: 112px;
+  border-radius: 20px 20px 0px 0px;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.08);
+  background-color: #616161;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MyTrackComponentStar {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+
+  cursor: pointer;
+}
+
+.MyTrackComponentTextBox {
+  width: 283px;
+  height: 53px;
+  margin-top: 26px;
+  margin-left: 20px;
+}
+
+.MyTrackComponentTitleText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.MyTrackComponentSubText {
+  margin-top: 7px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 116.667%;
+}
+
+.MyTrackComponentContentBox {
+  width: 283px;
+  height: 14px;
+  margin-top: 33px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.MyTrackComponentTagBox {
+  color: var(--Primary, #730ef4);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.MyTrackComponentContent {
+  width: 94px;
+  height: 14px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.MyTrackComponentView {
+  color: var(--KG_SUBTEXT, #616161);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 5px;
+}
+
+.MyTrackComponentHeart {
+  color: var(--KG_RED, #fd3d3d);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 5px;
+}
+
+.MyTrackComponentViewBox {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 46px;
+}
+
+.MyTrackComponentHeartBox {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 41px;
+  margin-right: 7px;
+}
+
+@media only screen and (max-width: 990px) {
+  .MyTrackFrame {
+    width: 675px;
+    height: 1300px;
+    text-align: start;
+  }
+  .MyTrack-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 675px;
+  }
+}
+
+@media only screen and (max-width: 655px) {
+  .MyTrackFrame {
+    width: 320px;
+    height: 1700px;
+    text-align: start;
+  }
+  .MyTrack-container {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+  }
+}

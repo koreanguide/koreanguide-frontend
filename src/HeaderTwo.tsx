@@ -64,7 +64,7 @@ function HeaderTwo() {
       <button className="UserInformationButton" onClick={ShowHeaderInfoBox}>
         <p className="UserInformationButtonText">{props.UserName}님</p>
         <img
-          src="../img/UserNameButtonImg.svg"
+          src="../img/UserArrow.svg"
           alt="none"
           className="UserNameButtonImg"
         ></img>
@@ -103,37 +103,41 @@ function HeaderTwo() {
     <div>
       <div className="HeaderTwoBoxFrame">
         <div className="HeaderTwoBox">
-          <button className="HomeButtonTwo" onClick={navigatePortal}>
-            <img
-              src="../img/HTL2.png"
-              alt="none"
-              className="HomeButtonImgTwo"
-            ></img>
-            <p className="HomeButtonTextTwo">KOREAN GUIDE</p>
-          </button>
-          <button className="HeaderProfileButton" onClick={goToMyPage}>
-            <p className="HeaderProfileButtonText">프로필 관리</p>
-          </button>
-          <button className="HeaderReviewButton">
-            <p className="HeaderReviewButtonText">리뷰 관리</p>
-          </button>
-          <button
-            className="HeaderCreditButton"
-            onClick={goToCreditManagementPage}
-          >
-            <p className="HeaderCreditButtonText">크레딧 관리</p>
-          </button>
-          <button className="HeaderMypageButton" onClick={goToCreateTrack}>
-            <p className="HeaderMypageButtonText">내 트랙</p>
-          </button>
-          <button className="MassageButton">
-            <img
-              src="../img/K-Massage.svg"
-              alt="none"
-              className="MassageButtonImg"
-            ></img>
-          </button>
+          {
+            <div className="HomeButtonContainer">
+              <button className="HomeButtonTwo" onClick={navigatePortal}>
+                <img
+                  src="../img/HTL2.png"
+                  alt="none"
+                  className="HomeButtonImgTwo"
+                ></img>
+                <p className="HomeButtonTextTwo">KOREAN GUIDE</p>
+              </button>
+            </div>
+          }
+          {/* 분리 */}
+          <div className="NavButtonBox">
+            <div className="NavButtonBox">
+              <button className="HeaderProfileButton" onClick={goToMyPage}>
+                <p className="HeaderProfileButtonText">프로필</p>
+              </button>
+            </div>
+            <div className="NavButtonBox">
+              <button
+                className="HeaderCreditButton"
+                onClick={goToCreditManagementPage}
+              >
+                <p className="HeaderCreditButtonText">크레딧</p>
+              </button>
+            </div>
+            <div className="NavButtonBox">
+              <button className="HeaderMypageButton" onClick={goToCreateTrack}>
+                <p className="HeaderMypageButtonText">트랙</p>
+              </button>
+            </div>
+          </div>
           <UserInformationButton UserName={nickName}></UserInformationButton>
+          {/* 분리 */}
         </div>
       </div>
       {HeaderInfoBoxShow && (

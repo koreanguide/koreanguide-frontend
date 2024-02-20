@@ -379,3 +379,170 @@
 
   cursor: pointer;
 }
+
+.NewTrackContentFrame {
+  margin-top: 0.625rem;
+  width: 61.875rem;
+  height: 33.375rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NewTrackContentInner {
+  width: 57.3125rem;
+  height: 27.375rem;
+}
+
+.TextAreaTextNumBox {
+  width: 57.3125rem;
+  height: 0.875rem;
+  margin-top: 1rem;
+}
+
+.NewTrackFirstTextArea {
+  margin-top: 0.625rem;
+  width: 52.3125rem;
+  height: 19rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #ececec;
+  padding-top: 1.75rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  resize: none;
+  outline: none;
+
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.NewTrackFirstTextArea:focus {
+  border: 0.0625rem solid #730ef4;
+}
+
+.NewTrackFirstTextAreaerror {
+  border: 0.0625rem solid #f40e0e;
+}
+
+.TextSensitiveOption {
+  margin-top: 3.125rem;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.NewTrackContainerSeven {
+  margin-top: 1.1875rem;
+  width: 61.875rem;
+  height: 7.3125rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #ececec;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NewTrackContainerSevenInner {
+  width: 55.625rem;
+  height: 3.0625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NewTrackContainerSevenBoxOne {
+  width: 545px;
+  height: 3.0625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.TextAutomaticTranslation {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.TextAutomaticTranslationSub {
+  color: #616161;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.TranslationButton {
+  width: 9.25rem;
+  height: 2.4375rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #f94747;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f94747;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.TranslationButton:hover {
+  width: 9.25rem;
+  height: 2.4375rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #f94747;
+  background-color: #f94747;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.NewTrackCompeletButton {
+  width: 10.125rem;
+  height: 2.625rem;
+  border-radius: 0.3125rem 1.25rem 1.25rem 0.3125rem;
+  background: #730ef4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-top: 3.125rem;
+  cursor: pointer;
+}
