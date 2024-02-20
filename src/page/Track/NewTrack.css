@@ -234,3 +234,148 @@
 .NewTrackAddImageBoxOne:hover {
   background: #e3e3e3;
 }
+
+.NewTrackContainerThree {
+  width: 61.875rem;
+  height: 16.125rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+
+  margin-top: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NewTrackContainerThreeInner {
+  width: 57.3125rem;
+  height: 10.75rem;
+}
+
+.NewTrackFirstInput {
+  margin-top: 1.875rem;
+  width: 55.75rem;
+  height: 2.8125rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #f4f4f4;
+  border-color: transparent transparent transparent transparent;
+
+  padding-left: 1.25rem;
+}
+
+.NewTrackFirstInput:focus {
+  border-color: #730ef4;
+}
+
+.NewTrackFirstInputSubBox {
+  width: 57.3125rem;
+  height: 1.0625rem;
+  margin-top: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NewTrackFirstInputTranslateBox {
+  width: 6.8125rem;
+  height: 1.0625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+.NewTrackFirstInputTranslateText {
+  color: #730ef4;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.NewTrackFirstInputTextLength {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.NewTrackContainerFiveInner {
+  width: 57.3125rem;
+  height: 11rem;
+}
+
+.NewTrackContainerFiveInputBox {
+  width: 57.3125rem;
+  height: 2.8125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.875rem;
+}
+
+.HashBox {
+  height: 2.8125rem;
+  width: 2.8125rem;
+  background-color: #f4f4f4;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.HaskInput {
+  width: 52.5rem;
+  height: 2.8125rem;
+  border-radius: 0.625rem;
+  background: #f4f4f4;
+  padding-left: 1.25rem;
+
+  border-color: transparent;
+}
+
+.HaskTageBox {
+  width: 57.3125rem;
+  height: 1.5625rem;
+  margin-top: 0.875rem;
+  display: flex;
+}
+
+.HaskTageContent {
+  width: auto;
+  height: 1.5625rem;
+  border-radius: 1.875rem;
+  background: #730ef4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1.0625rem;
+  padding-right: 1.0625rem;
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-right: 0.625rem;
+
+  cursor: pointer;
+}

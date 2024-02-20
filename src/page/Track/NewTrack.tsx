@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, KeyboardEvent } from "react";
 import "./NewTrack.css";
 import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
@@ -9,6 +9,12 @@ function NewTrackpage() {
   const [ShowNotificationFirst, setShowNotificationFirst] =
     useState<boolean>(true);
   const [ShowNotificationSecond, setShowNotificationSecond] =
+    useState<boolean>(true);
+  const [ShowNotificationThird, setShowNotificationThird] =
+    useState<boolean>(true);
+  const [ShowNotificationFour, setShowNotificationFour] =
+    useState<boolean>(true);
+  const [ShowNotificationFive, setShowNotificationFive] =
     useState<boolean>(true);
   const [FirstCheck, setFirstCheck] = useState<boolean>(false);
   const [SecondCheck, setSecondCheck] = useState<boolean>(false);
@@ -22,7 +28,6 @@ function NewTrackpage() {
   const [ThirdCheckImg, setThirdCheckImg] = useState<string>(
     "../img/purpleCircle.svg"
   );
-  const [images, setImages] = useState<Image[]>([{ imageUrl: "images" }]);
   const [primaryImageUrl, setPrimaryImageUrl] = useState<string>("images");
   const [tags, setTags] = useState<Tag[]>([{ tagName: "tag1" }]);
   const [trackContent, setTrackContent] = useState<string>("images");
@@ -47,6 +52,19 @@ function NewTrackpage() {
   const [imageFileTwo, setImageFileTwo] = useState<File | null>(null);
   const [imageFileThree, setImageFileThree] = useState<File | null>(null);
   const [imageFileFour, setImageFileFour] = useState<File | null>(null);
+
+  const [imageSource, setImageSource] = useState("../img/purpleCircle.svg");
+  const [FirstInputText, setFirstInputText] = useState("");
+  const maxCharLengthOne = 25;
+
+  const [imageSourceTwo, setImageSourceTwo] = useState(
+    "../img/purpleCircle.svg"
+  );
+  const [SecondInputText, setSecondInputText] = useState("");
+  const maxCharLengthTwo = 20;
+
+  const [tagList, setTagList] = useState<string[]>([]);
+  const [tagInput, setTagInput] = useState("");
 
   interface Image {
     imageUrl: string;
@@ -285,12 +303,93 @@ function NewTrackpage() {
     }
   };
 
+  //트랙 이름 입력
+
+  const FirstTranslateClick = () => {
+    if (imageSource === "../img/purpleCircle.svg") {
+      setImageSource("../img/purpleCircleCheck.svg");
+    } else {
+      setImageSource("../img/purpleCircle.svg");
+    }
+  };
+
+  const FirstInputFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setFirstInputText(inputValue);
+    setTrackTitle(inputValue);
+
+    if (inputValue.length > 0) {
+      setShowNotificationThird(false);
+    } else {
+      setShowNotificationThird(true);
+    }
+
+    if (inputValue.length > maxCharLengthOne) {
+      e.target.style.borderColor = "red";
+    } else {
+      e.target.style.borderColor = "";
+    }
+  };
+
+  // 트랙 한줄 소개
+
+  const SecondTranslateClick = () => {
+    if (imageSourceTwo === "../img/purpleCircle.svg") {
+      setImageSourceTwo("../img/purpleCircleCheck.svg");
+    } else {
+      setImageSourceTwo("../img/purpleCircle.svg");
+    }
+  };
+
+  const SecondInputFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setSecondInputText(inputValue);
+    setTrackPreview(inputValue);
+
+    if (inputValue.length > 0) {
+      setShowNotificationFour(false);
+    } else {
+      setShowNotificationFour(true);
+    }
+
+    if (inputValue.length > maxCharLengthTwo) {
+      e.target.style.borderColor = "red";
+    } else {
+      e.target.style.borderColor = "";
+    }
+  };
+
+  //트랙 태그 생성
+  const InputTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTagInput(e.target.value);
+  };
+
+  const InputTagKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && tagList.length < 5) {
+      setTagList((prevTagList) => [...prevTagList, tagInput]);
+      setTagInput("");
+
+      if (tagList.length >= 2) {
+        setShowNotificationFive(false);
+      }
+    }
+  };
+
+  const handleTagClick = (index: number) => {
+    setTagList((prevTagList) => prevTagList.filter((tag, i) => i !== index));
+
+    if (tagList.length <= 3) {
+      setShowNotificationFive(true);
+    }
+  };
+
   return (
     <div>
       <HeaderTwo></HeaderTwo>
       <div className="NewTrackpage">
         <div className="NewTrackpageInner">
           <div className="TextAddNewTrack">새 트랙 추가</div>
+          {/* 1번째 컴포넌트 start*/}
           <div className="NewTrackContainerOne">
             <div className="NewTrackContainerOneInner">
               <NewTrackContainerPropsOne
@@ -353,6 +452,8 @@ function NewTrackpage() {
               </div>
             </div>
           </div>
+          {/* 1번째 컴포넌트 end */}
+          {/* 2번째 컴포넌트 start*/}
           <div className="NewTrackContainerTwo">
             <div className="NewTrackContainerTwoInner">
               <NewTrackContainerPropsOne
@@ -501,20 +602,148 @@ function NewTrackpage() {
                       onChange={handleImageFourChange}
                     />
                   </div>
-
-                  {/* <div className="NewTrackAddImageBoxOne">
-                    <NewTrackImageComponent text="새 이미지 추가" />
-                  </div>
-                  <div className="NewTrackAddImageBoxOne">
-                    <NewTrackImageComponent text="새 이미지 추가" />
-                  </div>
-                  <div className="NewTrackAddImageBoxOne">
-                    <NewTrackImageComponent text="새 이미지 추가" />
-                  </div> */}
                 </div>
               </div>
             </div>
           </div>
+          {/* 2번째 컴포넌트 end */}
+          {/* 3번째 컴포넌트 start*/}
+          <div className="NewTrackContainerThree">
+            <div className="NewTrackContainerThreeInner">
+              <NewTrackContainerPropsOne
+                Title="트랙의 이름을 알려주세요."
+                TitleSub="관광객에게 보여질 트랙 이름을 설정합니다. 최대 25자까지 입력할 수 있습니다."
+              >
+                {ShowNotificationThird && (
+                  <div className="NewTrackContainerNotificationBox">
+                    <img
+                      className="RedNotificationImg"
+                      src="../img/RedNotification.svg"
+                      alt="오류"
+                    ></img>
+                    <div className="RedNotificationText">
+                      트랙 제목은 반드시 입력되어야 합니다
+                    </div>
+                  </div>
+                )}
+              </NewTrackContainerPropsOne>
+              <input
+                type="text"
+                placeholder="트랙 이름을 입력하세요."
+                className={`NewTrackFirstInput ${
+                  FirstInputText.length > maxCharLengthOne ? "error" : ""
+                }`}
+                value={FirstInputText}
+                onChange={FirstInputFunction}
+              ></input>
+              <div className="NewTrackFirstInputSubBox">
+                <div
+                  className="NewTrackFirstInputTranslateBox"
+                  onClick={FirstTranslateClick}
+                >
+                  <img className="NTTTImg" src={imageSource} alt="오류"></img>
+                  <div className="NewTrackFirstInputTranslateText">
+                    자동 번역 사용 끔
+                  </div>
+                </div>
+                <div className="NewTrackFirstInputTextLength">{`${FirstInputText.length}자 / 25자`}</div>
+              </div>
+            </div>
+          </div>
+          {/* 3번째 컴포넌트 end */}
+          {/* 4번째 컴포넌트 start */}
+          <div className="NewTrackContainerThree">
+            <div className="NewTrackContainerThreeInner">
+              <NewTrackContainerPropsOne
+                Title="어떻게 이 트랙을 소개할까요?"
+                TitleSub="관광객에게 보여질 트랙 설명을 설정합니다. 최대 20자까지 입력할 수 있습니다."
+              >
+                {ShowNotificationFour && (
+                  <div className="NewTrackContainerNotificationBox">
+                    <img
+                      className="RedNotificationImg"
+                      src="../img/RedNotification.svg"
+                      alt="오류"
+                    ></img>
+                    <div className="RedNotificationText">
+                      트랙 소개는 반드시 입력되어야 합니다
+                    </div>
+                  </div>
+                )}
+              </NewTrackContainerPropsOne>
+              <input
+                type="text"
+                placeholder="트랙 소개를 입력하세요."
+                className={`NewTrackFirstInput ${
+                  SecondInputText.length > maxCharLengthTwo ? "error" : ""
+                }`}
+                value={SecondInputText}
+                onChange={SecondInputFunction}
+              ></input>
+              <div className="NewTrackFirstInputSubBox">
+                <div
+                  className="NewTrackFirstInputTranslateBox"
+                  onClick={SecondTranslateClick}
+                >
+                  <img
+                    className="NTTTImg"
+                    src={imageSourceTwo}
+                    alt="오류"
+                  ></img>
+                  <div className="NewTrackFirstInputTranslateText">
+                    자동 번역 사용 끔
+                  </div>
+                </div>
+                <div className="NewTrackFirstInputTextLength">{`${SecondInputText.length}자 / 20자`}</div>
+              </div>
+            </div>
+          </div>
+          {/* 4번째 컴포넌트 end */}
+          {/* 5번째 컴포넌트 start */}
+          <div className="NewTrackContainerThree">
+            <div className="NewTrackContainerFiveInner">
+              <NewTrackContainerPropsOne
+                Title="트랙에 대한 태그를 작성해 주세요."
+                TitleSub="트랙을 간단히 표현할 수 있는 태그를 달아주세요. 예) food, club"
+              >
+                {ShowNotificationFive && (
+                  <div className="NewTrackContainerNotificationBox">
+                    <img
+                      className="RedNotificationImg"
+                      src="../img/RedNotification.svg"
+                      alt="오류"
+                    ></img>
+                    <div className="RedNotificationText">
+                      트랙 태그는 반드시 3개 이상 추가되어야 합니다
+                    </div>
+                  </div>
+                )}
+              </NewTrackContainerPropsOne>
+              <div className="NewTrackContainerFiveInputBox">
+                <div className="HashBox">#</div>
+                <input
+                  className="HaskInput"
+                  placeholder="태그를 입력하세요."
+                  value={tagInput}
+                  onChange={InputTagChange}
+                  onKeyPress={InputTagKeyPress}
+                ></input>
+              </div>
+              <div className="HaskTageBox">
+                {tagList.map((tag, index) => (
+                  <div
+                    className="HaskTageContent"
+                    key={index}
+                    onClick={() => handleTagClick(index)}
+                  >
+                    # {tag}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* 5번째 컴포넌트 end */}
+          {/* 6번째 컴포넌트 start */}
           <button onClick={TrackCreateSubmitClick}>버튼</button>
         </div>
       </div>
