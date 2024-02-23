@@ -7,6 +7,8 @@ function HeaderTwo() {
   const token = sessionStorage.getItem("access-token");
 
   const [HeaderInfoBoxShow, setHeaderInfoBoxShow] = useState<boolean>(false);
+  const [ActivityBoxShow, setActivityBoxShow] = useState<boolean>(false);
+  const [MenuTrackBoxShow, setMenuTrackBoxShow] = useState<boolean>(false);
   const [Amount, setAmount] = useState(0);
   const [email, setEmail] = useState("");
   const [nickName, setNickName] = useState("");
@@ -53,6 +55,20 @@ function HeaderTwo() {
 
   const ShowHeaderInfoBox = () => {
     setHeaderInfoBoxShow(!HeaderInfoBoxShow);
+    setActivityBoxShow(false);
+    setMenuTrackBoxShow(false);
+  };
+
+  const Activity = () => {
+    setActivityBoxShow(!ActivityBoxShow);
+    setHeaderInfoBoxShow(false);
+    setMenuTrackBoxShow(false);
+  };
+
+  const MenuTrack = () => {
+    setMenuTrackBoxShow(!MenuTrackBoxShow);
+    setHeaderInfoBoxShow(false);
+    setActivityBoxShow(false);
   };
 
   interface UserInformationButtonProps {
@@ -71,6 +87,7 @@ function HeaderTwo() {
       </button>
     );
   };
+
   const navigate = useNavigate();
 
   const goToCreditManagementPage = () => {
@@ -85,6 +102,11 @@ function HeaderTwo() {
 
   const navigatePortal = () => {
     navigate("/portal");
+    window.scrollTo(0, 0);
+  };
+
+  const goToChatPage = () => {
+    navigate("/portal/chat");
     window.scrollTo(0, 0);
   };
 
@@ -116,66 +138,110 @@ function HeaderTwo() {
             </div>
           }
           {/* 분리 */}
-          <div className="NavButtonBox">
+          <div className="NavButtonFrame">
             <div className="NavButtonBox">
-              <button className="HeaderProfileButton" onClick={goToMyPage}>
-                <p className="HeaderProfileButtonText">프로필</p>
+              <button className="HeaderProfileButton" onClick={goToChatPage}>
+                <img
+                  src="../img/pinkChat.svg"
+                  alt="none"
+                  className="pickChatImg"
+                ></img>
+                <p className="HeaderProfileButtonText">채팅</p>
               </button>
-            </div>
-            <div className="NavButtonBox">
-              <button
-                className="HeaderCreditButton"
-                onClick={goToCreditManagementPage}
-              >
-                <p className="HeaderCreditButtonText">크레딧</p>
+              <button className="HeaderCreditButton" onClick={Activity}>
+                <p className="HeaderCreditButtonText">활동</p>
+                <img
+                  src="../img/BlackArrow.svg"
+                  alt="none"
+                  className="BlackArrowImg"
+                ></img>
               </button>
-            </div>
-            <div className="NavButtonBox">
-              <button className="HeaderMypageButton" onClick={goToCreateTrack}>
+              <button className="HeaderMypageButton" onClick={MenuTrack}>
                 <p className="HeaderMypageButtonText">트랙</p>
+                <img
+                  src="../img/BlackArrow.svg"
+                  alt="none"
+                  className="BlackArrowImg"
+                ></img>
               </button>
             </div>
+            <UserInformationButton UserName={nickName}></UserInformationButton>
           </div>
-          <UserInformationButton UserName={nickName}></UserInformationButton>
           {/* 분리 */}
+          <div className="MenuImgBox">
+            <img src="../img/Menu.svg" alt="none" className="MenuImg"></img>
+          </div>
+          {HeaderInfoBoxShow && (
+            <div className="HeaderInfoBox">
+              <div className="HeaderInfoInner">
+                <div className="HeaderInfoSetting" onClick={goToMyPage}>
+                  <img
+                    src="../img/settingImg.svg"
+                    alt="none"
+                    className="settingImg"
+                  ></img>
+                </div>
+                <div className="HeaderInfoSecondBox">
+                  <img
+                    src={ProfileImg}
+                    alt="none"
+                    className="HeaderNormalProfile"
+                  ></img>
+                  <div className="HeaderInfoUserName">{nickName}</div>
+                  <div className="HeaderInfoUserEmail">{email}</div>
+                </div>
+                <div className="HeaderInfoThridBox">
+                  <div className="HeaderInfoUserAmount">
+                    {Amount.toLocaleString()}원
+                  </div>
+                  <div className="HeaderInfoUserAmountNotion">보유 크레딧</div>
+                </div>
+                <div className="HeaderInfoLogoutBox" onClick={LogOutClick}>
+                  <img
+                    src="../img/logoutImg.svg"
+                    alt="none"
+                    className="logoutImg"
+                  ></img>
+                  <div className="HeaderInfoTextLogout">로그아웃</div>
+                </div>
+              </div>
+            </div>
+          )}
+          {ActivityBoxShow && (
+            <div className="ActivityBox">
+              <div className="ActivityInnerBox">
+                <div className="ActivityBoxMenuText" onClick={goToMyPage}>
+                  리뷰관리
+                </div>
+                <div className="ActivityBoxLine"></div>
+                <div
+                  className="ActivityBoxMenuText"
+                  onClick={goToCreditManagementPage}
+                >
+                  크레딧관리
+                </div>
+                <div className="ActivityBoxLine"></div>
+                <div className="ActivityBoxMenuText" onClick={goToMyPage}>
+                  프로필관리
+                </div>
+              </div>
+            </div>
+          )}
+          {MenuTrackBoxShow && (
+            <div className="MenuTrackBoxBox">
+              <div className="MenuTrackInnerBox">
+                <div className="ActivityBoxMenuText" onClick={goToCreateTrack}>
+                  등록 트랙 관리
+                </div>
+                <div className="ActivityBoxLine"></div>
+                <div className="ActivityBoxMenuText" onClick={goToCreateTrack}>
+                  새 트랙 추가
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-      {HeaderInfoBoxShow && (
-        <div className="HeaderInfoBox">
-          <div className="HeaderInfoInner">
-            <div className="HeaderInfoSetting" onClick={goToMyPage}>
-              <img
-                src="../img/settingImg.svg"
-                alt="none"
-                className="settingImg"
-              ></img>
-            </div>
-            <div className="HeaderInfoSecondBox">
-              <img
-                src={ProfileImg}
-                alt="none"
-                className="HeaderNormalProfile"
-              ></img>
-              <div className="HeaderInfoUserName">{nickName}</div>
-              <div className="HeaderInfoUserEmail">{email}</div>
-            </div>
-            <div className="HeaderInfoThridBox">
-              <div className="HeaderInfoUserAmount">
-                {Amount.toLocaleString()}원
-              </div>
-              <div className="HeaderInfoUserAmountNotion">보유 크레딧</div>
-            </div>
-            <div className="HeaderInfoLogoutBox" onClick={LogOutClick}>
-              <img
-                src="../img/logoutImg.svg"
-                alt="none"
-                className="logoutImg"
-              ></img>
-              <div className="HeaderInfoTextLogout">로그아웃</div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

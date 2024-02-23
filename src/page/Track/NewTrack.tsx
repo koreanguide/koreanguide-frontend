@@ -1,4 +1,4 @@
-import React, { useState, useEffect, KeyboardEvent } from "react";
+import React, { useState, useEffect } from "react";
 import "./NewTrack.css";
 import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
@@ -20,7 +20,6 @@ function NewTrackpage() {
   const [FirstCheck, setFirstCheck] = useState<boolean>(false);
   const [SecondCheck, setSecondCheck] = useState<boolean>(false);
   const [ThirdCheck, setThirdCheck] = useState<boolean>(false);
-  const [useAutoTranslate, setUseAutoTranslate] = useState<boolean>(false);
   const [FirstCheckImg, setFirstCheckImg] = useState<string>(
     "../img/purpleCircle.svg"
   );
@@ -55,21 +54,21 @@ function NewTrackpage() {
   const [imageFileThree, setImageFileThree] = useState<File | null>(null);
   const [imageFileFour, setImageFileFour] = useState<File | null>(null);
 
-  // const [imageSource, setImageSource] = useState("../img/purpleCircle.svg");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [ShowTagOneBox, setShowTagOneBox] = useState<boolean>(true);
+  const [ShowTagTwoBox, setShowTagTwoBox] = useState<boolean>(false);
+
   const [FirstInputText, setFirstInputText] = useState("");
   const maxCharLengthOne = 25;
 
-  // const [imageSourceTwo, setImageSourceTwo] = useState(
-  //   "../img/purpleCircle.svg"
-  // );
   const [SecondInputText, setSecondInputText] = useState("");
   const maxCharLengthTwo = 20;
 
-  const [tagList, setTagList] = useState<string[]>([]);
-  const [tagInput, setTagInput] = useState("");
-
   const [TextAreaText, setTextAreaText] = useState("");
   const maxCharLengthThree = 200;
+
+  const [useAutoTranslate, setUseAutoTranslate] = useState<boolean>(false);
+  const [isToggled, setIsToggled] = useState(useAutoTranslate);
 
   interface Image {
     imageUrl: string;
@@ -324,14 +323,6 @@ function NewTrackpage() {
 
   //트랙 이름 입력
 
-  // const FirstTranslateClick = () => {
-  //   if (imageSource === "../img/purpleCircle.svg") {
-  //     setImageSource("../img/purpleCircleCheck.svg");
-  //   } else {
-  //     setImageSource("../img/purpleCircle.svg");
-  //   }
-  // };
-
   const FirstInputFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setFirstInputText(inputValue);
@@ -352,14 +343,6 @@ function NewTrackpage() {
 
   // 트랙 한줄 소개
 
-  // const SecondTranslateClick = () => {
-  //   if (imageSourceTwo === "../img/purpleCircle.svg") {
-  //     setImageSourceTwo("../img/purpleCircleCheck.svg");
-  //   } else {
-  //     setImageSourceTwo("../img/purpleCircle.svg");
-  //   }
-  // };
-
   const SecondInputFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setSecondInputText(inputValue);
@@ -379,27 +362,77 @@ function NewTrackpage() {
   };
 
   //트랙 태그 생성
-  const InputTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTagInput(e.target.value);
+  interface TagChoiceProps {
+    tagName: string;
+    selected: boolean;
+    onClick: () => void;
+  }
+
+  const TagChoice: React.FC<TagChoiceProps> = ({
+    tagName,
+    selected,
+    onClick,
+  }) => {
+    return (
+      <div
+        className="TagChoiceFrame"
+        style={{
+          backgroundColor: selected ? "#730ef4" : "",
+          color: selected ? "#fff" : "",
+        }}
+        onClick={onClick}
+      >
+        <div className="TagChoiceText">{tagName}</div>
+      </div>
+    );
   };
 
-  const InputTagKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && tagList.length < 5) {
-      setTagList((prevTagList) => [...prevTagList, tagInput]);
-      setTagInput("");
-
-      if (tagList.length >= 2) {
-        setShowNotificationFive(false);
-      }
+  const handleTagClick = (tagName: string) => {
+    if (selectedTags.includes(tagName)) {
+      setSelectedTags(selectedTags.filter((tag) => tag !== tagName));
+    } else if (selectedTags.length < 5) {
+      setSelectedTags([...selectedTags, tagName]);
     }
   };
 
-  const handleTagClick = (index: number) => {
-    setTagList((prevTagList) => prevTagList.filter((tag, i) => i !== index));
+  const tagsTwo: string[] = [
+    "CLUB",
+    "식도락",
+    "관광지",
+    "맛집",
+    "재미",
+    "사진",
+    "휴양",
+    "K-pop",
+    "스토어",
+    "유흥",
+    "핫플",
+    "주점",
+    "문화",
+    "쇼핑",
+    "Custom",
+    "SNS",
+    "MOOD",
+  ];
 
-    if (tagList.length <= 3) {
+  useEffect(() => {
+    if (selectedTags.length >= 3) {
+      setShowNotificationFive(false);
+      setTags(selectedTags.map((tagName) => ({ tagName })));
+    } else {
       setShowNotificationFive(true);
     }
+  }, [selectedTags]);
+
+  const ShowTagBoxChange = () => {
+    setShowTagOneBox(false);
+    setShowTagTwoBox(true);
+  };
+
+  const ShowTagBoxChangeTwo = () => {
+    setShowTagOneBox(true);
+    setShowTagTwoBox(false);
+    console.log(selectedTags);
   };
 
   // 본문 컴포넌트
@@ -420,9 +453,27 @@ function NewTrackpage() {
     }
   };
 
-  // 변역 버튼 활성화
-  const TranslationButtonClick = () => {
-    setUseAutoTranslate(!useAutoTranslate);
+  // 토글 버튼
+
+  const ToggleButton: React.FC = () => {
+    const handleToggle = () => {
+      const newState = !isToggled;
+      setIsToggled(newState);
+      setUseAutoTranslate(newState);
+    };
+
+    return (
+      <div className={`ToggleButtonMainFrame ${!isToggled ? "active" : ""}`}>
+        <div
+          className={`ToggleButtonFrame ${!isToggled ? "active" : ""}`}
+          onClick={handleToggle}
+        >
+          <div
+            className={`ToggleButtonCircle ${!isToggled ? "active" : ""}`}
+          ></div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -525,15 +576,6 @@ function NewTrackpage() {
                 onChange={FirstInputFunction}
               ></input>
               <div className="NewTrackFirstInputSubBox">
-                {/* <div
-                  className="NewTrackFirstInputTranslateBox"
-                  onClick={FirstTranslateClick}
-                >
-                  <img className="NTTTImg" src={imageSource} alt="오류"></img>
-                  <div className="NewTrackFirstInputTranslateText">
-                    자동 번역 사용 끔
-                  </div>
-                </div> */}
                 <div></div>
                 <div className="NewTrackFirstInputTextLength">{`${FirstInputText.length}자 / 25자`}</div>
               </div>
@@ -664,7 +706,6 @@ function NewTrackpage() {
                       onChange={handleImageThreeChange}
                     />
                   </div>
-
                   {/* 추가 이미지4 */}
                   <div
                     className="NewTrackAddImageBoxOne"
@@ -724,19 +765,6 @@ function NewTrackpage() {
                 onChange={SecondInputFunction}
               ></input>
               <div className="NewTrackFirstInputSubBox">
-                {/* <div
-                  className="NewTrackFirstInputTranslateBox"
-                  onClick={SecondTranslateClick}
-                >
-                  <img
-                    className="NTTTImg"
-                    src={imageSourceTwo}
-                    alt="오류"
-                  ></img>
-                  <div className="NewTrackFirstInputTranslateText">
-                    자동 번역 사용 끔
-                  </div>
-                </div> */}
                 <div></div>
                 <div className="NewTrackFirstInputTextLength">{`${SecondInputText.length}자 / 20자`}</div>
               </div>
@@ -765,24 +793,59 @@ function NewTrackpage() {
               </NewTrackContainerPropsOne>
               <div className="NewTrackContainerFiveInputBox">
                 <div className="HashBox">#</div>
-                <input
-                  className="HaskInput"
-                  placeholder="태그를 입력하세요."
-                  value={tagInput}
-                  onChange={InputTagChange}
-                  onKeyPress={InputTagKeyPress}
-                ></input>
-              </div>
-              <div className="HaskTageBox">
-                {tagList.map((tag, index) => (
-                  <div
-                    className="HaskTageContent"
-                    key={index}
-                    onClick={() => handleTagClick(index)}
-                  >
-                    # {tag}
+                {ShowTagTwoBox && (
+                  <div className="HaskTagSelectFrame">
+                    <div
+                      className="HaskTagSelectFrameBoxOne"
+                      onClick={ShowTagBoxChangeTwo}
+                    >
+                      <div className="HaskTagSelectButtonBox">
+                        <div className="HaskTagSelectButtonText">
+                          트랙에 알맞는 태그를 선택해 주세요
+                        </div>
+                        <img
+                          className="TrackTagImg"
+                          src="../img/TrackTagImg.svg"
+                          alt="오류"
+                        ></img>
+                      </div>
+                    </div>
+                    <div className="HaskTagSelectFrameBoxTwo">
+                      <div className="HaskTagSelectFrameBoxTwoInner">
+                        <div className="HaskTagSelectFrameContainerOne">
+                          {tagsTwo.map((tagName) => (
+                            <TagChoice
+                              key={tagName}
+                              tagName={tagName}
+                              selected={selectedTags.includes(tagName)}
+                              onClick={() => handleTagClick(tagName)}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                ))}
+                )}
+                {ShowTagOneBox && (
+                  <div
+                    className="HaskTagSelectButton"
+                    onClick={ShowTagBoxChange}
+                  >
+                    <div
+                      className="HaskTagSelectButtonBox"
+                      onClick={ShowTagBoxChange}
+                    >
+                      <div className="HaskTagSelectButtonText">
+                        트랙에 알맞는 태그를 선택해 주세요
+                      </div>
+                      <img
+                        className="TrackTagImg"
+                        src="../img/TrackTagImg.svg"
+                        alt="오류"
+                      ></img>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -834,7 +897,7 @@ function NewTrackpage() {
                   보여져요.
                 </div>
               </div>
-              <div
+              {/* <div
                 className="TranslationButton"
                 style={{
                   backgroundColor: useAutoTranslate ? "#f94747" : "",
@@ -843,7 +906,8 @@ function NewTrackpage() {
                 onClick={TranslationButtonClick}
               >
                 비활성화
-              </div>
+              </div> */}
+              <ToggleButton></ToggleButton>
             </div>
           </div>
           <button

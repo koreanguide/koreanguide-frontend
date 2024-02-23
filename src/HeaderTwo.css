@@ -13,6 +13,7 @@
 }
 
 .HeaderTwoBox {
+  position: relative;
   width: 62.5rem;
   height: 4rem;
   display: flex;
@@ -51,6 +52,11 @@
   line-height: normal;
 }
 
+.NavButtonFrame {
+  display: flex;
+  align-items: center;
+}
+
 .NavButtonBox {
   width: 260px;
   display: flex;
@@ -61,7 +67,11 @@
 .HeaderProfileButton {
   margin: 0%;
   padding: 0%;
-  height: 1.5rem;
+  width: 68px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border: none;
   background: transparent;
 
@@ -69,20 +79,22 @@
 }
 
 .HeaderProfileButtonText {
-  margin: 0%;
-  padding: 0%;
-  color: #000;
-  text-align: center;
+  color: #fd9d9d;
   font-family: Pretendard;
-  font-size: 1rem;
+  font-size: 20px;
   font-style: normal;
   font-weight: 500;
+  line-height: normal;
 }
 
 .HeaderCreditButton {
   margin: 0%;
   padding: 0%;
-  height: 1.5rem;
+  width: 56px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border: none;
   background: transparent;
 
@@ -90,20 +102,23 @@
 }
 
 .HeaderCreditButtonText {
-  margin: 0%;
-  padding: 0%;
   color: #000;
-  text-align: center;
+  text-align: right;
   font-family: Pretendard;
-  font-size: 1rem;
+  font-size: 20px;
   font-style: normal;
   font-weight: 500;
+  line-height: normal;
 }
 
 .HeaderMypageButton {
   margin: 0%;
   padding: 0%;
-  height: 1.5rem;
+  width: 56px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border: none;
   background: transparent;
 
@@ -111,16 +126,13 @@
 }
 
 .HeaderMypageButtonText {
-  margin: 0%;
-  padding: 0%;
   color: #000;
-  text-align: center;
+  text-align: right;
   font-family: Pretendard;
-  font-size: 1rem;
+  font-size: 20px;
   font-style: normal;
   font-weight: 500;
-
-  cursor: pointer;
+  line-height: normal;
 }
 
 .MassageButton {
@@ -140,7 +152,7 @@
 }
 
 .UserInformationButton {
-  margin-left: 0.5rem;
+  margin-left: 97px;
   width: 5.9375rem;
   border: none;
   padding: 0%;
@@ -167,9 +179,9 @@
 }
 
 .HeaderInfoBox {
-  position: fixed;
+  position: absolute;
   top: 5.4375rem;
-  left: 57%;
+  right: 0px;
   width: 22.75rem;
   height: 13.25rem;
   border-radius: 1.25rem;
@@ -290,6 +302,67 @@
   line-height: normal;
 }
 
+.MenuImgBox {
+  display: none;
+}
+
+.ActivityBox {
+  position: absolute;
+  top: 87px;
+  right: 240px;
+  width: 153px;
+  height: 137px;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ActivityInnerBox {
+  width: 114px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ActivityBoxMenuText {
+  color: #000;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.ActivityBoxLine {
+  width: 114px;
+  height: 1px;
+  background: #ececec;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.MenuTrackBoxBox {
+  position: absolute;
+  top: 87px;
+  right: 145px;
+  width: 153px;
+  height: 98px;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 990px) {
   .HeaderTwoBox {
     width: 655px;
@@ -297,5 +370,97 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .UserInformationButton {
+    margin-left: 30px;
+    width: 5.9375rem;
+    border: none;
+    padding: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 655px) {
+  .NavButtonFrame {
+    display: none;
+  }
+
+  .HeaderTwoBoxFrame {
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 7;
+    backdrop-filter: blur(0.3125rem);
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .HeaderTwoBox {
+    width: 595px;
+    height: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .MenuImgBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+  }
+
+  .HomeButtonContainer {
+    width: 109px;
+    height: 14px;
+  }
+
+  .HomeButtonTwo {
+    width: 109px;
+    height: 14px;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    padding: 0%;
+
+    cursor: pointer;
+  }
+
+  .HomeButtonImgTwo {
+    width: 12px;
+    height: 12px;
+    margin-right: 0.5rem;
+  }
+
+  .HomeButtonTextTwo {
+    color: #730ef4;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .MenuTrackBoxBox,
+  .ActivityBox,
+  .HeaderInfoBox {
+    display: none;
   }
 }

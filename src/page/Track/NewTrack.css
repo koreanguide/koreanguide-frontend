@@ -316,7 +316,6 @@
   width: 57.3125rem;
   height: 2.8125rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-top: 1.875rem;
 }
@@ -339,7 +338,7 @@
   line-height: normal;
 }
 
-.HaskInput {
+/* .HaskInput {
   width: 52.5rem;
   height: 2.8125rem;
   border-radius: 0.625rem;
@@ -347,6 +346,27 @@
   padding-left: 1.25rem;
 
   border-color: transparent;
+} */
+
+.HaskTagSelectButton {
+  width: 52.5rem;
+  height: 2.8125rem;
+  border-radius: 0.625rem;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.HaskTagSelectButtonText {
+  color: #616161;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .HaskTageBox {
@@ -354,6 +374,14 @@
   height: 1.5625rem;
   margin-top: 0.875rem;
   display: flex;
+}
+
+.HaskTagSelectButtonBox {
+  width: 48rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .HaskTageContent {
@@ -380,6 +408,57 @@
   cursor: pointer;
 }
 
+.HaskTagSelectFrame {
+  width: 52.5rem;
+  height: 9.1875rem;
+  border-radius: 0.625rem;
+  background-color: antiquewhite;
+}
+
+.HaskTagSelectFrameBoxOne {
+  width: 52.5rem;
+  height: 2.8125rem;
+  border-radius: 0.625rem 0.625rem 0rem 0rem;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: transparent;
+  cursor: pointer;
+  border: 0.0625rem solid #ececec;
+}
+
+.HaskTagSelectFrameBoxTwo {
+  width: 52.5rem;
+  height: 6.375rem;
+  border-radius: 0px 0px 10px 10px;
+  border-right: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  border-left: 1px solid #ececec;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.HaskTagSelectFrameBoxTwoInner {
+  width: 48.1875rem;
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.HaskTagSelectFrameContainerOne {
+  width: 48.1875rem;
+  height: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-evenly;
+}
+
 .NewTrackContentFrame {
   margin-top: 0.625rem;
   width: 61.875rem;
@@ -389,6 +468,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.TagChoiceFrame {
+  width: 5.1875rem;
+  height: 1.625rem;
+  border-radius: 1.875rem;
+  background: #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #616161;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
 }
 
 .NewTrackContentInner {
