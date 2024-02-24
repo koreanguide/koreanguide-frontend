@@ -14,6 +14,7 @@ import MyPage from "./page/MyPage/MyPage";
 import LoadPage from "./page/LoadPage/LoadPage";
 import NewTrackpage from "./page/Track/NewTrack";
 import MyTrack from "./page/Track/MyTrack";
+import { CheckToken } from "./page/LogOut/CheckToken";
 
 function App() {
   return (
@@ -29,13 +30,62 @@ function App() {
           <Route path="/portal/reset_password" element={<PasswordReset />} />
 
           {/* Portal */}
-          <Route path="/portal" element={<AfterLoginPage />} />
-          <Route path="/portal/chat" element={<ChatPage />} />
-          <Route path="/portal/track_new" element={<NewTrackpage />} />
-          <Route path="/portal/track" element={<MyTrack />} />
-          <Route path="/portal/credit" element={<CreditManagement />} />
-          <Route path="/portal/mypage" element={<MyPage />} />
-          <Route path="/portal/load" element={<LoadPage />} />
+          <Route
+            path="/portal"
+            element={
+              <CheckToken>
+                <AfterLoginPage />
+              </CheckToken>
+            }
+          />
+          <Route
+            path="/portal/chat"
+            element={
+              <CheckToken>
+                <ChatPage />
+              </CheckToken>
+            }
+          />
+          <Route
+            path="/portal/track_new"
+            element={
+              <CheckToken>
+                <NewTrackpage />
+              </CheckToken>
+            }
+          />
+          <Route
+            path="/portal/track"
+            element={
+              <CheckToken>
+                <MyTrack />
+              </CheckToken>
+            }
+          />
+          <Route
+            path="/portal/credit"
+            element={
+              <CheckToken>
+                <CreditManagement />
+              </CheckToken>
+            }
+          />
+          <Route
+            path="/portal/mypage"
+            element={
+              <CheckToken>
+                <MyPage />
+              </CheckToken>
+            }
+          />
+          <Route
+            path="/portal/load"
+            element={
+              <CheckToken>
+                <LoadPage />
+              </CheckToken>
+            }
+          />
 
           {/* Etc */}
           <Route path="/HeaderTwo" element={<HeaderTwo />} />

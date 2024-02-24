@@ -1,143 +1,384 @@
-.AfterLoginPageFrame {
-  position: relative;
+.GuideMainPage {
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 79.5625rem;
 }
 
-.WelcomeBox {
-  margin-top: 9.4375rem;
-  width: 100%;
-  height: auto;
+.GuideMainPageFrame {
+  width: 990px;
+  height: 1500px;
+  text-align: start;
+}
+
+.GuideMainPageTitleTextBox {
+  margin-top: 151px;
+  width: 366px;
+  height: 118px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.WelcomeText {
+.GuideMainPageTitleText {
   color: #000;
   font-family: Pretendard;
-  font-size: 2.5rem;
+  font-size: 40px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: normal;
+  letter-spacing: -1.6px;
 }
 
-.ScheduleBox {
-  margin-top: 2.3125rem;
+.GuideMainPageScheduleBox {
+  margin-top: 40px;
   width: 100%;
-  height: 4.25rem;
-  border-radius: 1.25rem;
+  height: 68px;
+  border-radius: 20px;
   background: linear-gradient(90deg, #730ef4 0%, #6f37b7 100%);
   display: flex;
   align-items: center;
-}
-
-.ScheduleBoxImg {
-  margin-left: 2.5rem;
-}
-
-.ScheduleBoxText {
-  margin-left: 1.25rem;
-  color: #fff;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.ScheduleBoxTextTwo {
-  margin-left: 30.625rem;
-  color: rgba(255, 255, 255, 0.7);
-  text-align: right;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.ProgressChartBox {
-  margin-top: 0.625rem;
-  margin-bottom: 0.625rem;
-  width: 100%;
-  height: 4.25rem;
-  border-radius: 1.25rem;
-  background: linear-gradient(90deg, #96c272 0%, #55a36b 100%);
-  display: flex;
-  align-items: center;
-}
-
-.ProgressChartBoxImg {
-  margin-left: 2.5rem;
-}
-
-.ProgressChartBoxText {
-  margin-left: 1.25rem;
-  color: #fff;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.ProgressChartBoxTextTwo {
-  margin-left: 15.1875rem;
-  color: rgba(255, 255, 255, 0.7);
-  text-align: right;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.ComponentsFrame {
-  width: 62.5rem;
-  height: auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 0.625rem;
-}
-
-.ComponentOneFrame {
-  width: 30rem;
-  height: 20.6875rem;
-  border-radius: 1.25rem;
-  background: #fff;
-  box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
-  display: flex;
   justify-content: center;
 }
 
-.ComponentBoxOne {
-  margin-top: 1.625rem;
-  width: 25rem;
-  height: 1.5rem;
+.GuideMainPageScheduleContent {
+  width: 909px;
+  height: 21px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.ComponentOneTitleProps {
-  color: #000;
+.GuideMainPageScheduleContentTwo {
+  display: flex;
+}
+
+.ScheduleBoxText {
+  margin-left: 20px;
+  color: #fff;
   font-family: Pretendard;
-  font-size: 1.25rem;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
-.TextMore {
-  color: var(--Primary, #730ef4);
+.ScheduleBoxDateText {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
   font-family: Pretendard;
-  font-size: 0.9375rem;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
 
-  cursor: pointer;
+.GuideMainPageProgressBox {
+  margin-top: 40px;
+  width: 100%;
+  height: 68px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #96c272 0%, #55a36b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GuideMainPageProgressContent {
+  width: 909px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.GuideMainPageProgressContentTwo {
+  display: flex;
+}
+
+.ScheduleBoxText {
+  margin-left: 20px;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.ScheduleBoxDateText {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.GuideMainPageInfoContainer {
+  width: 100%;
+  height: 288px;
+  background-color: aliceblue;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.GuideMainPageInfoBoxOne {
+  width: 288px;
+  height: 288px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GuideMainPageInfoBoxOneInner {
+  width: 210px;
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.GuideMainPageInfoBoxOneText {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.GuideMainPageInfoBoxOneFigure {
+  color: #fff;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.GuideMainPageInfoBoxOneFigureUnit {
+  float: bottom;
+  margin-left: 10px;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.PhoneGuideMainPageInfoContainer {
+  display: none;
+}
+
+.GuideMainPageTrackTextBox {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 518px;
+  height: 58px;
+  margin-top: 100px;
+}
+
+.GuideMainPageTrackTextOne {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.GuideMainPageTrackTextTwo {
+  color: var(--KG_SUBTEXT, #616161);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.GuidePageTrackComponentContainer {
+  width: 990px;
+  display: flex;
+}
+
+@media only screen and (max-width: 990px) {
+  .GuideMainPageFrame {
+    width: 675px;
+    height: 1500px;
+    text-align: start;
+  }
+  .GuideMainPageScheduleContent,
+  .GuideMainPageProgressContent {
+    width: 615px;
+    height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .GuideMainPageInfoBoxOne {
+    width: 200px;
+    height: 200px;
+  }
+
+  .GuideMainPageInfoContainer {
+    height: 200px;
+  }
+
+  .GuideMainPageInfoBoxOneInner {
+    width: 150px;
+    height: 150px;
+  }
+
+  .GuideMainPageInfoBoxOneFigureUnit {
+    display: none;
+  }
+
+  .GuidePageTrackComponentContainer {
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 655px) {
+  .GuideMainPageFrame {
+    width: 320px;
+    height: 1500px;
+    text-align: start;
+  }
+  .GuideMainPageScheduleBox,
+  .GuideMainPageProgressBox {
+    display: none;
+  }
+
+  .GuideMainPageInfoContainer {
+    display: none;
+  }
+
+  .GuideMainPageTitleTextBox {
+    margin-top: 96px;
+    width: 183px;
+    height: 56px;
+  }
+
+  .GuideMainPageTitleText {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.8px;
+  }
+
+  .PhoneGuideMainPageInfoContainer {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 320px;
+    height: 221px;
+  }
+
+  .PhoneGuideMainPageInfoBoxOne,
+  .PhoneGuideMainPageInfoBoxThree {
+    width: 320px;
+    height: 63.245px;
+    border-radius: 10px;
+    background: linear-gradient(316deg, #730ef4 1.14%, #bb88fb 97.94%);
+    display: flex;
+    align-items: center;
+  }
+
+  .PhoneGuideMainPageInfoBoxTwo {
+    width: 320px;
+    height: 63.245px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff1414 0%, #f46363 100%);
+    display: flex;
+    align-items: center;
+  }
+
+  .PhoneGuideMainPageInfoTextBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 262px;
+    margin-left: 29px;
+  }
+
+  .PhoneGuideMainPageInfoText {
+    color: #fff;
+    font-family: Pretendard;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .PhoneGuideMainPageInfoTextBoxTwo {
+    display: flex;
+    align-items: end;
+  }
+
+  .PhoneGuideMainPageInfoBoxFigure {
+    color: #fff;
+    text-align: right;
+    font-family: Urbanist;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .PhoneGuideMainPageInfoBoxFigureUnit {
+    margin-left: 8px;
+    margin-bottom: 5px;
+    color: #fff;
+    font-family: Pretendard;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .GuideMainPageTrackTextBox {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 248px;
+    height: 66px;
+    margin-top: 82px;
+  }
+
+  .GuideMainPageTrackTextOne {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.8px;
+  }
+
+  .GuideMainPageTrackTextTwo {
+    color: var(--KG_SUBTEXT, #616161);
+    font-family: Pretendard;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: start;
+  }
+
+  .GuidePageTrackComponentContainer {
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+  }
 }

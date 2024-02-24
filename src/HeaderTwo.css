@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 7;
+  z-index: 9;
   backdrop-filter: blur(0.3125rem);
 }
 
@@ -363,6 +363,10 @@
   justify-content: center;
 }
 
+.PhoneMenu {
+  display: none;
+}
+
 @media only screen and (max-width: 990px) {
   .HeaderTwoBox {
     width: 655px;
@@ -402,14 +406,14 @@
     justify-content: center;
     align-items: center;
     z-index: 7;
-    backdrop-filter: blur(0.3125rem);
+    background-color: #fff;
     padding-left: 30px;
     padding-right: 30px;
   }
 
   .HeaderTwoBox {
     width: 595px;
-    height: 14px;
+    height: 20px;
     padding-left: 30px;
     padding-right: 30px;
     display: flex;
@@ -418,6 +422,8 @@
   }
 
   .MenuImgBox {
+    width: 16px;
+    height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -425,14 +431,21 @@
     cursor: pointer;
   }
 
-  .HomeButtonContainer {
-    width: 109px;
+  .MenuImg {
+    width: 14px;
     height: 14px;
   }
 
-  .HomeButtonTwo {
-    width: 109px;
+  .HomeButtonContainer {
+    width: 140px;
     height: 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .HomeButtonTwo {
+    width: 140px;
+    height: 20px;
     border: none;
     background: none;
     display: flex;
@@ -443,8 +456,8 @@
   }
 
   .HomeButtonImgTwo {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     margin-right: 0.5rem;
   }
 
@@ -452,7 +465,7 @@
     color: #730ef4;
     text-align: center;
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -462,5 +475,96 @@
   .ActivityBox,
   .HeaderInfoBox {
     display: none;
+  }
+
+  .PhoneMenu {
+    position: fixed;
+    top: 55px;
+    left: 0%;
+    display: flex;
+    width: 100%;
+    height: 420px;
+    z-index: 6;
+    background-color: #fff;
+    transform-origin: 50% 0%;
+
+    animation: growBox 0.5s forwards;
+  }
+
+  @keyframes growBox {
+    0% {
+      transform: scaleY(0);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  .animate {
+    position: fixed;
+    top: 55px;
+    left: 0%;
+    display: flex;
+    width: 100%;
+    height: 420px;
+    z-index: 6;
+    background-color: #fff;
+    transform-origin: 50% 0%;
+
+    animation: DownBox 0.5s forwards;
+  }
+
+  @keyframes DownBox {
+    0% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(0);
+    }
+  }
+
+  .PhoneMenuInner {
+    position: fixed;
+    left: 30px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .PhoneMenuText {
+    margin-top: 25px;
+    color: #000;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.8px;
+
+    cursor: pointer;
+  }
+
+  .PhoneMenuLogOut {
+    color: rgba(0, 0, 0, 0.7);
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 5px;
+  }
+
+  .PhoneMenuLogOutBox {
+    position: absolute;
+    right: 15%;
+    top: 370px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
   }
 }

@@ -1,52 +1,74 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./MyTrack.css";
 import HeaderTwo from "../../HeaderTwo";
+import axios from "axios";
 
-function MyTrack() {
-  const MyTrackComponent = () => {
-    return (
-      <div className="MyTrackComponent">
-        <div className="MyTrackComponentImgBox">
-          <img
-            className="MyTrackComponentStar"
-            src="../img/MyTrackStar.svg"
-            alt="오류"
-          ></img>
-          <img
-            className="MyTrackComponentImg"
-            src="../img/MyTrackTestImg.svg"
-            alt="오류"
-          ></img>
+export const MyTrackComponent = ({ track }: { track: any }) => {
+  return (
+    <div className="MyTrackComponent">
+      <div className="MyTrackComponentImgBox">
+        <img
+          className="MyTrackComponentStar"
+          src="../img/NoneStar.svg"
+          alt="오류"
+        ></img>
+        <img
+          className="MyTrackComponentImg"
+          src={track.primaryImageUrl}
+          alt="오류"
+        ></img>
+      </div>
+      <div className="MyTrackComponentTextBox">
+        <div className="MyTrackComponentTitleText">{track.trackTitle}</div>
+        <div className="MyTrackComponentSubText">{track.trackPreview}</div>
+      </div>
+      <div className="MyTrackComponentContentBox">
+        <div className="MyTrackComponentTagBox">
+          {track.tags.map((tag: string, index: number) => (
+            <span key={index}> #{tag}</span>
+          ))}
         </div>
-        <div className="MyTrackComponentTextBox">
-          <div className="MyTrackComponentTitleText">
-            신촌에서 떠나는 식도락 여행
+        <div className="MyTrackComponentContent">
+          <div className="MyTrackComponentViewBox">
+            <img className="" src="../img/eye.svg" alt="조회수"></img>
+            <div className="MyTrackComponentView">{track.view}</div>
           </div>
-          <div className="MyTrackComponentSubText">
-            여기에 설명 글이 입력됩니다. 여기에 설명 글이 입력됩니다. 여기에
-            설명 글이 입력됩니다. 여기에 설명...
-          </div>
-        </div>
-        <div className="MyTrackComponentContentBox">
-          <div className="MyTrackComponentTagBox">#식도락 #식도락 #식도락</div>
-          <div className="MyTrackComponentContent">
-            <div className="MyTrackComponentViewBox">
-              <img className="" src="../img/eye.svg" alt="조회수"></img>
-              <div className="MyTrackComponentView">3,378</div>
-            </div>
-            <div className="MyTrackComponentHeartBox">
-              <img
-                className="MyTrackComponentHeartImg"
-                src="../img/MyTrackheart.svg"
-                alt="조회수"
-              ></img>
-              <div className="MyTrackComponentHeart">1234</div>
-            </div>
+          <div className="MyTrackComponentHeartBox">
+            <img
+              className="MyTrackComponentHeartImg"
+              src="../img/MyTrackheart.svg"
+              alt="조회수"
+            ></img>
+            <div className="MyTrackComponentHeart">{track.like}</div>
           </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
+function MyTrack() {
+  const token = sessionStorage.getItem("access-token");
+
+  const [tracks, setTracks] = useState<Array<any>>([]);
+
+  useEffect(() => {
+    const MyTrackInquiry = async () => {
+      try {
+        const response = await axios.get("/v1/track/", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("내 트랙 정보", response.data);
+        setTracks(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    MyTrackInquiry();
+  }, [token]);
 
   return (
     <div className="MyTrackPage">
@@ -59,12 +81,9 @@ function MyTrack() {
         <div className="TextMyTrackSub">5건의 등록된 트랙이 있어요.</div>
         <div className="MyTrackComponentFrame">
           <div className="MyTrack-container">
-            <MyTrackComponent></MyTrackComponent>
-            <MyTrackComponent></MyTrackComponent>
-            <MyTrackComponent></MyTrackComponent>
-            <MyTrackComponent></MyTrackComponent>
-            <MyTrackComponent></MyTrackComponent>
-            <MyTrackComponent></MyTrackComponent>
+            {tracks.map((track, index) => (
+              <MyTrackComponent key={index} track={track} />
+            ))}
           </div>
         </div>
       </div>

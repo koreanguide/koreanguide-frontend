@@ -9,10 +9,13 @@ function HeaderTwo() {
   const [HeaderInfoBoxShow, setHeaderInfoBoxShow] = useState<boolean>(false);
   const [ActivityBoxShow, setActivityBoxShow] = useState<boolean>(false);
   const [MenuTrackBoxShow, setMenuTrackBoxShow] = useState<boolean>(false);
+  const [ShowPhoneMenu, setShowPhoneMenu] = useState<boolean>(false);
+  const [AnimateFunction, setAnimateFunction] = useState<boolean>(false);
   const [Amount, setAmount] = useState(0);
   const [email, setEmail] = useState("");
   const [nickName, setNickName] = useState("");
   const [ProfileImg, setProfileImg] = useState("");
+  const [MenuImgState, setMenuImgState] = useState("../img/Menu.svg");
 
   useEffect(() => {
     const HeaderUserAmount = async () => {
@@ -115,10 +118,29 @@ function HeaderTwo() {
     window.scrollTo(0, 0);
   };
 
+  const goToMyTrack = () => {
+    navigate("/portal/track");
+    window.scrollTo(0, 0);
+  };
+
   const LogOutClick = () => {
     sessionStorage.removeItem("access-token");
     navigate("/");
     window.scrollTo(0, 0);
+  };
+
+  const MenuClick = () => {
+    if (MenuImgState === "../img/x.svg") {
+      setMenuImgState("../img/Menu.svg");
+      setAnimateFunction(true);
+      setTimeout(() => {
+        setShowPhoneMenu(false);
+      }, 500);
+    } else {
+      setMenuImgState("../img/x.svg");
+      setAnimateFunction(false);
+      setShowPhoneMenu(true);
+    }
   };
 
   return (
@@ -168,8 +190,8 @@ function HeaderTwo() {
             <UserInformationButton UserName={nickName}></UserInformationButton>
           </div>
           {/* 분리 */}
-          <div className="MenuImgBox">
-            <img src="../img/Menu.svg" alt="none" className="MenuImg"></img>
+          <div className="MenuImgBox" onClick={MenuClick}>
+            <img src={MenuImgState} alt="none" className="MenuImg"></img>
           </div>
           {HeaderInfoBoxShow && (
             <div className="HeaderInfoBox">
@@ -230,7 +252,7 @@ function HeaderTwo() {
           {MenuTrackBoxShow && (
             <div className="MenuTrackBoxBox">
               <div className="MenuTrackInnerBox">
-                <div className="ActivityBoxMenuText" onClick={goToCreateTrack}>
+                <div className="ActivityBoxMenuText" onClick={goToMyTrack}>
                   등록 트랙 관리
                 </div>
                 <div className="ActivityBoxLine"></div>
@@ -241,6 +263,45 @@ function HeaderTwo() {
             </div>
           )}
         </div>
+        {ShowPhoneMenu && (
+          <div>
+            <div className={`PhoneMenu ${AnimateFunction ? "animate" : ""}`}>
+              <div className="PhoneMenuInner">
+                <div className="PhoneMenuText" onClick={goToChatPage}>
+                  채팅
+                </div>
+                <div
+                  className="PhoneMenuText"
+                  onClick={goToCreditManagementPage}
+                >
+                  크레딧 관리
+                </div>
+                <div className="PhoneMenuText">리뷰 관리</div>
+                <div className="PhoneMenuText">일정 관리</div>
+                <div className="PhoneMenuText" onClick={goToMyPage}>
+                  프로필 관리
+                </div>
+                <div className="PhoneMenuText" onClick={goToMyPage}>
+                  내 정보
+                </div>
+                <div className="PhoneMenuText" onClick={goToMyTrack}>
+                  등록 트랙 관리
+                </div>
+                <div className="PhoneMenuText" onClick={goToCreateTrack}>
+                  새 트랙 추가
+                </div>
+              </div>
+              <div className="PhoneMenuLogOutBox" onClick={LogOutClick}>
+                <img
+                  src="../img/logoutImg.svg"
+                  alt="none"
+                  className="logoutImg"
+                ></img>
+                <div className="PhoneMenuLogOut">로그아웃</div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

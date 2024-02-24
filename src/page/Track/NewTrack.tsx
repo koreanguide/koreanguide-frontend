@@ -897,16 +897,6 @@ function NewTrackpage() {
                   보여져요.
                 </div>
               </div>
-              {/* <div
-                className="TranslationButton"
-                style={{
-                  backgroundColor: useAutoTranslate ? "#f94747" : "",
-                  color: useAutoTranslate ? "#fff" : "",
-                }}
-                onClick={TranslationButtonClick}
-              >
-                비활성화
-              </div> */}
               <ToggleButton></ToggleButton>
             </div>
           </div>
