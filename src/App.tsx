@@ -12,6 +12,8 @@ import PasswordReset from "./page/PasswordReset/PasswordReset";
 import CreditManagement from "./page/Credit/CreditManagement";
 import MyPage from "./page/MyPage/MyPage";
 import LoadPage from "./page/LoadPage/LoadPage";
+import ManagementMainPage from "./page/Management/ManagementMainPage";
+import ManagementTrackPage from "./page/Management/ManagementTrackPage";
 import NewTrackpage from "./page/Track/NewTrack";
 import MyTrack from "./page/Track/MyTrack";
 import { CheckToken } from "./page/LogOut/CheckToken";
@@ -23,6 +25,10 @@ function App() {
         <Routes>
           {/* Guest */}
           <Route path="/" element={<MainPage />} />
+
+          {/* ManagementMainPage */}
+          <Route path="/admin" element={<ManagementMainPage />} />
+          <Route path="/admin/track" element={<ManagementTrackPage />} />
 
           {/* Portal Auth */}
           <Route path="/portal/signin" element={<Login />} />
