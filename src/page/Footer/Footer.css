@@ -8,10 +8,10 @@
 }
 
 .FooterInnerBox {
-  position: relative;
-  width: 58.25rem;
-  height: 23.4375rem;
+  width: 990px;
+  height: 375px;
   display: flex;
+  justify-content: space-between;
 }
 
 .MoreInfoBox {
@@ -43,11 +43,11 @@ li {
 }
 
 .FooterRightTopContainer {
-  position: absolute;
-  left: 31.875rem;
   width: 27.625rem;
-  height: 6.3125rem;
-  margin-left: auto;
+  height: 337px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .TextFindInApp {
@@ -104,9 +104,6 @@ li {
 }
 
 .FooterRightBottomContainer {
-  position: absolute;
-  left: 31.875rem;
-  top: 10.6875rem;
   width: 16.875rem;
   height: 10.375rem;
 }
@@ -231,4 +228,26 @@ li {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+@media only screen and (max-width: 990px) {
+  .FooterInnerBox {
+    width: 655px;
+    height: 375px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 655px) {
+  .FooterInnerBox {
+    width: 320px;
+    height: 375px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .FooterExtraBox {
+    display: none;
+  }
 }

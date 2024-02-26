@@ -20,17 +20,17 @@ function Footer() {
   };
 
   return (
-    <footer>
-      <div className="FooterFrame">
-        <div className="FooterInnerBox">
-          <div className="MoreInfoBox">
-            더 알아보기
-            <ul>
-              <li>KOREAN GUIDE for Korean</li>
-              <li>KOREAN GUIDE for Visitor</li>
-            </ul>
-          </div>
-          <div className="FooterRightTopContainer">
+    <div className="FooterFrame">
+      <div className="FooterInnerBox">
+        <div className="MoreInfoBox">
+          더 알아보기
+          <ul>
+            <li>KOREAN GUIDE for Korean</li>
+            <li>KOREAN GUIDE for Visitor</li>
+          </ul>
+        </div>
+        <div className="FooterRightTopContainer">
+          <div className="FooterExtraBox">
             <p className="TextFindInApp">앱에서도 만나보세요.</p>
             <div className="AppButtonFrame">
               <AppButton imgName="AppleLogo" text="App Store"></AppButton>
@@ -57,10 +57,10 @@ function Footer() {
               <div className="TextChatBot">챗봇</div>
             </div>
           </div>
-          <FooterBottomComponent></FooterBottomComponent>
         </div>
+        <FooterBottomComponent></FooterBottomComponent>
       </div>
-    </footer>
+    </div>
   );
 }
 

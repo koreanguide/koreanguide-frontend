@@ -1,3 +1,15 @@
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.GuideMainMainPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .GuideMainPage {
   display: flex;
   justify-content: center;
@@ -5,7 +17,7 @@
 
 .GuideMainPageFrame {
   width: 990px;
-  height: 1500px;
+  height: 2000px;
   text-align: start;
 }
 
@@ -37,6 +49,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
 }
 
 .GuideMainPageScheduleContent {
@@ -72,7 +86,7 @@
 }
 
 .GuideMainPageProgressBox {
-  margin-top: 40px;
+  margin-top: 10px;
   width: 100%;
   height: 68px;
   border-radius: 20px;
@@ -80,6 +94,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
 }
 
 .GuideMainPageProgressContent {
@@ -153,6 +169,7 @@
 .GuideMainPageInfoBoxOneFigure {
   color: #fff;
   font-style: normal;
+  font-family: Urbanist !important;
   font-weight: 600;
   line-height: normal;
 }
@@ -204,6 +221,94 @@
 .GuidePageTrackComponentContainer {
   width: 990px;
   display: flex;
+}
+
+.OnClickProgressBox {
+  margin-top: 10px;
+  width: 990px;
+  height: 179px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #96c272 0%, #55a36b 100%);
+}
+
+.OnClickProgressBoxFrameOne {
+  width: 100%;
+  height: 68px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.OnClickProgressBoxFrameTwo {
+  width: 100%;
+  height: 111px;
+  display: flex;
+  justify-content: center;
+}
+
+.OnClickProgressLevelBox {
+  width: 909px;
+  height: 86px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.OnClickProgressGroupBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 400px;
+  height: 86px;
+}
+
+.OnClickProgressGroupBoxTwo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 400px;
+  height: 50px;
+}
+
+.OnClickProgressLevel {
+  width: 400px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.OnClickProgressLevelBoxTwo {
+  display: flex;
+  align-items: center;
+}
+
+.LevelCircle {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  background-color: #fff;
+}
+
+.OnClickProgressLevelText {
+  margin-left: 10px;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.OnClickProgressLevelMissionText {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 @media only screen and (max-width: 990px) {

@@ -218,4 +218,8 @@
     flex-direction: column;
     width: 320px;
   }
+
+  .MyTrackComponent {
+    margin-left: 0px;
+  }
 }
