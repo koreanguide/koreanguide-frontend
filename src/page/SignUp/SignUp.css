@@ -5,6 +5,10 @@
   justify-content: center;
 }
 
+.useUrbanist {
+  font-family: Urbanist !important;
+}
+
 .inner {
   width: 67.25rem;
   height: 80rem;
@@ -190,7 +194,6 @@
 }
 
 .thirdContainer {
-  width: 15.75rem;
   height: 3.5625rem;
   margin-top: 3.75rem;
   display: flex;

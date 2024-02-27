@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.useUrbanist {
+  font-family: Urbanist !important;
+}
+
 .FooterInnerBox {
   width: 990px;
   height: 375px;
@@ -104,7 +108,9 @@ li {
 }
 
 .FooterRightBottomContainer {
-  width: 16.875rem;
+  position: absolute;
+  left: 31.875rem;
+  top: 10.6875rem;
   height: 10.375rem;
 }
 
@@ -112,6 +118,7 @@ li {
   color: #000;
   font-family: Pretendard;
   font-size: 1.25rem;
+  text-align: left;
   font-style: normal;
   font-weight: 700;
   line-height: normal;

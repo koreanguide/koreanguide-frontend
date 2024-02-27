@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MainPage from "./page/Main/MainPage";
@@ -6,9 +5,8 @@ import AfterLoginPage from "./page/AfterLogin/AfterLoginPage";
 import ChatPage from "./page/ChatPage/ChatPage";
 import HeaderTwo from "./HeaderTwo";
 import Footer from "./page/Footer/Footer";
-import Login from "./page/Login/LoginPage";
+import GlobalLogin from "./page/Login/GlobalLoginPage";
 import SignUpPage from "./page/SignUp/SignUp";
-import PasswordReset from "./page/PasswordReset/PasswordReset";
 import CreditManagement from "./page/Credit/CreditManagement";
 import MyPage from "./page/MyPage/MyPage";
 import LoadPage from "./page/LoadPage/LoadPage";
@@ -17,6 +15,9 @@ import ManagementTrackPage from "./page/Management/ManagementTrackPage";
 import NewTrackpage from "./page/Track/NewTrack";
 import MyTrack from "./page/Track/MyTrack";
 import { CheckToken } from "./page/LogOut/CheckToken";
+import LoginPageRoute from "./page/Login/LoginPageRoute";
+import PasswordResetRoute from "./page/PasswordReset/PasswordResetRoute";
+import SignUpRoute from "./page/SignUp/SignUpRoute";
 
 function App() {
   return (
@@ -31,9 +32,9 @@ function App() {
           <Route path="/admin/track" element={<ManagementTrackPage />} />
 
           {/* Portal Auth */}
-          <Route path="/portal/signin" element={<Login />} />
-          <Route path="/portal/signup" element={<SignUpPage />} />
-          <Route path="/portal/reset_password" element={<PasswordReset />} />
+          <Route path="/portal/signin" element={<LoginPageRoute />} />
+          <Route path="/portal/signup" element={<SignUpRoute />} />
+          <Route path="/portal/reset_password" element={<PasswordResetRoute />} />
 
           {/* Portal */}
           <Route
