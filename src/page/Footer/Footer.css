@@ -108,7 +108,7 @@ li {
 }
 
 .FooterRightBottomContainer {
-  position: absolute;
+  position: static;
   left: 31.875rem;
   top: 10.6875rem;
   height: 10.375rem;
