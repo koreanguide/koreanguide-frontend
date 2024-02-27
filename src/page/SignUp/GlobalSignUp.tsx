@@ -15,7 +15,7 @@ function GlobalSignUpPage() {
     return (
       <div className="alertContainer">
         <img className="alertImg" src="../img/alertImg.svg" alt="오류"></img>
-        <div className="alertText">{message}</div>
+        <div className="alertText useUrbanist">{message}</div>
       </div>
     );
   };
@@ -26,7 +26,7 @@ function GlobalSignUpPage() {
     return (
       <div className="alertContainerP">
         <img className="alertImgP" src="../img/alertImgP.svg" alt="오류"></img>
-        <div className="alertTextP">{message}</div>
+        <div className="alertTextP useUrbanist">{message}</div>
       </div>
     );
   };
@@ -77,7 +77,7 @@ function GlobalSignUpPage() {
       const response = await axios.post("/v1/verify/request", data);
 
       if (response.status === 200) {
-        setmessage(response.data.ko);
+        setmessage(response.data.en);
         setreSendBox(true);
         setloadBox(false);
         setsendBox(false);
@@ -90,14 +90,14 @@ function GlobalSignUpPage() {
       setreSendBox(true);
       setloadBox(false);
       setsendBox(false);
-      setmessage(error.response.data.ko);
+      setmessage(error.response.data.en);
       setAlertBoxShow(true);
       setPositiveAlertBoxShow(false);
     }
 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email)) {
-      setmessage("유효한 이메일 형식이 아닙니다.");
+      setmessage("This is not a valid email format.");
       setAlertBoxShow(true);
     }
   };
@@ -128,7 +128,7 @@ function GlobalSignUpPage() {
         setIsDisabled(true);
       }
     } catch (error: any) {
-      setmessage(error.response.data.ko);
+      setmessage(error.response.data.en);
       setAlertBoxShow(true);
       setPositiveAlertBoxShow(false);
     }
@@ -143,7 +143,7 @@ function GlobalSignUpPage() {
 
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
-      setmessage("비밀번호 입력이 서로 일치하지 않습니다");
+      setmessage("Password input and password re-entry do not match each other.");
       setAlertBoxShow(true);
       return;
     }
@@ -167,13 +167,13 @@ function GlobalSignUpPage() {
       }
     } catch (error: any) {
       if (error.response?.data) {
-        setmessage(error.response.data.ko);
+        setmessage(error.response.data.en);
         setAlertBoxShow(true);
       }
     }
 
     if (!userRole) {
-      setmessage("가이드와 관광객 중 하나를 선택하세요");
+      setmessage("Choose between a guide and a tourist.");
       setAlertBoxShow(true);
     }
   };

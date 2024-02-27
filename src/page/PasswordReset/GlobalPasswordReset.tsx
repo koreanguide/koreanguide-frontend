@@ -26,13 +26,13 @@ function GlobalPasswordReset() {
   const handlepasswordReset = async () => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email)) {
-      setmessage("유효한 이메일 형식이 아닙니다.");
+      setmessage("This is not a valid email format.");
       setAlertBoxShow(true);
       return;
     }
 
     if (password !== confirmPassword) {
-      setmessage("비밀번호 입력이 서로 일치하지 않습니다");
+      setmessage("Password input does not match each other.");
       setAlertBoxShow(true);
       return;
     }
@@ -47,14 +47,13 @@ function GlobalPasswordReset() {
       const response = await axios.put("/v1/reset/password", data);
 
       if (response.status === 200) {
-        console.log("put 성공");
-        setmessage(response.data.ko);
+        setmessage(response.data.en);
         setPositiveAlertBoxShow(true);
         setAlertBoxShow(false);
       }
     } catch (error: any) {
       if (error.response?.data) {
-        setmessage(error.response.data.ko);
+        setmessage(error.response.data.en);
         setPositiveAlertBoxShow(false);
         setAlertBoxShow(true);
       }
@@ -84,7 +83,7 @@ function GlobalPasswordReset() {
       const response = await axios.post("/v1/verify/request/pw", data);
 
       if (response.status === 200) {
-        setmessage(response.data.ko);
+        setmessage(response.data.en);
         setreSendBox(true);
         setloadBox(false);
         setsendBox(false);
@@ -97,14 +96,14 @@ function GlobalPasswordReset() {
       setreSendBox(true);
       setloadBox(false);
       setsendBox(false);
-      setmessage(error.response.data.ko);
+      setmessage(error.response.data.en);
       setAlertBoxShow(true);
       setPositiveAlertBoxShow(false);
     }
 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email)) {
-      setmessage("유효한 이메일 형식이 아닙니다.");
+      setmessage("This is not a valid email format.");
       setAlertBoxShow(true);
     }
   };
@@ -140,7 +139,7 @@ function GlobalPasswordReset() {
         setIsDisabled(true);
       }
     } catch (error: any) {
-      setmessage(error.response.data.ko);
+      setmessage(error.response.data.en);
       setAlertBoxShow(true);
       setPositiveAlertBoxShow(false);
     }
@@ -154,7 +153,7 @@ function GlobalPasswordReset() {
     return (
       <div className="alertContainer">
         <img className="alertImg" src="../img/alertImg.svg" alt="오류"></img>
-        <div className="alertText">{message}</div>
+        <div className="alertText useUrbanist">{message}</div>
       </div>
     );
   };
@@ -164,7 +163,7 @@ function GlobalPasswordReset() {
     return (
       <div className="alertContainerP">
         <img className="alertImgP" src="../img/alertImgP.svg" alt="오류"></img>
-        <div className="alertTextP">{message}</div>
+        <div className="alertTextP useUrbanist">{message}</div>
       </div>
     );
   };

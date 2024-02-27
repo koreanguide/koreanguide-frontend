@@ -13,25 +13,25 @@ function GlobalFooter() {
       <div className="AppButtonSize">
         <div className="AppButtonContainerOne">
           <img className="AppImg" src={`../img/${imgName}.svg`} alt=""></img>
-          <div className="AppText useUrbanist">{text}</div>
+          <div className="AppText">{text}</div>
         </div>
       </div>
     );
   };
 
   return (
-    <footer>
-      <div className="FooterFrame">
-        <div className="FooterInnerBox">
-          <div className="MoreInfoBox useUrbanist">
-            Learn More
-            <ul className="useUrbanist">
-              <li>KOREAN GUIDE for Korean</li>
-              <li>KOREAN GUIDE for Visitor</li>
-            </ul>
-          </div>
-          <div className="FooterRightTopContainer">
-            <p className="TextFindInApp useUrbanist">You can also find it on the app.</p>
+    <div className="FooterFrame">
+      <div className="FooterInnerBox">
+        <div className="MoreInfoBox">
+          더 알아보기
+          <ul>
+            <li>KOREAN GUIDE for Korean</li>
+            <li>KOREAN GUIDE for Visitor</li>
+          </ul>
+        </div>
+        <div className="FooterRightTopContainer">
+          <div className="FooterExtraBox">
+            <p className="TextFindInApp">앱에서도 만나보세요.</p>
             <div className="AppButtonFrame">
               <AppButton imgName="AppleLogo" text="App Store"></AppButton>
               <AppButton
@@ -41,26 +41,26 @@ function GlobalFooter() {
             </div>
           </div>
           <div className="FooterRightBottomContainer">
-            <div className="TextKG useUrbanist">KOREAN GUIDE</div>
+            <div className="TextKG">KOREAN GUIDE (코리안가이드)</div>
             <div className="TextBoxOne">
-              <div className="TextBoss useUrbanist">Representative</div>
-              <div className="TextCJ useUrbanist">김찬주(Chanju KIM)</div>
+              <div className="TextBoss">대표</div>
+              <div className="TextCJ">김찬주</div>
             </div>
             <div className="TextBoxTwo">
-              <div className="TextCustomerService useUrbanist">Customer Service</div>
-              <div className="TextPhoneNumber useUrbanist">010-1234-1234</div>
+              <div className="TextCustomerService">고객센터</div>
+              <div className="TextPhoneNumber">010-1234-1234</div>
             </div>
             <div className="TextBoxThree">
-              <div className="TextPlusFriend useUrbanist">KakaoTalk Plus Chat</div>
+              <div className="TextPlusFriend">카카오톡 플러스친구</div>
             </div>
             <div className="TextBoxFour">
-              <div className="TextChatBot useUrbanist">ChatBot</div>
+              <div className="TextChatBot">챗봇</div>
             </div>
           </div>
-          <FooterBottomComponent></FooterBottomComponent>
         </div>
+        <FooterBottomComponent></FooterBottomComponent>
       </div>
-    </footer>
+    </div>
   );
 }
 

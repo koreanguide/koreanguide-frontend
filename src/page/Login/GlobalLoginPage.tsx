@@ -39,14 +39,11 @@ function GlobalLogin() {
         sessionStorage.setItem("access-token", response.data.accessToken);
         sessionStorage.setItem("refresh-token", response.data.refreshToken);
         sessionStorage.setItem("email", response.data.email);
-        console.log("로그인 성공");
-        console.log(response.data.accessToken);
         navigate("/portal");
         window.scrollTo(0, 0);
         setLoginFailed(false);
       }
     } catch (error) {
-      console.error("로그인 실패:", error);
       setLoginFailed(true);
     }
   };
@@ -95,8 +92,8 @@ function GlobalLogin() {
                 src="../img/alertImg.svg"
                 alt="오류"
               ></img>
-              <div className="alertText">
-                등록되지 않은 회원입니다, 비밀번호와 아이디를 확인해주세요
+              <div className="alertText useUrbanist">
+                Unregistered member, please check your password and ID
               </div>
             </div>
           )}
