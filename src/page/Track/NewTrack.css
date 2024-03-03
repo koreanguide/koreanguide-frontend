@@ -193,6 +193,14 @@
   object-fit: contain;
 }
 
+.ReactText {
+  display: none;
+}
+
+.ReactTextTwo {
+  display: none;
+}
+
 .NewTrackImageComponentFrame {
   width: 5.75rem;
   height: 2.9375rem;
@@ -222,6 +230,7 @@
 .NewTrackAddImageBoxOne {
   width: 15.1875rem;
   height: 11.1875rem;
+
   border-radius: 1.25rem;
   border: 0.0625rem solid #e3e3e3;
   display: flex;
@@ -235,6 +244,16 @@
   background: #e3e3e3;
 }
 
+.selectedImageOne,
+.selectedImageTwo,
+.selectedImageThree,
+.selectedImageFour {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: contain;
+}
+
 .NewTrackContainerThree {
   width: 61.875rem;
   height: 16.125rem;
@@ -243,6 +262,21 @@
   border: 0.0625rem solid #e3e3e3;
 
   margin-top: 0.625rem;
+  margin-bottom: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NewTrackContainerThreeTag {
+  width: 61.875rem;
+  height: 16.125rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #e3e3e3;
+
+  margin-top: 0.625rem;
+  margin-bottom: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,6 +295,12 @@
   border-radius: 0.625rem;
   background: #f4f4f4;
   border-color: transparent transparent transparent transparent;
+  color: #616161;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 
   padding-left: 1.25rem;
 }
@@ -337,16 +377,6 @@
   font-weight: 500;
   line-height: normal;
 }
-
-/* .HaskInput {
-  width: 52.5rem;
-  height: 2.8125rem;
-  border-radius: 0.625rem;
-  background: #f4f4f4;
-  padding-left: 1.25rem;
-
-  border-color: transparent;
-} */
 
 .HaskTagSelectButton {
   width: 52.5rem;
@@ -644,4 +674,712 @@
 
   margin-top: 3.125rem;
   cursor: pointer;
+}
+
+.CantCraeteButton {
+  width: 10.125rem;
+  height: 2.625rem;
+  border-radius: 0.3125rem 1.25rem 1.25rem 0.3125rem;
+  background: #fd3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-top: 3.125rem;
+}
+
+.CantCraeteButtonBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CantCraeteButtonText {
+  margin-left: 10px;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.AIBoxFrame {
+  width: 990px;
+  height: 55px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #730ef4 0%, #bb92ee 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.AIBoxInner {
+  width: 910px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.AIBoxOne,
+.AIBoxTwo {
+  width: auto;
+  align-items: center;
+  display: flex;
+}
+
+.AIBoxOneText {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 20px;
+}
+
+.AIBoxTwoText {
+  color: var(--KG_OUTLINE, #ececec);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-right: 20px;
+}
+
+.AIBoxClickBox {
+  width: 990px;
+  height: 346px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #730ef4 0%, #bb92ee 100%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.AIInputBox {
+  width: 910px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.AIAskInput {
+  width: 840px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(236, 236, 236, 0.7);
+  padding-left: 30px;
+
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #730ef4;
+}
+
+.AIAskInput::placeholder {
+  color: #730ef4;
+}
+
+.AIImg4 {
+  cursor: pointer;
+}
+
+.AIAnswerBox {
+  width: 910px;
+  height: 185px;
+  border-radius: 10px;
+  background: rgba(236, 236, 236, 0.7);
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.TexTAIAnswerPlace {
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: linear-gradient(90deg, #730ef4 0%, #bb92ee 366.67%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.AIBoxFunctionBox {
+  width: 910px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.AIBoxCopyButton {
+  width: 90px;
+  display: flex;
+  cursor: pointer;
+}
+
+.AIBoxPostButton {
+  width: 90px;
+  display: flex;
+  cursor: pointer;
+}
+
+.AIBoxFunctionBoxText {
+  color: var(--KG_OUTLINE, #ececec);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 10px;
+}
+
+.AIBoxFunctionBoxLine {
+  width: 2px;
+  height: 10px;
+  background-color: rgb(172, 89, 228);
+  opacity: 0.5;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.AIWait {
+  margin-bottom: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.AIAnswerErrorBox {
+  width: 910px;
+  height: 185px;
+  border-radius: 10px;
+  background: rgba(246, 172, 156, 0.66);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.AIError {
+  margin-bottom: 20px;
+}
+
+.AIAnswerErrorBoxText {
+  color: var(--KG_OUTLINE, #ececec);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2;
+}
+
+.AIAnswerArea {
+  width: 853px;
+  height: 140px;
+  text-align: start;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.75;
+  color: #730ef4;
+  padding-right: 10px;
+
+  overflow: auto;
+}
+
+.AIAnswerArea::-webkit-scrollbar {
+  width: 3px;
+  height: 39px;
+}
+
+.AIAnswerArea::-webkit-scrollbar-thumb {
+  background-color: #ba91ef;
+  border-radius: 6px;
+}
+
+@media only screen and (max-width: 990px) {
+  .NewTrackContainerTitle {
+    font-size: 18px;
+  }
+  .NewTrackContainerTitleSupplementBox {
+    font-size: 12px;
+  }
+  .RedNotificationText {
+    font-size: 12px;
+  }
+  .NewTrackpageInner {
+    width: 655px;
+  }
+  .NewTrackContainerOne {
+    width: 655px;
+  }
+  .NewTrackContainerOneInner {
+    width: 600px;
+  }
+  .NewTrackContainerTitleBox {
+    width: 600px;
+  }
+  .NewTrackContainerThree {
+    width: 655px;
+  }
+  .NewTrackContainerThreeTag {
+    width: 655px;
+  }
+  .NewTrackContainerThreeInner {
+    width: 600px;
+  }
+  .NewTrackFirstInput {
+    width: 580px;
+  }
+  .NewTrackContainerTwo {
+    width: 655px;
+  }
+  .NewTrackContainerTwoInner {
+    width: 600px;
+  }
+  .MainImageBox {
+    width: 300px;
+  }
+  .NewTrackAddImageBoxOne {
+    width: 140px;
+    height: 180px;
+  }
+  .NewTrackAddImageContainer {
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .ImageSelectTextBox {
+    width: 380px;
+    height: 1.1875rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.875rem;
+  }
+  .NewTrackImageSelectContainer {
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5625rem;
+  }
+  .NewTrackFirstInputSubBox {
+    width: 600px;
+  }
+  .NewTrackContainerFiveInner {
+    width: 600px;
+  }
+  .HaskTagSelectButton {
+    width: 540px;
+  }
+  .NewTrackContainerFiveInputBox {
+    width: 600px;
+  }
+  .HaskTagSelectButtonBox {
+    width: 480px;
+  }
+  .HaskTagSelectFrame,
+  .askTagSelectFrameBoxOne,
+  .HaskTagSelectFrameBoxTwo,
+  .HaskTagSelectFrameBoxOne {
+    width: 540px;
+  }
+  .TagChoiceFrame {
+    width: 53px;
+  }
+  .HaskTagSelectFrameContainerOne {
+    width: 520px;
+  }
+  .AIBoxFrame {
+    width: 655px;
+  }
+  .AIBoxInner {
+    width: 600px;
+  }
+  .AIBoxTwoText {
+    font-size: 10px;
+  }
+  .AIBoxClickBox {
+    width: 655px;
+  }
+  .AIInputBox {
+    width: 600px;
+  }
+  .AIAskInput {
+    width: 520px;
+  }
+  .AIAnswerBox {
+    width: 600px;
+  }
+  .AIBoxFunctionBox {
+    width: 600px;
+  }
+  .AIAnswerErrorBox {
+    width: 600px;
+  }
+  .NewTrackContentFrame {
+    width: 655px;
+  }
+  .NewTrackContentInner {
+    width: 600px;
+  }
+  .NewTrackFirstInputTextLength {
+    width: 600px;
+  }
+  .NewTrackFirstTextArea {
+    width: 520px;
+  }
+  .NewTrackContainerSeven {
+    width: 655px;
+  }
+  .NewTrackContainerSevenInner {
+    width: 600px;
+  }
+  .AIAnswerArea {
+    width: 550px;
+  }
+}
+
+@media only screen and (max-width: 655px) {
+  .NewTrackpage {
+    height: 2200px;
+  }
+  .TextAddNewTrack {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.8px;
+
+    margin-top: 96px;
+  }
+  .purpleCircleImg {
+    width: 15px;
+    height: 15px;
+  }
+  .RedNotificationImg {
+    width: 12px;
+    height: 12px;
+    margin: 0;
+  }
+  .NewTrackContainerTitle {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.52px;
+  }
+  .NewTrackContainerTitleSupplementBox {
+    color: rgba(0, 0, 0, 0.7);
+    font-family: Pretendard;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.36px;
+  }
+  .NewTrackContainerTitleSupplementBox {
+    margin-top: 10px;
+  }
+  .RedNotificationText {
+    display: none;
+  }
+  .NewTrackpageInner {
+    width: 333px;
+    height: 2200px;
+  }
+  .NewTrackContainerOne {
+    width: 333px;
+    height: 162px;
+    margin-top: 20px;
+  }
+  .NewTrackContainerOneInner {
+    width: 292px;
+    height: 122px;
+  }
+  .NewTrackContainerTitleBox {
+    width: 292px;
+    height: 12px;
+  }
+  .NewTrackCheckBoxContainer {
+    width: 292px;
+    margin-top: 20px;
+    height: 65px;
+  }
+  .NewTrackCheckBox {
+    width: 292px;
+    height: 15px;
+  }
+  .NewTrackCheckBoxTextSpan {
+    font-size: 9px;
+  }
+  .NewTrackCheckBoxText {
+    font-size: 9px;
+  }
+  .NewTrackContainerThree {
+    width: 333px;
+    height: 122px;
+    margin-bottom: 0;
+  }
+  .NewTrackContainerThreeTag {
+    width: 333px;
+    height: 180px;
+    margin-bottom: 20px;
+  }
+  .NewTrackContainerThreeInner {
+    width: 292px;
+    height: 81px;
+  }
+  .NewTrackFirstInputTextLength {
+    display: none;
+  }
+  .NewTrackFirstInput {
+    width: 267px;
+    margin-top: 14px;
+    height: 30px;
+
+    border-radius: 10px;
+    border: 1px solid #ececec;
+    background: #fff;
+    color: #616161;
+    font-family: Pretendard;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    padding-left: 1.25rem;
+  }
+  .NewTrackContainerTwo {
+    width: 333px;
+    height: 471px;
+  }
+  .NewTrackContainerTwoInner {
+    width: 292px;
+    height: 424px;
+  }
+  .MainImageBox {
+    width: 292px;
+    height: 183px;
+  }
+  .ReactText {
+    display: unset;
+    color: #616161;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.48px;
+  }
+  .ReactTextTwo {
+    display: unset;
+    color: #616161;
+    font-family: Pretendard;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.48px;
+  }
+  .NewTrackAddImageBoxOne {
+    width: 140px;
+    height: 89px;
+  }
+  .NewTrackAddImageContainer {
+    width: 292px;
+    height: 189px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .ImageSelectTextBox {
+    display: none;
+  }
+  .NewTrackImageSelectContainer {
+    width: 292px;
+    height: 381px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
+    margin-top: 0.5625rem;
+  }
+  .NewTrackImageComponentFrame {
+    display: none;
+  }
+  .NewTrackFirstInputSubBox {
+    display: none;
+  }
+  .NewTrackContainerFiveInner {
+    width: 292px;
+    height: 130px;
+  }
+  .NewTrackContainerFiveInputBox {
+    margin-top: 15px;
+    height: 85px;
+    width: 292px;
+    display: flex;
+    justify-content: center;
+  }
+  .HashBox {
+    display: none;
+  }
+  .HaskTagSelectFrameBoxOne {
+    display: none;
+  }
+  .HaskTagSelectButtonBox {
+    width: 480px;
+  }
+  .HaskTagSelectFrame,
+  .HaskTagSelectFrameBoxTwo,
+  .HaskTagSelectFrameBoxTwoInner,
+  .HaskTagSelectFrameContainerOne {
+    height: 85px;
+    width: 252px;
+    border-color: #fff;
+  }
+
+  .TagChoiceFrame {
+    width: 40px;
+    height: 20px;
+  }
+  .TagChoiceText {
+    font-size: 8px;
+  }
+  .AIBoxFrame {
+    width: 333px;
+    height: 40px;
+  }
+  .AIBoxInner {
+    width: 292px;
+  }
+  .AIImg {
+    width: 15px;
+    height: 15px;
+  }
+  .AIBoxOneText {
+    font-size: 13px;
+  }
+  .AIBoxTwoText {
+    display: none;
+  }
+  .AIBoxClickBox {
+    width: 333px;
+    height: 290px;
+  }
+  .AIInputBox {
+    width: 292px;
+  }
+  .AIAskInput {
+    width: 230px;
+    height: 32px;
+    font-size: 10px;
+    padding-left: 20px;
+  }
+  .AIAnswerBox {
+    width: 292px;
+  }
+  .AIBoxFunctionBox {
+    display: none;
+  }
+  .AIAnswerErrorBox {
+    width: 292px;
+  }
+  .NewTrackContentFrame {
+    width: 333px;
+    height: 300px;
+  }
+  .NewTrackContentInner {
+    width: 292px;
+    height: 260px;
+  }
+  .NewTrackFirstInputTextLength {
+    display: none;
+  }
+  .TextAreaTextNumBox {
+    width: 252px;
+    margin: 0;
+  }
+  .NewTrackFirstTextArea {
+    width: 252px;
+    height: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    font-size: 10px;
+  }
+  .TextSensitiveOption {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  .NewTrackContainerSeven {
+    width: 333px;
+    margin-top: 10px;
+  }
+  .NewTrackContainerSevenInner {
+    width: 292px;
+  }
+  .TextAutomaticTranslation {
+    font-size: 13px;
+  }
+  .TextAutomaticTranslationSub {
+    font-size: 9px;
+  }
+  .NewTrackContainerSevenBoxOne {
+    height: 39px;
+  }
+  .CantCraeteButton {
+    margin-top: 20px;
+    width: 333px;
+    border-radius: 10px;
+  }
+  .NewTrackCompeletButton {
+    margin-top: 20px;
+    width: 333px;
+    border-radius: 10px;
+  }
+  .AIAnswerArea {
+    width: 252px;
+  }
 }

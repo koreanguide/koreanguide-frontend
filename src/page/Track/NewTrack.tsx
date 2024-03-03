@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./NewTrack.css";
 import HeaderTwo from "../../HeaderTwo";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function NewTrackpage() {
   const token = sessionStorage.getItem("access-token");
+
+  const navigate = useNavigate();
 
   const [ShowNotificationFirst, setShowNotificationFirst] =
     useState<boolean>(true);
@@ -55,20 +58,40 @@ function NewTrackpage() {
   const [imageFileFour, setImageFileFour] = useState<File | null>(null);
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [ShowTagOneBox, setShowTagOneBox] = useState<boolean>(true);
+  const [ShowTagOneBox, setShowTagOneBox] = useState<boolean>(
+    window.innerWidth >= 655
+  );
   const [ShowTagTwoBox, setShowTagTwoBox] = useState<boolean>(false);
 
   const [FirstInputText, setFirstInputText] = useState("");
-  const maxCharLengthOne = 25;
+  const maxCharLengthOne = 20;
 
   const [SecondInputText, setSecondInputText] = useState("");
-  const maxCharLengthTwo = 20;
+  const maxCharLengthTwo = 50;
 
   const [TextAreaText, setTextAreaText] = useState("");
-  const maxCharLengthThree = 200;
+  const maxCharLengthThree = 3000;
 
   const [useAutoTranslate, setUseAutoTranslate] = useState<boolean>(false);
   const [isToggled, setIsToggled] = useState(useAutoTranslate);
+
+  const [ShowCantButton, setShowCantButton] = useState<boolean>(true);
+
+  const [ShowAIBox, setShowAIBox] = useState<boolean>(false);
+  const [AIArrowImg, setAIArrowImg] = useState<string>("../img/AImg2.svg");
+
+  const [AI_Ask, setAI_Ask] = useState<string>("");
+  const [AI_Answer, setAI_Answer] = useState<string>("");
+
+  const [AIFirst, setAIFirst] = useState<boolean>(true);
+  const [AIWait, setAIWait] = useState<boolean>(false);
+  const [AIError, setAIError] = useState<boolean>(false);
+  const [AIAnw, setAIAnw] = useState<boolean>(false);
+
+  const goToMyTrack = () => {
+    navigate("/portal/track");
+    window.scrollTo(0, 0);
+  };
 
   interface Image {
     imageUrl: string;
@@ -156,6 +179,7 @@ function NewTrackpage() {
 
         if (response.status === 200) {
           console.log("트랙 생성 반환 성공:", response.data);
+          goToMyTrack();
         }
       } catch (error) {
         console.error("트랙 생성 반환 실패:", error);
@@ -390,7 +414,7 @@ function NewTrackpage() {
   const handleTagClick = (tagName: string) => {
     if (selectedTags.includes(tagName)) {
       setSelectedTags(selectedTags.filter((tag) => tag !== tagName));
-    } else if (selectedTags.length < 5) {
+    } else if (selectedTags.length < 3) {
       setSelectedTags([...selectedTags, tagName]);
     }
   };
@@ -416,7 +440,7 @@ function NewTrackpage() {
   ];
 
   useEffect(() => {
-    if (selectedTags.length >= 3) {
+    if (selectedTags.length >= 1) {
       setShowNotificationFive(false);
       setTags(selectedTags.map((tagName) => ({ tagName })));
     } else {
@@ -475,6 +499,117 @@ function NewTrackpage() {
       </div>
     );
   };
+
+  useEffect(() => {
+    if (
+      ShowNotificationFirst ||
+      ShowNotificationSecond ||
+      ShowNotificationThird ||
+      ShowNotificationFour ||
+      ShowNotificationFive ||
+      ShowNotificationSix
+    ) {
+      setShowCantButton(true);
+    } else {
+      setShowCantButton(false);
+    }
+  }, [
+    ShowNotificationFirst,
+    ShowNotificationSecond,
+    ShowNotificationThird,
+    ShowNotificationFour,
+    ShowNotificationFive,
+    ShowNotificationSix,
+  ]);
+
+  const AIBoxClick = () => {
+    setShowAIBox(!ShowAIBox);
+    if (ShowAIBox === true) {
+      setAIArrowImg("../img/AImg2.svg");
+    } else {
+      setAIArrowImg("../img/AImg3.svg");
+    }
+  };
+
+  const AI_Change = (event: any) => {
+    setAI_Ask(event.target.value);
+  };
+
+  interface AIProps {
+    msg: string;
+  }
+
+  const AI_API = async () => {
+    setAIFirst(false);
+    setAIWait(true);
+    setAIError(false);
+    setAIAnw(false);
+    const data: AIProps = {
+      msg: AI_Ask,
+    };
+    try {
+      const response = await axios.post("/v1/gpt/", data, {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+
+      if (response.status === 200) {
+        console.log(response.data.msg);
+        setAI_Answer(response.data.msg);
+        setAIFirst(false);
+        setAIWait(false);
+        setAIError(false);
+        setAIAnw(true);
+      } else {
+        setAIFirst(false);
+        setAIWait(false);
+        setAIError(true);
+        setAIAnw(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      AI_API();
+    }
+  };
+
+  const handleCopyClipBoard = async (AI_Answer: string) => {
+    try {
+      await navigator.clipboard.writeText(AI_Answer);
+      alert("복사 성공!");
+    } catch (error) {
+      alert("복사 실패!");
+    }
+  };
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const insertText = () => {
+    if (textareaRef.current) {
+      const { selectionStart, selectionEnd } = textareaRef.current;
+      const text = textareaRef.current.value;
+      const textBeforeCursor = text.substring(0, selectionStart);
+      const textAfterCursor = text.substring(selectionEnd, text.length);
+
+      textareaRef.current.value = `${textBeforeCursor}${AI_Answer}${textAfterCursor}`;
+    }
+  };
+
+  useEffect(() => {
+    const checkMobile = () => setShowTagOneBox(window.innerWidth >= 655);
+    const checkMobileTwo = () => setShowTagTwoBox(window.innerWidth <= 655);
+
+    checkMobile();
+    checkMobileTwo();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <div>
@@ -551,7 +686,7 @@ function NewTrackpage() {
             <div className="NewTrackContainerThreeInner">
               <NewTrackContainerPropsOne
                 Title="트랙이 돋보일 수 있는 트랙 명을 설정하세요."
-                TitleSub="관광객에게 보여질 트랙 이름을 설정합니다. 최대 25자까지 입력할 수 있습니다."
+                TitleSub="관광객에게 보여질 트랙 명을 설정해 주세요. 최대 20자까지 입력할 수 있어요."
               >
                 {ShowNotificationThird && (
                   <div className="NewTrackContainerNotificationBox">
@@ -581,7 +716,7 @@ function NewTrackpage() {
               </div>
             </div>
           </div>
-          {/* 3번째 컴포넌트 end */}
+          {/* 태그번째 컴포넌트 end */}
           {/* 2번째 컴포넌트 start*/}
           <div className="NewTrackContainerTwo">
             <div className="NewTrackContainerTwoInner">
@@ -630,6 +765,7 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageChange}
                     />
+                    <div className="ReactText">대표 이미지</div>
                   </div>
                 }
                 {/* 추가 이미지1 */}
@@ -656,6 +792,7 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageOneChange}
                     />
+                    <div className="ReactTextTwo">추가 이미지</div>
                   </div>
                   {/* 추가 이미지2 */}
                   <div
@@ -680,6 +817,7 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageTwoChange}
                     />
+                    <div className="ReactTextTwo">추가 이미지</div>
                   </div>
 
                   {/* 추가 이미지3 */}
@@ -705,6 +843,7 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageThreeChange}
                     />
+                    <div className="ReactTextTwo">추가 이미지</div>
                   </div>
                   {/* 추가 이미지4 */}
                   <div
@@ -729,6 +868,7 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageFourChange}
                     />
+                    <div className="ReactTextTwo">추가 이미지</div>
                   </div>
                 </div>
               </div>
@@ -739,8 +879,8 @@ function NewTrackpage() {
           <div className="NewTrackContainerThree">
             <div className="NewTrackContainerThreeInner">
               <NewTrackContainerPropsOne
-                Title="트랙을 쉽게 이해할 수 있게 간단한 소개 글을 작성해 주세요."
-                TitleSub="관광객에게 보여질 트랙 설명을 설정합니다. 최대 20자까지 입력할 수 있습니다."
+                Title="트랙의 간단한 소개 글을 작성해 주세요."
+                TitleSub="관광객에게 보여질 트랙 설명을 설정해 주세요. 최대 50자까지 입력할 수 있어요."
               >
                 {ShowNotificationFour && (
                   <div className="NewTrackContainerNotificationBox">
@@ -772,7 +912,7 @@ function NewTrackpage() {
           </div>
           {/* 4번째 컴포넌트 end */}
           {/* 5번째 컴포넌트 start */}
-          <div className="NewTrackContainerThree">
+          <div className="NewTrackContainerThreeTag">
             <div className="NewTrackContainerFiveInner">
               <NewTrackContainerPropsOne
                 Title="트랙에 대한 태그를 작성해 주세요."
@@ -850,13 +990,134 @@ function NewTrackpage() {
             </div>
           </div>
           {/* 5번째 컴포넌트 end */}
+          {/* AI번째 컴포넌트 start*/}
+          {!ShowAIBox && (
+            <div className="AIBoxFrame" onClick={AIBoxClick}>
+              <div className="AIBoxInner">
+                <div className="AIBoxOne">
+                  <img className="AIImg" src="../img/AImg.svg" alt="오류"></img>
+                  <div className="AIBoxOneText">AI로 손쉽게 트랙 만들기</div>
+                </div>
+                <div className="AIBoxTwo">
+                  <div className="AIBoxTwoText">
+                    이제 어떤 내용을 넣을까 고민하지 마세요! AI로 트랙의 내용을
+                    편하게 작성해볼 수 있어요.
+                  </div>
+                  <img className="AIImg2" src={AIArrowImg} alt="오류"></img>
+                </div>
+              </div>
+            </div>
+          )}
+          {ShowAIBox && (
+            <div className="AIBoxClickBox">
+              <div className="AIBoxFrame" onClick={AIBoxClick}>
+                <div className="AIBoxInner">
+                  <div className="AIBoxOne">
+                    <img
+                      className="AIImg"
+                      src="../img/AImg.svg"
+                      alt="오류"
+                    ></img>
+                    <div className="AIBoxOneText">AI로 손쉽게 트랙 만들기</div>
+                  </div>
+                  <div className="AIBoxTwo">
+                    <div className="AIBoxTwoText">
+                      이제 어떤 내용을 넣을까 고민하지 마세요! AI로 트랙의
+                      내용을 편하게 작성해볼 수 있어요.
+                    </div>
+                    <img className="AIImg2" src={AIArrowImg} alt="오류"></img>
+                  </div>
+                </div>
+              </div>
+              <div className="AIInputBox">
+                <input
+                  type="text"
+                  className="AIAskInput"
+                  placeholder="예) 홍대 클럽에 대해 외국인에게 소개하고 싶어"
+                  value={AI_Ask}
+                  onChange={AI_Change}
+                  onKeyPress={handleKeyPress}
+                ></input>
+                <img
+                  className="AIImg4"
+                  src="../img/AImg4.svg"
+                  alt="오류"
+                  onClick={AI_API}
+                ></img>
+              </div>
+              {AIFirst && (
+                <div className="AIAnswerBox">
+                  <div className="TexTAIAnswerPlace">
+                    여기에 AI 답변이 생성됩니다.
+                  </div>
+                </div>
+              )}
+              {AIWait && (
+                <div className="AIAnswerBox">
+                  <img
+                    className="AIWait"
+                    src="../img/AIWait.svg"
+                    alt="오류"
+                  ></img>
+                  <div className="TexTAIAnswerPlace">
+                    AI의 답변을 기다리고 있어요
+                  </div>
+                </div>
+              )}
+              {AIError && (
+                <div className="AIAnswerErrorBox">
+                  <img
+                    className="AIError"
+                    src="../img/AIError.svg"
+                    alt="오류"
+                  ></img>
+                  <div className="AIAnswerErrorBoxText">
+                    AI 답변을 일시적으로 가져올 수 없어요.
+                    <br /> 다시 시도해 주세요.
+                  </div>
+                </div>
+              )}
+              {AIAnw && (
+                <div className="AIAnswerBox">
+                  <div className="AIAnswerArea">{AI_Answer}</div>
+                </div>
+              )}
+              <div className="AIBoxFunctionBox">
+                <div className="AIBoxCopyButton">
+                  <img
+                    className="PostImg"
+                    src="../img/postImg.svg"
+                    alt="오류"
+                  ></img>
+                  <div
+                    className="AIBoxFunctionBoxText"
+                    onClick={() => handleCopyClipBoard(AI_Answer)}
+                  >
+                    내용 복사하기
+                  </div>
+                </div>
+                <div className="AIBoxFunctionBoxLine"></div>
+                <div className="AIBoxPostButton">
+                  <img
+                    className="CopyImg"
+                    src="../img/copyImg.svg"
+                    alt="오류"
+                  ></img>
+                  <div className="AIBoxFunctionBoxText" onClick={insertText}>
+                    바로 붙여넣기
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {/* 3번째 컴포넌트 end */}
           {/* 6번째 컴포넌트 start */}
           <div className="NewTrackContainerSix">
             <div className="NewTrackContentFrame">
               <div className="NewTrackContentInner">
                 <NewTrackContainerPropsOne
-                  Title="관광객과 어떤 여정을 함께할 것인지 자세히 설명해 주세요."
-                  TitleSub="트랙 본문은 마크다운 형식으로 작성되어야 해요. 마크다운 형식을 작성하는 방법은 여기에서 확인할 수 있어요."
+                  Title="어떤 여정을 함께할 것인지 설명해 주세요."
+                  TitleSub="트랙 본문은 마크다운 형식으로 작성되어야 해요. "
                 >
                   {ShowNotificationSix && (
                     <div className="NewTrackContainerNotificationBox">
@@ -872,7 +1133,7 @@ function NewTrackpage() {
                   )}
                 </NewTrackContainerPropsOne>
                 <div className="TextAreaTextNumBox">
-                  <div className="NewTrackFirstInputTextLength">{`${TextAreaText.length}자 / 200자`}</div>
+                  <div className="NewTrackFirstInputTextLength">{`${TextAreaText.length}자 / 3000자`}</div>
                   <textarea
                     placeholder="트랙 본문을 입력하세요"
                     className={`NewTrackFirstTextArea ${
@@ -880,6 +1141,7 @@ function NewTrackpage() {
                     }`}
                     value={TextAreaText}
                     onChange={handleTextAreaChange}
+                    ref={textareaRef}
                   ></textarea>
                 </div>
               </div>
@@ -893,19 +1155,32 @@ function NewTrackpage() {
               <div className="NewTrackContainerSevenBoxOne">
                 <div className="TextAutomaticTranslation">자동 변역 설정</div>
                 <div className="TextAutomaticTranslationSub">
-                  한국어로 작성된 모든 내용이 자동으로 번역되어 관광객에게
-                  보여져요.
+                  한국어로 작성된 모든 내용이 자동으로 번역되어 보여져요.
                 </div>
               </div>
               <ToggleButton></ToggleButton>
             </div>
           </div>
-          <button
-            className="NewTrackCompeletButton"
-            onClick={TrackCreateSubmitClick}
-          >
-            완료하기
-          </button>
+          {!ShowCantButton && (
+            <button
+              className="NewTrackCompeletButton"
+              onClick={TrackCreateSubmitClick}
+            >
+              생성하기
+            </button>
+          )}
+          {ShowCantButton && (
+            <button className="CantCraeteButton">
+              <div className="CantCraeteButtonBox">
+                <img
+                  className="CantCraeteImg"
+                  src="../img/CantCreate.svg"
+                  alt="오류"
+                ></img>
+                <div className="CantCraeteButtonText">생성할 수 없음</div>
+              </div>
+            </button>
+          )}
         </div>
       </div>
     </div>
