@@ -197,6 +197,14 @@
   display: none;
 }
 
+.ReactTextBox {
+  display: none;
+}
+
+.ReactplusImg {
+  display: none;
+}
+
 .ReactTextTwo {
   display: none;
 }
@@ -706,7 +714,7 @@
   margin-left: 10px;
   color: #fff;
   font-family: Pretendard;
-  font-size: 15px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -1103,7 +1111,7 @@
   .NewTrackContainerTitle {
     color: #000;
     font-family: Pretendard;
-    font-size: 13px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -1129,6 +1137,7 @@
     height: 2200px;
   }
   .NewTrackContainerOne {
+    border-radius: 0.75rem;
     width: 333px;
     height: 162px;
     margin-top: 20px;
@@ -1157,13 +1166,15 @@
     font-size: 9px;
   }
   .NewTrackContainerThree {
+    border-radius: 0.75rem;
     width: 333px;
     height: 122px;
     margin-bottom: 0;
   }
   .NewTrackContainerThreeTag {
+    border-radius: 0.75rem;
     width: 333px;
-    height: 180px;
+    height: 200px;
     margin-bottom: 20px;
   }
   .NewTrackContainerThreeInner {
@@ -1191,6 +1202,7 @@
     padding-left: 1.25rem;
   }
   .NewTrackContainerTwo {
+    border-radius: 0.75rem;
     width: 333px;
     height: 471px;
   }
@@ -1199,8 +1211,21 @@
     height: 424px;
   }
   .MainImageBox {
+    border-radius: 0.75rem;
     width: 292px;
     height: 183px;
+  }
+  .ReactTextBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .ReactplusImg {
+    display: unset;
+    width: 15px;
+    height: 15px;
+    margin-bottom: 7px;
   }
   .ReactText {
     display: unset;
@@ -1225,6 +1250,7 @@
   .NewTrackAddImageBoxOne {
     width: 140px;
     height: 89px;
+    border-radius: 0.75rem;
   }
   .NewTrackAddImageContainer {
     width: 292px;
@@ -1253,7 +1279,7 @@
   }
   .NewTrackContainerFiveInner {
     width: 292px;
-    height: 130px;
+    height: 160px;
   }
   .NewTrackContainerFiveInputBox {
     margin-top: 15px;
@@ -1275,19 +1301,21 @@
   .HaskTagSelectFrameBoxTwo,
   .HaskTagSelectFrameBoxTwoInner,
   .HaskTagSelectFrameContainerOne {
-    height: 85px;
+    height: 120px;
     width: 252px;
     border-color: #fff;
   }
 
   .TagChoiceFrame {
-    width: 40px;
+    width: 45px;
     height: 20px;
+    margin: 5px;
   }
   .TagChoiceText {
     font-size: 8px;
   }
   .AIBoxFrame {
+    border-radius: 0.75rem;
     width: 333px;
     height: 40px;
   }
@@ -1299,7 +1327,7 @@
     height: 15px;
   }
   .AIBoxOneText {
-    font-size: 13px;
+    font-size: 11px;
   }
   .AIBoxTwoText {
     display: none;
@@ -1329,6 +1357,7 @@
   .NewTrackContentFrame {
     width: 333px;
     height: 300px;
+    border-radius: 0.75rem;
   }
   .NewTrackContentInner {
     width: 292px;
@@ -1348,12 +1377,14 @@
     padding-right: 20px;
     padding-top: 10px;
     font-size: 10px;
+    margin-top: 14px;
   }
   .TextSensitiveOption {
     font-size: 20px;
     margin-top: 20px;
   }
   .NewTrackContainerSeven {
+    border-radius: 0.75rem;
     width: 333px;
     margin-top: 10px;
   }
@@ -1381,5 +1412,57 @@
   }
   .AIAnswerArea {
     width: 252px;
+  }
+  .ToggleButtonFrame {
+    width: 2.8125rem;
+    height: 1.25rem;
+    background-color: #eae8e8;
+
+    border-radius: 1.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+  }
+
+  .ToggleButtonFrame.active {
+    background-color: rgb(95, 194, 95);
+  }
+
+  .ToggleButtonMainFrame {
+    background-color: #eae8e8;
+
+    width: 40px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    border-radius: 1.5rem;
+    justify-content: center;
+  }
+
+  .ToggleButtonMainFrame.active {
+    background-color: rgb(95, 194, 95);
+  }
+
+  .ToggleButtonCircle {
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+
+    border-radius: 1.25rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .ToggleButtonCircle.active {
+    left: calc(100% - 19px);
+  }
+
+  .ToggleButtonLocation {
+    margin-left: 16.3rem;
   }
 }

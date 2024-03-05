@@ -436,7 +436,7 @@ function NewTrackpage() {
     "쇼핑",
     "Custom",
     "SNS",
-    "MOOD",
+    // "MOOD",
   ];
 
   useEffect(() => {
@@ -601,15 +601,16 @@ function NewTrackpage() {
   };
 
   useEffect(() => {
-    const checkMobile = () => setShowTagOneBox(window.innerWidth >= 655);
-    const checkMobileTwo = () => setShowTagTwoBox(window.innerWidth <= 655);
+    const checkMobile = () => {
+      setShowTagOneBox(window.innerWidth >= 655);
+      setShowTagTwoBox(window.innerWidth <= 655);
+    };
 
     checkMobile();
-    checkMobileTwo();
     window.addEventListener("resize", checkMobile);
 
     return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  }, [setShowTagOneBox]);
 
   return (
     <div>
@@ -756,7 +757,17 @@ function NewTrackpage() {
                         className="selectedMainImage"
                       />
                     ) : (
-                      <NewTrackImageComponent text="새 대표 이미지 추가" />
+                      <>
+                        <NewTrackImageComponent text="새 대표 이미지 추가" />
+                        <div className="ReactTextBox">
+                          <img
+                            className="ReactplusImg"
+                            src="../img/plusImg.svg"
+                            alt="오류"
+                          />
+                          <div className="ReactText">대표 이미지</div>
+                        </div>
+                      </>
                     )}
                     <input
                       id="imageInput"
@@ -765,7 +776,6 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageChange}
                     />
-                    <div className="ReactText">대표 이미지</div>
                   </div>
                 }
                 {/* 추가 이미지1 */}
@@ -783,7 +793,17 @@ function NewTrackpage() {
                         className="selectedImageOne"
                       />
                     ) : (
-                      <NewTrackImageComponent text="새 이미지 추가" />
+                      <>
+                        <NewTrackImageComponent text="새 이미지 추가" />{" "}
+                        <div className="ReactTextBox">
+                          <img
+                            className="ReactplusImg"
+                            src="../img/plusImg.svg"
+                            alt="오류"
+                          />
+                          <div className="ReactTextTwo">추가 이미지</div>
+                        </div>
+                      </>
                     )}
                     <input
                       id="imageInputOne"
@@ -792,7 +812,6 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageOneChange}
                     />
-                    <div className="ReactTextTwo">추가 이미지</div>
                   </div>
                   {/* 추가 이미지2 */}
                   <div
@@ -808,7 +827,17 @@ function NewTrackpage() {
                         className="selectedImageTwo"
                       />
                     ) : (
-                      <NewTrackImageComponent text="새 이미지 추가" />
+                      <>
+                        <NewTrackImageComponent text="새 이미지 추가" />{" "}
+                        <div className="ReactTextBox">
+                          <img
+                            className="ReactplusImg"
+                            src="../img/plusImg.svg"
+                            alt="오류"
+                          />
+                          <div className="ReactTextTwo">추가 이미지</div>
+                        </div>
+                      </>
                     )}
                     <input
                       id="imageInputTwo"
@@ -817,9 +846,7 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageTwoChange}
                     />
-                    <div className="ReactTextTwo">추가 이미지</div>
                   </div>
-
                   {/* 추가 이미지3 */}
                   <div
                     className="NewTrackAddImageBoxOne"
@@ -834,7 +861,17 @@ function NewTrackpage() {
                         className="selectedImageThree"
                       />
                     ) : (
-                      <NewTrackImageComponent text="새 이미지 추가" />
+                      <>
+                        <NewTrackImageComponent text="새 이미지 추가" />{" "}
+                        <div className="ReactTextBox">
+                          <img
+                            className="ReactplusImg"
+                            src="../img/plusImg.svg"
+                            alt="오류"
+                          />
+                          <div className="ReactTextTwo">추가 이미지</div>
+                        </div>
+                      </>
                     )}
                     <input
                       id="imageInputThree"
@@ -843,7 +880,6 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageThreeChange}
                     />
-                    <div className="ReactTextTwo">추가 이미지</div>
                   </div>
                   {/* 추가 이미지4 */}
                   <div
@@ -859,7 +895,17 @@ function NewTrackpage() {
                         className="selectedImageFour"
                       />
                     ) : (
-                      <NewTrackImageComponent text="새 이미지 추가" />
+                      <>
+                        <NewTrackImageComponent text="새 이미지 추가" />{" "}
+                        <div className="ReactTextBox">
+                          <img
+                            className="ReactplusImg"
+                            src="../img/plusImg.svg"
+                            alt="오류"
+                          />
+                          <div className="ReactTextTwo">추가 이미지</div>
+                        </div>
+                      </>
                     )}
                     <input
                       id="imageInputFour"
@@ -868,7 +914,6 @@ function NewTrackpage() {
                       style={{ display: "none" }}
                       onChange={handleImageFourChange}
                     />
-                    <div className="ReactTextTwo">추가 이미지</div>
                   </div>
                 </div>
               </div>
