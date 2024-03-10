@@ -34,7 +34,10 @@ function App() {
           {/* Portal Auth */}
           <Route path="/portal/signin" element={<LoginPageRoute />} />
           <Route path="/portal/signup" element={<SignUpRoute />} />
-          <Route path="/portal/reset_password" element={<PasswordResetRoute />} />
+          <Route
+            path="/portal/reset_password"
+            element={<PasswordResetRoute />}
+          />
 
           {/* Portal */}
           <Route
