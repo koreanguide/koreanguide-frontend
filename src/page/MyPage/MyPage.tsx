@@ -4,6 +4,8 @@ import HeaderTwo from "../../HeaderTwo";
 import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
 import LoadPage from "../LoadPage/LoadPage";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function MyPage() {
   const token = sessionStorage.getItem("access-token");
@@ -43,6 +45,12 @@ function MyPage() {
   const [CaseIntroducionExist, setCaseIntroducionExist] = useState(true);
   const [blur, setBlur] = useState(false);
 
+  const [birth, setbirth] = useState("");
+  const [nearSubway, setnearSubway] = useState("");
+  const [address, setaddress] = useState("");
+  const [firstLang, setfirstLang] = useState("");
+  const [secondLang, setsecondLang] = useState("");
+
   useEffect(() => {
     if (token === null) {
       console.log("세션 스토리지에 토큰이 없습니다.");
@@ -53,7 +61,7 @@ function MyPage() {
 
     const MyInformation = async () => {
       try {
-        const response = await axios.get("/v1/profile/", {
+        const response = await axios.get("/v1/profile/info", {
           headers: {
             "X-AUTH-TOKEN": token,
           },
@@ -73,6 +81,11 @@ function MyPage() {
         setEnable(response.data.enable);
         setLoading(false);
         setIntroductionContent(response.data.introduce);
+        setbirth(response.data.birth);
+        setnearSubway(response.data.nearSubway);
+        setaddress(response.data.address);
+        setfirstLang(response.data.firstLang);
+        setsecondLang(response.data.secondLang);
       } catch (error) {
         console.error(error);
       }
@@ -80,6 +93,41 @@ function MyPage() {
 
     MyInformation();
   }, [token]);
+
+  const cityData = [
+    { kr: "강서구", en: "GANGSEO" },
+    { kr: "양천구", en: "YANGCHEON" },
+    { kr: "구로구", en: "GURO" },
+    { kr: "영등포구", en: "YONGDENGPO" },
+    { kr: "금천구", en: "GEUMCHEON" },
+    { kr: "관악구", en: "GWANAK" },
+    { kr: "동작구", en: "DONGJAK" },
+    { kr: "서초구", en: "SEOCHO" },
+    { kr: "강남구", en: "GANGNAM" },
+    { kr: "송파구", en: "SONGPA" },
+    { kr: "강동구", en: "GANGDONG" },
+    { kr: "은평구", en: "EUNPYEONG" },
+    { kr: "서대문구", en: "SEODAEMUN" },
+    { kr: "마포구", en: "MAPO" },
+    { kr: "종로구", en: "JONGNO" },
+    { kr: "중구", en: "JUNG" },
+    { kr: "용산구", en: "YONGSAN" },
+    { kr: "강북구", en: "GANGBUK" },
+    { kr: "성북구", en: "SEONGBUK" },
+    { kr: "동대문구", en: "DONGDAEMUN" },
+    { kr: "성동구", en: "SEONGDONG" },
+    { kr: "도봉구", en: "DOBONG" },
+    { kr: "노원구", en: "NOWON" },
+    { kr: "중랑구", en: "JUNGNANG" },
+    { kr: "광진구", en: "GWANGJIN" },
+  ];
+
+  function translateToKorean(englishName: string): string {
+    const city = cityData.find((data) => data.en === englishName);
+    return city ? city.kr : "알 수 없는 지역";
+  }
+
+  const koreanAddress = translateToKorean(address);
 
   useEffect(() => {
     if (IntroductionContent === "등록된 소개 글이 없습니다.") {
@@ -103,6 +151,64 @@ function MyPage() {
   };
 
   const ChangeComponent: React.FC<ChangeComponentProps> = ({
+    category,
+    content,
+    setContent,
+    children,
+  }) => {
+    return (
+      <div className="MyInfoContainer">
+        <div className="MyInfoInnerContainer">
+          <div className="MyInfoCategory">{category}</div>
+          <div
+            className="MyInfoCategoryContent"
+            style={{ color: content === "미등록" ? "red" : "inherit" }}
+          >
+            {content}
+          </div>
+          {children}
+        </div>
+      </div>
+    );
+  };
+
+  type SubwayComponentProps = {
+    category: string;
+    content: string;
+    setContent: React.Dispatch<React.SetStateAction<string>>;
+    children: any;
+  };
+
+  const SubwayComponent: React.FC<SubwayComponentProps> = ({
+    category,
+    content,
+    setContent,
+    children,
+  }) => {
+    return (
+      <div className="MyInfoContainer">
+        <div className="MyInfoInnerContainer">
+          <div className="MyInfoCategory">{category}</div>
+          <div
+            className="MyInfoCategoryContent"
+            style={{ color: content === "미등록" ? "red" : "inherit" }}
+          >
+            {content}
+          </div>
+          {children}
+        </div>
+      </div>
+    );
+  };
+
+  type ResidenceComponentProps = {
+    category: string;
+    content: string;
+    setContent: React.Dispatch<React.SetStateAction<string>>;
+    children: any;
+  };
+
+  const ResidenceComponent: React.FC<ResidenceComponentProps> = ({
     category,
     content,
     setContent,
@@ -490,6 +596,18 @@ function MyPage() {
     setBlur(false);
   };
 
+  const MyDatePicker: React.FC = () => {
+    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+    return (
+      <DatePicker
+        selected={selectedDate}
+        onChange={(date: Date) => setSelectedDate(date)}
+        dateFormat="yyyy.MM.dd"
+      />
+    );
+  };
+
   //계좌번호 미등록 색상
 
   return (
@@ -501,12 +619,21 @@ function MyPage() {
           <div className="MyInfoContainerFrame">
             <div className="MyInfoSecondContainer">
               <ProfileImgContainer></ProfileImgContainer>
-              <ChangeComponent
+              {/* <ChangeComponent
                 category="이름"
                 content={name}
                 setContent={setName}
               >
                 <div className="ChangeComponentFixButton" onClick={NameFix}>
+                  수정
+                </div>
+              </ChangeComponent> */}
+              <ChangeComponent
+                category="닉네임"
+                content={nickName}
+                setContent={setNickName}
+              >
+                <div className="ChangeComponentFixButton" onClick={NickNameFix}>
                   수정
                 </div>
               </ChangeComponent>
@@ -549,7 +676,7 @@ function MyPage() {
               </div>
             )}
           </div>
-          <ChangeComponent
+          {/* <ChangeComponent
             category="전화번호"
             content={phoneNum}
             setContent={setPhoneNum}
@@ -557,8 +684,17 @@ function MyPage() {
             <div className="ChangeComponentFixButton" onClick={PhoneNumFix}>
               수정
             </div>
-          </ChangeComponent>
+          </ChangeComponent> */}
           <ChangeComponent
+            category="생년월일"
+            content={birth}
+            setContent={setbirth}
+          >
+            <div className="ChangeComponentFixButton" onClick={PhoneNumFix}>
+              수정
+            </div>
+          </ChangeComponent>
+          {/* <ChangeComponent
             category="닉네임"
             content={nickName}
             setContent={setNickName}
@@ -566,9 +702,8 @@ function MyPage() {
             <div className="ChangeComponentFixButton" onClick={NickNameFix}>
               수정
             </div>
-          </ChangeComponent>
-
-          <div className="MyInfoContainer">
+          </ChangeComponent> */}
+          {/* <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
               <div className="MyInfoCategory">비밀번호</div>
 
@@ -580,18 +715,31 @@ function MyPage() {
                 변경
               </button>
             </div>
-          </div>
-          <ChangeComponent
+          </div> */}
+          <SubwayComponent
+            category="근처 지하철 역"
+            content={nearSubway}
+            setContent={setEmail}
+          >
+            <div className="ChangeComponentFixButton">수정</div>
+          </SubwayComponent>
+          {/* <ChangeComponent
             category="이메일"
             content={email}
             setContent={setEmail}
           >
             <div className="ChangeComponentFixButton">수정</div>
-          </ChangeComponent>
+          </ChangeComponent> */}
           <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
-              <div className="MyInfoCategory">계좌번호</div>
-              <div className="MyInfoCategoryContent">{accountInfo}</div>
+              <div className="MyInfoCategory">사용 가능 언어 (1순위)</div>
+              <div className="MyInfoCategoryContent">{firstLang}</div>
+            </div>
+          </div>
+          <div className="MyInfoContainer">
+            <div className="MyInfoInnerContainer">
+              <div className="MyInfoCategory">거주지</div>
+              <div className="MyInfoCategoryContent">{koreanAddress}</div>
               <button className="MyInfoFixButton" onClick={CreditPage}>
                 변경
               </button>
@@ -599,12 +747,18 @@ function MyPage() {
           </div>
           <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
+              <div className="MyInfoCategory">사용 가능 언어 (2순위)</div>
+              <div className="MyInfoCategoryContent">{secondLang}</div>
+            </div>
+          </div>
+          {/* <div className="MyInfoContainer">
+            <div className="MyInfoInnerContainer">
               <div className="MyInfoCategory">활성화 상태</div>
               <div className="ToggleButtonLocation">
                 <ToggleButton />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       {FixNameConponentShow && (
@@ -650,24 +804,23 @@ function MyPage() {
       {FixPhoneNumConponentShow && (
         <div className="FixConponentFrame">
           <div className="FixConponentInner">
-            <div className="FixConponentTitle">전화번호 등록 및 변경</div>
+            <div className="FixConponentTitle">생년월일 등록 및 수정</div>
             <div className="FixConponentInputFrame">
               <div className="FixConponentInputInner">
-                <div className="FixConponentInputTitle">전화번호</div>
-                <div className="FixConponentInputTitle">비밀번호</div>
+                <div className="FixConponentInputTitle">생년월일 선택</div>
               </div>
               <div className="FixConponentInputSecondInner">
-                <input
-                  placeholder="010-XXXX-XXXX 형식으로 입력"
-                  className="FixConponentFirstInput"
-                  onChange={(e) => setPhonenNumtarget(e.target.value)}
-                ></input>
-                <input
-                  className="FixConponentSecondInput"
-                  placeholder="현재 비밀번호"
-                  type="password"
-                  onChange={(e) => setPhoneNumRegisterPassword(e.target.value)}
-                ></input>
+                <div className="FixBirthContainer">
+                  <div className="FixBirthBox">
+                    <div className="FixBirthDate">2003.08.30</div>
+                    <img
+                      className="birthImg"
+                      src="../img/birthImg.svg"
+                      alt="오류"
+                    ></img>
+                  </div>
+                  <MyDatePicker></MyDatePicker>
+                </div>
               </div>
             </div>
             <div className="FixConponentButtonFrame">
@@ -779,12 +932,12 @@ function MyPage() {
             <div className="TextLimitContainer">
               <div className="TextIntroduction">소개글</div>
               <div className="IntroductionChangeContainerTextLimit">
-                {`${IntroductionTarget.length}자 / 100자`}
+                {`${IntroductionTarget.length}자 / 3000자`}
               </div>
             </div>
             <textarea
               className={`IntroductionChangeTextArea ${
-                IntroductionTarget.length > 100 ? "overLimit" : ""
+                IntroductionTarget.length > 3000 ? "overLimit" : ""
               } ${isFocused ? "focused" : ""}`}
               onChange={handleInputChange}
               onFocus={handleInputFocus}

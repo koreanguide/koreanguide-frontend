@@ -753,3 +753,30 @@
   font-weight: 500;
   line-height: 1.5;
 }
+
+.FixBirthContainer {
+  width: 767px;
+  height: 53px;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.FixBirthBox {
+  width: 707px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.FixBirthDate {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%; /* 31.974px */
+}
