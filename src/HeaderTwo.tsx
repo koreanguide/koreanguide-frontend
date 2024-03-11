@@ -83,7 +83,7 @@ function HeaderTwo() {
       <button className="UserInformationButton" onClick={ShowHeaderInfoBox}>
         <p className="UserInformationButtonText">{props.UserName}님</p>
         <img
-          src="../img/UserArrow.svg"
+          src="/img/UserArrow.svg"
           alt="none"
           className="UserNameButtonImg"
         ></img>
@@ -99,7 +99,7 @@ function HeaderTwo() {
   };
 
   const goToCreateTrack = () => {
-    navigate("/portal/track_new");
+    navigate("/portal/track/new");
     window.scrollTo(0, 0);
   };
 
@@ -110,6 +110,11 @@ function HeaderTwo() {
 
   const goToChatPage = () => {
     navigate("/portal/chat");
+    window.scrollTo(0, 0);
+  };
+
+  const goToProfilePage = () => {
+    navigate("/portal/profile");
     window.scrollTo(0, 0);
   };
 
@@ -130,14 +135,14 @@ function HeaderTwo() {
   };
 
   const MenuClick = () => {
-    if (MenuImgState === "../img/x.svg") {
-      setMenuImgState("../img/Menu.svg");
+    if (MenuImgState === "/img/x.svg") {
+      setMenuImgState("/img/Menu.svg");
       setAnimateFunction(true);
       setTimeout(() => {
         setShowPhoneMenu(false);
       }, 500);
     } else {
-      setMenuImgState("../img/x.svg");
+      setMenuImgState("/img/x.svg");
       setAnimateFunction(false);
       setShowPhoneMenu(true);
     }
@@ -150,7 +155,7 @@ function HeaderTwo() {
           <div className="HomeButtonContainer">
             <button className="HomeButtonTwo" onClick={navigatePortal}>
               <img
-                src="../img/HTL2.png"
+                src="/img/HTL2.png"
                 alt="none"
                 className="HomeButtonImgTwo"
               ></img>
@@ -163,7 +168,7 @@ function HeaderTwo() {
           <div className="NavButtonBox">
             <button className="HeaderProfileButton" onClick={goToChatPage}>
               <img
-                src="../img/pinkChat.svg"
+                src="/img/pinkChat.svg"
                 alt="none"
                 className="pickChatImg"
               ></img>
@@ -172,7 +177,7 @@ function HeaderTwo() {
             <button className="HeaderCreditButton" onClick={Activity}>
               <p className="HeaderCreditButtonText">활동</p>
               <img
-                src="../img/BlackArrow.svg"
+                src="/img/BlackArrow.svg"
                 alt="none"
                 className="BlackArrowImg"
               ></img>
@@ -180,7 +185,7 @@ function HeaderTwo() {
             <button className="HeaderMypageButton" onClick={MenuTrack}>
               <p className="HeaderMypageButtonText">트랙</p>
               <img
-                src="../img/BlackArrow.svg"
+                src="/img/BlackArrow.svg"
                 alt="none"
                 className="BlackArrowImg"
               ></img>
@@ -197,7 +202,7 @@ function HeaderTwo() {
             <div className="HeaderInfoInner">
               <div className="HeaderInfoSetting" onClick={goToMyPage}>
                 <img
-                  src="../img/settingImg.svg"
+                  src="/img/settingImg.svg"
                   alt="none"
                   className="settingImg"
                 ></img>
@@ -219,7 +224,7 @@ function HeaderTwo() {
               </div>
               <div className="HeaderInfoLogoutBox" onClick={LogOutClick}>
                 <img
-                  src="../img/logoutImg.svg"
+                  src="/img/logoutImg.svg"
                   alt="none"
                   className="logoutImg"
                 ></img>
@@ -242,7 +247,7 @@ function HeaderTwo() {
                 크레딧관리
               </div>
               <div className="ActivityBoxLine"></div>
-              <div className="ActivityBoxMenuText" onClick={goToMyPage}>
+              <div className="ActivityBoxMenuText" onClick={goToProfilePage}>
                 프로필관리
               </div>
             </div>
@@ -289,7 +294,7 @@ function HeaderTwo() {
             </div>
             <div className="PhoneMenuLogOutBox" onClick={LogOutClick}>
               <img
-                src="../img/logoutImg.svg"
+                src="/img/logoutImg.svg"
                 alt="none"
                 className="logoutImg"
               ></img>

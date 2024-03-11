@@ -24,13 +24,13 @@ function NewTrackpage() {
   const [SecondCheck, setSecondCheck] = useState<boolean>(false);
   const [ThirdCheck, setThirdCheck] = useState<boolean>(false);
   const [FirstCheckImg, setFirstCheckImg] = useState<string>(
-    "../img/purpleCircle.svg"
+    "../../img/purpleCircle.svg"
   );
   const [SecondCheckImg, setSecondCheckImg] = useState<string>(
-    "../img/purpleCircle.svg"
+    "../../img/purpleCircle.svg"
   );
   const [ThirdCheckImg, setThirdCheckImg] = useState<string>(
-    "../img/purpleCircle.svg"
+    "../../img/purpleCircle.svg"
   );
   const [primaryImageUrl, setPrimaryImageUrl] = useState<string>("");
   const [tags, setTags] = useState<Tag[]>([{ tagName: "tag1" }]);
@@ -78,7 +78,7 @@ function NewTrackpage() {
   const [ShowCantButton, setShowCantButton] = useState<boolean>(true);
 
   const [ShowAIBox, setShowAIBox] = useState<boolean>(false);
-  const [AIArrowImg, setAIArrowImg] = useState<string>("../img/AImg2.svg");
+  const [AIArrowImg, setAIArrowImg] = useState<string>("../../img/AImg2.svg");
 
   const [AI_Ask, setAI_Ask] = useState<string>("");
   const [AI_Answer, setAI_Answer] = useState<string>("");
@@ -202,21 +202,21 @@ function NewTrackpage() {
 
   useEffect(() => {
     if (FirstCheck) {
-      setFirstCheckImg("../img/purpleCircleCheck.svg");
+      setFirstCheckImg("../../img/purpleCircleCheck.svg");
     } else {
-      setFirstCheckImg("../img/purpleCircle.svg");
+      setFirstCheckImg("../../img/purpleCircle.svg");
     }
 
     if (SecondCheck) {
-      setSecondCheckImg("../img/purpleCircleCheck.svg");
+      setSecondCheckImg("../../img/purpleCircleCheck.svg");
     } else {
-      setSecondCheckImg("../img/purpleCircle.svg");
+      setSecondCheckImg("../../img/purpleCircle.svg");
     }
 
     if (ThirdCheck) {
-      setThirdCheckImg("../img/purpleCircleCheck.svg");
+      setThirdCheckImg("../../img/purpleCircleCheck.svg");
     } else {
-      setThirdCheckImg("../img/purpleCircle.svg");
+      setThirdCheckImg("../../img/purpleCircle.svg");
     }
 
     if (FirstCheck && SecondCheck && ThirdCheck) {
@@ -256,7 +256,7 @@ function NewTrackpage() {
   }) => {
     return (
       <div className="NewTrackImageComponentFrame">
-        <img className="plusImg" src="../img/plusImg.svg" alt="오류"></img>
+        <img className="plusImg" src="../../img/plusImg.svg" alt="오류"></img>
         <div className="NewTrackImageComponentText">{text}</div>
       </div>
     );
@@ -525,9 +525,9 @@ function NewTrackpage() {
   const AIBoxClick = () => {
     setShowAIBox(!ShowAIBox);
     if (ShowAIBox === true) {
-      setAIArrowImg("../img/AImg2.svg");
+      setAIArrowImg("../../img/AImg2.svg");
     } else {
-      setAIArrowImg("../img/AImg3.svg");
+      setAIArrowImg("../../img/AImg3.svg");
     }
   };
 
@@ -629,7 +629,7 @@ function NewTrackpage() {
                   <div className="NewTrackContainerNotificationBox">
                     <img
                       className="RedNotificationImg"
-                      src="../img/RedNotification.svg"
+                      src="../../img/RedNotification.svg"
                       alt="오류"
                     ></img>
                     <div className="RedNotificationText">
@@ -693,7 +693,7 @@ function NewTrackpage() {
                   <div className="NewTrackContainerNotificationBox">
                     <img
                       className="RedNotificationImg"
-                      src="../img/RedNotification.svg"
+                      src="../../img/RedNotification.svg"
                       alt="오류"
                     ></img>
                     <div className="RedNotificationText">
@@ -729,7 +729,7 @@ function NewTrackpage() {
                   <div className="NewTrackContainerNotificationBox">
                     <img
                       className="RedNotificationImg"
-                      src="../img/RedNotification.svg"
+                      src="../../img/RedNotification.svg"
                       alt="오류"
                     ></img>
                     <div className="RedNotificationText">
@@ -762,7 +762,7 @@ function NewTrackpage() {
                         <div className="ReactTextBox">
                           <img
                             className="ReactplusImg"
-                            src="../img/plusImg.svg"
+                            src="../../img/plusImg.svg"
                             alt="오류"
                           />
                           <div className="ReactText">대표 이미지</div>
@@ -798,7 +798,7 @@ function NewTrackpage() {
                         <div className="ReactTextBox">
                           <img
                             className="ReactplusImg"
-                            src="../img/plusImg.svg"
+                            src="../../img/plusImg.svg"
                             alt="오류"
                           />
                           <div className="ReactTextTwo">추가 이미지</div>
@@ -832,7 +832,7 @@ function NewTrackpage() {
                         <div className="ReactTextBox">
                           <img
                             className="ReactplusImg"
-                            src="../img/plusImg.svg"
+                            src="../../img/plusImg.svg"
                             alt="오류"
                           />
                           <div className="ReactTextTwo">추가 이미지</div>
@@ -866,7 +866,7 @@ function NewTrackpage() {
                         <div className="ReactTextBox">
                           <img
                             className="ReactplusImg"
-                            src="../img/plusImg.svg"
+                            src="../../img/plusImg.svg"
                             alt="오류"
                           />
                           <div className="ReactTextTwo">추가 이미지</div>
@@ -900,7 +900,7 @@ function NewTrackpage() {
                         <div className="ReactTextBox">
                           <img
                             className="ReactplusImg"
-                            src="../img/plusImg.svg"
+                            src="../../img/plusImg.svg"
                             alt="오류"
                           />
                           <div className="ReactTextTwo">추가 이미지</div>
@@ -931,7 +931,7 @@ function NewTrackpage() {
                   <div className="NewTrackContainerNotificationBox">
                     <img
                       className="RedNotificationImg"
-                      src="../img/RedNotification.svg"
+                      src="../../img/RedNotification.svg"
                       alt="오류"
                     ></img>
                     <div className="RedNotificationText">
@@ -967,7 +967,7 @@ function NewTrackpage() {
                   <div className="NewTrackContainerNotificationBox">
                     <img
                       className="RedNotificationImg"
-                      src="../img/RedNotification.svg"
+                      src="../../img/RedNotification.svg"
                       alt="오류"
                     ></img>
                     <div className="RedNotificationText">
@@ -990,7 +990,7 @@ function NewTrackpage() {
                         </div>
                         <img
                           className="TrackTagImg"
-                          src="../img/TrackTagImg.svg"
+                          src="../../img/TrackTagImg.svg"
                           alt="오류"
                         ></img>
                       </div>
@@ -1025,7 +1025,7 @@ function NewTrackpage() {
                       </div>
                       <img
                         className="TrackTagImg"
-                        src="../img/TrackTagImg.svg"
+                        src="../../img/TrackTagImg.svg"
                         alt="오류"
                       ></img>
                     </div>
@@ -1040,7 +1040,7 @@ function NewTrackpage() {
             <div className="AIBoxFrame" onClick={AIBoxClick}>
               <div className="AIBoxInner">
                 <div className="AIBoxOne">
-                  <img className="AIImg" src="../img/AImg.svg" alt="오류"></img>
+                  <img className="AIImg" src="../../img/AImg.svg" alt="오류"></img>
                   <div className="AIBoxOneText">AI로 손쉽게 트랙 만들기</div>
                 </div>
                 <div className="AIBoxTwo">
@@ -1060,7 +1060,7 @@ function NewTrackpage() {
                   <div className="AIBoxOne">
                     <img
                       className="AIImg"
-                      src="../img/AImg.svg"
+                      src="../../img/AImg.svg"
                       alt="오류"
                     ></img>
                     <div className="AIBoxOneText">AI로 손쉽게 트랙 만들기</div>
@@ -1085,7 +1085,7 @@ function NewTrackpage() {
                 ></input>
                 <img
                   className="AIImg4"
-                  src="../img/AImg4.svg"
+                  src="../../img/AImg4.svg"
                   alt="오류"
                   onClick={AI_API}
                 ></img>
@@ -1101,7 +1101,7 @@ function NewTrackpage() {
                 <div className="AIAnswerBox">
                   <img
                     className="AIWait"
-                    src="../img/AIWait.svg"
+                    src="../../img/AIWait.svg"
                     alt="오류"
                   ></img>
                   <div className="TexTAIAnswerPlace">
@@ -1113,7 +1113,7 @@ function NewTrackpage() {
                 <div className="AIAnswerErrorBox">
                   <img
                     className="AIError"
-                    src="../img/AIError.svg"
+                    src="../../img/AIError.svg"
                     alt="오류"
                   ></img>
                   <div className="AIAnswerErrorBoxText">
@@ -1131,7 +1131,7 @@ function NewTrackpage() {
                 <div className="AIBoxCopyButton">
                   <img
                     className="PostImg"
-                    src="../img/postImg.svg"
+                    src="../../img/postImg.svg"
                     alt="오류"
                   ></img>
                   <div
@@ -1145,7 +1145,7 @@ function NewTrackpage() {
                 <div className="AIBoxPostButton">
                   <img
                     className="CopyImg"
-                    src="../img/copyImg.svg"
+                    src="../../img/copyImg.svg"
                     alt="오류"
                   ></img>
                   <div className="AIBoxFunctionBoxText" onClick={insertText}>
@@ -1168,7 +1168,7 @@ function NewTrackpage() {
                     <div className="NewTrackContainerNotificationBox">
                       <img
                         className="RedNotificationImg"
-                        src="../img/RedNotification.svg"
+                        src="../../img/RedNotification.svg"
                         alt="오류"
                       ></img>
                       <div className="RedNotificationText">
@@ -1219,7 +1219,7 @@ function NewTrackpage() {
               <div className="CantCraeteButtonBox">
                 <img
                   className="CantCraeteImg"
-                  src="../img/CantCreate.svg"
+                  src="../../img/CantCreate.svg"
                   alt="오류"
                 ></img>
                 <div className="CantCraeteButtonText">생성할 수 없음</div>

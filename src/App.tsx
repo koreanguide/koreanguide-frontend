@@ -58,7 +58,7 @@ function App() {
             }
           />
           <Route
-            path="/portal/track_new"
+            path="/portal/track/new"
             element={
               <CheckToken>
                 <NewTrackpage />
@@ -82,7 +82,7 @@ function App() {
             }
           />
           <Route
-            path="/portal/mypage"
+            path="/portal/profile"
             element={
               <CheckToken>
                 <MyPage />
@@ -98,7 +98,7 @@ function App() {
             }
           />
           <Route
-            path="/portal/guide/mypage"
+            path="/portal/mypage"
             element={
               <CheckToken>
                 <GuideMyPage />
