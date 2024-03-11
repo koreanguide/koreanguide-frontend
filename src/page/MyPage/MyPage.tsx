@@ -758,7 +758,7 @@ function MyPage() {
                   alt="오류"
                 ></img>
                 {koreanAddress}
-                </div>
+              </div>
               <button className="MyInfoFixButton" onClick={CreditPage}>
                 변경
               </button>
