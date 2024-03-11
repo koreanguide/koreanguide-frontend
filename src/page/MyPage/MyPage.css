@@ -780,3 +780,8 @@
   font-weight: 500;
   line-height: 199.836%; /* 31.974px */
 }
+
+.seoulImg {
+  vertical-align: -3px;
+  padding-right: 10px;
+}

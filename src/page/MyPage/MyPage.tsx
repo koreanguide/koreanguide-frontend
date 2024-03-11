@@ -47,6 +47,7 @@ function MyPage() {
 
   const [birth, setbirth] = useState("");
   const [nearSubway, setnearSubway] = useState("");
+  const [subwayLine, setSubwayLine] = useState("");
   const [address, setaddress] = useState("");
   const [firstLang, setfirstLang] = useState("");
   const [secondLang, setsecondLang] = useState("");
@@ -84,6 +85,7 @@ function MyPage() {
         setbirth(response.data.birth);
         setnearSubway(response.data.nearSubway);
         setaddress(response.data.address);
+        setSubwayLine(response.data.subwayLine);
         setfirstLang(response.data.firstLang);
         setsecondLang(response.data.secondLang);
       } catch (error) {
@@ -127,7 +129,7 @@ function MyPage() {
     return city ? city.kr : "알 수 없는 지역";
   }
 
-  const koreanAddress = translateToKorean(address);
+  const koreanAddress = "서울특별시 " + translateToKorean(address);
 
   useEffect(() => {
     if (IntroductionContent === "등록된 소개 글이 없습니다.") {
@@ -175,6 +177,7 @@ function MyPage() {
   type SubwayComponentProps = {
     category: string;
     content: string;
+    subway: string;
     setContent: React.Dispatch<React.SetStateAction<string>>;
     children: any;
   };
@@ -182,6 +185,7 @@ function MyPage() {
   const SubwayComponent: React.FC<SubwayComponentProps> = ({
     category,
     content,
+    subway,
     setContent,
     children,
   }) => {
@@ -193,6 +197,13 @@ function MyPage() {
             className="MyInfoCategoryContent"
             style={{ color: content === "미등록" ? "red" : "inherit" }}
           >
+            {subway && (
+              <img
+                className="seoulImg"
+                src={"../img/" + subway + ".svg"}
+                alt="오류"
+              ></img>
+            )}
             {content}
           </div>
           {children}
@@ -719,6 +730,7 @@ function MyPage() {
           <SubwayComponent
             category="근처 지하철 역"
             content={nearSubway}
+            subway={subwayLine}
             setContent={setEmail}
           >
             <div className="ChangeComponentFixButton">수정</div>
@@ -739,7 +751,14 @@ function MyPage() {
           <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
               <div className="MyInfoCategory">거주지</div>
-              <div className="MyInfoCategoryContent">{koreanAddress}</div>
+              <div className="MyInfoCategoryContent">
+                <img
+                  className="seoulImg"
+                  src="../img/seoul_logo.svg"
+                  alt="오류"
+                ></img>
+                {koreanAddress}
+                </div>
               <button className="MyInfoFixButton" onClick={CreditPage}>
                 변경
               </button>
