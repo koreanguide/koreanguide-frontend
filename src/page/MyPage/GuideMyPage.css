@@ -1,6 +1,6 @@
 .GuideMyPageFrame {
   width: 100%;
-  height: 1500px;
+  height: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,10 +8,19 @@
 
 .GuideMyPageInner {
   width: 990px;
-  height: 1500px;
+  height: 1000px;
   display: flex;
   flex-direction: column;
   text-align: start;
+}
+
+.GuideMyPageInnerBlur {
+  width: 990px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  filter: blur(4px);
 }
 
 .GuideMyPageInnerTextOne {
@@ -110,6 +119,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  transform: translate(0%, 0%);
 }
 
 .EmailFixPopUpTextOne {
@@ -127,14 +138,15 @@
   height: 415px;
   display: flex;
   flex-direction: column;
+  text-align: start;
 }
 
 .EmailFixPopUpAlert {
-  width: 389px;
+  width: 600px;
   height: 21px;
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 }
 
@@ -145,6 +157,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-left: 10px;
 }
 
 .EmailFixPopUpTextTwo {

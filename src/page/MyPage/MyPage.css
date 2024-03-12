@@ -354,7 +354,7 @@
 .FixConponentInputFrame {
   width: 47.9375rem;
   height: 5.5rem;
-  margin-top: 2.6875rem;
+  margin-top: 10px;
 }
 
 .FixConponentInputInner {
@@ -493,7 +493,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 199.836%;
-  margin-top: 1.75rem;
+  margin-top: 10px;
 }
 
 .LastPasswordInput {
