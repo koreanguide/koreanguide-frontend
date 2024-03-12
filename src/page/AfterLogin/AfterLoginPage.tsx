@@ -1,11 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AfterLoginPage.css";
 // import "src/page/Track/MyTrack.css";
 import HeaderTwo from "../../HeaderTwo";
 import Footer from "../Footer/Footer";
+import axios from "axios";
+import LoadPage from "../LoadPage/LoadPage";
+
 
 function AfterLoginPage() {
+  const token = sessionStorage.getItem("access-token");
   const [ShowProgressBox, setShowProgressBox] = useState<boolean>(false);
+  const [totalLiked, setTotalLiked] = useState("");
+  const [totalView, setTotalView] = useState("");
+  const [credit, setCredit] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (token === null) {
+      console.log("세션 스토리지에 토큰이 없습니다.");
+      return;
+    } else {
+      console.log("토큰", token);
+    }
+
+    const MainInfo = async () => {
+      try {
+        const response = await axios.get("/v1/profile/main", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          }
+        });
+
+        setTotalLiked(response.data.totalLiked);
+        setTotalView(response.data.totalView);
+        setCredit(response.data.credit);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    Promise.all([
+      MainInfo()
+    ]).then(() => setIsLoading(false));
+
+  }, [token]);
+
+  if (isLoading) {
+    return <LoadPage />;
+  }
 
   const ShowProgressBoxOnClick = () => {
     setShowProgressBox(true);
@@ -238,7 +280,7 @@ function AfterLoginPage() {
             <div className="GuideMainPageInfoContainer">
               <GuideMainPageInfoBox
                 InfoBoxTitle="모든 트랙 조회 수"
-                InfoBoxFigure="592"
+                InfoBoxFigure={totalView}
                 InfoBoxUnit="회"
                 InfoBoxstyle={{
                   background:
@@ -250,7 +292,7 @@ function AfterLoginPage() {
               ></GuideMainPageInfoBox>
               <GuideMainPageInfoBox
                 InfoBoxTitle="모든 트랙 관심 수"
-                InfoBoxFigure="592"
+                InfoBoxFigure={totalLiked}
                 InfoBoxUnit="회"
                 InfoBoxstyle={{
                   background:
@@ -262,7 +304,7 @@ function AfterLoginPage() {
               ></GuideMainPageInfoBox>
               <GuideMainPageInfoBox
                 InfoBoxTitle="내 크레딧"
-                InfoBoxFigure="100,000"
+                InfoBoxFigure={credit}
                 InfoBoxUnit="크레딧"
                 InfoBoxstyle={{
                   background:
