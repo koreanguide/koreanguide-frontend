@@ -785,3 +785,13 @@
   vertical-align: -3px;
   padding-right: 10px;
 }
+
+.DatePicker {
+  background-color: aliceblue;
+  width: 737px;
+  height: 53px;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  padding-left: 30px;
+  font-size: 20px;
+}

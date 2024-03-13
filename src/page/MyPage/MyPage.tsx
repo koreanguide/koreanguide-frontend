@@ -52,6 +52,10 @@ function MyPage() {
   const [firstLang, setfirstLang] = useState("");
   const [secondLang, setsecondLang] = useState("");
 
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDateStr, setSelectedDateStr] = useState<string | null>(null);
+  const [dateInput, setDateInput] = useState<string>("");
+
   useEffect(() => {
     if (token === null) {
       console.log("세션 스토리지에 토큰이 없습니다.");
@@ -413,7 +417,6 @@ function MyPage() {
 
   const PhoneRegisterClick = () => {
     setFixPhoneNumConponentShow(false);
-    PhoneNumRegisterOnClick();
     document.body.style.overflow = "auto";
     BackGroundBlurCancle();
   };
@@ -432,30 +435,27 @@ function MyPage() {
     BackGroundBlurCancle();
   };
 
-  interface PhoneNumRegisterData {
-    target: string;
-    password: string;
+  interface BirthRegisterData {
+    birth: any;
   }
 
-  const PhoneNumRegisterOnClick = async () => {
-    window.location.reload();
-
-    const data: PhoneNumRegisterData = {
-      target: PhonenNumtarget,
-      password: PhoneNumRegisterPassword,
+  const BirthRegister = async () => {
+    const data: BirthRegisterData = {
+      birth: selectedDateStr,
     };
     try {
-      const response = await axios.post("/v1/profile/phone", data, {
+      const response = await axios.post("/v1/profile/birth", data, {
         headers: {
           "X-AUTH-TOKEN": token,
         },
       });
 
       if (response.status === 200) {
-        console.log("전화등록 성공", response.data);
+        console.log("생년월일 성공", response.data);
+        window.location.reload();
       }
     } catch (error) {
-      console.error("전화등록 실패:", error);
+      console.error("생년월일 실패:", error);
     }
   };
 
@@ -608,13 +608,46 @@ function MyPage() {
   };
 
   const MyDatePicker: React.FC = () => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+    const handleChange = (date: Date | null) => {
+      // date가 Date 타입이거나 null일 수 있음을 명시
+      if (date === null) {
+        setSelectedDate(null);
+        setSelectedDateStr(null); // date가 null인 경우, 상태를 null로 설정
+        console.log("날짜 선택이 취소되었습니다.");
+      } else {
+        setSelectedDate(date);
+        const formattedDate = formatDate(date);
+        setSelectedDateStr(formattedDate); // date가 유효한 경우, 날짜 형식을 변환하여 상태 업데이트
+        console.log(formattedDate);
+      }
+    };
+
+    const handleDateChangeRaw = (e: React.FocusEvent<HTMLInputElement>) => {
+      e.preventDefault(); // 이 부분이 사용자가 입력 창에 타이핑하는 것을 방지합니다.
+    };
+
+    const formatDate = (date: Date) => {
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더해줍니다.
+      const day = date.getDate();
+
+      // 각 부분을 문자열로 변환하고, 필요하다면 앞에 '0'을 붙여 두 자리로 만듭니다.
+      const formattedYear = `${year}`;
+      const formattedMonth = month < 10 ? `0${month}` : `${month}`;
+      const formattedDay = day < 10 ? `0${day}` : `${day}`;
+
+      // YYYYMMDD 형태의 문자열로 합칩니다.
+      return `${formattedYear}${formattedMonth}${formattedDay}`;
+    };
 
     return (
       <DatePicker
+        className="DatePicker"
         selected={selectedDate}
-        onChange={(date: Date) => setSelectedDate(date)}
+        onChange={handleChange}
         dateFormat="yyyy.MM.dd"
+        onChangeRaw={handleDateChangeRaw}
+        placeholderText="ex) 20240101"
       />
     );
   };
@@ -630,15 +663,6 @@ function MyPage() {
           <div className="MyInfoContainerFrame">
             <div className="MyInfoSecondContainer">
               <ProfileImgContainer></ProfileImgContainer>
-              {/* <ChangeComponent
-                category="이름"
-                content={name}
-                setContent={setName}
-              >
-                <div className="ChangeComponentFixButton" onClick={NameFix}>
-                  수정
-                </div>
-              </ChangeComponent> */}
               <ChangeComponent
                 category="닉네임"
                 content={nickName}
@@ -687,15 +711,6 @@ function MyPage() {
               </div>
             )}
           </div>
-          {/* <ChangeComponent
-            category="전화번호"
-            content={phoneNum}
-            setContent={setPhoneNum}
-          >
-            <div className="ChangeComponentFixButton" onClick={PhoneNumFix}>
-              수정
-            </div>
-          </ChangeComponent> */}
           <ChangeComponent
             category="생년월일"
             content={birth}
@@ -705,28 +720,6 @@ function MyPage() {
               수정
             </div>
           </ChangeComponent>
-          {/* <ChangeComponent
-            category="닉네임"
-            content={nickName}
-            setContent={setNickName}
-          >
-            <div className="ChangeComponentFixButton" onClick={NickNameFix}>
-              수정
-            </div>
-          </ChangeComponent> */}
-          {/* <div className="MyInfoContainer">
-            <div className="MyInfoInnerContainer">
-              <div className="MyInfoCategory">비밀번호</div>
-
-              <div className="MyInfoCategoryContent">{password}</div>
-              <button
-                className="MyInfoFixButton"
-                onClick={PasswordResetOnClick}
-              >
-                변경
-              </button>
-            </div>
-          </div> */}
           <SubwayComponent
             category="근처 지하철 역"
             content={nearSubway}
@@ -735,13 +728,6 @@ function MyPage() {
           >
             <div className="ChangeComponentFixButton">수정</div>
           </SubwayComponent>
-          {/* <ChangeComponent
-            category="이메일"
-            content={email}
-            setContent={setEmail}
-          >
-            <div className="ChangeComponentFixButton">수정</div>
-          </ChangeComponent> */}
           <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
               <div className="MyInfoCategory">사용 가능 언어 (1순위)</div>
@@ -770,14 +756,6 @@ function MyPage() {
               <div className="MyInfoCategoryContent">{secondLang}</div>
             </div>
           </div>
-          {/* <div className="MyInfoContainer">
-            <div className="MyInfoInnerContainer">
-              <div className="MyInfoCategory">활성화 상태</div>
-              <div className="ToggleButtonLocation">
-                <ToggleButton />
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
       {FixNameConponentShow && (
@@ -830,14 +808,6 @@ function MyPage() {
               </div>
               <div className="FixConponentInputSecondInner">
                 <div className="FixBirthContainer">
-                  <div className="FixBirthBox">
-                    <div className="FixBirthDate">2003.08.30</div>
-                    <img
-                      className="birthImg"
-                      src="../img/birthImg.svg"
-                      alt="오류"
-                    ></img>
-                  </div>
                   <MyDatePicker></MyDatePicker>
                 </div>
               </div>
@@ -851,7 +821,7 @@ function MyPage() {
               </div>
               <div
                 className="FixConponentRegisterButton"
-                onClick={PhoneRegisterClick}
+                onClick={BirthRegister}
               >
                 등록
               </div>

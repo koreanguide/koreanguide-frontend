@@ -1,0 +1,28 @@
+.UnregisterPageFrame {
+  width: 100%;
+  height: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.UnregisterPageInner {
+  width: 990px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+
+  background-color: aqua;
+}
+
+.TextUnregister {
+  margin-top: 151px;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.6px;
+}

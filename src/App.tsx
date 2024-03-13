@@ -19,6 +19,7 @@ import LoginPageRoute from "./page/Login/LoginPageRoute";
 import PasswordResetRoute from "./page/PasswordReset/PasswordResetRoute";
 import SignUpRoute from "./page/SignUp/SignUpRoute";
 import GuideMyPage from "./page/MyPage/GuideMyPage";
+import UnregisterPage from "./page/Unregister/Unregister";
 
 function App() {
   return (
@@ -102,6 +103,14 @@ function App() {
             element={
               <CheckToken>
                 <GuideMyPage />
+              </CheckToken>
+            }
+          />
+          <Route
+            path="/portal/unregister"
+            element={
+              <CheckToken>
+                <UnregisterPage />
               </CheckToken>
             }
           />
