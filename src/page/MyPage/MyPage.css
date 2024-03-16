@@ -795,3 +795,87 @@
   padding-left: 30px;
   font-size: 20px;
 }
+
+.SubWaySelectFrame {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 907px;
+  height: 390px;
+  border-radius: 20px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SubWaySelectInner {
+  width: 767px;
+  height: 267px;
+  background-color: aliceblue;
+  /* display: flex; */
+  text-align: start;
+}
+
+.SubWaySelectTitle {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 169.836%; /* 40.761px */
+  letter-spacing: -0.96px;
+}
+
+.SubWaySelectTextBox {
+  width: 388px;
+  height: 32px;
+  background-color: #8c8c8c;
+  margin-top: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TextLineSelect {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%; /* 31.974px */
+}
+
+.SubWaySelectDropsetFrame {
+  width: 767px;
+  height: 53px;
+  background-color: #f94747;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown {
+  width: 227px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 53px;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%; /* 31.974px */
+}
+
+.dropdownTwo {
+}
+
+.dropdown:hover {
+  background-color: #f0f0f0;
+}

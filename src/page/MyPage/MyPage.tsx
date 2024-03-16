@@ -3,9 +3,10 @@ import axios from "axios";
 import HeaderTwo from "../../HeaderTwo";
 import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
-import LoadPage from "../LoadPage/LoadPage";
+// import LoadPage from "../LoadPage/LoadPage";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import DropDown from "../../SubwayLine/SubwayLine";
 
 function MyPage() {
   const token = sessionStorage.getItem("access-token");
@@ -30,10 +31,7 @@ function MyPage() {
   const [ShowPasswordChange, setShowPasswordChange] = useState<boolean>(false);
   const [PasswordChange, setPasswordChange] = useState<string>("");
   const [NewPasswordChange, setNewPasswordChange] = useState<string>("");
-  const [PhonenNumtarget, setPhonenNumtarget] = useState<string>("");
   const [NameRegisterPassword, setNameRegisterPassword] = useState<string>("");
-  const [PhoneNumRegisterPassword, setPhoneNumRegisterPassword] =
-    useState<string>("");
   const [NickNametarget, setNickNametarget] = useState<string>("");
   const [NickNametargetRegisterPassword, setNickNametargetRegisterPassword] =
     useState<string>("");
@@ -54,7 +52,6 @@ function MyPage() {
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedDateStr, setSelectedDateStr] = useState<string | null>(null);
-  const [dateInput, setDateInput] = useState<string>("");
 
   useEffect(() => {
     if (token === null) {
@@ -145,9 +142,9 @@ function MyPage() {
     }
   }, [IntroductionContent]);
 
-  if (loading) {
-    return <LoadPage />;
-  }
+  // if (loading) {
+  //   return <LoadPage />;
+  // }
 
   type ChangeComponentProps = {
     category: string;
@@ -652,6 +649,8 @@ function MyPage() {
     );
   };
 
+  const SubwayFixClick = () => {};
+
   //계좌번호 미등록 색상
 
   return (
@@ -726,7 +725,9 @@ function MyPage() {
             subway={subwayLine}
             setContent={setEmail}
           >
-            <div className="ChangeComponentFixButton">수정</div>
+            <div className="ChangeComponentFixButton" onClick={SubwayFixClick}>
+              수정
+            </div>
           </SubwayComponent>
           <div className="MyInfoContainer">
             <div className="MyInfoInnerContainer">
@@ -956,6 +957,20 @@ function MyPage() {
           </div>
         </div>
       )}
+      {
+        <div className="SubWaySelectFrame">
+          <div className="SubWaySelectInner">
+            <div className="SubWaySelectTitle">근처 지하철 역 등록 및 수정</div>
+            <div className="SubWaySelectTextBox">
+              <div className="TextLineSelect">호선 선택</div>
+              <div className="TextLineSelect">지하철 역 선택</div>
+            </div>
+            <div className="SubWaySelectDropsetFrame">
+              <DropDown></DropDown>
+            </div>
+          </div>
+        </div>
+      }
     </div>
   );
 }
