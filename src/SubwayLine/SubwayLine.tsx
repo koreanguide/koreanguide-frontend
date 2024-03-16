@@ -17,7 +17,7 @@ const FirstDropdown = ({
   };
 
   return (
-    <select className="dropdown" onChange={handleChange}>
+    <select className="select" onChange={handleChange}>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.label}
@@ -40,13 +40,11 @@ const SecondDropdown = ({
 
   return (
     <select className="dropdownTwo" onChange={handleChange}>
-      <div className="">
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </div>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
     </select>
   );
 };
