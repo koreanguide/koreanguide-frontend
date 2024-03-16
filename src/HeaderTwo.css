@@ -308,8 +308,8 @@
 
 .ActivityBox {
   position: absolute;
-  top: 87px;
-  right: 240px;
+  top: 60px;
+  right: 283px;
   width: 153px;
   height: 137px;
   border-radius: 10px;
@@ -351,8 +351,8 @@
 
 .MenuTrackBoxBox {
   position: absolute;
-  top: 87px;
-  right: 145px;
+  top: 60px;
+  right: 190px;
   width: 153px;
   height: 98px;
   border-radius: 10px;

@@ -18,30 +18,17 @@ function HeaderTwo() {
   const [MenuImgState, setMenuImgState] = useState("../img/Menu.svg");
 
   useEffect(() => {
-    const HeaderUserAmount = async () => {
-      try {
-        const response = await axios.get("/v1/credit/", {
-          headers: {
-            "X-AUTH-TOKEN": token,
-          },
-        });
-        console.log("잔액조회", response.data);
-        setAmount(response.data.amount);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     const MyInformation = async () => {
       try {
-        const response = await axios.get("/v1/profile/", {
+        const response = await axios.get("/v1/profile/infobox", {
           headers: {
             "X-AUTH-TOKEN": token,
           },
         });
         console.log("내 정보", response.data);
-        setNickName(response.data.nickName);
+        setNickName(response.data.name);
         setEmail(response.data.email);
+        setAmount(response.data.credit);
         if (response.data.profileUrl === "DEFAULT") {
           setProfileImg("../img/NormalProfile.svg");
         } else {
@@ -53,7 +40,6 @@ function HeaderTwo() {
     };
 
     MyInformation();
-    HeaderUserAmount();
   }, [token]);
 
   const ShowHeaderInfoBox = () => {
@@ -81,7 +67,7 @@ function HeaderTwo() {
   const UserInformationButton = (props: UserInformationButtonProps) => {
     return (
       <button className="UserInformationButton" onClick={ShowHeaderInfoBox}>
-        <p className="UserInformationButtonText">{props.UserName}님</p>
+        <p className="UserInformationButtonText">{props.UserName}</p>
         <img
           src="/img/UserArrow.svg"
           alt="none"

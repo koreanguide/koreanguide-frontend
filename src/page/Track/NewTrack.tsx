@@ -548,7 +548,7 @@ function NewTrackpage() {
       msg: AI_Ask,
     };
     try {
-      const response = await axios.post("/v1/gpt/", data, {
+      const response = await axios.post("/v1/assistant/", data, {
         headers: {
           "X-AUTH-TOKEN": token,
         },
@@ -595,10 +595,19 @@ function NewTrackpage() {
       const text = textareaRef.current.value;
       const textBeforeCursor = text.substring(0, selectionStart);
       const textAfterCursor = text.substring(selectionEnd, text.length);
-
-      textareaRef.current.value = `${textBeforeCursor}${AI_Answer}${textAfterCursor}`;
+  
+      setTextAreaText(`${textBeforeCursor}${AI_Answer}${textAfterCursor}`);
+  
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+          const cursorPosition = selectionStart + AI_Answer.length;
+          textareaRef.current.setSelectionRange(cursorPosition, cursorPosition);
+        }
+      }, 0);
     }
   };
+  
 
   useEffect(() => {
     const checkMobile = () => {

@@ -329,12 +329,14 @@ function GuideMyPage() {
                 <input
                   placeholder="010-XXXX-XXXX 형식으로 입력"
                   className="FixConponentFirstInput"
+                  autoComplete='off'
                   onChange={(e) => setPhonenNumtarget(e.target.value)}
                 ></input>
                 <input
                   className="FixConponentSecondInput"
                   placeholder="현재 비밀번호"
                   type="password"
+                  autoComplete='off'
                   onChange={(e) => setPhoneNumRegisterPassword(e.target.value)}
                 ></input>
               </div>

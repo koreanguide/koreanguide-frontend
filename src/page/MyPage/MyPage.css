@@ -22,8 +22,9 @@
   font-family: Pretendard;
   font-size: 2.5rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: normal;
+  letter-spacing: -1.6px;
 }
 
 .MyInfoFrame {
