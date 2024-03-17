@@ -3,10 +3,10 @@ import axios from "axios";
 import HeaderTwo from "../../HeaderTwo";
 import "./MyPage.css";
 import { useNavigate } from "react-router-dom";
-// import LoadPage from "../LoadPage/LoadPage";
+import LoadPage from "../LoadPage/LoadPage";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import DropDown from "../../SubwayLine/SubwayLine";
+import DropDownComponent from "../../SubwayLine/SubwayLine";
 
 function MyPage() {
   const token = sessionStorage.getItem("access-token");
@@ -27,7 +27,6 @@ function MyPage() {
     useState(false);
   const [FixNickNameConponentShow, setFixNickNameConponentShow] =
     useState(false);
-  const [isToggled, setIsToggled] = useState(enable);
   const [ShowPasswordChange, setShowPasswordChange] = useState<boolean>(false);
   const [PasswordChange, setPasswordChange] = useState<string>("");
   const [NewPasswordChange, setNewPasswordChange] = useState<string>("");
@@ -142,9 +141,9 @@ function MyPage() {
     }
   }, [IntroductionContent]);
 
-  // if (loading) {
-  //   return <LoadPage />;
-  // }
+  if (loading) {
+    return <LoadPage />;
+  }
 
   type ChangeComponentProps = {
     category: string;
@@ -337,29 +336,6 @@ function MyPage() {
     }
   };
 
-  // 토글 버튼
-
-  const ToggleButton: React.FC = () => {
-    const handleToggle = () => {
-      const newState = !isToggled;
-      setIsToggled(newState);
-      setEnable(newState);
-    };
-
-    return (
-      <div className={`ToggleButtonMainFrame ${!isToggled ? "active" : ""}`}>
-        <div
-          className={`ToggleButtonFrame ${!isToggled ? "active" : ""}`}
-          onClick={handleToggle}
-        >
-          <div
-            className={`ToggleButtonCircle ${!isToggled ? "active" : ""}`}
-          ></div>
-        </div>
-      </div>
-    );
-  };
-
   /*이름변경 컴포넌트*/
 
   const NameRegisterClick = () => {
@@ -367,13 +343,6 @@ function MyPage() {
     NameRegisterOnClick();
     BackGroundBlurCancle();
     document.body.style.overflow = "auto";
-  };
-
-  const NameFix = () => {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = "hidden";
-    setFixNameConponentShow(true);
-    BackGroundBlur();
   };
 
   const FixNameConponentCancleClick = () => {
@@ -411,12 +380,6 @@ function MyPage() {
   };
 
   /*번호변경 컴포넌트*/
-
-  const PhoneRegisterClick = () => {
-    setFixPhoneNumConponentShow(false);
-    document.body.style.overflow = "auto";
-    BackGroundBlurCancle();
-  };
 
   const PhoneNumFix = () => {
     window.scrollTo(0, 0);
@@ -578,13 +541,6 @@ function MyPage() {
     } catch (error) {
       console.error("비밀번호 재설정 실패:", error);
     }
-  };
-
-  const PasswordResetOnClick = () => {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = "hidden";
-    setShowPasswordChange(true);
-    BackGroundBlur();
   };
 
   const PasswordResetCancleOnClick = () => {
@@ -966,7 +922,7 @@ function MyPage() {
               <div className="TextLineSelect">지하철 역 선택</div>
             </div>
             <div className="SubWaySelectDropsetFrame">
-              <DropDown></DropDown>
+              <DropDownComponent></DropDownComponent>
             </div>
           </div>
         </div>

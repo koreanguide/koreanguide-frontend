@@ -450,6 +450,7 @@
   height: 9.1875rem;
   border-radius: 0.625rem;
   background-color: antiquewhite;
+  z-index: 5;
 }
 
 .HaskTagSelectFrameBoxOne {
@@ -936,6 +937,32 @@
 .AIAnswerArea::-webkit-scrollbar-thumb {
   background-color: #ba91ef;
   border-radius: 6px;
+}
+
+.TagedItemContainer {
+  margin-top: 20px;
+  display: flex;
+  z-index: 2;
+}
+
+.TagedItem {
+  width: 83px;
+  height: 26px;
+  border-radius: 30px;
+  background: var(--KG_OUTLINE, #ececec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--KG_SUBTEXT, #616161);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-right: 20px;
 }
 
 @media only screen and (max-width: 990px) {

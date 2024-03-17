@@ -595,9 +595,18 @@ function NewTrackpage() {
       const text = textareaRef.current.value;
       const textBeforeCursor = text.substring(0, selectionStart);
       const textAfterCursor = text.substring(selectionEnd, text.length);
-  
-      setTextAreaText(`${textBeforeCursor}${AI_Answer}${textAfterCursor}`);
-  
+      const newText = `${textBeforeCursor}${AI_Answer}${textAfterCursor}`;
+
+      // 텍스트 업데이트
+      setTextAreaText(newText);
+
+      // 여기에서 setShowNotificationSix 상태 업데이트
+      if (newText.length > 0) {
+        setShowNotificationSix(false);
+      } else {
+        setShowNotificationSix(true);
+      }
+
       setTimeout(() => {
         if (textareaRef.current) {
           textareaRef.current.focus();
@@ -607,7 +616,6 @@ function NewTrackpage() {
       }, 0);
     }
   };
-  
 
   useEffect(() => {
     const checkMobile = () => {
@@ -722,7 +730,7 @@ function NewTrackpage() {
               ></input>
               <div className="NewTrackFirstInputSubBox">
                 <div></div>
-                <div className="NewTrackFirstInputTextLength">{`${FirstInputText.length}자 / 25자`}</div>
+                <div className="NewTrackFirstInputTextLength">{`${FirstInputText.length}자 / 20자`}</div>
               </div>
             </div>
           </div>
@@ -960,7 +968,7 @@ function NewTrackpage() {
               ></input>
               <div className="NewTrackFirstInputSubBox">
                 <div></div>
-                <div className="NewTrackFirstInputTextLength">{`${SecondInputText.length}자 / 20자`}</div>
+                <div className="NewTrackFirstInputTextLength">{`${SecondInputText.length}자 / 50자`}</div>
               </div>
             </div>
           </div>
@@ -1041,6 +1049,13 @@ function NewTrackpage() {
                   </div>
                 )}
               </div>
+              <div className="TagedItemContainer">
+                {selectedTags.map((tagName) => (
+                  <div key={tagName} className="TagedItem">
+                    {tagName}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           {/* 5번째 컴포넌트 end */}
@@ -1049,7 +1064,11 @@ function NewTrackpage() {
             <div className="AIBoxFrame" onClick={AIBoxClick}>
               <div className="AIBoxInner">
                 <div className="AIBoxOne">
-                  <img className="AIImg" src="../../img/AImg.svg" alt="오류"></img>
+                  <img
+                    className="AIImg"
+                    src="../../img/AImg.svg"
+                    alt="오류"
+                  ></img>
                   <div className="AIBoxOneText">AI로 손쉽게 트랙 만들기</div>
                 </div>
                 <div className="AIBoxTwo">

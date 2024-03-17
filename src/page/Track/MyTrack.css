@@ -34,6 +34,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  cursor: pointer;
 }
 
 .TextMyTrackSub {
@@ -49,6 +51,7 @@
 .MyTrackComponentFrame {
   display: flex;
   align-items: center;
+  margin-top: 22px;
 }
 
 .MyTrack-container {
@@ -130,10 +133,10 @@
 }
 
 .MyTrackComponentContentBox {
-  width: 283px;
+  width: 270px;
   height: 14px;
   margin-top: 33px;
-  margin-left: 15px;
+  margin-left: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -147,6 +150,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  display: flex;
+  gap: 7px;
 }
 
 .MyTrackComponentContent {
@@ -192,6 +197,44 @@
   align-items: center;
   width: 41px;
   margin-right: 7px;
+}
+
+.NoneTrackContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 42px;
+}
+
+.NoneTrackContainerTextOne {
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%; /* 27.977px */
+}
+
+.NoneTrackContainerTextTwoBox {
+  width: 136px;
+  height: 18px;
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.NoneTrackContainerTextTwo {
+  color: var(--Primary, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 @media only screen and (max-width: 990px) {

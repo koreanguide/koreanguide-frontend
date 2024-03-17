@@ -1,0 +1,44 @@
+.dropdown {
+  width: 227px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 53px;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%; /* 31.974px */
+}
+
+.dropdown:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-container {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.dropdown-first,
+.dropdown-second {
+  width: 150px; /* 넓이 조정 */
+  height: 40px; /* 높이 조정 */
+  font-size: 16px; /* 글자 크기 조정 */
+  -webkit-appearance: none; /* 크롬, 사파리 기본 스타일 제거 */
+  -moz-appearance: none; /* 파이어폭스 기본 스타일 제거 */
+  appearance: none; /* 기본 화살표 스타일 제거 */
+  background: url("C:\Users\PCA\Documents\GitHub\koreanguide-frontend\public\img\SubwayArrow.svg")
+    no-repeat right center;
+  padding-right: 30px; /* 화살표와 텍스트 사이의 여백 조정 */
+}
+
+.dropdown-first {
+  background-color: lightblue; /* 첫 번째 드롭다운 배경색 */
+}
+
+.dropdown-second {
+  background-color: lightgreen; /* 두 번째 드롭다운 배경색 */
+}
