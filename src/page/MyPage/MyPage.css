@@ -815,8 +815,6 @@
 .SubWaySelectInner {
   width: 767px;
   height: 267px;
-  background-color: aliceblue;
-  /* display: flex; */
   text-align: start;
 }
 
@@ -833,7 +831,6 @@
 .SubWaySelectTextBox {
   width: 388px;
   height: 32px;
-  background-color: #8c8c8c;
   margin-top: 43px;
   display: flex;
   align-items: center;
@@ -852,9 +849,43 @@
 .SubWaySelectDropsetFrame {
   width: 767px;
   height: 53px;
-  background-color: #f94747;
   margin-top: 3px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.LocationSoulBox {
+  width: 187px;
+  height: 53px;
+  border-radius: 10px;
+  background: var(--KG_OUTLINE, #ececec);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.addressOption {
+  width: 470px;
+  height: 53px;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url("C:\Users\PCA\Documents\GitHub\koreanguide-frontend\public\img\SubwayArrow.svg")
+    no-repeat right 15px center;
+  padding-left: 15px;
 }

@@ -61,6 +61,11 @@ function MyTrack() {
     window.scrollTo(0, 0);
   };
 
+  const goToViewPage = () => {
+    navigate("/portal/track/view");
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     const MyTrackInquiry = async () => {
       try {
@@ -99,7 +104,7 @@ function MyTrack() {
           {tracks.length}건의 등록된 트랙이 있어요.
         </div>
         <div className="MyTrackComponentFrame">
-          <div className="MyTrack-container">
+          <div className="MyTrack-container" onClick={goToViewPage}>
             {tracks.map((track, index) => (
               <MyTrackComponent key={index} track={track} />
             ))}

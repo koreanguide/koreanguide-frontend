@@ -20,6 +20,7 @@ import PasswordResetRoute from "./page/PasswordReset/PasswordResetRoute";
 import SignUpRoute from "./page/SignUp/SignUpRoute";
 import GuideMyPage from "./page/MyPage/GuideMyPage";
 import UnregisterPage from "./page/Unregister/Unregister";
+import TrackViewPage from "./page/Track/TrackView";
 
 function App() {
   return (
@@ -111,6 +112,14 @@ function App() {
             element={
               // <CheckToken>
               <UnregisterPage />
+              // </CheckToken>
+            }
+          />
+          <Route
+            path="/portal/track/view"
+            element={
+              // <CheckToken>
+              <TrackViewPage />
               // </CheckToken>
             }
           />

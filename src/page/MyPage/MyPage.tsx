@@ -52,6 +52,12 @@ function MyPage() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedDateStr, setSelectedDateStr] = useState<string | null>(null);
 
+  const [SubwayChangeShow, setSubwayChangeShow] = useState(false);
+
+  const [AddressChangeShow, setAddressChangeShow] = useState(false);
+
+  const [seoulCountry, setseoulCountry] = useState("");
+
   useEffect(() => {
     if (token === null) {
       console.log("세션 스토리지에 토큰이 없습니다.");
@@ -241,8 +247,8 @@ function MyPage() {
     );
   };
 
-  const CreditPage = () => {
-    navigate("/portal/credit");
+  const ViewPage = () => {
+    navigate("/portal/view");
     window.scrollTo(0, 0);
   };
 
@@ -605,7 +611,116 @@ function MyPage() {
     );
   };
 
-  const SubwayFixClick = () => {};
+  const SubwayFixClick = () => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
+    setSubwayChangeShow(true);
+    BackGroundBlur();
+  };
+
+  interface IDropdownOption {
+    value: string;
+    displayText: string;
+  }
+
+  interface IDropdownProps {
+    options: IDropdownOption[];
+  }
+
+  const Dropdown: React.FC<IDropdownProps> = ({ options }) => {
+    const [currentSelection, setCurrentSelection] = useState<string>("");
+
+    const handleSelectionChange = (
+      event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+      const newValue = event.target.value;
+      setCurrentSelection(newValue);
+      console.log(`선택된 옵션: ${newValue}`);
+      setseoulCountry(`${newValue}`);
+    };
+
+    return (
+      <select
+        className="addressOption"
+        value={currentSelection}
+        onChange={handleSelectionChange}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.displayText}
+          </option>
+        ))}
+      </select>
+    );
+  };
+
+  const dropdownOptions = [
+    { value: "NONE", displayText: "지역을 선택해주세요" },
+    { value: "GANGNAM", displayText: "강남구" },
+    { value: "GANGDONG", displayText: "강북구" },
+    { value: "GANGBUK", displayText: "강동구" },
+    { value: "GANGSEO", displayText: "강서구" },
+    { value: "GWANAK", displayText: "관악구" },
+    { value: "GWANGJIN", displayText: "광진구" },
+    { value: "GURO", displayText: "구로구" },
+    { value: "GEUMCHEON", displayText: "금천구" },
+    { value: "NOWON", displayText: "노원구" },
+    { value: "DOBONG", displayText: "도봉구" },
+    { value: "DONGDAEMUN", displayText: "동대문구" },
+    { value: "DONGJAK", displayText: "동작구" },
+    { value: "MAPO", displayText: "마포구" },
+    { value: "SEODAEMUN", displayText: "서대문구" },
+    { value: "SEOCHO", displayText: "서초구" },
+    { value: "SEONGDONG", displayText: "성동구" },
+    { value: "SEONGBUK", displayText: "성북구" },
+    { value: "SONGPA", displayText: "송파구" },
+    { value: "YANGCHEON", displayText: "양천구" },
+    { value: "YONGDENGPO", displayText: "영등포구" },
+    { value: "YONGSAN", displayText: "용산구" },
+    { value: "EUNPYEONG", displayText: "은평구" },
+    { value: "JONGNO", displayText: "종로구" },
+    { value: "JUNG", displayText: "종구" },
+    { value: "JUNGNANG", displayText: "종랑구" },
+  ];
+
+  const AddressRegisterClick = () => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
+    setAddressChangeShow(true);
+    BackGroundBlur();
+  };
+
+  const AddressCancleClick = () => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "auto";
+    setAddressChangeShow(false);
+    BackGroundBlurCancle();
+  };
+
+  interface AddressData {
+    seoulCountry: string;
+  }
+
+  const AddressRegisterOnClick = async () => {
+    const data: AddressData = {
+      seoulCountry: seoulCountry,
+    };
+    try {
+      const response = await axios.post("/v1/profile/address", data, {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("거주지 변경 성공", response.data);
+        setAddressChangeShow(false);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("거주지 변경 실패:", error);
+    }
+  };
 
   //계좌번호 미등록 색상
 
@@ -702,7 +817,10 @@ function MyPage() {
                 ></img>
                 {koreanAddress}
               </div>
-              <button className="MyInfoFixButton" onClick={CreditPage}>
+              <button
+                className="MyInfoFixButton"
+                onClick={AddressRegisterClick}
+              >
                 변경
               </button>
             </div>
@@ -913,20 +1031,43 @@ function MyPage() {
           </div>
         </div>
       )}
-      {
+      {SubwayChangeShow && <DropDownComponent></DropDownComponent>}
+      {AddressChangeShow && (
         <div className="SubWaySelectFrame">
           <div className="SubWaySelectInner">
-            <div className="SubWaySelectTitle">근처 지하철 역 등록 및 수정</div>
+            <div className="SubWaySelectTitle">거주지 등록 및 수정</div>
             <div className="SubWaySelectTextBox">
-              <div className="TextLineSelect">호선 선택</div>
-              <div className="TextLineSelect">지하철 역 선택</div>
+              <div className="TextLineSelect">시, 도 선택</div>
+              <div className="TextLineSelect">구 선택</div>
             </div>
             <div className="SubWaySelectDropsetFrame">
-              <DropDownComponent></DropDownComponent>
+              <div className="LocationSoulBox">
+                서울특별시
+                <img
+                  className="SubwayArrow"
+                  src="../img/SubwayArrow.svg"
+                  alt="오류"
+                ></img>
+              </div>
+              <Dropdown options={dropdownOptions} />
+            </div>
+            <div className="IntroductionChangeButtonBox">
+              <div
+                className="IntroductionChangeButtonCancle"
+                onClick={AddressCancleClick}
+              >
+                취소
+              </div>
+              <div
+                className="IntroductionChangeButtonRegister"
+                onClick={AddressRegisterOnClick}
+              >
+                등록
+              </div>
             </div>
           </div>
         </div>
-      }
+      )}
     </div>
   );
 }
