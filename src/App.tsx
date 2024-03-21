@@ -119,7 +119,7 @@ function App() {
             path="/portal/track_view/:trackId"
             element={<TrackViewPage />}
           />
-
+          <Route path="/portal/track" element={<TrackViewPage />} />
           {/* Etc */}
           <Route path="/HeaderTwo" element={<HeaderTwo />} />
           <Route path="/Footer" element={<Footer />} />
