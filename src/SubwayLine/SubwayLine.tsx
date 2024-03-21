@@ -43,16 +43,16 @@ const DropDownComponent: React.FC = () => {
   };
 
   const firstOptions = [
-    "호선을 선택해주세요",
-    "LINE_1",
-    "LINE_2",
-    "LINE_3",
-    "LINE_4",
-    "LINE_5",
-    "LINE_6",
-    "LINE_7",
-    "LINE_8",
-    "LINE_9",
+    { label: "호선을 선택해주세요", value: "" },
+    { label: "1호선", value: "LINE_1" },
+    { label: "2호선", value: "LINE_2" },
+    { label: "3호선", value: "LINE_3" },
+    { label: "4호선", value: "LINE_4" },
+    { label: "5호선", value: "LINE_5" },
+    { label: "6호선", value: "LINE_6" },
+    { label: "7호선", value: "LINE_7" },
+    { label: "8호선", value: "LINE_8" },
+    { label: "9호선", value: "LINE_9" },
   ];
   let secondOptions: string[] = [];
 
@@ -516,21 +516,21 @@ const DropDownComponent: React.FC = () => {
         </div>
         <div className="SubWaySelectDropsetFrame">
           <div>
-            <select
-              className="dropdown-first"
-              value={firstOption}
-              onChange={(e) => {
-                setFirstOption(e.target.value);
-                console.log("첫 번째 드롭다운 선택:", e.target.value);
-                setsubwayLine(e.target.value);
-              }}
-            >
-              {firstOptions.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
+          <select
+            className="dropdown-first"
+            value={firstOption}
+            onChange={(e) => {
+              setFirstOption(e.target.value);
+              console.log("첫 번째 드롭다운 선택:", e.target.value);
+              setsubwayLine(e.target.value);
+            }}
+          >
+            {firstOptions.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
 
             <select
               className="dropdown-second"
