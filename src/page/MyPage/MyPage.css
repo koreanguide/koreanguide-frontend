@@ -885,7 +885,7 @@
   font-weight: 500;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url("C:\Users\PCA\Documents\GitHub\koreanguide-frontend\public\img\SubwayArrow.svg")
+  background: url("../../../public/img/SubwayArrow.svg")
     no-repeat right 15px center;
   padding-left: 15px;
 }
