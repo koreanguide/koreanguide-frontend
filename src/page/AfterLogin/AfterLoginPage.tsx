@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./AfterLoginPage.css";
-// import "src/page/Track/MyTrack.css";
 import HeaderTwo from "../../HeaderTwo";
 import Footer from "../Footer/Footer";
 import axios from "axios";
 import LoadPage from "../LoadPage/LoadPage";
-
 
 function AfterLoginPage() {
   const token = sessionStorage.getItem("access-token");
@@ -28,7 +26,7 @@ function AfterLoginPage() {
         const response = await axios.get("/v1/profile/main", {
           headers: {
             "X-AUTH-TOKEN": token,
-          }
+          },
         });
 
         setTotalLiked(response.data.totalLiked);
@@ -39,10 +37,7 @@ function AfterLoginPage() {
       }
     };
 
-    Promise.all([
-      MainInfo()
-    ]).then(() => setIsLoading(false));
-
+    Promise.all([MainInfo()]).then(() => setIsLoading(false));
   }, [token]);
 
   if (isLoading) {
@@ -99,6 +94,12 @@ function AfterLoginPage() {
             src="../img/NoneStar.svg"
             alt="오류"
           ></img>
+
+          {/* <img
+            src="../img/eye.svg"
+            className="setting-img"
+            alt="Setting Icon"
+          ></img> */}
           {/* <img
             className="MyTrackComponentImg"
             src={track.primaryImageUrl}
@@ -133,6 +134,11 @@ function AfterLoginPage() {
                 src="../img/MyTrackheart.svg"
                 alt="조회수"
               ></img>
+              {/* <img
+                src="../img/eye.svg"
+                className="setting-img"
+                alt="Setting Icon"
+              ></img> */}
               {/* <div className="MyTrackComponentHeart">{track.like}</div> */}
               <div className="MyTrackComponentHeart">78</div>
             </div>

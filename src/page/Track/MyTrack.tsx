@@ -4,20 +4,36 @@ import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export const MyTrackComponent = ({ track }: { track: any }) => {
+interface Track {
+  trackId: string;
+  primaryImageUrl: string;
+  trackTitle: string;
+  trackPreview: string;
+  tags: string[];
+  view: number;
+  like: number;
+}
+
+export const MyTrackComponent = ({ track }: { track: Track }) => {
+  const navigate = useNavigate();
+
+  const handleTrackClick = () => {
+    navigate(`/portal/track_view/${track.trackId}`);
+  };
+
   return (
-    <div className="MyTrackComponent">
+    <div className="MyTrackComponent" onClick={handleTrackClick}>
       <div className="MyTrackComponentImgBox">
         <img
           className="MyTrackComponentStar"
           src="../img/NoneStar.svg"
           alt="오류"
-        ></img>
+        />
         <img
           className="MyTrackComponentImg"
           src={track.primaryImageUrl}
           alt="오류"
-        ></img>
+        />
       </div>
       <div className="MyTrackComponentTextBox">
         <div className="MyTrackComponentTitleText">{track.trackTitle}</div>
@@ -31,7 +47,7 @@ export const MyTrackComponent = ({ track }: { track: any }) => {
         </div>
         <div className="MyTrackComponentContent">
           <div className="MyTrackComponentViewBox">
-            <img className="" src="../img/eye.svg" alt="조회수"></img>
+            <img className="" src="../img/eye.svg" alt="조회수" />
             <div className="MyTrackComponentView">{track.view}</div>
           </div>
           <div className="MyTrackComponentHeartBox">
@@ -39,7 +55,7 @@ export const MyTrackComponent = ({ track }: { track: any }) => {
               className="MyTrackComponentHeartImg"
               src="../img/MyTrackheart.svg"
               alt="조회수"
-            ></img>
+            />
             <div className="MyTrackComponentHeart">{track.like}</div>
           </div>
         </div>
@@ -58,11 +74,6 @@ function MyTrack() {
 
   const goToMyTrackCreate = () => {
     navigate("/portal/track/new");
-    window.scrollTo(0, 0);
-  };
-
-  const goToViewPage = () => {
-    navigate("/portal/track/view");
     window.scrollTo(0, 0);
   };
 
@@ -104,7 +115,7 @@ function MyTrack() {
           {tracks.length}건의 등록된 트랙이 있어요.
         </div>
         <div className="MyTrackComponentFrame">
-          <div className="MyTrack-container" onClick={goToViewPage}>
+          <div className="MyTrack-container">
             {tracks.map((track, index) => (
               <MyTrackComponent key={index} track={track} />
             ))}

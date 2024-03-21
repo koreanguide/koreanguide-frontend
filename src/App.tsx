@@ -116,12 +116,8 @@ function App() {
             }
           />
           <Route
-            path="/portal/track/view"
-            element={
-              // <CheckToken>
-              <TrackViewPage />
-              // </CheckToken>
-            }
+            path="/portal/track_view/:trackId"
+            element={<TrackViewPage />}
           />
 
           {/* Etc */}
