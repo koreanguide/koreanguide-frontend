@@ -73,13 +73,13 @@ function AfterLoginPage() {
 
   const handleBoxClick = async () => {
     try {
-      const response = await axios.post("/v1/profile/progress/deposit", {
+      const response = await axios.post("/v1/profile/progress/deposit", {}, {
         headers: {
           "X-AUTH-TOKEN": token,
         },
       });
-
-      if(response.status === 200) {
+  
+      if (response.status === 200) {
         console.log("크레딧 지급 요청 완료");
         // 페이지 새로고침
         window.location.reload();
@@ -87,7 +87,7 @@ function AfterLoginPage() {
     } catch (error) {
       console.error(error);
     }
-  }
+  };  
 
   if (isLoading) {
     return <LoadPage />;
@@ -240,114 +240,120 @@ function AfterLoginPage() {
             </div>
           )}
           {
-            !profileComplete && ShowProgressBox || (
-              <div
-                className="GuideMainPageProgressBox"
-                onClick={ShowProgressBoxOnClick}
-              >
-                <div className="GuideMainPageProgressContent">
-                  <div className="GuideMainPageProgressContentTwo">
-                    <img
-                      className="ScheduleBoxImg"
-                      src="../img/Heart.svg"
-                      alt=""
-                    ></img>
-                    <div className="ScheduleBoxText">
-                      아직 프로필이 완성되지 않았어요! 완성하고 시작 크레딧을 지급받으세요!
+            !profileComplete && (
+              <>
+              {
+                ShowProgressBox || (
+                  <div
+                    className="GuideMainPageProgressBox"
+                    onClick={ShowProgressBoxOnClick}
+                  >
+                    <div className="GuideMainPageProgressContent">
+                      <div className="GuideMainPageProgressContentTwo">
+                        <img
+                          className="ScheduleBoxImg"
+                          src="../img/Heart.svg"
+                          alt=""
+                        ></img>
+                        <div className="ScheduleBoxText">
+                          아직 프로필이 완성되지 않았어요! 완성하고 시작 크레딧을 지급받으세요!
+                        </div>
+                      </div>
+                      <div className="ScheduleBoxDateText">5단계 중 {level}단계 완료</div>
                     </div>
                   </div>
-                  <div className="ScheduleBoxDateText">5단계 중 {level}단계 완료</div>
-                </div>
-              </div>
-            )
-          }
-          {
-            ShowProgressBox && (
-              <div
-                className="OnClickProgressBox"
-                onClick={OnClickProgressBoxHidden}
-              >
-                <div className="OnClickProgressBoxFrameOne">
-                  <div className="GuideMainPageProgressContent">
-                    <div className="GuideMainPageProgressContentTwo">
-                      <img
-                        className="ScheduleBoxImg"
-                        src="../img/Heart.svg"
-                        alt=""
-                      ></img>
-                      <div className="ScheduleBoxText">
-                        아직 프로필이 완성되지 않았어요! 완성하고 시작 크레딧을 지급받으세요!
+                )
+              }
+              {
+                ShowProgressBox && (
+                  <div
+                    className="OnClickProgressBox"
+                    onClick={OnClickProgressBoxHidden}
+                  >
+                    <div className="OnClickProgressBoxFrameOne">
+                      <div className="GuideMainPageProgressContent">
+                        <div className="GuideMainPageProgressContentTwo">
+                          <img
+                            className="ScheduleBoxImg"
+                            src="../img/Heart.svg"
+                            alt=""
+                          ></img>
+                          <div className="ScheduleBoxText">
+                            아직 프로필이 완성되지 않았어요! 완성하고 시작 크레딧을 지급받으세요!
+                          </div>
+                        </div>
+                        <div className="ScheduleBoxDateText">
+                          5단계 중 {level}단계 완료
+                        </div>
                       </div>
                     </div>
-                    <div className="ScheduleBoxDateText">
-                      5단계 중 {level}단계 완료
+                    <div className="OnClickProgressBoxFrameTwo">
+                      <div className="OnClickProgressLevelBox">
+                        <div className="OnClickProgressGroupBox">
+                          {
+                            <div className="OnClickProgressLevel">
+                              <div className="OnClickProgressLevelBoxTwo">
+                                <div className={firstLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
+                                <div className="OnClickProgressLevelText">1단계</div>
+                              </div>
+                              <div className="OnClickProgressLevelMissionText">
+                                KOREAN GUIDE 가입하기
+                              </div>
+                            </div>
+                          }
+                          {
+                            <div className="OnClickProgressLevel">
+                              <div className="OnClickProgressLevelBoxTwo">
+                                <div className={secondLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
+                                <div className="OnClickProgressLevelText">2단계</div>
+                              </div>
+                              <div className="OnClickProgressLevelMissionText">
+                                소개글 등록하기
+                              </div>
+                            </div>
+                          }
+                          {
+                            <div className="OnClickProgressLevel">
+                              <div className="OnClickProgressLevelBoxTwo">
+                                <div className={thirdLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
+                                <div className="OnClickProgressLevelText">3단계</div>
+                              </div>
+                              <div className="OnClickProgressLevelMissionText">
+                                근처 지하철 역 등록하기
+                              </div>
+                            </div>
+                          }
+                        </div>
+                        <div className="OnClickProgressGroupBoxTwo">
+                          {
+                            <div className="OnClickProgressLevel">
+                              <div className="OnClickProgressLevelBoxTwo">
+                                <div className={fourthLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
+                                <div className="OnClickProgressLevelText">4단계</div>
+                              </div>
+                              <div className="OnClickProgressLevelMissionText">
+                                생년월일 등록하기
+                              </div>
+                            </div>
+                          }
+                          {
+                            <div className="OnClickProgressLevel">
+                              <div className="OnClickProgressLevelBoxTwo">
+                                <div className={fifthLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
+                                <div className="OnClickProgressLevelText">5단계</div>
+                              </div>
+                              <div className="OnClickProgressLevelMissionText">
+                                나만의 트랙 생성하기
+                              </div>
+                            </div>
+                          }
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="OnClickProgressBoxFrameTwo">
-                  <div className="OnClickProgressLevelBox">
-                    <div className="OnClickProgressGroupBox">
-                      {
-                        <div className="OnClickProgressLevel">
-                          <div className="OnClickProgressLevelBoxTwo">
-                            <div className={firstLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
-                            <div className="OnClickProgressLevelText">1단계</div>
-                          </div>
-                          <div className="OnClickProgressLevelMissionText">
-                            KOREAN GUIDE 가입하기
-                          </div>
-                        </div>
-                      }
-                      {
-                        <div className="OnClickProgressLevel">
-                          <div className="OnClickProgressLevelBoxTwo">
-                            <div className={secondLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
-                            <div className="OnClickProgressLevelText">2단계</div>
-                          </div>
-                          <div className="OnClickProgressLevelMissionText">
-                            소개글 등록하기
-                          </div>
-                        </div>
-                      }
-                      {
-                        <div className="OnClickProgressLevel">
-                          <div className="OnClickProgressLevelBoxTwo">
-                            <div className={thirdLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
-                            <div className="OnClickProgressLevelText">3단계</div>
-                          </div>
-                          <div className="OnClickProgressLevelMissionText">
-                            근처 지하철 역 등록하기
-                          </div>
-                        </div>
-                      }
-                    </div>
-                    <div className="OnClickProgressGroupBoxTwo">
-                      {
-                        <div className="OnClickProgressLevel">
-                          <div className="OnClickProgressLevelBoxTwo">
-                            <div className={fourthLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
-                            <div className="OnClickProgressLevelText">4단계</div>
-                          </div>
-                          <div className="OnClickProgressLevelMissionText">
-                            생년월일 등록하기
-                          </div>
-                        </div>
-                      }
-                      {
-                        <div className="OnClickProgressLevel">
-                          <div className="OnClickProgressLevelBoxTwo">
-                            <div className={fifthLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
-                            <div className="OnClickProgressLevelText">5단계</div>
-                          </div>
-                          <div className="OnClickProgressLevelMissionText">
-                            나만의 트랙 생성하기
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </div>
-              </div>
+                )
+              }
+              </>
             )
           }
 
