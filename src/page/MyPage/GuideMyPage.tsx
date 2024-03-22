@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeaderTwo from "../../HeaderTwo";
 import "./GuideMyPage.css";
 import axios from "axios";
+import LoadPage from "../LoadPage/LoadPage";
 
 function GuideMyPage() {
   const token = sessionStorage.getItem("access-token");
@@ -26,6 +27,7 @@ function GuideMyPage() {
   const [NameRegisterPassword, setNameRegisterPassword] = useState("");
   const [NameFixPopUp, setNameFixPopUp] = useState(false);
   const [NameFixPopUpError, setNameFixPopUpError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (token === null) {
@@ -48,6 +50,7 @@ function GuideMyPage() {
         setEmail(response.data.email);
         setPassword(response.data.password);
         setRegisteredAt(response.data.registeredAt);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -55,6 +58,11 @@ function GuideMyPage() {
 
     GuideMyInformation();
   }, [token]);
+
+  if (loading) {
+    return <LoadPage />;
+  }
+
   // 이메일 수정, 등록
   const EmailFixClick = () => {
     setEmailFixPopUp(true);
