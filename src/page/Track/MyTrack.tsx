@@ -80,7 +80,7 @@ function MyTrack() {
   useEffect(() => {
     const MyTrackInquiry = async () => {
       try {
-        const response = await axios.get("/v1/track/", {
+        const response = await axios.get("/v1/track", {
           headers: {
             "X-AUTH-TOKEN": token,
           },
