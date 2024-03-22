@@ -12,6 +12,14 @@ function AfterLoginPage() {
   const [totalView, setTotalView] = useState("");
   const [credit, setCredit] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [firstLevel, setFirstLevel] = useState(false);
+  const [secondLevel, setSecondLevel] = useState(false);
+  const [thirdLevel, setThirdLevel] = useState(false);
+  const [fourthLevel, setFourthLevel] = useState(false);
+  const [fifthLevel, setFifthLevel] = useState(false);
+  const [profileComplete, setProfileComplete] = useState(false);
+  const [couponUsed, setCouponUsed] = useState(false);
+  const [level, setLevel] = useState("");
 
   useEffect(() => {
     if (token === null) {
@@ -37,7 +45,28 @@ function AfterLoginPage() {
       }
     };
 
-    Promise.all([MainInfo()]).then(() => setIsLoading(false));
+    const MainProfileProgressInfo = async () => {
+      try {
+        const response = await axios.get("/v1/profile/progress", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+
+        setFirstLevel(response.data.firstLevel);
+        setSecondLevel(response.data.secondLevel);
+        setThirdLevel(response.data.thirdLevel);
+        setFourthLevel(response.data.fourthLevel);
+        setFifthLevel(response.data.fifthLevel);
+        setLevel(response.data.level);
+        setProfileComplete(response.data.profileComplete);
+        setCouponUsed(response.data.couponUsed);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    Promise.all([MainInfo(), MainProfileProgressInfo()]).then(() => setIsLoading(false));
   }, [token]);
 
   if (isLoading) {
@@ -159,7 +188,7 @@ function AfterLoginPage() {
               오늘 하루는 어떠셨나요?
             </div>
           </div>
-          <div className="GuideMainPageScheduleBox">
+          {/* <div className="GuideMainPageScheduleBox">
             <div className="GuideMainPageScheduleContent">
               <div className="GuideMainPageScheduleContentTwo">
                 <img
@@ -172,6 +201,20 @@ function AfterLoginPage() {
                 </div>
               </div>
               <div className="ScheduleBoxDateText">3 일후</div>
+            </div>
+          </div> */}
+          <div className="GuideMainPageScheduleBox">
+            <div className="GuideMainPageScheduleContent">
+              <div className="GuideMainPageScheduleContentTwo">
+                <img
+                    className="ScheduleBoxImg"
+                    src="../img/Heart.svg"
+                    alt=""
+                ></img>
+                <div className="ScheduleBoxText">
+                  프로필이 모두 완성되었어요! 여기를 눌러 시작 크레딧(10,000 크레딧)을 지급 받으세요!
+                </div>
+              </div>
             </div>
           </div>
           {ShowProgressBox || (
@@ -190,7 +233,7 @@ function AfterLoginPage() {
                     아직 프로필이 완성되지 않았어요! 완성하고 시작 크레딧을 지급받으세요!
                   </div>
                 </div>
-                <div className="ScheduleBoxDateText">5단계 중 1단계 완료</div>
+                <div className="ScheduleBoxDateText">5단계 중 {level}단계 완료</div>
               </div>
             </div>
           )}
@@ -212,7 +255,7 @@ function AfterLoginPage() {
                     </div>
                   </div>
                   <div className="ScheduleBoxDateText">
-                    5단계 중 1단계 완료
+                    5단계 중 {level}단계 완료
                   </div>
                 </div>
               </div>
@@ -222,7 +265,7 @@ function AfterLoginPage() {
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="CompleteCircle"></div>
+                          <div className={firstLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
                           <div className="OnClickProgressLevelText">1단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
@@ -233,7 +276,7 @@ function AfterLoginPage() {
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="IncompleteCircle"></div>
+                          <div className={secondLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
                           <div className="OnClickProgressLevelText">2단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
@@ -244,7 +287,7 @@ function AfterLoginPage() {
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="IncompleteCircle"></div>
+                          <div className={thirdLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
                           <div className="OnClickProgressLevelText">3단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
@@ -257,7 +300,7 @@ function AfterLoginPage() {
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="IncompleteCircle"></div>
+                          <div className={fourthLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
                           <div className="OnClickProgressLevelText">4단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
@@ -268,7 +311,7 @@ function AfterLoginPage() {
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="IncompleteCircle"></div>
+                          <div className={fifthLevel ? "CompleteCircle" : "IncompleteCircle"}></div>
                           <div className="OnClickProgressLevelText">5단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
