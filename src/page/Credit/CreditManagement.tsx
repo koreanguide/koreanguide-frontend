@@ -56,7 +56,7 @@ function CreditManagement() {
 
     const fetchAmount = async () => {
       try {
-        const response = await axios.get("/v1/credit/", {
+        const response = await axios.get("/v1/credit", {
           headers: {
             "X-AUTH-TOKEN": token,
           },
@@ -64,7 +64,7 @@ function CreditManagement() {
         console.log("잔액조회", response.data);
         setAmount(response.data.amount);
       } catch (error) {
-        console.error(error);
+        console.error("잔액 조회 오류: " + error);
       }
     };
 
