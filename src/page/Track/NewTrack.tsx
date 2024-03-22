@@ -119,7 +119,7 @@ function NewTrackpage() {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await axios.post("/v1/file", formData, {
+      const response = await axios.post("/v1/file/", formData, {
         headers: {
           "X-AUTH-TOKEN": token,
           "Content-Type": "multipart/form-data",
@@ -171,7 +171,7 @@ function NewTrackpage() {
       };
 
       try {
-        const response = await axios.post("/v1/track", data, {
+        const response = await axios.post("/v1/track/", data, {
           headers: {
             "X-AUTH-TOKEN": token,
           },
@@ -276,7 +276,7 @@ function NewTrackpage() {
         formData.append("file", file);
 
         try {
-          const response = await axios.post("/v1/file", formData, {
+          const response = await axios.post("/v1/file/", formData, {
             headers: {
               "X-AUTH-TOKEN": token,
               "Content-Type": "multipart/form-data",
@@ -548,7 +548,7 @@ function NewTrackpage() {
       msg: AI_Ask,
     };
     try {
-      const response = await axios.post("/v1/assistant", data, {
+      const response = await axios.post("/v1/assistant/", data, {
         headers: {
           "X-AUTH-TOKEN": token,
         },
