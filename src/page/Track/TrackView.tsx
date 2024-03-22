@@ -3,6 +3,7 @@ import axios from "axios";
 import HeaderTwo from "../../HeaderTwo";
 import "./TrackView.css";
 import { useParams, useNavigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 function TrackViewPage() {
   const { trackId } = useParams();
@@ -153,7 +154,9 @@ function TrackViewPage() {
             })}
           </div>
         </div>
-        <div className="ViewPageContentContainer">{content}</div>
+        <div className="ViewPageContentContainer">
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
       </div>
     </div>
   );
