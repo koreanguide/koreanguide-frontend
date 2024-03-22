@@ -187,11 +187,10 @@ function AfterLoginPage() {
                     alt=""
                   ></img>
                   <div className="ScheduleBoxText">
-                    아직 프로필이 완성되지 않았습니다. 여기를 눌러 진척도를
-                    확인해 보세요!
+                    아직 프로필이 완성되지 않았어요! 완성하고 시작 크레딧을 지급받으세요!
                   </div>
                 </div>
-                <div className="ScheduleBoxDateText">1단계 완료</div>
+                <div className="ScheduleBoxDateText">5단계 중 1단계 완료</div>
               </div>
             </div>
           )}
@@ -209,11 +208,12 @@ function AfterLoginPage() {
                       alt=""
                     ></img>
                     <div className="ScheduleBoxText">
-                      아직 프로필이 완성되지 않았습니다. 여기를 눌러 진척도를
-                      확인해 보세요!
+                      아직 프로필이 완성되지 않았어요! 완성하고 시작 크레딧을 지급받으세요!
                     </div>
                   </div>
-                  <div className="ScheduleBoxDateText">1단계 완료</div>
+                  <div className="ScheduleBoxDateText">
+                    5단계 중 1단계 완료
+                  </div>
                 </div>
               </div>
               <div className="OnClickProgressBoxFrameTwo">
@@ -222,7 +222,7 @@ function AfterLoginPage() {
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="LevelCircle"></div>
+                          <div className="CompleteCircle"></div>
                           <div className="OnClickProgressLevelText">1단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
@@ -233,22 +233,22 @@ function AfterLoginPage() {
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="LevelCircle"></div>
-                          <div className="OnClickProgressLevelText">1단계</div>
+                          <div className="IncompleteCircle"></div>
+                          <div className="OnClickProgressLevelText">2단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
-                          KOREAN GUIDE 가입하기
+                          소개글 등록하기
                         </div>
                       </div>
                     }
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="LevelCircle"></div>
-                          <div className="OnClickProgressLevelText">1단계</div>
+                          <div className="IncompleteCircle"></div>
+                          <div className="OnClickProgressLevelText">3단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
-                          KOREAN GUIDE 가입하기
+                          근처 지하철 역 등록하기
                         </div>
                       </div>
                     }
@@ -257,22 +257,22 @@ function AfterLoginPage() {
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="LevelCircle"></div>
-                          <div className="OnClickProgressLevelText">1단계</div>
+                          <div className="IncompleteCircle"></div>
+                          <div className="OnClickProgressLevelText">4단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
-                          KOREAN GUIDE 가입하기
+                          생년월일 등록하기
                         </div>
                       </div>
                     }
                     {
                       <div className="OnClickProgressLevel">
                         <div className="OnClickProgressLevelBoxTwo">
-                          <div className="LevelCircle"></div>
-                          <div className="OnClickProgressLevelText">1단계</div>
+                          <div className="IncompleteCircle"></div>
+                          <div className="OnClickProgressLevelText">5단계</div>
                         </div>
                         <div className="OnClickProgressLevelMissionText">
-                          KOREAN GUIDE 가입하기
+                          나만의 트랙 생성하기
                         </div>
                       </div>
                     }

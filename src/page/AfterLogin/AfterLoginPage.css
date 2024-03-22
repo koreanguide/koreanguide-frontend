@@ -284,11 +284,19 @@ body {
   align-items: center;
 }
 
-.LevelCircle {
+.CompleteCircle {
   width: 15px;
   height: 15px;
   border-radius: 15px;
   background-color: #fff;
+}
+
+.IncompleteCircle {
+  width: 13px;
+  height: 13px;
+  border-radius: 15px;
+  background-color: transparent;
+  border: 1px solid #ffffff;
 }
 
 .OnClickProgressLevelText {
