@@ -218,7 +218,9 @@ function GuideMyPage() {
           <div className="GuideMyPageInfoBoxOne">
             <div className="GuideMyPageInfoBoxOneTextOne">이름</div>
             <div className="GuideMyPageInfoBoxOneInner">
-              <div className="GuideMyPageInfoText">{name}</div>
+              <div className="GuideMyPageInfoText">
+                {name ? name : <span style={{color: 'red'}}>미등록</span>}
+              </div>
               <div
                 className="GuideMyPageInfoBoxButtonOne"
                 onClick={NameFixClick}
@@ -231,7 +233,9 @@ function GuideMyPage() {
           <div className="GuideMyPageInfoBoxOne">
             <div className="GuideMyPageInfoBoxOneTextOne">전화번호</div>
             <div className="GuideMyPageInfoBoxOneInner">
-              <div className="GuideMyPageInfoText">{phoneNum}</div>
+              <div className="GuideMyPageInfoText">
+                {phoneNum ? phoneNum : <span style={{color: 'red'}}>미등록</span>}  
+              </div>
               <div
                 className="GuideMyPageInfoBoxButtonOne"
                 onClick={PhoneNumFixClick}
