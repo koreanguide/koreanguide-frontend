@@ -56,7 +56,7 @@ function CreditManagement() {
 
     const fetchAmount = async () => {
       try {
-        const response = await axios.get("/v1/credit/balance", {
+        const response = await axios.post("/v1/credit/balance", {}, {
           headers: {
             "X-AUTH-TOKEN": token,
           },
