@@ -1,0 +1,149 @@
+.TextDeleteTrack {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.6px;
+  margin-top: 151px;
+}
+
+.TrackDeleteContainerOne {
+  width: 990px;
+  height: 267px;
+  border-radius: 20px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 37px;
+}
+
+.TrackDeleteContainerOneInner {
+  width: 870px;
+  height: 180px;
+}
+
+.TrackDeleteTextOne {
+  color: var(--Primary, #730ef4);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+
+.TrackDeleteViewText,
+.TrackDeleteReviewText,
+.TrackDeleteInterestText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.TrackDeleteCheckBox {
+  width: 870px;
+  height: 18px;
+  margin-top: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TrackDeleteCheckBoxInner {
+  display: flex;
+  align-items: center;
+}
+
+.TrackDeleteCheckBoxText {
+  color: #6e6e6e;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-left: 20px;
+}
+
+.TrackDeleteNoneCheckText {
+  color: #f00;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.TrackDeleteCheckImg {
+  cursor: pointer;
+}
+
+.TrackDeletePasswordTextBox {
+  width: 990px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 37px;
+}
+
+.TrackDeletePasswordTextOne {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%; /* 31.974px */
+}
+
+.TrackDeletePasswordNoneMatch {
+  color: #f00;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.TrackDeletePasswordInput {
+  width: 960px;
+  height: 53px;
+  border-radius: 10px;
+  border: 1px solid #e3e3e3;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 199.836%;
+  padding-left: 30px;
+  margin-top: 3px;
+}
+
+.TrackDeleteButton {
+  width: 132px;
+  height: 42px;
+  border-radius: 5px 20px 20px 5px;
+  background: var(--KG_RED, #fd3d3d);
+  margin-top: 50px;
+  color: #fff;
+  font-family: pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  cursor: pointer;
+}

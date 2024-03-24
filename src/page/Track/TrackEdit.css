@@ -1,0 +1,131 @@
+.MustKnowBox {
+  width: 989px;
+  height: 73px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  background: #fff;
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+}
+
+.MustKnowBoxInner {
+  width: 583px;
+  height: 39px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.MustKnowPurpleBox {
+  width: 111px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MustKnowPurpleBoxText {
+  color: var(--KG_PRIMARY, #730ef4);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 162.836%;
+}
+
+.MustKnowSecondBox {
+  width: 452px;
+  height: 36px;
+}
+
+.MustKnowSecondBoxText {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.SensitiveSetting {
+  width: 990px;
+  height: 343px;
+  border-radius: 20px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  background: #fff;
+  margin-top: 19px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.TrackDelete {
+  width: 148px;
+  height: 39px;
+  border-radius: 10px;
+  border: 1px solid #f94747;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f94747;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.TrackDelete:hover {
+  color: #fff;
+  background-color: #f94747;
+}
+
+.SensitiveSettingInner {
+  width: 55.625rem;
+  height: 3.0625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 41px;
+}
+
+.SensitiveSettingLine {
+  width: 890px;
+  height: 1px;
+  background: #ececec;
+  margin-top: 20px;
+}
+
+.SensitiveSettingBoxOne {
+  width: 545px;
+  height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SensitiveSettingBoxOneText {
+  color: #616161;
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.SensitiveSettingInnerTwo {
+  width: 55.625rem;
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.NewTrackContainerSevenInner {
+  margin-top: 20px;
+}

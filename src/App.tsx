@@ -21,6 +21,8 @@ import SignUpRoute from "./page/SignUp/SignUpRoute";
 import GuideMyPage from "./page/MyPage/GuideMyPage";
 import UnregisterPage from "./page/Unregister/Unregister";
 import TrackViewPage from "./page/Track/TrackView";
+import TrackEdit from "./page/Track/TrackEdit";
+import TrackDeletePage from "./page/Track/TrackDelete";
 
 function App() {
   return (
@@ -116,10 +118,11 @@ function App() {
             }
           />
           <Route
-            path="/portal/track_view/:trackId"
+            path="/portal/track/view/:trackId"
             element={<TrackViewPage />}
           />
-          <Route path="/portal/track" element={<TrackViewPage />} />
+          <Route path="/portal/track/edit/:trackId" element={<TrackEdit />} />
+          <Route path="/portal/track/delete" element={<TrackDeletePage />} />
           {/* Etc */}
           <Route path="/HeaderTwo" element={<HeaderTwo />} />
           <Route path="/Footer" element={<Footer />} />

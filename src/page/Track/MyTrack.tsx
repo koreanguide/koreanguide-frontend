@@ -18,7 +18,7 @@ export const MyTrackComponent = ({ track }: { track: Track }) => {
   const navigate = useNavigate();
 
   const handleTrackClick = () => {
-    navigate(`/portal/track_view/${track.trackId}`);
+    navigate(`/portal/track/view/${track.trackId}`);
   };
 
   return (
@@ -80,7 +80,7 @@ function MyTrack() {
   useEffect(() => {
     const MyTrackInquiry = async () => {
       try {
-        const response = await axios.get("/v1/track", {
+        const response = await axios.get("/v1/track/", {
           headers: {
             "X-AUTH-TOKEN": token,
           },

@@ -22,6 +22,10 @@ function TrackViewPage() {
   const maxAdditionalImages = 5;
   const [selectedImage, setSelectedImage] = useState("");
 
+  const gotoTrackSettings = () => {
+    navigate(`/portal/track/edit/${trackId}`);
+  };
+
   useEffect(() => {
     if (token === null) {
       console.log("세션 스토리지에 토큰이 없습니다.");
@@ -93,7 +97,10 @@ function TrackViewPage() {
               <img className="ViewEye" src="/img/eye.svg" alt=""></img>
               <div className="TrackViewPageLViewNum">{view}</div>
             </div>
-            <div className="TrackViewPageSettingBox">
+            <div
+              className="TrackViewPageSettingBox"
+              onClick={gotoTrackSettings}
+            >
               <img
                 src="/img/ViewSetting.svg"
                 className="ViewSetting"
