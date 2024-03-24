@@ -7,6 +7,7 @@ import LoadPage from "../LoadPage/LoadPage";
 
 function AfterLoginPage() {
   const token = sessionStorage.getItem("access-token");
+  const nickName = sessionStorage.getItem('name');
   const [ShowProgressBox, setShowProgressBox] = useState<boolean>(false);
   const [totalLiked, setTotalLiked] = useState("");
   const [totalView, setTotalView] = useState("");
@@ -203,7 +204,7 @@ function AfterLoginPage() {
       <div className="GuideMainPage">
         <div className="GuideMainPageFrame">
           <div className="GuideMainPageTitleTextBox">
-            <div className="GuideMainPageTitleText">김찬주님,</div>
+            <div className="GuideMainPageTitleText">{nickName}님,</div>
             <div className="GuideMainPageTitleText">
               오늘 하루는 어떠셨나요?
             </div>

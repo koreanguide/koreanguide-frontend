@@ -28,6 +28,21 @@ function Login() {
   const [MobileLoginError, setMobileLoginError] = useState<boolean>(true);
   const [MobilePopUpShow, setMobilePopUpShow] = useState<boolean>(true);
 
+  const Rest_api_key = '309a47548b21aa409474a400b62810b3';
+  const protocol = window.location.protocol; // 현재 페이지의 프로토콜 확인
+  let redirect_uri;
+  
+  if (protocol === 'http:') {
+      redirect_uri = 'http://localhost:3000/'; // 개발 환경일 경우
+  } else if (protocol === 'https:') {
+      redirect_uri = 'https://koreanguide-frontend.vercel.app/'; // 실제 서비스 환경일 경우
+  }
+
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
+  const handleKakaoLogin = () => {
+    window.location.href = kakaoURL
+  }
+
   const handleLogin = async () => {
     const data: LoginData = {
       email: email,
@@ -41,6 +56,7 @@ function Login() {
         sessionStorage.setItem("access-token", response.data.accessToken);
         sessionStorage.setItem("refresh-token", response.data.refreshToken);
         sessionStorage.setItem("email", response.data.email);
+        sessionStorage.setItem("name", response.data.name);
         console.log("로그인 성공");
         console.log(response.data.accessToken);
         navigate("/portal");
@@ -65,6 +81,7 @@ function Login() {
           className="signinCompanyLogoImg"
           src={`../img/${imageName}.svg`}
           alt="오류"
+          onClick={handleKakaoLogin}
         ></img>
       </div>
     );

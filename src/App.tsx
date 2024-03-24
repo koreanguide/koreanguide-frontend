@@ -5,8 +5,6 @@ import AfterLoginPage from "./page/AfterLogin/AfterLoginPage";
 import ChatPage from "./page/ChatPage/ChatPage";
 import HeaderTwo from "./HeaderTwo";
 import Footer from "./page/Footer/Footer";
-import GlobalLogin from "./page/Login/GlobalLoginPage";
-import SignUpPage from "./page/SignUp/SignUp";
 import CreditManagement from "./page/Credit/CreditManagement";
 import MyPage from "./page/MyPage/MyPage";
 import LoadPage from "./page/LoadPage/LoadPage";

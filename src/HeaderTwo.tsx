@@ -116,6 +116,9 @@ function HeaderTwo() {
 
   const LogOutClick = () => {
     sessionStorage.removeItem("access-token");
+    sessionStorage.removeItem("refresh-token");
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("name");
     navigate("/");
     window.scrollTo(0, 0);
   };
