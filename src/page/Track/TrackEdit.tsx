@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./NewTrack.css";
 import "./TrackEdit.css";
 import HeaderTwo from "../../HeaderTwo";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function TrackEdit() {
@@ -13,12 +13,13 @@ function TrackEdit() {
   const [ShowNotificationSecond, setShowNotificationSecond] =
     useState<boolean>(true);
   const [ShowNotificationThird, setShowNotificationThird] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const [ShowNotificationFour, setShowNotificationFour] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const [ShowNotificationFive, setShowNotificationFive] =
     useState<boolean>(true);
-  const [ShowNotificationSix, setShowNotificationSix] = useState<boolean>(true);
+  const [ShowNotificationSix, setShowNotificationSix] =
+    useState<boolean>(false);
 
   const [primaryImageUrl, setPrimaryImageUrl] = useState<string>("");
   const [tags, setTags] = useState<Tag[]>([{ tagName: "tag1" }]);
@@ -75,6 +76,17 @@ function TrackEdit() {
   const [AIWait, setAIWait] = useState<boolean>(false);
   const [AIError, setAIError] = useState<boolean>(false);
   const [AIAnw, setAIAnw] = useState<boolean>(false);
+
+  // ======================================================================================================================
+  const [EditTrackId, setEditTrackId] = useState("");
+  const [EditTitle, setEditTitle] = useState("");
+  const [EditPrimaryImage, setEditPrimaryImage] = useState("");
+  const [EdiAdditionalImage, setEditAdditionalImage] = useState("");
+  const [EditPreview, setEditPreview] = useState("");
+  const [EditTags, setEditTags] = useState("");
+  const [EditContent, setEditContent] = useState("");
+  const [EditVisible, setEditVisible] = useState("");
+  const [EditUseAutoTranslate, setEditUseAutoTranslate] = useState("");
 
   const goToMyTrack = () => {
     navigate("/portal/track");
@@ -292,8 +304,7 @@ function TrackEdit() {
 
   const FirstInputFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    setFirstInputText(inputValue);
-    setTrackTitle(inputValue);
+    setEditTitle(inputValue);
 
     if (inputValue.length > 0) {
       setShowNotificationThird(false);
@@ -312,8 +323,7 @@ function TrackEdit() {
 
   const SecondInputFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    setSecondInputText(inputValue);
-    setTrackPreview(inputValue);
+    setEditPreview(inputValue);
 
     if (inputValue.length > 0) {
       setShowNotificationFour(false);
@@ -574,14 +584,108 @@ function TrackEdit() {
     // navigate(`/portal/track/view/${track.trackId}`);
   };
 
+  // ======================================================================================================================
+
+  const { trackId } = useParams();
+
+  useEffect(() => {
+    if (token === null) {
+      console.log("세션 스토리지에 토큰이 없습니다.");
+      return;
+    } else {
+      console.log("토큰", token);
+    }
+
+    const GetTrackEditInfo = async () => {
+      try {
+        const response = await axios.get("/v1/track/edit", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+          params: {
+            trackId: trackId,
+          },
+        });
+        const data = response.data;
+        setEditTrackId(data.trackId);
+        setEditTitle(data.title);
+        setEditPrimaryImage(data.primaryImage);
+        setEditAdditionalImage(data.additionalImage);
+        setEditPreview(data.preview);
+        setEditTags(data.tags);
+        setEditContent(data.content);
+        setEditVisible(data.visible);
+        setEditUseAutoTranslate(data.useAutoTranslate);
+
+        console.log("***트랙 편집*** 정보 :", response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    GetTrackEditInfo();
+  }, [token, trackId]);
+
+  // 트랙업데이트
+
+  // interface Image {
+  //   imageUrl: string;
+  // }
+
+  // interface Tag {
+  //   tagName: string;
+  // }
+
+  // interface PutTrackEditInfoData {
+  //   images: Image[];
+  //   primaryImageUrl: string;
+  //   tags: Tag[];
+  //   trackContent: string;
+  //   trackId: number; // trackId 타입을 string에서 number로 변경
+  //   trackPreview: string;
+  //   trackTitle: string;
+  //   useAutoTranslate: boolean;
+  // }
+
+  // const PutTrackEditInfo = async (
+  //   trackId: number,
+  //   images: Image[],
+  //   primaryImageUrl: string,
+  //   tags: Tag[],
+  //   trackContent: string,
+  //   trackPreview: string,
+  //   trackTitle: string,
+  //   useAutoTranslate: boolean
+  // ) => {
+  //   const data: PutTrackEditInfoData = {
+  //     images, // 이미지 배열
+  //     primaryImageUrl, // 주 이미지 URL
+  //     tags, // 태그 배열
+  //     trackContent, // 트랙 내용
+  //     trackId, // 트랙 ID
+  //     trackPreview, // 트랙 미리보기
+  //     trackTitle, // 트랙 제목
+  //     useAutoTranslate, // 자동 번역 사용 여부
+  //   };
+
+  //   try {
+  //     const response = await axios.put("/v1/track/", data, {
+  //       headers: {
+  //         "X-AUTH-TOKEN": token,
+  //       },
+  //     });
+  //     console.log("트랙 업데이트 성공 ", response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   return (
     <div>
       <HeaderTwo></HeaderTwo>
       <div className="NewTrackpage">
         <div className="NewTrackpageInner">
-          <div className="TextAddNewTrack">
-            트랙 관리: 신촌에서 떠나는 식도락 여행
-          </div>
+          <div className="TextAddNewTrack">트랙 관리: {EditTitle}</div>
           <div className="MustKnowBox">
             <div className="MustKnowBoxInner">
               <div className="MustKnowPurpleBox">
@@ -598,7 +702,7 @@ function TrackEdit() {
               </div>
             </div>
           </div>
-          {/* 3번째 컴포넌트 start*/}
+          {/* 수정 트랙 명 start*/}
           <div className="NewTrackContainerThree">
             <div className="NewTrackContainerThreeInner">
               <NewTrackContainerPropsOne
@@ -622,18 +726,18 @@ function TrackEdit() {
                 type="text"
                 placeholder="트랙 이름을 입력하세요."
                 className={`NewTrackFirstInput ${
-                  FirstInputText.length > maxCharLengthOne ? "error" : ""
+                  EditTitle.length > maxCharLengthOne ? "error" : ""
                 }`}
-                value={FirstInputText}
+                value={EditTitle}
                 onChange={FirstInputFunction}
               ></input>
               <div className="NewTrackFirstInputSubBox">
                 <div></div>
-                <div className="NewTrackFirstInputTextLength">{`${FirstInputText.length}자 / 20자`}</div>
+                <div className="NewTrackFirstInputTextLength">{`${EditTitle.length}자 / 20자`}</div>
               </div>
             </div>
           </div>
-          {/* 태그번째 컴포넌트 end */}
+          {/* 수정 트랙 명 end */}
           {/* 2번째 컴포넌트 start*/}
           <div className="NewTrackContainerTwo">
             <div className="NewTrackContainerTwoInner">
@@ -836,7 +940,7 @@ function TrackEdit() {
             </div>
           </div>
           {/* 2번째 컴포넌트 end */}
-          {/* 4번째 컴포넌트 start */}
+          {/* 수정 트랙 한줄 소개글 start */}
           <div className="NewTrackContainerThree">
             <div className="NewTrackContainerThreeInner">
               <NewTrackContainerPropsOne
@@ -860,18 +964,18 @@ function TrackEdit() {
                 type="text"
                 placeholder="트랙 소개를 입력하세요."
                 className={`NewTrackFirstInput ${
-                  SecondInputText.length > maxCharLengthTwo ? "error" : ""
+                  EditPreview.length > maxCharLengthTwo ? "error" : ""
                 }`}
-                value={SecondInputText}
+                value={EditPreview}
                 onChange={SecondInputFunction}
               ></input>
               <div className="NewTrackFirstInputSubBox">
                 <div></div>
-                <div className="NewTrackFirstInputTextLength">{`${SecondInputText.length}자 / 50자`}</div>
+                <div className="NewTrackFirstInputTextLength">{`${EditPreview.length}자 / 50자`}</div>
               </div>
             </div>
           </div>
-          {/* 4번째 컴포넌트 end */}
+          {/* 수정 트랙 한줄 소개글 end */}
           {/* 5번째 컴포넌트 start */}
           <div className="NewTrackContainerThreeTag">
             <div className="NewTrackContainerFiveInner">
@@ -1075,7 +1179,7 @@ function TrackEdit() {
             </div>
           )}
           {/* 3번째 컴포넌트 end */}
-          {/* 6번째 컴포넌트 start */}
+          {/* 수정 트랙 본문 start */}
           <div className="NewTrackContainerSix">
             <div className="NewTrackContentFrame">
               <div className="NewTrackContentInner">
@@ -1097,13 +1201,13 @@ function TrackEdit() {
                   )}
                 </NewTrackContainerPropsOne>
                 <div className="TextAreaTextNumBox">
-                  <div className="NewTrackFirstInputTextLength">{`${TextAreaText.length}자 / 3000자`}</div>
+                  <div className="NewTrackFirstInputTextLength">{`${EditContent.length}자 / 3000자`}</div>
                   <textarea
                     placeholder="트랙 본문을 입력하세요"
                     className={`NewTrackFirstTextArea ${
-                      TextAreaText.length > maxCharLengthThree ? "error" : ""
+                      EditContent.length > maxCharLengthThree ? "error" : ""
                     }`}
-                    value={TextAreaText}
+                    value={EditContent}
                     onChange={handleTextAreaChange}
                     ref={textareaRef}
                   ></textarea>
@@ -1112,7 +1216,7 @@ function TrackEdit() {
             </div>
           </div>
           <div className="TextSensitiveOption">민감 설정</div>
-          {/* 6번째 컴포넌트 end */}
+          {/* 수정 트랙 본문 end */}
           {/* 7번째 컴포넌트 start */}
           <div className="SensitiveSetting">
             <div className="SensitiveSettingInner">
