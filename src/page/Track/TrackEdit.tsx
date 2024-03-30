@@ -2,49 +2,22 @@ import React, { useState, useEffect, useRef } from "react";
 import "./NewTrack.css";
 import "./TrackEdit.css";
 import HeaderTwo from "../../HeaderTwo";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function TrackEdit() {
   const token = sessionStorage.getItem("access-token");
 
-  const navigate = useNavigate();
-
-  const [ShowNotificationSecond, setShowNotificationSecond] =
-    useState<boolean>(true);
   const [ShowNotificationThird, setShowNotificationThird] =
     useState<boolean>(false);
   const [ShowNotificationFour, setShowNotificationFour] =
     useState<boolean>(false);
   const [ShowNotificationFive, setShowNotificationFive] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const [ShowNotificationSix, setShowNotificationSix] =
     useState<boolean>(false);
 
-  const [primaryImageUrl, setPrimaryImageUrl] = useState<string>("");
   const [tags, setTags] = useState<Tag[]>([{ tagName: "tag1" }]);
-  const [trackContent, setTrackContent] = useState<string>("");
-  const [trackPreview, setTrackPreview] = useState<string>("");
-  const [trackTitle, setTrackTitle] = useState<string>("");
-  const [selectedMainImage, setSelectedMainImage] = useState<
-    string | ArrayBuffer | null
-  >(null);
-  const [selectedImageOne, setSelectedImageOne] = useState<
-    string | ArrayBuffer | null
-  >(null);
-  const [selectedImageTwo, setSelectedImageTwo] = useState<
-    string | ArrayBuffer | null
-  >(null);
-  const [selectedImageThree, setSelectedImageThree] = useState<
-    string | ArrayBuffer | null
-  >(null);
-  const [selectedImageFour, setSelectedImageFour] = useState<
-    string | ArrayBuffer | null
-  >(null);
-  const [imageFileOne, setImageFileOne] = useState<File | null>(null);
-  const [imageFileTwo, setImageFileTwo] = useState<File | null>(null);
-  const [imageFileThree, setImageFileThree] = useState<File | null>(null);
-  const [imageFileFour, setImageFileFour] = useState<File | null>(null);
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [ShowTagOneBox, setShowTagOneBox] = useState<boolean>(
@@ -52,17 +25,11 @@ function TrackEdit() {
   );
   const [ShowTagTwoBox, setShowTagTwoBox] = useState<boolean>(false);
 
-  const [FirstInputText, setFirstInputText] = useState("");
   const maxCharLengthOne = 20;
 
-  const [SecondInputText, setSecondInputText] = useState("");
   const maxCharLengthTwo = 50;
 
-  const [TextAreaText, setTextAreaText] = useState("");
   const maxCharLengthThree = 3000;
-
-  const [useAutoTranslate, setUseAutoTranslate] = useState<boolean>(false);
-  const [isToggled, setIsToggled] = useState(useAutoTranslate);
 
   const [ShowCantButton, setShowCantButton] = useState<boolean>(true);
 
@@ -83,103 +50,16 @@ function TrackEdit() {
   const [EditPrimaryImage, setEditPrimaryImage] = useState("");
   const [EdiAdditionalImage, setEditAdditionalImage] = useState("");
   const [EditPreview, setEditPreview] = useState("");
-  const [EditTags, setEditTags] = useState("");
+  const [EditTags, setEditTags] = useState<string[]>([]);
   const [EditContent, setEditContent] = useState("");
-  const [EditVisible, setEditVisible] = useState("");
-  const [EditUseAutoTranslate, setEditUseAutoTranslate] = useState("");
+  const [EditVisible, setEditVisible] = useState(false);
+  const [EditUseAutoTranslate, setEditUseAutoTranslate] = useState(false);
 
-  const goToMyTrack = () => {
-    navigate("/portal/track");
-    window.scrollTo(0, 0);
-  };
-
-  interface Image {
-    imageUrl: string;
-  }
+  const [EditMainImgFormFile, setEditMainImgFormFile] = useState("");
 
   interface Tag {
     tagName: string;
   }
-
-  interface TrackCreateSubmitData {
-    images: Image[];
-    primaryImageUrl: string;
-    tags: Tag[];
-    trackContent: string;
-    trackPreview: string;
-    trackTitle: string;
-    useAutoTranslate: boolean;
-  }
-
-  const uploadImage = async (file: File | null) => {
-    if (file) {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const response = await axios.post("/v1/file/", formData, {
-        headers: {
-          "X-AUTH-TOKEN": token,
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      if (response.status === 200) {
-        return response.data;
-      }
-    }
-
-    return null;
-  };
-
-  const TrackCreateSubmitClick = async () => {
-    if (
-      ShowNotificationSecond ||
-      ShowNotificationThird ||
-      ShowNotificationFour ||
-      ShowNotificationFive ||
-      ShowNotificationSix
-    ) {
-      console.log("불가능");
-    } else {
-      const imageUrlOne = await uploadImage(imageFileOne);
-      const imageUrlTwo = await uploadImage(imageFileTwo);
-      const imageUrlThree = await uploadImage(imageFileThree);
-      const imageUrlFour = await uploadImage(imageFileFour);
-
-      const images = [
-        { imageUrl: imageUrlOne },
-        { imageUrl: imageUrlTwo },
-        { imageUrl: imageUrlThree },
-        { imageUrl: imageUrlFour },
-      ].filter((image) => image.imageUrl !== null);
-
-      const data: TrackCreateSubmitData = {
-        images: images,
-        primaryImageUrl: primaryImageUrl,
-        tags: tags,
-        trackContent: trackContent,
-        trackPreview: trackPreview,
-        trackTitle: trackTitle,
-        useAutoTranslate: useAutoTranslate,
-      };
-
-      try {
-        const response = await axios.post("/v1/track/", data, {
-          headers: {
-            "X-AUTH-TOKEN": token,
-          },
-        });
-
-        if (response.status === 200) {
-          console.log("트랙 생성 반환 성공:", response.data);
-          goToMyTrack();
-        }
-      } catch (error) {
-        console.error("트랙 생성 반환 실패:", error);
-      }
-      console.log("가능");
-    }
-  };
 
   interface NewTrackContainerPropsOneI {
     Title: string;
@@ -200,104 +80,6 @@ function TrackEdit() {
         <div className="NewTrackContainerTitleSupplementBox">{TitleSub}</div>
       </div>
     );
-  };
-
-  interface NewTrackImageComponentProps {
-    text: string;
-  }
-
-  const NewTrackImageComponent: React.FC<NewTrackImageComponentProps> = ({
-    text,
-  }) => {
-    return (
-      <div className="NewTrackImageComponentFrame">
-        <img className="plusImg" src="/img/plusImg.svg" alt="오류"></img>
-        <div className="NewTrackImageComponentText">{text}</div>
-      </div>
-    );
-  };
-
-  // 대표 이미지
-
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      setShowNotificationSecond(false);
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        setSelectedMainImage(reader.result);
-
-        const formData = new FormData();
-        formData.append("file", file);
-
-        try {
-          const response = await axios.post("/v1/file/", formData, {
-            headers: {
-              "X-AUTH-TOKEN": token,
-              "Content-Type": "multipart/form-data",
-            },
-          });
-
-          if (response.status === 200) {
-            const imageUrl = response.data;
-            setPrimaryImageUrl(imageUrl);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  //추가 이미지
-
-  const handleImageOneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImageOne(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-      setImageFileOne(file);
-    }
-  };
-
-  const handleImageTwoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImageTwo(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-      setImageFileTwo(file);
-    }
-  };
-
-  const handleImageThreeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImageThree(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-      setImageFileThree(file);
-    }
-  };
-
-  const handleImageFourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImageFour(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-      setImageFileFour(file);
-    }
   };
 
   //트랙 이름 입력
@@ -389,7 +171,6 @@ function TrackEdit() {
     "쇼핑",
     "Custom",
     "SNS",
-    // "MOOD",
   ];
 
   useEffect(() => {
@@ -412,10 +193,19 @@ function TrackEdit() {
     console.log(selectedTags);
   };
 
+  useEffect(() => {
+    setSelectedTags(EditTags);
+  }, [EditTags]);
+
   // 본문 컴포넌트
-  const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextAreaText(e.target.value);
-    setTrackContent(e.target.value);
+
+  const EditContentFunction = (e: {
+    target: {
+      style: any;
+      value: React.SetStateAction<string>;
+    };
+  }) => {
+    setEditContent(e.target.value);
 
     if (e.target.value.length > 0) {
       setShowNotificationSix(false);
@@ -432,21 +222,52 @@ function TrackEdit() {
 
   // 토글 버튼
 
-  const ToggleButton: React.FC = () => {
+  const TranslateToggleButton: React.FC = () => {
     const handleToggle = () => {
-      const newState = !isToggled;
-      setIsToggled(newState);
-      setUseAutoTranslate(newState);
+      const newState = !EditUseAutoTranslate;
+      setEditUseAutoTranslate(newState);
+      // setUseAutoTranslate(newState);
+      console.log("자동변역:", newState);
     };
 
     return (
-      <div className={`ToggleButtonMainFrame ${!isToggled ? "active" : ""}`}>
+      <div
+        className={`ToggleButtonMainFrame ${
+          EditUseAutoTranslate ? "active" : ""
+        }`}
+      >
         <div
-          className={`ToggleButtonFrame ${!isToggled ? "active" : ""}`}
+          className={`ToggleButtonFrame ${
+            EditUseAutoTranslate ? "active" : ""
+          }`}
           onClick={handleToggle}
         >
           <div
-            className={`ToggleButtonCircle ${!isToggled ? "active" : ""}`}
+            className={`ToggleButtonCircle ${
+              EditUseAutoTranslate ? "active" : ""
+            }`}
+          ></div>
+        </div>
+      </div>
+    );
+  };
+
+  const VisibleToggleButton: React.FC = () => {
+    const handleToggle = () => {
+      const newState = !EditVisible;
+      setEditVisible(newState);
+      // setUseAutoTranslate(newState);
+      console.log("공개 여부:", newState);
+    };
+
+    return (
+      <div className={`ToggleButtonMainFrame ${EditVisible ? "active" : ""}`}>
+        <div
+          className={`ToggleButtonFrame ${EditVisible ? "active" : ""}`}
+          onClick={handleToggle}
+        >
+          <div
+            className={`ToggleButtonCircle ${EditVisible ? "active" : ""}`}
           ></div>
         </div>
       </div>
@@ -455,7 +276,6 @@ function TrackEdit() {
 
   useEffect(() => {
     if (
-      ShowNotificationSecond ||
       ShowNotificationThird ||
       ShowNotificationFour ||
       ShowNotificationFive ||
@@ -466,7 +286,6 @@ function TrackEdit() {
       setShowCantButton(false);
     }
   }, [
-    ShowNotificationSecond,
     ShowNotificationThird,
     ShowNotificationFour,
     ShowNotificationFive,
@@ -548,10 +367,8 @@ function TrackEdit() {
       const textAfterCursor = text.substring(selectionEnd, text.length);
       const newText = `${textBeforeCursor}${AI_Answer}${textAfterCursor}`;
 
-      // 텍스트 업데이트
-      setTextAreaText(newText);
+      setEditContent(newText);
 
-      // 여기에서 setShowNotificationSix 상태 업데이트
       if (newText.length > 0) {
         setShowNotificationSix(false);
       } else {
@@ -628,57 +445,115 @@ function TrackEdit() {
 
   // 트랙업데이트
 
-  // interface Image {
-  //   imageUrl: string;
-  // }
+  const uploadImage = async (file: File | null) => {
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
 
-  // interface Tag {
-  //   tagName: string;
-  // }
+      try {
+        const response = await axios.post("/v1/file/", formData, {
+          headers: {
+            "X-AUTH-TOKEN": token,
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
-  // interface PutTrackEditInfoData {
-  //   images: Image[];
-  //   primaryImageUrl: string;
-  //   tags: Tag[];
-  //   trackContent: string;
-  //   trackId: number; // trackId 타입을 string에서 number로 변경
-  //   trackPreview: string;
-  //   trackTitle: string;
-  //   useAutoTranslate: boolean;
-  // }
+        if (response.status === 200) {
+          setEditMainImgFormFile(response.data);
+          return response.data;
+        }
+      } catch (error) {
+        console.error("이미지 업로드 실패:", error);
+      }
+    }
 
-  // const PutTrackEditInfo = async (
-  //   trackId: number,
-  //   images: Image[],
-  //   primaryImageUrl: string,
-  //   tags: Tag[],
-  //   trackContent: string,
-  //   trackPreview: string,
-  //   trackTitle: string,
-  //   useAutoTranslate: boolean
-  // ) => {
-  //   const data: PutTrackEditInfoData = {
-  //     images, // 이미지 배열
-  //     primaryImageUrl, // 주 이미지 URL
-  //     tags, // 태그 배열
-  //     trackContent, // 트랙 내용
-  //     trackId, // 트랙 ID
-  //     trackPreview, // 트랙 미리보기
-  //     trackTitle, // 트랙 제목
-  //     useAutoTranslate, // 자동 번역 사용 여부
-  //   };
+    return null;
+  };
 
-  //   try {
-  //     const response = await axios.put("/v1/track/", data, {
-  //       headers: {
-  //         "X-AUTH-TOKEN": token,
-  //       },
-  //     });
-  //     console.log("트랙 업데이트 성공 ", response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const onImageSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = async (loadEvent) => {
+        const result = loadEvent.target?.result;
+        if (typeof result === "string") {
+          setEditPrimaryImage(result);
+          // 파일 객체를 API로 전송
+          const uploadResult = await uploadImage(file);
+          console.log("업로드 결과:", uploadResult);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const onImageBoxClicked = () => {
+    fileInputRef.current?.click();
+  };
+
+  interface ImageUploaderProps {
+    onImageSelected: (file: File) => void;
+  }
+
+  interface Tag {
+    tagName: string;
+  }
+
+  interface Image {
+    imageUrl: string;
+  }
+
+  interface TrackEditSubmitData {
+    trackContent: string;
+    trackPreview: string;
+    trackTitle: string;
+    trackId: string;
+    useAutoTranslate: boolean;
+    tags: Tag[];
+    primaryImageUrl: string;
+    visible: boolean;
+    images: Image[];
+  }
+
+  const TrackSaveOnClick = async () => {
+    const images = [
+      { imageUrl: "" },
+      { imageUrl: "" },
+      { imageUrl: "" },
+      { imageUrl: "" },
+    ].filter((image) => image.imageUrl !== null);
+
+    const data: TrackEditSubmitData = {
+      trackContent: EditContent,
+      trackPreview: EditPreview,
+      trackTitle: EditTitle,
+      useAutoTranslate: EditUseAutoTranslate,
+      trackId: EditTrackId,
+      tags: tags,
+      primaryImageUrl: EditMainImgFormFile,
+      visible: EditVisible,
+      images: images,
+    };
+
+    try {
+      const response = await axios.put("/v1/track/", data, {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("트랙 업데이트 성공:", response.data);
+      }
+    } catch (error) {
+      console.error("트랙 업데이트 실패:", error);
+    }
+    console.log("가능");
+  };
 
   return (
     <div>
@@ -745,18 +620,7 @@ function TrackEdit() {
                 Title="트랙을 잘 소개할 수 있는 이미지를 선택해 주세요."
                 TitleSub="트랙의 이미지를 첨부해 주세요. 대표 이미지는 반드시 업로드가 필요합니다."
               >
-                {ShowNotificationSecond && (
-                  <div className="NewTrackContainerNotificationBox">
-                    <img
-                      className="RedNotificationImg"
-                      src="/img/RedNotification.svg"
-                      alt="오류"
-                    ></img>
-                    <div className="RedNotificationText">
-                      대표 이미지가 첨부되지 않았습니다
-                    </div>
-                  </div>
-                )}
+                <></>
               </NewTrackContainerPropsOne>
               <div className="ImageSelectTextBox">
                 <div className="MainImageText">대표 이미지</div>
@@ -764,176 +628,56 @@ function TrackEdit() {
               </div>
               <div className="NewTrackImageSelectContainer">
                 {
-                  <div
-                    className="MainImageBox"
-                    onClick={() =>
-                      document.getElementById("imageInput")?.click()
-                    }
-                  >
-                    {selectedMainImage ? (
-                      <img
-                        src={selectedMainImage.toString()}
-                        alt="오류"
-                        className="selectedMainImage"
-                      />
-                    ) : (
-                      <>
-                        <NewTrackImageComponent text="새 대표 이미지 추가" />
-                        <div className="ReactTextBox">
-                          <img
-                            className="ReactplusImg"
-                            src="/img/plusImg.svg"
-                            alt="오류"
-                          />
-                          <div className="ReactText">대표 이미지</div>
-                        </div>
-                      </>
-                    )}
+                  <div>
                     <input
-                      id="imageInput"
                       type="file"
                       accept="image/*"
                       style={{ display: "none" }}
-                      onChange={handleImageChange}
+                      ref={fileInputRef}
+                      onChange={onImageSelected}
                     />
+                    <div className="MainImageBox" onClick={onImageBoxClicked}>
+                      <img
+                        className="EditPrimaryImage"
+                        src={EditPrimaryImage}
+                        alt="오류"
+                      />
+                    </div>
                   </div>
                 }
                 {/* 추가 이미지1 */}
                 <div className="NewTrackAddImageContainer">
-                  <div
-                    className="NewTrackAddImageBoxOne"
-                    onClick={() =>
-                      document.getElementById("imageInputOne")?.click()
-                    }
-                  >
-                    {selectedImageOne ? (
-                      <img
-                        src={selectedImageOne.toString()}
-                        alt="오류"
-                        className="selectedImageOne"
-                      />
-                    ) : (
-                      <>
-                        <NewTrackImageComponent text="새 이미지 추가" />{" "}
-                        <div className="ReactTextBox">
-                          <img
-                            className="ReactplusImg"
-                            src="/img/plusImg.svg"
-                            alt="오류"
-                          />
-                          <div className="ReactTextTwo">추가 이미지</div>
-                        </div>
-                      </>
-                    )}
-                    <input
-                      id="imageInputOne"
-                      type="file"
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={handleImageOneChange}
-                    />
+                  <div className="NewTrackAddImageBoxOne">
+                    <img
+                      className="EditPrimaryImage"
+                      src={EdiAdditionalImage[0]}
+                      alt="오류"
+                    ></img>
                   </div>
+
                   {/* 추가 이미지2 */}
-                  <div
-                    className="NewTrackAddImageBoxOne"
-                    onClick={() =>
-                      document.getElementById("imageInputTwo")?.click()
-                    }
-                  >
-                    {selectedImageTwo ? (
-                      <img
-                        src={selectedImageTwo.toString()}
-                        alt="오류"
-                        className="selectedImageTwo"
-                      />
-                    ) : (
-                      <>
-                        <NewTrackImageComponent text="새 이미지 추가" />{" "}
-                        <div className="ReactTextBox">
-                          <img
-                            className="ReactplusImg"
-                            src="/img/plusImg.svg"
-                            alt="오류"
-                          />
-                          <div className="ReactTextTwo">추가 이미지</div>
-                        </div>
-                      </>
-                    )}
-                    <input
-                      id="imageInputTwo"
-                      type="file"
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={handleImageTwoChange}
-                    />
+                  <div className="NewTrackAddImageBoxOne">
+                    <img
+                      className="EditPrimaryImage"
+                      src={EdiAdditionalImage[1]}
+                      alt="오류"
+                    ></img>
                   </div>
                   {/* 추가 이미지3 */}
-                  <div
-                    className="NewTrackAddImageBoxOne"
-                    onClick={() =>
-                      document.getElementById("imageInputThree")?.click()
-                    }
-                  >
-                    {selectedImageThree ? (
-                      <img
-                        src={selectedImageThree.toString()}
-                        alt="오류"
-                        className="selectedImageThree"
-                      />
-                    ) : (
-                      <>
-                        <NewTrackImageComponent text="새 이미지 추가" />{" "}
-                        <div className="ReactTextBox">
-                          <img
-                            className="ReactplusImg"
-                            src="/img/plusImg.svg"
-                            alt="오류"
-                          />
-                          <div className="ReactTextTwo">추가 이미지</div>
-                        </div>
-                      </>
-                    )}
-                    <input
-                      id="imageInputThree"
-                      type="file"
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={handleImageThreeChange}
-                    />
+                  <div className="NewTrackAddImageBoxOne">
+                    <img
+                      className="EditPrimaryImage"
+                      src={EdiAdditionalImage[2]}
+                      alt="오류"
+                    ></img>
                   </div>
                   {/* 추가 이미지4 */}
-                  <div
-                    className="NewTrackAddImageBoxOne"
-                    onClick={() =>
-                      document.getElementById("imageInputFour")?.click()
-                    }
-                  >
-                    {selectedImageFour ? (
-                      <img
-                        src={selectedImageFour.toString()}
-                        alt="오류"
-                        className="selectedImageFour"
-                      />
-                    ) : (
-                      <>
-                        <NewTrackImageComponent text="새 이미지 추가" />{" "}
-                        <div className="ReactTextBox">
-                          <img
-                            className="ReactplusImg"
-                            src="/img/plusImg.svg"
-                            alt="오류"
-                          />
-                          <div className="ReactTextTwo">추가 이미지</div>
-                        </div>
-                      </>
-                    )}
-                    <input
-                      id="imageInputFour"
-                      type="file"
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={handleImageFourChange}
-                    />
+                  <div className="NewTrackAddImageBoxOne">
+                    <img
+                      className="EditPrimaryImage"
+                      src={EdiAdditionalImage[3]}
+                      alt="오류"
+                    ></img>
                   </div>
                 </div>
               </div>
@@ -1053,9 +797,9 @@ function TrackEdit() {
                 )}
               </div>
               <div className="TagedItemContainer">
-                {selectedTags.map((tagName) => (
-                  <div key={tagName} className="TagedItem">
-                    {tagName}
+                {selectedTags.map((tag, index) => (
+                  <div key={index} className="TagedItem">
+                    {tag}
                   </div>
                 ))}
               </div>
@@ -1208,7 +952,7 @@ function TrackEdit() {
                       EditContent.length > maxCharLengthThree ? "error" : ""
                     }`}
                     value={EditContent}
-                    onChange={handleTextAreaChange}
+                    onChange={EditContentFunction}
                     ref={textareaRef}
                   ></textarea>
                 </div>
@@ -1243,7 +987,7 @@ function TrackEdit() {
                   둘러보기에 이 트랙의 정보가 포함되지 않습니다.
                 </div>
               </div>
-              <ToggleButton></ToggleButton>
+              <VisibleToggleButton></VisibleToggleButton>
             </div>
             <div className="SensitiveSettingLine"></div>
             <div className="NewTrackContainerSevenInner">
@@ -1253,15 +997,15 @@ function TrackEdit() {
                   한국어로 작성된 모든 내용이 자동으로 번역되어 보여져요.
                 </div>
               </div>
-              <ToggleButton></ToggleButton>
+              <TranslateToggleButton></TranslateToggleButton>
             </div>
           </div>
           {!ShowCantButton && (
             <button
               className="NewTrackCompeletButton"
-              onClick={TrackCreateSubmitClick}
+              onClick={TrackSaveOnClick}
             >
-              생성하기
+              저장하기
             </button>
           )}
           {ShowCantButton && (
