@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ChatPage.css";
 import HeaderTwo from "../../HeaderTwo";
+import axios from "axios";
+import LoadPage from "../LoadPage/LoadPage";
 
 interface ChatListProps {
   imgName: string;
@@ -78,10 +80,49 @@ const ChatTimeInfoProps = () => {
   );
 };
 
+interface ChatList {
+  chatRoomId: string;
+  profileUrl: string;
+  name: string;
+  lastMessage: string;
+  lastTalkedAt: string;
+}
+
 function ChatPage() {
   const [inputText, setInputText] = useState("");
   const [chatTexts, setChatTexts] = useState<string[]>([]);
   const [timeStr, setTimeStr] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [chatList, setChatList] = useState<ChatList[]>([]);
+
+  useEffect(() => {
+    const fetchChatList = async () => {
+      try {
+        const response = await axios.get("/v1/chat/list", {
+          headers: {
+            "X-AUTH-TOKEN": sessionStorage.getItem("access-token")
+          }
+        });
+
+        setChatList(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchChatList();
+  }, []);
+
+  if (loading) {
+    return <LoadPage />;
+  }
+
+  const formatDate = (dateStr: string) => {
+    if (dateStr === "알 수 없음") return dateStr;
+    const date = new Date(dateStr);
+    return `${date.getMonth() + 1}/${date.getDate()}`;
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -132,78 +173,15 @@ function ChatPage() {
             </div>
           </div>
           <div className="ChatListFrame">
-            <ChatListComponent
-              imgName="profile2"
-              userName="김완준"
-              userText="What’s going on?"
-              date="11/22"
-            />
-            <ChatListComponent
-              imgName="profile3"
-              userName="Yunhwan Jeon"
-              userText="fuck you"
-              date="04/18"
-            />
-            <ChatListComponent
-              imgName="profile5"
-              userName="Tom"
-              userText="shut up asshole"
-              date="10/03"
-            />
-            <ChatListComponent
-              imgName="profile4"
-              userName="Bitch"
-              userText="I'm gonna kill you"
-              date="1/25"
-            />
-            <ChatListComponent
-              imgName="profile2"
-              userName="ChanJu Kim"
-              userText="What’s going on?"
-              date="11/22"
-            />
-            <ChatListComponent
-              imgName="profile3"
-              userName="Yunhwan Jeon"
-              userText="fuck you"
-              date="04/18"
-            />
-            <ChatListComponent
-              imgName="profile5"
-              userName="Tom"
-              userText="shut up asshole"
-              date="10/03"
-            />
-            <ChatListComponent
-              imgName="profile4"
-              userName="Bitch"
-              userText="I'm gonna kill you"
-              date="1/25"
-            />
-            <ChatListComponent
-              imgName="profile2"
-              userName="ChanJu Kim"
-              userText="What’s going on?"
-              date="11/22"
-            />
-            <ChatListComponent
-              imgName="profile3"
-              userName="Yunhwan Jeon"
-              userText="니 시발아"
-              date="04/18"
-            />
-            <ChatListComponent
-              imgName="profile5"
-              userName="Tom"
-              userText="shut up asshole"
-              date="10/03"
-            />
-            <ChatListComponent
-              imgName="profile4"
-              userName="Bitch"
-              userText="I'm gonna kill you"
-              date="1/25"
-            />
+            {chatList.map((chat) => (
+              <ChatListComponent
+                key={chat.chatRoomId}
+                imgName={chat.profileUrl === "DEFAULT" ? "NormalProfile" : chat.profileUrl}
+                userName={chat.name}
+                userText={chat.lastMessage}
+                date={formatDate(chat.lastTalkedAt)}
+              />
+            ))}
           </div>
         </div>
         <div className="ChatMainFrame">
