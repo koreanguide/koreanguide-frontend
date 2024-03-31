@@ -12,7 +12,7 @@ import ManagementMainPage from "./page/Management/ManagementMainPage";
 import ManagementTrackPage from "./page/Management/ManagementTrackPage";
 import NewTrackpage from "./page/Track/NewTrack";
 import MyTrack from "./page/Track/MyTrack";
-// import CheckToken from "./page/LogOut/CheckToken";
+import { CheckToken } from "./page/LogOut/CheckToken";
 import LoginPageRoute from "./page/Login/LoginPageRoute";
 import PasswordResetRoute from "./page/PasswordReset/PasswordResetRoute";
 import SignUpRoute from "./page/SignUp/SignUpRoute";
@@ -46,73 +46,73 @@ function App() {
           <Route
             path="/portal"
             element={
-              // <CheckToken>
+              <CheckToken>
               <AfterLoginPage />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
             path="/portal/chat"
             element={
-              // <CheckToken>
+              <CheckToken>
               <ChatPage />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
             path="/portal/track/new"
             element={
-              // <CheckToken>
+              <CheckToken>
               <NewTrackpage />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
             path="/portal/track"
             element={
-              // <CheckToken>
+              <CheckToken>
               <MyTrack />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
             path="/portal/credit"
             element={
-              // <CheckToken>
+              <CheckToken>
               <CreditManagement />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
             path="/portal/profile"
             element={
-              // <CheckToken>
+              <CheckToken>
               <MyPage />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
             path="/portal/load"
             element={
-              // <CheckToken>
+              <CheckToken>
               <LoadPage />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
             path="/portal/mypage"
             element={
-              // <CheckToken>
+              <CheckToken>
               <GuideMyPage />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
             path="/portal/unregister"
             element={
-              // <CheckToken>
+              <CheckToken>
               <UnregisterPage />
-              // </CheckToken>
+              </CheckToken>
             }
           />
           <Route
