@@ -3,6 +3,7 @@ import "./MyTrack.css";
 import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import LoadPage from "../LoadPage/LoadPage";
 
 interface Track {
   trackId: string;
@@ -69,6 +70,7 @@ function MyTrack() {
 
   const [tracks, setTracks] = useState<Array<any>>([]);
   const [TrackNoneCase, setTrackNoneCase] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -93,6 +95,8 @@ function MyTrack() {
         } else {
           setTrackNoneCase(false);
         }
+
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -100,6 +104,10 @@ function MyTrack() {
 
     MyTrackInquiry();
   }, [token]);
+
+  if (loading) {
+    return <LoadPage />;
+  }
 
   return (
     <div className="MyTrackPage">

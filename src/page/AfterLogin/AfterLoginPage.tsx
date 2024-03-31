@@ -362,7 +362,7 @@ function AfterLoginPage() {
             <div className="GuideMainPageInfoContainer">
               <GuideMainPageInfoBox
                 InfoBoxTitle="모든 트랙 조회 수"
-                InfoBoxFigure={totalView}
+                InfoBoxFigure={totalView.toLocaleString()}
                 InfoBoxUnit="회"
                 InfoBoxstyle={{
                   background:
@@ -374,7 +374,7 @@ function AfterLoginPage() {
               ></GuideMainPageInfoBox>
               <GuideMainPageInfoBox
                 InfoBoxTitle="모든 트랙 관심 수"
-                InfoBoxFigure={totalLiked}
+                InfoBoxFigure={totalLiked.toLocaleString()}
                 InfoBoxUnit="회"
                 InfoBoxstyle={{
                   background:
@@ -386,7 +386,7 @@ function AfterLoginPage() {
               ></GuideMainPageInfoBox>
               <GuideMainPageInfoBox
                 InfoBoxTitle="내 크레딧"
-                InfoBoxFigure={credit}
+                InfoBoxFigure={credit.toLocaleString()}
                 InfoBoxUnit="크레딧"
                 InfoBoxstyle={{
                   background:
