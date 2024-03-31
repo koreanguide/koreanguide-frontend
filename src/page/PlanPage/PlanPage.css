@@ -1,0 +1,267 @@
+.PlanBar {
+  width: 356px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.PlanBarItem {
+  height: 34px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 28px;
+  padding-right: 28px;
+  border-radius: 30px;
+  background: var(--KG_PRIMARY, #ececec);
+
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+.PlanBarItem:hover {
+  background: #730ef4;
+  color: #fff;
+}
+
+.PlanBarItem.selected {
+  background: #730ef4;
+  color: #fff;
+}
+
+.RecentPlanComponentNum {
+  margin-top: 36px;
+
+  color: #000;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.AllSchedulesFrame {
+  width: 990px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.SchedulesFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 990px;
+  gap: 10px;
+}
+
+.ScheduleComponentFrame {
+  width: 990px;
+  height: 420px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_SECO, #b278fb);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ScheduleComponentInner {
+  width: 919px;
+  height: 368px;
+  display: flex;
+}
+
+.ScheduleComponentBoxOne {
+  width: 270px;
+  height: 345px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ContractBoxFrame {
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ContractBoxTitleText {
+  color: var(--KG_TEXT, #80889b);
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ContractBoxContentText {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ContractBoxTimeFrame {
+  display: flex;
+  gap: 86px;
+  width: auto;
+  height: 45px;
+}
+
+.ScheduleComponentLine {
+  width: 1px;
+  height: 368px;
+  stroke-width: 1px;
+  background-color: #ececec;
+}
+
+.ScheduleComponentBoxTwo {
+  width: 286px;
+  height: 345px;
+  margin-left: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.PlanTestImg {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.ContractBoxUserInfoBox {
+  display: flex;
+  align-items: center;
+}
+
+.PlanContectImg {
+  margin-right: 10px;
+}
+
+.ContractBoxCreditInfo {
+  display: flex;
+  gap: 20px;
+  width: auto;
+  height: 45px;
+}
+
+.ScheduleComponentBoxTwoButtonBox {
+  width: 286px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ScheduleEditButton {
+  width: 127px;
+  height: 29px;
+  border-radius: 5px;
+  border: 0.5px solid var(--KG_SUBTEXT, #616161);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--KG_SUBTEXT, #616161);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ScheduleCancleButton {
+  width: 127px;
+  height: 29px;
+  border-radius: 5px;
+  border: 0.5px solid var(--KG_RED, #fd3d3d);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--KG_RED, #fd3d3d);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ScheduleComponentBoxThree {
+  width: 287px;
+  height: 345px;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.GoToChatButton {
+  width: 127px;
+  height: 29px;
+  border-radius: 5px;
+  border: 0.5px solid #730ef4;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #730ef4;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.FullAddressImg {
+  position: absolute;
+  z-index: 6;
+}
+
+.FullAddressImgText {
+  position: absolute;
+  top: 26.5px;
+  left: 15px;
+  color: #fff;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  z-index: 7;
+}
+
+.FullAddressImgFrame {
+  position: relative;
+}
+
+.ContractBoxFrameTwo {
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

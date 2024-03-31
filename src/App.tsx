@@ -21,6 +21,7 @@ import UnregisterPage from "./page/Unregister/Unregister";
 import TrackViewPage from "./page/Track/TrackView";
 import TrackEdit from "./page/Track/TrackEdit";
 import TrackDeletePage from "./page/Track/TrackDelete";
+import PlanPage from "./page/PlanPage/PlanPage";
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
             path="/portal"
             element={
               <CheckToken>
-              <AfterLoginPage />
+                <AfterLoginPage />
               </CheckToken>
             }
           />
@@ -55,7 +56,7 @@ function App() {
             path="/portal/chat"
             element={
               <CheckToken>
-              <ChatPage />
+                <ChatPage />
               </CheckToken>
             }
           />
@@ -63,7 +64,7 @@ function App() {
             path="/portal/track/new"
             element={
               <CheckToken>
-              <NewTrackpage />
+                <NewTrackpage />
               </CheckToken>
             }
           />
@@ -71,7 +72,7 @@ function App() {
             path="/portal/track"
             element={
               <CheckToken>
-              <MyTrack />
+                <MyTrack />
               </CheckToken>
             }
           />
@@ -79,7 +80,7 @@ function App() {
             path="/portal/credit"
             element={
               <CheckToken>
-              <CreditManagement />
+                <CreditManagement />
               </CheckToken>
             }
           />
@@ -87,7 +88,7 @@ function App() {
             path="/portal/profile"
             element={
               <CheckToken>
-              <MyPage />
+                <MyPage />
               </CheckToken>
             }
           />
@@ -95,7 +96,7 @@ function App() {
             path="/portal/load"
             element={
               <CheckToken>
-              <LoadPage />
+                <LoadPage />
               </CheckToken>
             }
           />
@@ -103,7 +104,7 @@ function App() {
             path="/portal/mypage"
             element={
               <CheckToken>
-              <GuideMyPage />
+                <GuideMyPage />
               </CheckToken>
             }
           />
@@ -111,7 +112,7 @@ function App() {
             path="/portal/unregister"
             element={
               <CheckToken>
-              <UnregisterPage />
+                <UnregisterPage />
               </CheckToken>
             }
           />
@@ -121,6 +122,8 @@ function App() {
           />
           <Route path="/portal/track/edit/:trackId" element={<TrackEdit />} />
           <Route path="/portal/track/delete" element={<TrackDeletePage />} />
+          <Route path="/portal/plan" element={<PlanPage />} />
+
           {/* Etc */}
           <Route path="/HeaderTwo" element={<HeaderTwo />} />
           <Route path="/Footer" element={<Footer />} />
