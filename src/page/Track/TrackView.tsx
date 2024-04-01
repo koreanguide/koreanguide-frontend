@@ -4,6 +4,7 @@ import HeaderTwo from "../../HeaderTwo";
 import "./TrackView.css";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import LoadPage from "../LoadPage/LoadPage";
 
 function TrackViewPage() {
   const { trackId } = useParams();
@@ -18,6 +19,7 @@ function TrackViewPage() {
   const [content, setContent] = useState("");
   const [like, setLike] = useState("");
   const [view, setView] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const maxAdditionalImages = 5;
   const [selectedImage, setSelectedImage] = useState("");
@@ -53,6 +55,7 @@ function TrackViewPage() {
         setContent(data.content);
         setLike(data.like);
         setView(data.view);
+        setLoading(false);
         console.log(response.data);
       } catch (error) {
         console.error(error);
@@ -61,6 +64,10 @@ function TrackViewPage() {
 
     MainInfo();
   }, [token, trackId]);
+
+  if (loading) {
+    return <LoadPage />;
+  }
 
   const getBigImageSrc = () => {
     if (!selectedImage) {
