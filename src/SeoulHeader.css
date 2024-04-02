@@ -1,0 +1,161 @@
+.SeoulHeaderBoxFrame {
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 100%;
+  height: 49px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  border-bottom: 1px solid #ececec;
+  background: #fff;
+}
+
+.SeoulBox {
+  position: relative;
+  width: 62.5rem;
+  height: 49px;
+  display: flex;
+  align-items: center;
+}
+
+.SeoulHeaderLocation {
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulHeaderBoxOne {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.SeoulHeaderWeatherBox {
+  width: 245px;
+  display: flex;
+  margin-left: 233px;
+}
+
+.TextFineState {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.FineStateText {
+  color: #0074ff;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.UltraFineState {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 6px;
+}
+
+.SeoulHeaderBoundary {
+  color: var(--KG_TEXT, #80889b);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.SeoulTemperatureBox {
+  display: flex;
+  gap: 2px;
+}
+
+.LowestTemperature {
+  color: var(--KG_SUBTEXT, #616161);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulTemperatureBoxDash {
+  color: var(--KG_OUTLINE, #ececec);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.HighestTemperature {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulHeaderWeatherStateBox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.SeoulWeatherStateText {
+  color: #000;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulHeaderNewNotificationBox {
+  width: 276px;
+  margin-left: 99px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.SeoulHeaderNewNotificationNew {
+  color: var(--KG_RED, #fd3d3d);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.SeoulHeaderNewNotificationText {
+  color: var(--KG_PRIMARY, #730ef4);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

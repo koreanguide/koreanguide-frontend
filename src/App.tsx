@@ -22,6 +22,7 @@ import TrackViewPage from "./page/Track/TrackView";
 import TrackEdit from "./page/Track/TrackEdit";
 import TrackDeletePage from "./page/Track/TrackDelete";
 import PlanPage from "./page/PlanPage/PlanPage";
+import SeoulHeader from "./SeoulHeader";
 
 function App() {
   return (
@@ -127,6 +128,8 @@ function App() {
           {/* Etc */}
           <Route path="/HeaderTwo" element={<HeaderTwo />} />
           <Route path="/Footer" element={<Footer />} />
+          {/* seoul */}
+          <Route path="/seoul/header" element={<SeoulHeader />} />
         </Routes>
       </BrowserRouter>
     </div>
