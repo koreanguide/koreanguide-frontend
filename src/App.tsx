@@ -23,6 +23,8 @@ import TrackEdit from "./page/Track/TrackEdit";
 import TrackDeletePage from "./page/Track/TrackDelete";
 import PlanPage from "./page/PlanPage/PlanPage";
 import SeoulHeader from "./SeoulHeader";
+import SeoulMain from "./page/Seoul/SeoulMain";
+import SeoulLocationPage from "./page/Seoul/SeoulLocation";
 
 function App() {
   return (
@@ -130,6 +132,11 @@ function App() {
           <Route path="/Footer" element={<Footer />} />
           {/* seoul */}
           <Route path="/seoul/header" element={<SeoulHeader />} />
+          <Route path="/portal/seoul/main" element={<SeoulMain />} />
+          <Route
+            path="/portal/seoul/location"
+            element={<SeoulLocationPage />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

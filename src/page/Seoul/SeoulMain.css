@@ -1,0 +1,247 @@
+.SeoulMainTextOne {
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulMainBoxOne {
+  margin-top: 196px;
+  width: 990px;
+  height: 83px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulMainTextBox {
+  width: 570px;
+  height: 83px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulMainTextTwo {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.6px;
+}
+
+.StartNowButton {
+  width: 159px;
+  height: 37px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #e9e8fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.6px;
+
+  cursor: pointer;
+}
+
+.SeoulMainBoxThree {
+  width: 300px;
+  height: 59px;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: #000;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.SeoulMainStepContainer {
+  width: 990px;
+  height: 243px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulMainStepFrame {
+  width: 307px;
+  height: 243px;
+  border-radius: 20px;
+}
+
+.SeoulMainStepBoxOne {
+  width: 307px;
+  height: 146px;
+  border-radius: 20px 20px 0px 0px;
+  background: #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulMainStepBoxTwo {
+  width: 305px;
+  height: 97px;
+  border-radius: 0px 0px 20px 20px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulMainStepBoxTwoInner {
+  width: 259px;
+  height: 77px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulMainStepTextStep {
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.52px;
+  text-align: left;
+}
+
+.SeoulMainStepTitleText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.52px;
+}
+
+.SeoulMainStepContentText {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.48px;
+}
+
+.SeoulMainLine {
+  width: 990px;
+  height: 1px;
+  background-color: #ececec;
+  margin-top: 70px;
+}
+
+.SeoulMainBoxFour {
+  width: 500px;
+  height: 59px;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: #000;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.SeoulMainBoxFive {
+  width: 990px;
+  height: 163px;
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SeoulMainNavBox {
+  width: 480px;
+  height: 163px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulMainNavInnerBox {
+  width: 421px;
+  height: 102px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulMainNavBoxOne {
+  width: 421px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulMainNavTextOne {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.6px;
+}
+
+.SeoulMainNavButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 99px;
+
+  cursor: pointer;
+}
+
+.SeoulMainNavButtonText {
+  color: var(--KG_SECO, #b278fb);
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.44px;
+}
+
+.SeoulMainNavBoxTwo {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.6px;
+}

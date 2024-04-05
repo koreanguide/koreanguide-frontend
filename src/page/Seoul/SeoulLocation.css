@@ -1,0 +1,158 @@
+.SeoulLocationPageInner {
+  width: 990px;
+  height: 2500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SeoulLocationTextOne {
+  margin-top: 187px;
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulLocationTextTwo {
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.6px;
+  margin-top: 16px;
+}
+
+.SeoulLocationBoxOne {
+  width: 990px;
+  height: 65px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  background: #fff;
+  margin-top: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulLocationBoxOneInner {
+  width: 870px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulLocationBoxOneText {
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.52px;
+  margin-left: 20px;
+}
+
+.SeoulLocationBoxOneSelected {
+  width: 115px;
+  height: 39px;
+  background: #e9e8fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.52px;
+}
+
+.SeoulLocationBoxTwo {
+  display: flex;
+}
+
+.SeoulLocationBoxThree {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 25px 30px;
+  width: 990px;
+  height: auto;
+  margin-top: 35px;
+}
+
+.SeoulLocationSelectButtonFrame {
+  width: 172px;
+  height: 59px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.SeoulLocationSelectButtonFrame:hover {
+  background-color: #ececec;
+}
+
+.SeoulLocationSelectButtonText {
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+}
+
+.BackToIntorButtonContainer {
+  width: 990px;
+  height: 74px;
+  margin-top: 35px;
+  display: flex;
+}
+
+.BackToIntorButtonFrame {
+  width: 311px;
+  height: 74px;
+  border-radius: 40px;
+  background: #ececec;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.BackToIntorButtonCircle {
+  width: 65px;
+  height: 65px;
+  border-radius: 40px;
+  background: #fff;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.SeoulBackIcon {
+  margin-left: 22px;
+}
+
+.SeoulBackText {
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+  margin-left: 20px;
+}
