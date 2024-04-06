@@ -37,7 +37,7 @@
 }
 
 .SeoulHeaderWeatherBox {
-  width: 245px;
+  width: 265px;
   display: flex;
   margin-left: 233px;
 }
@@ -89,7 +89,7 @@
 }
 
 .LowestTemperature {
-  color: var(--KG_SUBTEXT, #616161);
+  color: var(--KG_SUBTEXT, #730ef4);
   text-align: right;
   font-family: Pretendard;
   font-size: 12px;
@@ -108,8 +108,17 @@
   line-height: normal;
 }
 
+.NowTemperature {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 .HighestTemperature {
-  color: #000;
+  color: var(--KG_RED, #fd3d3d);
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
@@ -158,4 +167,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.IimgTwo {
+  margin-left: 16px;
 }

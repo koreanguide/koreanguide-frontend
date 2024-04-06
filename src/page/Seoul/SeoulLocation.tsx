@@ -1,21 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulLocation.css";
 
+interface SeoulLocationSelectButtonProps {
+  districtName: string;
+  onSelect: () => void;
+  isSelected: boolean;
+}
+
+const SeoulLocationSelectButton: React.FC<SeoulLocationSelectButtonProps> = ({
+  districtName,
+  onSelect,
+  isSelected,
+}) => (
+  <div
+    className="SeoulLocationSelectButtonFrame"
+    onClick={onSelect}
+    style={{ backgroundColor: isSelected ? "#ececec" : "transparent" }}
+  >
+    <div className="SeoulLocationSelectButtonText">{districtName}</div>
+  </div>
+);
+
 function SeoulLocationPage() {
-  const SeoulLocationSelectButton = () => {
-    return (
-      <div className="SeoulLocationSelectButtonFrame">
-        <div className="SeoulLocationSelectButtonText">강서구</div>
-      </div>
-    );
+  const [selectedDistrict, setSelectedDistrict] = useState<string>("강서구");
+  const districts = [
+    "강남구",
+    "강동구",
+    "강북구",
+    "강서구",
+    "관악구",
+    "광진구",
+    "구로구",
+    "금천구",
+    "노원구",
+    "도봉구",
+    "동대문구",
+    "동작구",
+    "마포구",
+    "서대문구",
+    "서초구",
+    "성동구",
+    "성북구",
+    "송파구",
+    "양천구",
+    "영등포구",
+    "용산구",
+    "은평구",
+    "종로구",
+    "중구",
+    "중랑구",
+  ];
+
+  const handleSelectDistrict = (districtName: string) => {
+    setSelectedDistrict(districtName);
   };
+
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
-        <SeoulHeader></SeoulHeader>
-        <HeaderTwo></HeaderTwo>
+        <SeoulHeader />
+        <HeaderTwo />
       </div>
       <div className="SeoulLocationPageInner">
         <div className="SeoulLocationTextOne">
@@ -29,40 +75,25 @@ function SeoulLocationPage() {
                 src="/img/SeoulAirplane.svg"
                 alt="none"
                 className="SeoulAirplane"
-              ></img>
+              />
               <div className="SeoulLocationBoxOneText">
                 등록된 활동 지역으로 빠르게 시작하기
               </div>
             </div>
-            <div className="SeoulLocationBoxOneSelected">강서구</div>
+            <div className="SeoulLocationBoxOneSelected">
+              {selectedDistrict}
+            </div>{" "}
           </div>
         </div>
         <div className="SeoulLocationBoxThree">
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
-          <SeoulLocationSelectButton></SeoulLocationSelectButton>
+          {districts.map((district) => (
+            <SeoulLocationSelectButton
+              key={district}
+              districtName={district}
+              onSelect={() => handleSelectDistrict(district)}
+              isSelected={selectedDistrict === district}
+            />
+          ))}
         </div>
         <div className="BackToIntorButtonContainer">
           <div className="BackToIntorButtonFrame">
@@ -71,7 +102,7 @@ function SeoulLocationPage() {
                 src="/img/SeoulBackIcon.svg"
                 alt="none"
                 className="SeoulBackIcon"
-              ></img>
+              />
             </div>
             <div className="SeoulBackText">소개 페이지</div>
           </div>

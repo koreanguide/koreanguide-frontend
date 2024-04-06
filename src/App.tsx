@@ -25,6 +25,8 @@ import PlanPage from "./page/PlanPage/PlanPage";
 import SeoulHeader from "./SeoulHeader";
 import SeoulMain from "./page/Seoul/SeoulMain";
 import SeoulLocationPage from "./page/Seoul/SeoulLocation";
+import SeoulCategoryPage from "./page/Seoul/SeoulCategory";
+import SeoulBasketPage from "./page/Seoul/SeoulBasket";
 
 function App() {
   return (
@@ -137,6 +139,11 @@ function App() {
             path="/portal/seoul/location"
             element={<SeoulLocationPage />}
           />
+          <Route
+            path="/portal/seoul/category"
+            element={<SeoulCategoryPage />}
+          />
+          <Route path="/portal/seoul/Basket" element={<SeoulBasketPage />} />
         </Routes>
       </BrowserRouter>
     </div>

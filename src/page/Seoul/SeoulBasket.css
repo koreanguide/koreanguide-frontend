@@ -1,0 +1,48 @@
+.SeoulBasketAlertBox {
+  width: 989px;
+  height: 73px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  background: #fff;
+  margin-top: 51px;
+
+  display: flex;
+  align-items: center;
+}
+
+.SeoulBasketAlertInner {
+  width: 875px;
+  height: 39px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.SeoulBasketAlertBoxTwo {
+  width: 124px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulBasketAlertTwoText {
+  color: var(--KG_PRIMARY, #730ef4);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 162.836%; /* 19.54px */
+}
+
+.SeoulBasketAlertBoxThree {
+  width: 740px;
+  height: 36px;
+
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.6;
+}

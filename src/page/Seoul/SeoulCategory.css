@@ -1,0 +1,127 @@
+.SeoulCategoryBasketBox {
+  width: 214px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.BasketRemoveButton {
+  color: var(--KG_RED, #fd3d3d);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.52px;
+  cursor: pointer;
+}
+
+.BasketNumFrame {
+  width: 161px;
+  height: 44px;
+  border-radius: 30px;
+  background: #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.BasketNumInner {
+  width: 121px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+}
+
+.TextBasket {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+
+  margin-left: 10px;
+}
+
+.TextBasketNumFrame {
+  width: 19px;
+  height: 19px;
+  background-color: #3876c0;
+  border-radius: 19px;
+  margin-left: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.TextBasketNum {
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.52px;
+}
+
+.SeoulAlgorithmsFrame {
+  width: 307px;
+  height: 239px;
+  border-radius: 20px;
+}
+
+.SeoulAlgorithmsImg {
+  width: 307px;
+  height: 146px;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #3876c0;
+}
+
+.SeoulAlgorithmsContainer {
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 35px 35px;
+  width: 990px;
+  height: auto;
+}
+
+.SeoulAlgorithmsTextBox {
+  width: 256px;
+  height: auto;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+
+.SeoulAlgorithmsBoxTitle {
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.52px;
+}
+
+.SeoulAlgorithmsBoxContent {
+  margin-top: 5px;
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.48px;
+}
+
+.SeoulAlgorithmsTextContainer {
+  width: 305px;
+  height: 93px;
+  border-radius: 0px 0px 20px 20px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+}
