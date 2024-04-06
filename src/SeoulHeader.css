@@ -37,7 +37,7 @@
 }
 
 .SeoulHeaderWeatherBox {
-  width: 265px;
+  width: auto;
   display: flex;
   margin-left: 233px;
 }
@@ -144,10 +144,11 @@
 
 .SeoulHeaderNewNotificationBox {
   width: 276px;
-  margin-left: 99px;
+  margin-left: 35px;
   display: flex;
   align-items: center;
   gap: 10px;
+  float: right;
 }
 
 .SeoulHeaderNewNotificationNew {
@@ -171,4 +172,36 @@
 
 .IimgTwo {
   margin-left: 16px;
+  cursor: pointer;
+}
+
+.BalloonFrame {
+  position: relative;
+  top: 25px;
+  right: 25px;
+  z-index: 9;
+}
+
+.Balloon {
+  position: absolute;
+}
+
+.BalloonText {
+  position: absolute;
+  top: 18px;
+  left: 21px;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.4px;
+  width: 205px;
+  height: 48px;
+}
+
+.BalloonTextTwo {
+  line-height: 2.5;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulMain.css";
+import { useNavigate } from "react-router-dom";
 
 function SeoulMain() {
   interface SeoulMainStepProps {
@@ -31,14 +32,28 @@ function SeoulMain() {
       </div>
     );
   };
+  const navigate = useNavigate();
+
+  const goToSeoulOpenData = () => {
+    navigate("https://data.seoul.go.kr/");
+  };
+
+  const goToPublicData = () => {
+    navigate("https://www.data.go.kr/");
+  };
+
+  const gotoAITrackCreate = () => {
+    navigate("/portal/seoul/location");
+    window.scrollTo(0, 0);
+  };
 
   return (
-    <div className="TrackViewPageFrame">
+    <div className="SeoulMainPageFrame">
       <div className="SeoulMainHeaderBox">
         <SeoulHeader></SeoulHeader>
         <HeaderTwo></HeaderTwo>
       </div>
-      <div className="TrackViewPageInner">
+      <div className="SeoulMainInner">
         <div className="SeoulMainBoxOne">
           <div className="SeoulMainTextBox">
             <div className="SeoulMainTextOne">
@@ -48,7 +63,9 @@ function SeoulMain() {
               트랙 자동 생성, 어떻게 이루어 질까요?
             </div>
           </div>
-          <div className="StartNowButton">지금 시작하기</div>
+          <div className="StartNowButton" onClick={gotoAITrackCreate}>
+            지금 시작하기
+          </div>
         </div>
         <div className="SeoulMainBoxThree">
           <div>힘든 정보 탐색, 번거러운 트랙 본문 작성,</div>
@@ -86,7 +103,7 @@ function SeoulMain() {
             <div className="SeoulMainNavInnerBox">
               <div className="SeoulMainNavBoxOne">
                 <div className="SeoulMainNavTextOne">서울 열린데이터 광장</div>
-                <div className="SeoulMainNavButton">
+                <div className="SeoulMainNavButton" onClick={goToSeoulOpenData}>
                   <div className="SeoulMainNavButtonText">
                     홈페이지 바로가기
                   </div>
@@ -109,7 +126,7 @@ function SeoulMain() {
             <div className="SeoulMainNavInnerBox">
               <div className="SeoulMainNavBoxOne">
                 <div className="SeoulMainNavTextOne">공공데이터포털</div>
-                <div className="SeoulMainNavButton">
+                <div className="SeoulMainNavButton" onClick={goToPublicData}>
                   <div className="SeoulMainNavButtonText">
                     홈페이지 바로가기
                   </div>

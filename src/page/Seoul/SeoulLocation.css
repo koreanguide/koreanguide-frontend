@@ -78,6 +78,7 @@
 
 .SeoulLocationBoxTwo {
   display: flex;
+  align-items: center;
 }
 
 .SeoulLocationBoxThree {
@@ -120,6 +121,7 @@
   height: 74px;
   margin-top: 35px;
   display: flex;
+  justify-content: space-between;
 }
 
 .BackToIntorButtonFrame {
@@ -155,4 +157,42 @@
   line-height: normal;
   letter-spacing: -0.8px;
   margin-left: 20px;
+}
+
+.SeoulNextStepButtonFrame {
+  width: 311px;
+  height: 74px;
+  border-radius: 40px;
+  background: var(--seoul, #3876c0);
+  display: flex;
+  align-items: center;
+
+  flex-direction: row-reverse;
+  cursor: pointer;
+}
+
+.SeoulNextStepButtonCircle {
+  width: 65px;
+  height: 65px;
+  border-radius: 40px;
+  background: #fff;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.SeoulNextStepButtonText {
+  color: var(--seoul, #fff);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+  margin-right: 20px;
+}
+
+.SeoulNextIcon {
+  margin-left: 26px;
+  transform: rotate(180deg);
 }

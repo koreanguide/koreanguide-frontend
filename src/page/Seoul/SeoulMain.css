@@ -1,3 +1,19 @@
+.SeoulMainPageFrame {
+  width: 100%;
+  height: 1450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulMainInner {
+  width: 990px;
+  height: 1450px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
 .SeoulMainTextOne {
   color: var(--seoul, #3876c0);
   font-family: Pretendard;
@@ -17,7 +33,7 @@
 }
 
 .SeoulMainTextBox {
-  width: 600px;
+  width: 750px;
   height: 83px;
   display: flex;
   flex-direction: column;

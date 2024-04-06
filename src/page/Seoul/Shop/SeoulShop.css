@@ -1,0 +1,262 @@
+.SeoulShopInformationBox {
+  width: 210px;
+  height: 20px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulShopInformationText {
+  color: var(--KG_SECO, #b278fb);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ShopListContainer {
+  display: flex;
+  width: 990px;
+  height: auto;
+  flex-direction: column;
+  margin-top: 52px;
+  gap: 10px;
+}
+
+.ShopListBoxFrame {
+  width: 990px;
+  height: 216px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ShopListBoxInner {
+  width: 862px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ShopListBoxTagContainer {
+  width: auto;
+  height: 34px;
+  display: flex;
+  gap: 10px;
+}
+
+.ShopListBoxTagItem {
+  width: auto;
+  height: 34px;
+  border-radius: 5px;
+  background: #e9e8fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+.ShopListBoxTagItemText {
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+  padding-left: 29px;
+  padding-right: 29px;
+}
+
+.ShopListBoxTopFrame {
+  width: auto;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ShopListBoxContainmentFrame {
+  width: 53px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.TextContainment {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+.ShopListBoxBottomFrame {
+  width: 862px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ShopListBoxTextOne {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.ShopListBoxTextContainer {
+  width: auto;
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ShopListBoxTextTwo {
+  overflow: hidden;
+  color: var(--KG_SUBTEXT, #616161);
+  text-overflow: ellipsis;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+.SeoulSearchFrame {
+  position: relative;
+  width: 250px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+}
+
+.PortalSearchButton {
+  width: 120px;
+  height: 34px;
+  border-radius: 5px;
+  background: var(--seoul, #3876c0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.PortalKakaoSearchButton {
+  width: 120px;
+  height: 34px;
+  border-radius: 5px;
+  background: var(--seoul, #3876c0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+
+  cursor: pointer;
+}
+
+.PortalSearchButtonInner {
+  width: 80px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulNaver {
+  background-color: #3876c0;
+}
+
+.PortalSearchButtonText {
+  color: #e9e8fe;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+.SeoulShopBalloonFrame {
+  position: relative;
+  top: -35px;
+  right: 115px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulShopBalloonText {
+  position: absolute;
+  color: #fff;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.4px;
+  width: 189px;
+  height: 12px;
+  top: 6px;
+}
+
+.SeoulShopBalloon {
+  position: absolute;
+}
+
+.SeoulMoreButtonFrame {
+  width: 990px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.SeoulMoreButton {
+  border-radius: 5px;
+  background: #e9e8fe;
+  width: 120px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+
+  cursor: pointer;
+}

@@ -27,6 +27,7 @@ import SeoulMain from "./page/Seoul/SeoulMain";
 import SeoulLocationPage from "./page/Seoul/SeoulLocation";
 import SeoulCategoryPage from "./page/Seoul/SeoulCategory";
 import SeoulBasketPage from "./page/Seoul/SeoulBasket";
+import SeoulShopPage from "./page/Seoul/Shop/SeoulShop";
 
 function App() {
   return (
@@ -144,6 +145,7 @@ function App() {
             element={<SeoulCategoryPage />}
           />
           <Route path="/portal/seoul/Basket" element={<SeoulBasketPage />} />
+          <Route path="/portal/seoul/Shop" element={<SeoulShopPage />} />
         </Routes>
       </BrowserRouter>
     </div>

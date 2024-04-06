@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulLocation.css";
+import { useNavigate } from "react-router-dom";
 
 interface SeoulLocationSelectButtonProps {
   districtName: string;
@@ -57,6 +58,18 @@ function SeoulLocationPage() {
     setSelectedDistrict(districtName);
   };
 
+  const navigate = useNavigate();
+
+  const goToSeoulMain = () => {
+    navigate("/portal/seoul/main");
+    window.scrollTo(0, 0);
+  };
+
+  const goToSeoulCategory = () => {
+    navigate("/portal/seoul/category", { state: { selectedDistrict } });
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -96,7 +109,7 @@ function SeoulLocationPage() {
           ))}
         </div>
         <div className="BackToIntorButtonContainer">
-          <div className="BackToIntorButtonFrame">
+          <div className="BackToIntorButtonFrame" onClick={goToSeoulMain}>
             <div className="BackToIntorButtonCircle">
               <img
                 src="/img/SeoulBackIcon.svg"
@@ -105,6 +118,17 @@ function SeoulLocationPage() {
               />
             </div>
             <div className="SeoulBackText">소개 페이지</div>
+          </div>
+
+          <div className="SeoulNextStepButtonFrame" onClick={goToSeoulCategory}>
+            <div className="SeoulNextStepButtonCircle">
+              <img
+                src="/img/SeoulBackIcon.svg"
+                alt="none"
+                className="SeoulNextIcon"
+              />
+            </div>
+            <div className="SeoulNextStepButtonText">다음 단계</div>
           </div>
         </div>
       </div>

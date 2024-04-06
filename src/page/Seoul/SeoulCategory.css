@@ -73,6 +73,8 @@
   width: 307px;
   height: 239px;
   border-radius: 20px;
+
+  cursor: pointer;
 }
 
 .SeoulAlgorithmsImg {
