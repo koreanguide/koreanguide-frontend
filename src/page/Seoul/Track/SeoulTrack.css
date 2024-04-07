@@ -1,0 +1,185 @@
+.TrackInitializationButton {
+  width: 308px;
+  height: 37px;
+  border-radius: 5px;
+  background: #ffabab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.6px;
+
+  cursor: pointer;
+}
+
+.SeoulTrackBoxOne {
+  width: 990px;
+  height: 293px;
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulTrackTextTypeOne {
+  color: var(--KG_TEXT, #80889b);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulTrackBoxTwo {
+  width: 480px;
+  height: 293px;
+}
+
+.SeoulTrackNameBox {
+  width: 480px;
+  height: 69px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulTrackTextNameBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulTrackNameBoxInput {
+  width: 458px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  padding-left: 20px;
+  padding-right: 0px;
+}
+
+.SeoulTrackIntroductionBox {
+  width: 480px;
+  height: 194px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulTrackIntroductionTextArea {
+  width: 458px;
+  height: 150px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  resize: none;
+  outline: none;
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-right: 0px;
+}
+
+.SeoulTrackIntroductionTextArea:focus {
+  border: 1px solid var(--KG_OUTLINE, #730ef4);
+}
+
+.SeoulTrackContentBox {
+  width: 480px;
+  height: 293px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulTrackContentTextArea {
+  width: 458px;
+  height: 251px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-right: 0px;
+  resize: none;
+  outline: none;
+}
+
+.SeoulTrackContentTextArea:focus {
+  border: 1px solid var(--KG_OUTLINE, #730ef4);
+}
+
+.SeoulBasketToggleButtonMainFrame {
+  width: 2.8125rem;
+  height: 1.25rem;
+  background-color: #eae8e8;
+
+  border-radius: 1.25rem;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  display: flex;
+}
+
+.SeoulBasketToggleButtonMainFrame.active {
+  background-color: rgb(95, 194, 95);
+}
+
+.SeoulBasketToggleButtonMainFrame {
+  background-color: #eae8e8;
+
+  width: 40px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  justify-content: center;
+}
+
+.SeoulBasketToggleButtonMainFrame.active {
+  background-color: rgb(95, 194, 95);
+}
+
+.SeoulBasketCircle {
+  margin-top: 1px;
+  margin-left: 1px;
+  width: 16.2px;
+  height: 16.2px;
+  background-color: #ffffff;
+
+  border-radius: 1.25rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left 0.3s ease-in-out;
+}
+
+.SeoulBasketCircle.active {
+  left: calc(100% - 19px);
+}

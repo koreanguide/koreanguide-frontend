@@ -28,6 +28,7 @@ import SeoulLocationPage from "./page/Seoul/SeoulLocation";
 import SeoulCategoryPage from "./page/Seoul/SeoulCategory";
 import SeoulBasketPage from "./page/Seoul/SeoulBasket";
 import SeoulShopPage from "./page/Seoul/Shop/SeoulShop";
+import SeoulTrackCreatePage from "./page/Seoul/Track/SeoulTrack";
 
 function App() {
   return (
@@ -140,12 +141,13 @@ function App() {
             path="/portal/seoul/location"
             element={<SeoulLocationPage />}
           />
-          <Route
-            path="/portal/seoul/select"
-            element={<SeoulCategoryPage />}
-          />
+          <Route path="/portal/seoul/select" element={<SeoulCategoryPage />} />
           <Route path="/portal/seoul/saved" element={<SeoulBasketPage />} />
           <Route path="/portal/seoul/Shop" element={<SeoulShopPage />} />
+          <Route
+            path="/portal/seoul/track"
+            element={<SeoulTrackCreatePage />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

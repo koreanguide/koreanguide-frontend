@@ -32,7 +32,7 @@
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
-  line-height: 162.836%; /* 19.54px */
+  line-height: 162.836%;
 }
 
 .SeoulBasketAlertBoxThree {
@@ -45,4 +45,107 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.6;
+}
+
+.SeoulBasketSavedContainer {
+  width: 990px;
+  height: auto;
+  margin-top: 29px;
+}
+
+.SeoulBasketSavedTextCategory,
+.SeoulBasketSavedTextClassification,
+.SeoulBasketSavedTextAddress,
+.SeoulBasketSavedTextVisit {
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+}
+
+.SeoulBasketSavedTextClassification {
+  margin-left: 136px;
+}
+
+.SeoulBasketSavedTextAddress {
+  margin-left: 233px;
+}
+
+.SeoulBasketSavedTextVisit {
+  margin-left: 330px;
+}
+
+.SeoulBasketSavedCategoryBox {
+  width: 990px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+}
+
+.SeoulBasketSavedContainerLine {
+  width: 990px;
+  height: 1px;
+  background-color: #ececec;
+  margin-top: 12px;
+}
+
+.SeoulSavedComponentFrame {
+  width: 990px;
+  height: 67px;
+  border-bottom: 1px solid var(--KG_OUTLINE, #ececec);
+  display: flex;
+  align-items: center;
+}
+
+.SeoulSavedComponentInner {
+  width: 953px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+}
+
+.SeoulSavedComponentCategory,
+.SeoulSavedComponentClassification,
+.SeoulSavedComponentAddress {
+  overflow: hidden;
+  color: #000;
+  text-overflow: ellipsis;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+
+  width: 190px;
+}
+
+.SeoulSavedComponentClassification {
+  width: 261px;
+}
+
+.SeoulSavedComponentAddress {
+  width: 379px;
+}
+
+.SeoulMainBoxTwo {
+  width: 990px;
+  height: 100px;
+  margin-top: 63px;
+  background-color: aliceblue;
+}
+
+.SeoulSavedComponentDeleteButton {
+  width: 13px;
+  height: 13px;
+  margin-left: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
 }

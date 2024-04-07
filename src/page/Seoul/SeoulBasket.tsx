@@ -1,9 +1,108 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulBasket.css";
+import axios from "axios";
 
 function SeoulBasketPage() {
+  const [savedData, setSavedData] = useState([]);
+  const [length, setlength] = useState("");
+
+  interface SeoulSavedComponentProps {
+    data: {
+      address: string;
+      category: string;
+      value: string;
+      id: string;
+    };
+    index: number;
+  }
+
+  const SeoulSavedComponent: React.FC<SeoulSavedComponentProps> = ({
+    data,
+    index,
+  }) => {
+    const [isToggled, setIsToggled] = useState(false);
+
+    const handleToggle = () => {
+      setIsToggled(!isToggled);
+      console.log(`${index} ${!isToggled}`);
+    };
+
+    const SeoulSavedDataDelete = async (id: string) => {
+      const deleteData = {
+        itemId: id,
+      };
+
+      const token = sessionStorage.getItem("access-token");
+      try {
+        const response = await axios.delete("/v1/saved/", {
+          headers: { "X-AUTH-TOKEN": token },
+          params: deleteData,
+        });
+        if (response.status === 200) {
+          console.log("제거 성공", response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const handleDeleteClick = () => {
+      console.log(data.id);
+      SeoulSavedDataDelete(data.id);
+    };
+
+    return (
+      <div className="SeoulSavedComponentFrame">
+        <div className="SeoulSavedComponentInner">
+          <div className="SeoulSavedComponentCategory">{data.category}</div>
+          <div className="SeoulSavedComponentClassification">{data.value}</div>
+          <div className="SeoulSavedComponentAddress">{data.address}</div>
+
+          <div className="SeoulSavedComponentVisit" onClick={handleToggle}>
+            <div
+              className={`SeoulBasketToggleButtonMainFrame ${
+                isToggled ? "active" : ""
+              }`}
+            >
+              <div
+                className={`SeoulBasketCircle ${isToggled ? "active" : ""}`}
+              ></div>
+            </div>
+          </div>
+          <div
+            className="SeoulSavedComponentDeleteButton"
+            onClick={handleDeleteClick}
+          >
+            <img
+              src="/img/SeoulDeleteIcon.svg"
+              alt="none"
+              className="SeoulDeleteIcon"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  useEffect(() => {
+    const fetchSavedData = async () => {
+      const token = sessionStorage.getItem("access-token");
+      try {
+        const response = await axios.get("/v1/saved/", {
+          headers: { "X-AUTH-TOKEN": token },
+        });
+        setSavedData(response.data);
+        setlength(response.data.length);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchSavedData();
+  }, []);
+
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -16,7 +115,9 @@ function SeoulBasketPage() {
             <div className="SeoulMainTextOne">
               현재 선택된 서울특별시 자치구: 강남구
             </div>
-            <div className="SeoulMainTextTwo">3개의 항목이 담겨있어요.</div>
+            <div className="SeoulMainTextTwo">
+              {length}개의 항목이 담겨있어요.
+            </div>
           </div>
         </div>
         <div className="SeoulBasketAlertBox">
@@ -32,18 +133,19 @@ function SeoulBasketPage() {
             </div>
           </div>
         </div>
-        {/* <div className="BackToIntorButtonContainer">
-          <div className="BackToIntorButtonFrame">
-            <div className="BackToIntorButtonCircle">
-              <img
-                src="/img/SeoulBackIcon.svg"
-                alt="none"
-                className="SeoulBackIcon"
-              />
-            </div>
-            <div className="SeoulBackText">자치구 선택</div>
+        <div className="SeoulBasketSavedContainer">
+          <div className="SeoulBasketSavedCategoryBox">
+            <div className="SeoulBasketSavedTextCategory">카테고리</div>
+            <div className="SeoulBasketSavedTextClassification">항목</div>
+            <div className="SeoulBasketSavedTextAddress">주소</div>
+            <div className="SeoulBasketSavedTextVisit">필수 방문 예정</div>
           </div>
-        </div> */}
+          <div className="SeoulBasketSavedContainerLine"></div>
+          {savedData.map((item, index) => (
+            <SeoulSavedComponent key={index} data={item} index={index} />
+          ))}
+        </div>
+        <div className="SeoulMainBoxTwo"></div>
       </div>
     </div>
   );

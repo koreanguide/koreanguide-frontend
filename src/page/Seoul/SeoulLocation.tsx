@@ -66,7 +66,7 @@ function SeoulLocationPage() {
   };
 
   const goToSeoulCategory = () => {
-    navigate("/portal/seoul/category", { state: { selectedDistrict } });
+    navigate("/portal/seoul/select", { state: { selectedDistrict } });
     window.scrollTo(0, 0);
   };
 

@@ -164,11 +164,11 @@ function SeoulHeader() {
           </div>
           <div className="SeoulHeaderBoundary">|</div>
           <div className="SeoulTemperatureBox">
-            <div className="LowestTemperature">-</div>
+            <div className="LowestTemperature">{minTemp}°</div>
             <div className="SeoulTemperatureBoxDash">/</div>
-            <div className="NowTemperature">-</div>
+            <div className="NowTemperature">{nowTemp}°</div>
             <div className="SeoulTemperatureBoxDash">/</div>
-            <div className="HighestTemperature">-</div>
+            <div className="HighestTemperature">{maxTemp}°</div>
           </div>
           <div className="SeoulHeaderBoundary">|</div>
           <div className="SeoulHeaderWeatherStateBox">
