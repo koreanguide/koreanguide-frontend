@@ -8,9 +8,9 @@ function SeoulHeader() {
   const [minTemp, setminTemp] = useState("");
   const [maxTemp, setmaxTemp] = useState("");
   const [nowTemp, setnowTemp] = useState("");
-  const [ultrafineDust, setultrafineDust] = useState("");
-  const [fineDust, setfineDust] = useState("");
-  const [sky, setsky] = useState("");
+  const [ultrafineDust, setultrafineDust] = useState("---");
+  const [fineDust, setfineDust] = useState("---");
+  const [sky, setsky] = useState("-");
 
   const [fineDustColor, setfineDustColor] = useState("");
   const [ultrafineDustColor, setultrafineDustColor] = useState("");
@@ -122,7 +122,10 @@ function SeoulHeader() {
         setskyImg("SNOWFALL");
         setweatherText("눈날림");
       } else if (sky === "UNKNOWN") {
-        setweatherText("알 수 없음");
+        setweatherText("알수없음");
+        setskyImg("UNKNOWN");
+      } else {
+        setweatherText("알수없음");
         setskyImg("UNKNOWN");
       }
     };
@@ -161,11 +164,11 @@ function SeoulHeader() {
           </div>
           <div className="SeoulHeaderBoundary">|</div>
           <div className="SeoulTemperatureBox">
-            <div className="LowestTemperature">4°</div>
+            <div className="LowestTemperature">-</div>
             <div className="SeoulTemperatureBoxDash">/</div>
-            <div className="NowTemperature">5°</div>
+            <div className="NowTemperature">-</div>
             <div className="SeoulTemperatureBoxDash">/</div>
-            <div className="HighestTemperature">18°</div>
+            <div className="HighestTemperature">-</div>
           </div>
           <div className="SeoulHeaderBoundary">|</div>
           <div className="SeoulHeaderWeatherStateBox">

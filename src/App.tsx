@@ -135,16 +135,16 @@ function App() {
           <Route path="/Footer" element={<Footer />} />
           {/* seoul */}
           <Route path="/seoul/header" element={<SeoulHeader />} />
-          <Route path="/portal/seoul/main" element={<SeoulMain />} />
+          <Route path="/portal/seoul" element={<SeoulMain />} />
           <Route
             path="/portal/seoul/location"
             element={<SeoulLocationPage />}
           />
           <Route
-            path="/portal/seoul/category"
+            path="/portal/seoul/select"
             element={<SeoulCategoryPage />}
           />
-          <Route path="/portal/seoul/Basket" element={<SeoulBasketPage />} />
+          <Route path="/portal/seoul/saved" element={<SeoulBasketPage />} />
           <Route path="/portal/seoul/Shop" element={<SeoulShopPage />} />
         </Routes>
       </BrowserRouter>
