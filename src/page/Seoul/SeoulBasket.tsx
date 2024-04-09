@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulBasket.css";
@@ -86,6 +87,18 @@ function SeoulBasketPage() {
     );
   };
 
+  const navigate = useNavigate();
+
+  const goToSeoulSelect = () => {
+    navigate("/portal/seoul/Select");
+    window.scrollTo(0, 0);
+  };
+
+  const goToSeoulTrackCreate = () => {
+    navigate("/portal/seoul");
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     const fetchSavedData = async () => {
       const token = sessionStorage.getItem("access-token");
@@ -145,7 +158,62 @@ function SeoulBasketPage() {
             <SeoulSavedComponent key={index} data={item} index={index} />
           ))}
         </div>
-        <div className="SeoulMainBoxTwo"></div>
+        <div className="SeoulMainBoxTwo">
+          <div className="SeoulMainBoxThreeTwo">
+            <div className="SeoulMainBoxTwoTextOne">
+              더 정확한 트랙 생성을 위해 원하는 옵션을 선택해 주세요!
+            </div>
+            <div className="SeoulMainBoxTwoTextTwo">
+              원하는 항목을 선택하면, 항목에 맞는 요청 사항이 트랙 스크립트에
+              자동으로 포함됩니다.
+            </div>
+          </div>
+          <div className="SeoulMainBoxFourTwo">
+            <div className="SeoulMainBoxFourText">1개의 옵션이 선택됨</div>
+          </div>
+        </div>
+        <div className="SeoulSavedSelectFrame">
+          <div className="SeoulSavedSelectBox">
+            <div className="SeoulSavedSelectBoxText">
+              관광객을 위해 강남구의 인기있는 호텔을 추천할게요
+            </div>
+          </div>
+          <div className="SeoulSavedSelectBox">
+            <div className="SeoulSavedSelectBoxText">
+              관광객을 위해 강남구의 인기있는 호텔을 추천할게요
+            </div>
+          </div>
+          <div className="SeoulSavedSelectBox">
+            <div className="SeoulSavedSelectBoxText">
+              관광객을 위해 강남구의 인기있는 호텔을 추천할게요
+            </div>
+          </div>
+        </div>
+        <div className="BackToIntorButtonContainer">
+          <div className="BackToIntorButtonFrame" onClick={goToSeoulSelect}>
+            <div className="BackToIntorButtonCircle">
+              <img
+                src="/img/SeoulBackIcon.svg"
+                alt="none"
+                className="SeoulBackIcon"
+              />
+            </div>
+            <div className="SeoulBackText">카테고리 선택</div>
+          </div>
+
+          <div className="SeoulTrackButtonFrame" onClick={goToSeoulTrackCreate}>
+            <div className="SeoulNextStepButtonCircle">
+              <img
+                src="/img/SeoulBackIcon.svg"
+                alt="none"
+                className="SeoulNextIcon"
+              />
+            </div>
+            <div className="SeoulNextStepButtonText">
+              위 내용을 바탕으로 트랙 생성하기
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -24,6 +24,11 @@ function SeoulCategoryPage() {
     window.scrollTo(0, 0);
   };
 
+  const gotoSeoulBasket = () => {
+    navigate("/portal/seoul/saved");
+    window.scrollTo(0, 0);
+  };
+
   interface SeoulAlgorithmsContainerProps {
     imgUrl: string;
     title: string;
@@ -85,7 +90,7 @@ function SeoulCategoryPage() {
               알아보고 싶은 카테고리를 선택해 주세요
             </div>
           </div>
-          <div className="SeoulCategoryBasketBox">
+          <div className="SeoulCategoryBasketBox" onClick={gotoSeoulBasket}>
             <div className="BasketRemoveButton">비우기</div>
             <div className="BasketNumFrame">
               <div className="BasketNumInner">

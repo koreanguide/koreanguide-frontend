@@ -17,6 +17,11 @@ function SeoulShopPage() {
     window.scrollTo(0, 0);
   };
 
+  const gotoSeoulBasket = () => {
+    navigate("/portal/seoul/saved");
+    window.scrollTo(0, 0);
+  };
+
   const [shops, setShops] = useState<Array<any>>([]);
   const [SeoulShopBasketNum, setSeoulShopBasketNum] = useState("");
 
@@ -238,7 +243,7 @@ function SeoulShopPage() {
               {selectedDistrict}에서 {shops.length}개의 쇼핑몰이 발견되었어요!
             </div>
           </div>
-          <div className="SeoulCategoryBasketBox">
+          <div className="SeoulCategoryBasketBox" onClick={gotoSeoulBasket}>
             <div className="BasketRemoveButton">비우기</div>
             <div className="BasketNumFrame">
               <div className="BasketNumInner">

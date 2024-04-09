@@ -5,8 +5,8 @@ import "./SeoulHeader.css";
 function SeoulHeader() {
   const token = sessionStorage.getItem("access-token");
 
-  const [minTemp, setminTemp] = useState("");
-  const [maxTemp, setmaxTemp] = useState("");
+  const [minTemp, setminTemp] = useState<number>(0);
+  const [maxTemp, setmaxTemp] = useState<number>(0);
   const [nowTemp, setnowTemp] = useState("");
   const [ultrafineDust, setultrafineDust] = useState("---");
   const [fineDust, setfineDust] = useState("---");
@@ -39,10 +39,6 @@ function SeoulHeader() {
       }
     };
 
-    WeatherInformation();
-  }, [token]);
-
-  useEffect(() => {
     const FineDustFunction = () => {
       if (fineDust === "BAD") {
         console.log("미세먼지 나쁨");
@@ -67,10 +63,37 @@ function SeoulHeader() {
       }
     };
 
-    FineDustFunction();
-  }, [fineDust]);
+    const SkyFunction = () => {
+      if (sky === "NORMAL") {
+        setskyImg("NORMAL");
+        setweatherText("보통");
+      } else if (sky === "RAIN") {
+        setskyImg("RAIN");
+        setweatherText("비");
+      } else if (sky === "RAIN_AND_SNOW") {
+        setskyImg("RAIN_AND_SNOW");
+        setweatherText("눈비");
+      } else if (sky === "SNOW") {
+        setskyImg("SNOW");
+        setweatherText("눈");
+      } else if (sky === "RAINDROP") {
+        setskyImg("RAIN");
+        setweatherText("비날림");
+      } else if (sky === "RAINDROP_AND_SNOWFALL") {
+        setskyImg("RAIN_AND_SNOW");
+        setweatherText("눈비날림");
+      } else if (sky === "SNOWFALL") {
+        setskyImg("SNOW");
+        setweatherText("눈날림");
+      } else if (sky === "UNKNOWN") {
+        setweatherText("알수없음");
+        setskyImg("UNKNOWN");
+      } else {
+        setweatherText("알수없음");
+        setskyImg("UNKNOWN");
+      }
+    };
 
-  useEffect(() => {
     const UltraFineDustFunction = () => {
       if (ultrafineDust === "BAD") {
         console.log("초미세먼지 나쁨");
@@ -95,43 +118,11 @@ function SeoulHeader() {
       }
     };
 
+    WeatherInformation();
+    FineDustFunction();
     UltraFineDustFunction();
-  }, [ultrafineDust]);
-
-  useEffect(() => {
-    const SkyFunction = () => {
-      if (sky === "NORMAL") {
-        setskyImg("NORMAL");
-        setweatherText("보통");
-      } else if (sky === "RAIN") {
-        setskyImg("RAIN");
-        setweatherText("비");
-      } else if (sky === "RAIN_AND_SNOW") {
-        setskyImg("RAIN_AND_SNOW");
-        setweatherText("눈비");
-      } else if (sky === "SNOW") {
-        setskyImg("SNOW");
-        setweatherText("눈");
-      } else if (sky === "RAINDROP") {
-        setskyImg("RAINDROP");
-        setweatherText("비날림");
-      } else if (sky === "RAINDROP_AND_SNOWFALL") {
-        setskyImg("RAINDROP_AND_SNOWFALL");
-        setweatherText("눈비날림");
-      } else if (sky === "SNOWFALL") {
-        setskyImg("SNOWFALL");
-        setweatherText("눈날림");
-      } else if (sky === "UNKNOWN") {
-        setweatherText("알수없음");
-        setskyImg("UNKNOWN");
-      } else {
-        setweatherText("알수없음");
-        setskyImg("UNKNOWN");
-      }
-    };
-
     SkyFunction();
-  }, [sky]);
+  }, [fineDust, sky, token, ultrafineDust]);
 
   return (
     <div className="SeoulHeaderBoxFrame">
@@ -164,17 +155,16 @@ function SeoulHeader() {
           </div>
           <div className="SeoulHeaderBoundary">|</div>
           <div className="SeoulTemperatureBox">
-            <div className="LowestTemperature">{minTemp}°</div>
+            <div className="LowestTemperature">{Math.floor(minTemp)}°</div>
             <div className="SeoulTemperatureBoxDash">/</div>
             <div className="NowTemperature">{nowTemp}°</div>
             <div className="SeoulTemperatureBoxDash">/</div>
-            <div className="HighestTemperature">{maxTemp}°</div>
+            <div className="HighestTemperature">{Math.floor(maxTemp)}°</div>
           </div>
           <div className="SeoulHeaderBoundary">|</div>
           <div className="SeoulHeaderWeatherStateBox">
             <img
-              // src={`/img/${skyImg}.svg`}
-              src="/img/SeoulWeatherCloudIMg.svg"
+              src={`/img/${skyImg}.svg`}
               alt="none"
               className="SeoulWeatherCloudIMg"
             ></img>
@@ -185,8 +175,8 @@ function SeoulHeader() {
           src="/img/IimgTwo.svg"
           alt="none"
           className="IimgTwo"
-          onMouseEnter={() => setIsHovered(true)} // 마우스가 이미지 위에 올라가면 isHovered를 true로 설정
-          onMouseLeave={() => setIsHovered(false)} // 마우스가 이미지에서 벗어나면 isHovered를 false로 설정
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         />
         {isHovered && (
           <div className="BalloonFrame">

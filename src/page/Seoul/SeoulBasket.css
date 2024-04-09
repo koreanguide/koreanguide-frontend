@@ -134,9 +134,11 @@
 
 .SeoulMainBoxTwo {
   width: 990px;
-  height: 100px;
+  height: 76px;
   margin-top: 63px;
-  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .SeoulSavedComponentDeleteButton {
@@ -147,5 +149,90 @@
   align-items: center;
   justify-content: center;
 
+  cursor: pointer;
+}
+
+.SeoulMainBoxThreeTwo {
+  width: 668px;
+  height: 76px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0%;
+}
+
+.SeoulMainBoxTwoTextOne {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.28px;
+}
+
+.SeoulMainBoxTwoTextTwo {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.SeoulMainBoxFourText {
+  color: var(--seoul, #3876c0);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.6px;
+}
+
+.SeoulSavedSelectFrame {
+  width: 990px;
+  height: 278px;
+  margin-top: 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulSavedSelectBox {
+  width: 943px;
+  height: 86px;
+  border-radius: 10px;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 47px;
+
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.SeoulSavedSelectBox:hover {
+  background: #3876c0;
+  color: #f7f7f7;
+}
+
+.SeoulTrackButtonFrame {
+  width: 378px;
+  height: 74px;
+  border-radius: 40px;
+  background: var(--seoul, #3876c0);
+  display: flex;
+  align-items: center;
+
+  flex-direction: row-reverse;
   cursor: pointer;
 }

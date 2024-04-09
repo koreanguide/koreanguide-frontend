@@ -60,7 +60,7 @@
 }
 
 .NavButtonBox {
-  width: 260px;
+  width: 432px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -367,6 +367,30 @@
 
 .PhoneMenu {
   display: none;
+}
+
+.HeaderSeoulTrackButton {
+  margin: 0%;
+  padding: 0%;
+  width: 132px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.HeaderSeoulTrackButtonText {
+  color: var(--seoul, #3876c0);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 @media only screen and (max-width: 990px) {

@@ -14,7 +14,7 @@ function HeaderTwo() {
   const [Amount, setAmount] = useState(0);
   const [email, setEmail] = useState("");
   // const [nickName, setNickName] = useState("");
-  const nickName = sessionStorage.getItem('name');
+  const nickName = sessionStorage.getItem("name");
   const [ProfileImg, setProfileImg] = useState("");
   const [MenuImgState, setMenuImgState] = useState("../img/Menu.svg");
 
@@ -115,6 +115,11 @@ function HeaderTwo() {
     window.scrollTo(0, 0);
   };
 
+  const goToSeoulMainPage = () => {
+    navigate("/portal/seoul");
+    window.scrollTo(0, 0);
+  };
+
   const LogOutClick = () => {
     sessionStorage.removeItem("access-token");
     sessionStorage.removeItem("refresh-token");
@@ -156,6 +161,12 @@ function HeaderTwo() {
         {/* 분리 */}
         <div className="NavButtonFrame">
           <div className="NavButtonBox">
+            <button
+              className="HeaderSeoulTrackButton"
+              onClick={goToSeoulMainPage}
+            >
+              <p className="HeaderSeoulTrackButtonText">AI 트랙 자동생성</p>
+            </button>
             <button className="HeaderProfileButton" onClick={goToChatPage}>
               <img
                 src="/img/pinkChat.svg"
