@@ -1,0 +1,94 @@
+.SeoulMapSightComponent {
+  width: 990px;
+  height: 314px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  background: #fff;
+  margin-top: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulMapSightComponentInner {
+  width: 889px;
+  height: 268px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulMapSightComponentBoxFrame {
+  width: 360px;
+  height: 184px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.SeoulMapSightComponentBoxOne {
+  width: 166px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulMapSightComponentTag {
+  width: auto;
+  height: 34px;
+  border-radius: 5px;
+  background: #e9e8fe;
+
+  display: flex;
+  align-items: center;
+
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.SeoulMapSightComponentBoxTwo {
+  margin-top: 30px;
+  width: auto;
+
+  color: #000;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.SeoulMapSightComponentBoxThree {
+  overflow: hidden;
+  color: var(--KG_SUBTEXT, #616161);
+  text-align: right;
+  text-overflow: ellipsis;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+
+  margin-top: 10px;
+}
+
+.SeoulMapSightComponentBoxFour {
+  width: 250px;
+  height: 34px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
