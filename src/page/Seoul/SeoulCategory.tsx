@@ -24,6 +24,11 @@ function SeoulCategoryPage() {
     window.scrollTo(0, 0);
   };
 
+  const goToSeoulSights = () => {
+    navigate("/portal/seoul/sights", { state: { selectedDistrict } });
+    window.scrollTo(0, 0);
+  };
+
   const gotoSeoulBasket = () => {
     navigate("/portal/seoul/saved");
     window.scrollTo(0, 0);
@@ -126,7 +131,7 @@ function SeoulCategoryPage() {
             title="따릉이(공공자전거)"
             content="서울시에서 제공하는 공공자전거 따릉이에요. 따릉이를 함
             께타며 서울 이곳저곳을 즐겨보세요! 아, 안전은 필수겠죠?"
-            onClick={() => console.log("한강공원 선택됨")}
+            onClick={() => goToSeoulSights()}
           />
           <SeoulAlgorithmsContainer
             imgUrl="/img/AlgoImg4.svg"
@@ -150,7 +155,7 @@ function SeoulCategoryPage() {
             content="서울시 공식관광정보 홈페이지에서 주요 관광거리에 대한
             공식 명칭 및 주소 등 정보를 제공 해요. 서울의 이곳저곳 인
             기있는 관광거리를 찾아보세요!"
-            onClick={() => console.log("한강공원 선택됨")}
+            onClick={() => goToSeoulSights()}
           />
         </div>
         <div className="BackToIntorButtonContainer" onClick={goToSeoulLocation}>

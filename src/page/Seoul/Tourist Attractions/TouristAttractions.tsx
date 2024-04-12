@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import "./TouristAttractions.css";
+import { useLocation } from "react-router-dom";
 
 declare global {
   interface Window {
@@ -15,6 +17,8 @@ interface KakaoMapProps {
 }
 
 const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
+  const [uniqueId, setUniqueId] = useState(``);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
@@ -22,15 +26,20 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
       "//dapi.kakao.com/v2/maps/sdk.js?appkey=4b97895fdc79dc6d392b38a5ada0f7e5&autoload=false";
     document.head.appendChild(script);
 
+    const id = `map-${latitude}-${longitude}`;
+    setUniqueId(id);
+
     script.onload = () => {
       window.kakao.maps.load(() => {
-        const container = document.getElementById("map");
-        const options = {
-          center: new window.kakao.maps.LatLng(latitude, longitude),
-          level: 3,
-        };
+        const container = document.getElementById(id);
+        if (container) {
+          const options = {
+            center: new window.kakao.maps.LatLng(latitude, longitude),
+            level: 3,
+          };
 
-        new window.kakao.maps.Map(container, options);
+          new window.kakao.maps.Map(container, options);
+        }
       });
     };
 
@@ -39,22 +48,31 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
     };
   }, [latitude, longitude]);
 
-  return <div id="map" style={{ width: "510px", height: "268px" }}></div>;
+  return <div id={uniqueId} style={{ width: "510px", height: "268px" }}></div>;
 };
 
 interface SeoulMapSightComponentProps {
   latitude: number;
   longitude: number;
+  title: string;
+  address: string;
+  tag: string;
+  id: any;
 }
 
-const SeoulMapSightComponent: React.FC<SeoulMapSightComponentProps> = ({
-  latitude,
-  longitude,
+const SeoulMapSightComponent = ({
+  attraction,
+}: {
+  attraction: SeoulMapSightComponentProps;
 }) => {
   return (
     <div className="SeoulMapSightComponent">
       <div className="SeoulMapSightComponentInner">
-        <KakaoMap latitude={longitude} longitude={latitude} />
+        <KakaoMap
+          latitude={attraction.longitude}
+          longitude={attraction.latitude}
+          key={attraction.id}
+        />
         <div className="SeoulMapSightComponentBoxFrame">
           <div className="SeoulMapSightComponentBoxOne">
             <div className="ShopListBoxContainmentFrame">
@@ -65,11 +83,11 @@ const SeoulMapSightComponent: React.FC<SeoulMapSightComponentProps> = ({
               ></img>
               <div className="TextContainment">담기</div>
             </div>
-            <div className="SeoulMapSightComponentTag">휘경 1동</div>
+            <div className="SeoulMapSightComponentTag">{attraction.tag}</div>
           </div>
-          <div className="SeoulMapSightComponentBoxTwo">경희대파전거리</div>
+          <div className="SeoulMapSightComponentBoxTwo">{attraction.title}</div>
           <div className="SeoulMapSightComponentBoxThree">
-            서울특별시 동대문구 휘경1동 일대
+            {attraction.address}
           </div>
           <div className="SeoulMapSightComponentBoxFour">
             <div className="PortalSearchButton">
@@ -100,6 +118,138 @@ const SeoulMapSightComponent: React.FC<SeoulMapSightComponentProps> = ({
 };
 
 function SeoulSightsPage() {
+  const location = useLocation();
+  const token = sessionStorage.getItem("access-token");
+
+  const { selectedDistrict } = location.state || {};
+
+  const [attractions, setAttractions] = useState<Array<any>>([]);
+  const [SeoulShopBasketNum, setSeoulShopBasketNum] = useState("");
+
+  type DistrictKey =
+    | "강남구"
+    | "강동구"
+    | "강북구"
+    | "강서구"
+    | "관악구"
+    | "광진구"
+    | "구로구"
+    | "금천구"
+    | "노원구"
+    | "도봉구"
+    | "동대문구"
+    | "동작구"
+    | "마포구"
+    | "서대문구"
+    | "서초구"
+    | "성동구"
+    | "성북구"
+    | "송파구"
+    | "양천구"
+    | "영등포구"
+    | "용산구"
+    | "은평구"
+    | "종로구"
+    | "중구"
+    | "중랑구";
+  type DistrictEnglish =
+    | "GANGNAM"
+    | "GANGDONG"
+    | "GANGBUK"
+    | "GANGSEO"
+    | "GWANAK"
+    | "GWANGJIN"
+    | "GURO"
+    | "GEUMCHEON"
+    | "NOWON"
+    | "DOBONG"
+    | "DONGDAEMUN"
+    | "DONGJAK"
+    | "MAPO"
+    | "SEODAEMUN"
+    | "SEOCHO"
+    | "SEONGDONG"
+    | "SEONGBUK"
+    | "SONGPA"
+    | "YANGCHEON"
+    | "YEONGDEUNGPO"
+    | "YONGSAN"
+    | "EUNPYEONG"
+    | "JONGNO"
+    | "JUNG"
+    | "JUNGNANG";
+
+  function convertDistrictToEnglish(
+    district: DistrictKey
+  ): DistrictEnglish | "UNKNOWN" {
+    const districtMap: { [key in DistrictKey]: DistrictEnglish } = {
+      강남구: "GANGNAM",
+      강동구: "GANGDONG",
+      강북구: "GANGBUK",
+      강서구: "GANGSEO",
+      관악구: "GWANAK",
+      광진구: "GWANGJIN",
+      구로구: "GURO",
+      금천구: "GEUMCHEON",
+      노원구: "NOWON",
+      도봉구: "DOBONG",
+      동대문구: "DONGDAEMUN",
+      동작구: "DONGJAK",
+      마포구: "MAPO",
+      서대문구: "SEODAEMUN",
+      서초구: "SEOCHO",
+      성동구: "SEONGDONG",
+      성북구: "SEONGBUK",
+      송파구: "SONGPA",
+      양천구: "YANGCHEON",
+      영등포구: "YEONGDEUNGPO",
+      용산구: "YONGSAN",
+      은평구: "EUNPYEONG",
+      종로구: "JONGNO",
+      중구: "JUNG",
+      중랑구: "JUNGNANG",
+    };
+
+    return districtMap[district] || "UNKNOWN";
+  }
+
+  const englishDistrict: DistrictEnglish | "UNKNOWN" =
+    convertDistrictToEnglish(selectedDistrict);
+
+  useEffect(() => {
+    const SeoulShopList = async () => {
+      try {
+        const response = await axios.get("/v1/seoul/attractions", {
+          params: { seoulCountry: englishDistrict },
+        });
+        console.log("관광거리 데이터========================", response.data);
+        setAttractions(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    SeoulShopList();
+  }, [englishDistrict]);
+
+  useEffect(() => {
+    const SeoulShopBasket = async () => {
+      try {
+        const response = await axios.get("/v1/saved/count", {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("장바구니 갯수", response.data);
+        setSeoulShopBasketNum(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    SeoulShopBasket();
+  }, [SeoulShopBasketNum, token]);
+
   return (
     <div className="TrackViewPageFrame">
       <HeaderTwo></HeaderTwo>
@@ -107,9 +257,12 @@ function SeoulSightsPage() {
       <div className="TrackViewPageInner">
         <div className="SeoulMainBoxOne">
           <div className="SeoulMainTextBox">
-            <div className="SeoulMainTextOne">현재 선택된 카테고리: 쇼핑몰</div>
+            <div className="SeoulMainTextOne">
+              현재 선택된 카테고리: 관광거리
+            </div>
             <div className="SeoulMainTextTwo">
-              동대문구에서 5개의 쇼핑몰이 발견되었어요!
+              {selectedDistrict}에서 {attractions.length}개의 관광거리가
+              발견되었어요!
             </div>
           </div>
           <div className="SeoulCategoryBasketBox">
@@ -123,7 +276,7 @@ function SeoulSightsPage() {
                 ></img>
                 <div className="TextBasket">장바구니</div>
                 <div className="TextBasketNumFrame">
-                  <div className="TextBasketNum">0</div>
+                  <div className="TextBasketNum">{SeoulShopBasketNum}</div>
                 </div>
               </div>
             </div>
@@ -139,10 +292,9 @@ function SeoulSightsPage() {
             정보제공: 서울 열린데이터광장
           </div>
         </div>
-        <SeoulMapSightComponent
-          latitude={127.0311957909}
-          longitude={37.5136359848}
-        ></SeoulMapSightComponent>
+        {attractions.map((attraction) => (
+          <SeoulMapSightComponent key={attraction.id} attraction={attraction} />
+        ))}
       </div>
     </div>
   );
