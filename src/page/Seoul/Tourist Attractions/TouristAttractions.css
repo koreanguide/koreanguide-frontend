@@ -1,6 +1,8 @@
-.SeoulMapSightComponent {
+.SeoulMapSightComponentFrame {
   width: 990px;
-  height: 314px;
+  height: 268px;
+  padding-top: 23px;
+  padding-bottom: 23px;
   border-radius: 10px;
   border: 1px solid var(--KG_OUTLINE, #ececec);
   background: #fff;
@@ -91,4 +93,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.KakaoMap {
+  width: 100px;
+  height: 100%;
+  object-fit: contain;
 }

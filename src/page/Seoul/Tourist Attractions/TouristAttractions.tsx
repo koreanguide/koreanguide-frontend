@@ -4,7 +4,7 @@ import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import "./TouristAttractions.css";
 import { useLocation } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 declare global {
   interface Window {
@@ -39,7 +39,18 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
             level: 3,
           };
 
-          new window.kakao.maps.Map(container, options);
+          const map = new window.kakao.maps.Map(container, options);
+
+          const markerPosition = new window.kakao.maps.LatLng(
+            latitude,
+            longitude
+          );
+
+          const marker = new window.kakao.maps.Marker({
+            position: markerPosition,
+          });
+
+          marker.setMap(map);
         }
       });
     };
@@ -67,13 +78,15 @@ const SeoulMapSightComponent = ({
   attraction: SeoulMapSightComponentProps;
 }) => {
   return (
-    <div className="SeoulMapSightComponent">
+    <div className="SeoulMapSightComponentFrame">
       <div className="SeoulMapSightComponentInner">
-        <KakaoMap
-          latitude={attraction.longitude}
-          longitude={attraction.latitude}
-          key={attraction.id}
-        />
+        <div className="SeoulKakaoMap">
+          <KakaoMap
+            latitude={attraction.longitude}
+            longitude={attraction.latitude}
+            key={attraction.id}
+          />
+        </div>
         <div className="SeoulMapSightComponentBoxFrame">
           <div className="SeoulMapSightComponentBoxOne">
             <div className="ShopListBoxContainmentFrame">

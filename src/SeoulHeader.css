@@ -1,5 +1,5 @@
 .SeoulHeaderBoxFrame {
-  position: fixed;
+  position: absolute;
   top: 0%;
   left: 50%;
   transform: translate(-50%, 0%);
@@ -39,6 +39,7 @@
 .SeoulHeaderWeatherBox {
   width: auto;
   display: flex;
+  align-items: center;
   margin-left: 233px;
 }
 
