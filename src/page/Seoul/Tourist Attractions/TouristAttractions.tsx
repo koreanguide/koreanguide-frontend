@@ -4,6 +4,7 @@ import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import "./TouristAttractions.css";
 import { useLocation } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 declare global {
   interface Window {
@@ -26,7 +27,7 @@ const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
       "//dapi.kakao.com/v2/maps/sdk.js?appkey=4b97895fdc79dc6d392b38a5ada0f7e5&autoload=false";
     document.head.appendChild(script);
 
-    const id = `map-${latitude}-${longitude}`;
+    const id = `map-${uuidv4()}`;
     setUniqueId(id);
 
     script.onload = () => {
