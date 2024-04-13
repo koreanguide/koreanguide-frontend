@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
-import "./SeoulShop.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./HanRiver.css";
 
-function SeoulShopPage() {
+function SeoulHanRiverPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const token = sessionStorage.getItem("access-token");
@@ -115,110 +115,38 @@ function SeoulShopPage() {
   const englishDistrict: DistrictEnglish | "UNKNOWN" =
     convertDistrictToEnglish(selectedDistrict);
 
-  interface SeoulShopListProps {
-    cate2Name: string;
-    cate3Name: string;
-    nameKor: string;
-    address: string;
-  }
-
-  const ShopListBox = ({ shop }: { shop: SeoulShopListProps }) => {
-    const [isHovered, setIsHovered] = useState(false);
-
-    interface SeoulItemData {
-      address: string;
-      category: string;
-      value: string;
-    }
-
-    const SeoulItemSaveButton = async () => {
-      let SeoulSaveItemValue = shop.nameKor.toString();
-      let setSeoulSaveItemAddress = shop.address.toString();
-
-      const data: SeoulItemData = {
-        address: SeoulSaveItemValue,
-        value: setSeoulSaveItemAddress,
-        category: "쇼핑몰",
-      };
-      try {
-        const response = await axios.post("/v1/saved/add", data, {
-          headers: {
-            "X-AUTH-TOKEN": token,
-          },
-        });
-        console.log("장바구니 담기 성공", response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
+  const SeoulMainRiverComponent = () => {
     return (
-      <div className="ShopListBoxFrame">
-        <div className="ShopListBoxInner">
-          <div className="ShopListBoxTopFrame">
-            <div className="ShopListBoxTagContainer">
-              <div className="ShopListBoxTagItem">
-                <div className="ShopListBoxTagItemText">{shop.cate2Name}</div>
-              </div>
-              <div className="ShopListBoxTagItem">
-                <div className="ShopListBoxTagItemText">{shop.cate3Name}</div>
-              </div>
-            </div>
-            <div
-              className="ShopListBoxContainmentFrame"
-              onClick={() => SeoulItemSaveButton()}
-            >
-              <img
-                src="/img/BasketTwo.svg"
-                alt="오류"
-                className="BasketTwo"
-              ></img>
-              <div className="TextContainment">담기</div>
-            </div>
+      <div className="SeoulMainRiverComponentFrame">
+        <div className="SeoulMainRiverComponentImgbox">
+          <img
+            src="/img/NanGiRiver.svg"
+            alt="none"
+            className="NanGiRiver"
+          ></img>
+        </div>
+        <div className="SeoulMainRiverComponentTextbox">
+          <div className="SeoulMainRiverComponentTitle">난지 한강공원</div>
+          <div className="SeoulMainRiverComponentContent">
+            서울특별시 마포구 한강난지로 162
           </div>
-          <div className="ShopListBoxBottomFrame">
-            <div className="ShopListBoxTextContainer">
-              <div className="ShopListBoxTextOne">{shop.nameKor}</div>
-              <div className="ShopListBoxTextTwo">{shop.address}</div>
-            </div>
-            <div className="SeoulSearchFrame">
-              <div className="PortalSearchButton">
-                <div className="PortalSearchButtonInner">
-                  <img
-                    src="/img/SeoulNaver.svg"
-                    alt="오류"
-                    className="SeoulNaver"
-                  ></img>
-                  <div className="PortalSearchButtonText">포털 검색</div>
-                </div>
-              </div>
-              <div
-                className="PortalKakaoSearchButton"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <div className="PortalSearchButtonInner">
-                  <img
-                    src="/img/SeoulKakaoMap.svg"
-                    alt="오류"
-                    className="SeoulKakaoMap"
-                  ></img>
-                  <div className="PortalSearchButtonText">장소 탐색</div>
-                </div>
-              </div>
-              {isHovered && (
-                <div className="SeoulShopBalloonFrame">
-                  <img
-                    src="/img/SeoulShopBalloon.svg"
-                    alt="오류"
-                    className="SeoulShopBalloon"
-                  ></img>
-                  <div className="SeoulShopBalloonText">
-                    정확한 위치 미제공으로, 검색 화면으로 이동합니다.
-                  </div>
-                </div>
-              )}
-            </div>
+        </div>
+      </div>
+    );
+  };
+
+  const SeoulSubRiverComponent = () => {
+    return (
+      <div className="SeoulSubRiverComponentFrame">
+        <img
+          src="/img/GwangnaruRiver.svg"
+          alt="none"
+          className="GwangnaruRiver"
+        ></img>
+        <div className="SeoulSubRiverComponentTextBox">
+          <div className="SeoulSubRiverComponentTextOne">광나루 한강공원</div>
+          <div className="SeoulSubRiverComponentTextTwo">
+            서울특별시 강동구 선사로 83-106
           </div>
         </div>
       </div>
@@ -282,9 +210,11 @@ function SeoulShopPage() {
       <div className="TrackViewPageInner">
         <div className="SeoulMainBoxOne">
           <div className="SeoulMainTextBox">
-            <div className="SeoulMainTextOne">현재 선택된 카테고리: 쇼핑몰</div>
+            <div className="SeoulMainTextOne">
+              현재 선택된 카테고리: 한강공원
+            </div>
             <div className="SeoulMainTextTwo">
-              {selectedDistrict}에서 {shops.length}개의 쇼핑몰이 발견되었어요!
+              {selectedDistrict}에는 {shops.length}개의 한강공원이 있어요.
             </div>
           </div>
           <div className="SeoulCategoryBasketBox">
@@ -316,10 +246,25 @@ function SeoulShopPage() {
             정보제공: 서울 열린데이터광장
           </div>
         </div>
-        <div className="ShopListContainer">
-          {shops.map((shop) => (
-            <ShopListBox shop={shop} />
-          ))}
+        <div className="SeoulMainRiverFrame">
+          <SeoulMainRiverComponent></SeoulMainRiverComponent>
+          <SeoulMainRiverComponent></SeoulMainRiverComponent>
+        </div>
+        <div className="SeoulRiverPageTextBox">
+          <div className="SeoulRiverPageTextOne">
+            서울의 다른 자치구의 한강공원도 확인해 보세요!
+          </div>
+          <div className="SeoulRiverPageTextTwo">
+            한강공원은 서울 전역에 넓게 퍼져있기 때문에 위치에 따라 같은
+            자치구여도, 다른 자치구의 한강 공원이 더 가까울 수도 있어요.
+          </div>
+        </div>
+        <div className="SeoulSubRiverFrame">
+          <SeoulSubRiverComponent></SeoulSubRiverComponent>
+          <SeoulSubRiverComponent></SeoulSubRiverComponent>
+          <SeoulSubRiverComponent></SeoulSubRiverComponent>
+          <SeoulSubRiverComponent></SeoulSubRiverComponent>
+          <SeoulSubRiverComponent></SeoulSubRiverComponent>
         </div>
         <div className="SeoulMoreButtonFrame">
           <div className="SeoulMoreButton">더 보기</div>
@@ -341,4 +286,4 @@ function SeoulShopPage() {
   );
 }
 
-export default SeoulShopPage;
+export default SeoulHanRiverPage;

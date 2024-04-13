@@ -1,0 +1,130 @@
+.SeoulMainRiverFrame {
+  width: 990px;
+  height: 353px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 47px;
+}
+
+.SeoulMainRiverComponentFrame {
+  width: 480px;
+  height: 353px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+}
+
+.SeoulMainRiverComponentImgbox {
+  width: 480px;
+  height: 245px;
+  background-color: antiquewhite;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.SeoulMainRiverComponentTextbox {
+  width: auto;
+  height: 53px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 27px;
+  margin-left: 40px;
+}
+
+.SeoulMainRiverComponentTitle {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.SeoulMainRiverComponentContent {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+}
+
+.SeoulRiverPageTextBox {
+  width: 736px;
+  height: 58px;
+  margin-top: 47px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulRiverPageTextOne {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.SeoulRiverPageTextTwo {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+}
+
+.SeoulSubRiverFrame {
+  width: 990px;
+  height: auto;
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.SeoulSubRiverComponentFrame {
+  width: 478px;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  display: flex;
+  align-items: center;
+}
+
+.SeoulSubRiverComponentTextBox {
+  width: auto;
+  height: 53px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 30px;
+}
+
+.SeoulSubRiverComponentTextOne {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.SeoulSubRiverComponentTextTwo {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+}

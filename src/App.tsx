@@ -30,6 +30,7 @@ import SeoulBasketPage from "./page/Seoul/SeoulBasket";
 import SeoulShopPage from "./page/Seoul/Shop/SeoulShop";
 import SeoulTrackCreatePage from "./page/Seoul/Track/SeoulTrack";
 import SeoulSightsPage from "./page/Seoul/Tourist Attractions/TouristAttractions";
+import SeoulHanRiverPage from "./page/Seoul/HanRiver/HanRiver";
 
 function App() {
   return (
@@ -150,6 +151,7 @@ function App() {
             path="/portal/seoul/track"
             element={<SeoulTrackCreatePage />}
           />
+          <Route path="/portal/seoul/river" element={<SeoulHanRiverPage />} />
         </Routes>
       </BrowserRouter>
     </div>

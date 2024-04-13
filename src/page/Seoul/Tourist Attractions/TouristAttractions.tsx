@@ -3,7 +3,7 @@ import axios from "axios";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import "./TouristAttractions.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 declare global {
@@ -77,6 +77,31 @@ const SeoulMapSightComponent = ({
 }: {
   attraction: SeoulMapSightComponentProps;
 }) => {
+  interface SeoulAttractionData {
+    address: string;
+    category: string;
+    value: string;
+  }
+
+  const token = sessionStorage.getItem("access-token");
+
+  const SeoulAttractionSaveButton = async () => {
+    const data: SeoulAttractionData = {
+      address: attraction.address,
+      value: attraction.title,
+      category: "관광거리",
+    };
+    try {
+      const response = await axios.post("/v1/saved/add", data, {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+      console.log("장바구니 담기 성공", response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="SeoulMapSightComponentFrame">
       <div className="SeoulMapSightComponentInner">
@@ -89,7 +114,10 @@ const SeoulMapSightComponent = ({
         </div>
         <div className="SeoulMapSightComponentBoxFrame">
           <div className="SeoulMapSightComponentBoxOne">
-            <div className="ShopListBoxContainmentFrame">
+            <div
+              className="ShopListBoxContainmentFrame"
+              onClick={() => SeoulAttractionSaveButton()}
+            >
               <img
                 src="/img/BasketTwo.svg"
                 alt="오류"
@@ -264,6 +292,27 @@ function SeoulSightsPage() {
     SeoulShopBasket();
   }, [SeoulShopBasketNum, token]);
 
+  const SeoulBasketDelete = async () => {
+    try {
+      const response = await axios.delete("/v1/saved/reset", {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+      console.log("장바구니 비우기 성공", response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const gotoSeoulBasket = () => {
+    navigate("/portal/seoul/saved");
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="TrackViewPageFrame">
       <HeaderTwo></HeaderTwo>
@@ -280,8 +329,10 @@ function SeoulSightsPage() {
             </div>
           </div>
           <div className="SeoulCategoryBasketBox">
-            <div className="BasketRemoveButton">비우기</div>
-            <div className="BasketNumFrame">
+            <div className="BasketRemoveButton" onClick={SeoulBasketDelete}>
+              비우기
+            </div>
+            <div className="BasketNumFrame" onClick={gotoSeoulBasket}>
               <div className="BasketNumInner">
                 <img
                   src="/img/BasketTwo.svg"

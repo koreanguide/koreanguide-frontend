@@ -24,6 +24,11 @@ function SeoulCategoryPage() {
     window.scrollTo(0, 0);
   };
 
+  const goToSeoulHanRiver = () => {
+    navigate("/portal/seoul/river", { state: { selectedDistrict } });
+    window.scrollTo(0, 0);
+  };
+
   const goToSeoulSights = () => {
     navigate("/portal/seoul/sights", { state: { selectedDistrict } });
     window.scrollTo(0, 0);
@@ -79,6 +84,20 @@ function SeoulCategoryPage() {
       </div>
     );
   };
+
+  const SeoulBasketDelete = async () => {
+    try {
+      const response = await axios.delete("/v1/saved/reset", {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+      console.log("장바구니 비우기 성공", response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -95,9 +114,11 @@ function SeoulCategoryPage() {
               알아보고 싶은 카테고리를 선택해 주세요
             </div>
           </div>
-          <div className="SeoulCategoryBasketBox" onClick={gotoSeoulBasket}>
-            <div className="BasketRemoveButton">비우기</div>
-            <div className="BasketNumFrame">
+          <div className="SeoulCategoryBasketBox">
+            <div className="BasketRemoveButton" onClick={SeoulBasketDelete}>
+              비우기
+            </div>
+            <div className="BasketNumFrame" onClick={gotoSeoulBasket}>
               <div className="BasketNumInner">
                 <img
                   src="/img/BasketTwo.svg"
@@ -117,7 +138,7 @@ function SeoulCategoryPage() {
             imgUrl="/img/AlgoImg1.svg"
             title="한강공원"
             content="서울의 대표 한강, 한강 공원에서 아름다운 서울을 즐겨보 시는건 어떨까요? 좋은 추억이 될 거예요."
-            onClick={() => goToSeoulShop()}
+            onClick={() => goToSeoulHanRiver()}
           />
           <SeoulAlgorithmsContainer
             imgUrl="/img/AlgoImg2.svg"
