@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function MainFifth() {
   const navigate = useNavigate();
   const goToStart = () => {
-    navigate("/signin");
+    navigate("/portal/signin");
     window.scrollTo(0, 0);
   };
 

@@ -164,6 +164,7 @@ function SignUpPage() {
         sessionStorage.setItem("access-token", response.data.accessToken);
         sessionStorage.setItem("refresh-token", response.data.refreshToken);
         navigate("/");
+        window.scrollTo(0, 0);
       }
     } catch (error: any) {
       if (error.response?.data) {

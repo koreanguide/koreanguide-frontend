@@ -27,7 +27,7 @@ function SeoulHeader() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("헤더 날씨 정보: ", response.data);
+        // console.log("헤더 날씨 정보: ", response.data);
         setminTemp(response.data.minTemp);
         setmaxTemp(response.data.maxTemp);
         setnowTemp(response.data.nowTemp);
@@ -41,23 +41,23 @@ function SeoulHeader() {
 
     const FineDustFunction = () => {
       if (fineDust === "BAD") {
-        console.log("미세먼지 나쁨");
+        // console.log("미세먼지 나쁨");
         setfineDust("나쁨");
         setfineDustColor("#FD3D3D");
       } else if (fineDust === "NORMAL") {
-        console.log("미세먼지 보통");
+        // console.log("미세먼지 보통");
         setfineDust("보통");
         setfineDustColor("#FFD400");
       } else if (fineDust === "WORST") {
-        console.log("미세먼지 매우나쁨");
+        // console.log("미세먼지 매우나쁨");
         setfineDust("매우나쁨");
         setfineDustColor("#FD3D3D");
       } else if (fineDust === "UNKNOWN") {
-        console.log("미세먼지 알수 없음");
+        // console.log("미세먼지 알수 없음");
         setfineDust("알 수 없음");
         setfineDustColor("#616161");
       } else if (fineDust === "GOOD") {
-        console.log("미세먼지 좋음");
+        // console.log("미세먼지 좋음");
         setfineDust("좋음");
         setfineDustColor("#0074FF");
       }
@@ -96,23 +96,23 @@ function SeoulHeader() {
 
     const UltraFineDustFunction = () => {
       if (ultrafineDust === "BAD") {
-        console.log("초미세먼지 나쁨");
+        // console.log("초미세먼지 나쁨");
         setultrafineDust("나쁨");
         setultrafineDustColor("#FD3D3D");
       } else if (ultrafineDust === "NORMAL") {
-        console.log("초미세먼지 보통");
+        // console.log("초미세먼지 보통");
         setultrafineDust("보통");
         setultrafineDustColor("#FFD400");
       } else if (ultrafineDust === "WORST") {
-        console.log("초미세먼지 매우나쁨");
+        // console.log("초미세먼지 매우나쁨");
         setultrafineDust("매우나쁨");
         setultrafineDustColor("#FD3D3D");
       } else if (ultrafineDust === "UNKNOWN") {
-        console.log("초미세먼지 알수 없음");
+        // console.log("초미세먼지 알수 없음");
         setultrafineDust("알 수 없음");
         setultrafineDustColor("#616161");
       } else if (ultrafineDust === "GOOD") {
-        console.log("초미세먼지 좋음");
+        // console.log("초미세먼지 좋음");
         setultrafineDust("좋음");
         setultrafineDustColor("#0074FF");
       }

@@ -5,7 +5,7 @@
 
 .MyTrackFrame {
   width: 990px;
-  height: 1000px;
+  height: auto;
   text-align: start;
 }
 
@@ -52,6 +52,7 @@
   display: flex;
   align-items: center;
   margin-top: 22px;
+  margin-bottom: 160px;
 }
 
 .MyTrack-container {
@@ -73,8 +74,6 @@
   border-radius: 20px;
   border: 1px solid #e3e3e3;
   background: #fff;
-
-  cursor: pointer;
 }
 
 .MyTrackComponentImgBox {
@@ -113,6 +112,8 @@
   height: 53px;
   margin-top: 26px;
   margin-left: 20px;
+
+  cursor: pointer;
 }
 
 .MyTrackComponentTitleText {

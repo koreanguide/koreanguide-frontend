@@ -34,6 +34,21 @@ function SeoulCategoryPage() {
     window.scrollTo(0, 0);
   };
 
+  const goToSeoulCycle = () => {
+    navigate("/portal/seoul/cycle", { state: { selectedDistrict } });
+    window.scrollTo(0, 0);
+  };
+
+  const goToSeoulRestaurant = () => {
+    navigate("/portal/seoul/restaurant", { state: { selectedDistrict } });
+    window.scrollTo(0, 0);
+  };
+
+  const goToSeoulKaraoke = () => {
+    navigate("/portal/seoul/karaoke", { state: { selectedDistrict } });
+    window.scrollTo(0, 0);
+  };
+
   const gotoSeoulBasket = () => {
     navigate("/portal/seoul/saved");
     window.scrollTo(0, 0);
@@ -152,7 +167,7 @@ function SeoulCategoryPage() {
             title="따릉이(공공자전거)"
             content="서울시에서 제공하는 공공자전거 따릉이에요. 따릉이를 함
             께타며 서울 이곳저곳을 즐겨보세요! 아, 안전은 필수겠죠?"
-            onClick={() => goToSeoulSights()}
+            onClick={() => goToSeoulCycle()}
           />
           <SeoulAlgorithmsContainer
             imgUrl="/img/AlgoImg4.svg"
@@ -160,7 +175,7 @@ function SeoulCategoryPage() {
             content="한국의 맛을 전 세계에 빛내는 자랑스러운 음식점들을 모았
             어요. 한국의 전통과 현대가 어우러진 독창적인 맛의 향연을
             경험할 수 있어요!"
-            onClick={() => console.log("한강공원 선택됨")}
+            onClick={() => goToSeoulRestaurant()}
           />
           <SeoulAlgorithmsContainer
             imgUrl="/img/AlgoImg5.svg"
@@ -168,7 +183,7 @@ function SeoulCategoryPage() {
             content="한국의 독특한 문화 중 하나인 코인노래방은 남녀노소 누구
             나 부담 없이 즐길 수 있는 엔터테인먼트 공간이에요. 한국
             을 방문한 외국인에게 흥미로운 경험을 선사할거예요!"
-            onClick={() => console.log("한강공원 선택됨")}
+            onClick={() => goToSeoulKaraoke()}
           />
           <SeoulAlgorithmsContainer
             imgUrl="/img/AlgoImg6.svg"

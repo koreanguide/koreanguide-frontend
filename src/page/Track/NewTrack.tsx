@@ -3,6 +3,7 @@ import "./NewTrack.css";
 import HeaderTwo from "../../HeaderTwo";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import SeoulHeader from "../../SeoulHeader";
 
 function NewTrackpage() {
   const token = sessionStorage.getItem("access-token");
@@ -631,6 +632,7 @@ function NewTrackpage() {
 
   return (
     <div>
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className="NewTrackpage">
         <div className="NewTrackpageInner">

@@ -219,7 +219,9 @@ body {
 
 .GuidePageTrackComponentContainer {
   width: 990px;
+  height: auto;
   display: flex;
+  margin-top: 32px;
 }
 
 .OnClickProgressBox {
@@ -316,6 +318,144 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.PortalRankTrackComponentFrame {
+  position: relative;
+  width: 330px;
+  height: 306px;
+}
+
+.PortalRankCircle {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #730ef4;
+  border-radius: 42px;
+  z-index: 7;
+  top: 0px;
+  left: 0px;
+}
+
+.PortalRankNum {
+  color: #fff;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.PortalRankTrackComponentInner {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 320px;
+  height: 293px;
+  border-radius: 20px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+}
+
+.PortalRankTrackComponentBoxOne {
+  width: 320px;
+  height: 112px;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #616161;
+}
+
+.PortalRankTrackComponentInnerTwo {
+  margin-top: 26px;
+  width: 283px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.PortalRankTrackComponentBoxTwo {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.PortalRankTrackComponentBoxThree {
+  height: 60px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 116.667%;
+  margin-top: 7px;
+}
+
+.PortalRankTrackComponentBoxFour {
+  display: flex;
+  align-items: center;
+}
+
+.PortalRankTrackComponentBoxTag {
+  margin-right: 10px;
+  color: var(--Primary, #730ef4);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.PortalRankTrackComponentBoxFive {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.PortalRankTrackComponentBoxSix {
+  display: flex;
+  align-items: center;
+}
+
+.PortalRankTrackComponentBoxProfileImg {
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  background-color: #616161;
+}
+
+.PortalRankTrackComponentBoxNickName {
+  margin-left: 9px;
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.PortalRankTrackComponentBoxSeven {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+.PortalRankTrackComponentBoxViewNum {
+  color: var(--KG_SUBTEXT, #616161);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 10px;
 }
 
 @media only screen and (max-width: 990px) {

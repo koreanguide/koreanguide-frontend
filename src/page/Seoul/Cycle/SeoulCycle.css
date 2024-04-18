@@ -1,0 +1,113 @@
+.SeoulCycleFrame {
+  width: 990px;
+  height: auto;
+  margin-top: 51px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  row-gap: 35px;
+}
+
+.SeoulCycleComponentFrame {
+  width: 304px;
+  height: 172px;
+  border-radius: 10px;
+  border: 1px solid var(--KG_OUTLINE, #ececec);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulCycleComponentInner {
+  width: 234px;
+  height: 132px;
+}
+
+.SeoulCycleComponentBoxOne {
+  width: 157px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulCycleComponentTagBox {
+  width: auto;
+  height: 22px;
+  background-color: #e9e8fe;
+  padding-left: 18px;
+  padding-right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulCycleComponentTagText {
+  color: var(--seoul, #3876c0);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.4px;
+}
+
+.SeoulCycleComponentBoxTwo {
+  width: auto;
+  height: 19px;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+  margin-top: 30px;
+}
+
+.SeoulCycleComponentBoxThree {
+  overflow: hidden;
+  color: var(--KG_SUBTEXT, #616161);
+  text-overflow: ellipsis;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.52px;
+  margin-top: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.SeoulCycleComponentBoxFour {
+  width: 82px;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--seoul, #3876c0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 13px;
+
+  cursor: pointer;
+}
+
+.SeoulCycleComponentBoxFourInner {
+  width: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulCycleComponentBoxFourText {
+  color: #e9e8fe;
+  font-family: Pretendard;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.32px;
+}

@@ -3,9 +3,8 @@ import axios from "axios";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./SeoulCycle.css";
 
-function SeoulCyclePage() {
+function SeoulKaraokePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const token = sessionStorage.getItem("access-token");
@@ -22,8 +21,7 @@ function SeoulCyclePage() {
     window.scrollTo(0, 0);
   };
 
-  const [cycles, setCycles] = useState<Array<any>>([]);
-
+  const [shops, setShops] = useState<Array<any>>([]);
   const [SeoulShopBasketNum, setSeoulShopBasketNum] = useState("");
 
   type DistrictKey =
@@ -116,20 +114,126 @@ function SeoulCyclePage() {
   const englishDistrict: DistrictEnglish | "UNKNOWN" =
     convertDistrictToEnglish(selectedDistrict);
 
-  useEffect(() => {
-    const SeoulCycleList = async () => {
+  interface SeoulKaraokeListProps {
+    phoneNum: string;
+    name: string;
+    address: string;
+  }
+
+  const ShopListBox = ({ shop }: { shop: SeoulKaraokeListProps }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    interface SeoulItemData {
+      address: string;
+      category: string;
+      value: string;
+    }
+
+    const SeoulItemSaveButton = async () => {
+      let SeoulSaveItemValue = shop.name.toString();
+      let setSeoulSaveItemAddress = shop.address.toString();
+
+      const data: SeoulItemData = {
+        address: SeoulSaveItemValue,
+        value: setSeoulSaveItemAddress,
+        category: "노래방",
+      };
       try {
-        const response = await axios.get("/v1/seoul/bicycle", {
-          params: { seoulCountry: englishDistrict },
+        const response = await axios.post("/v1/saved/add", data, {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
         });
-        console.log("공공자전거 데이터", response.data);
-        setCycles(response.data);
+        console.log("장바구니 담기 성공", response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    SeoulCycleList();
+    return (
+      <div className="ShopListBoxFrame">
+        <div className="ShopListBoxInner">
+          <div className="ShopListBoxTopFrame">
+            <div className="ShopListBoxTagContainer">
+              <div className="ShopListBoxTagItem">
+                <div className="ShopListBoxTagItemText">{shop.phoneNum}</div>
+              </div>
+            </div>
+            <div
+              className="ShopListBoxContainmentFrame"
+              onClick={() => SeoulItemSaveButton()}
+            >
+              <img
+                src="/img/BasketTwo.svg"
+                alt="오류"
+                className="BasketTwo"
+              ></img>
+              <div className="TextContainment">담기</div>
+            </div>
+          </div>
+          <div className="ShopListBoxBottomFrame">
+            <div className="ShopListBoxTextContainer">
+              <div className="ShopListBoxTextOne">{shop.name}</div>
+              <div className="ShopListBoxTextTwo">{shop.address}</div>
+            </div>
+            <div className="SeoulSearchFrame">
+              <div className="PortalSearchButton">
+                <div className="PortalSearchButtonInner">
+                  <img
+                    src="/img/SeoulNaver.svg"
+                    alt="오류"
+                    className="SeoulNaver"
+                  ></img>
+                  <div className="PortalSearchButtonText">포털 검색</div>
+                </div>
+              </div>
+              <div
+                className="PortalKakaoSearchButton"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <div className="PortalSearchButtonInner">
+                  <img
+                    src="/img/SeoulKakaoMap.svg"
+                    alt="오류"
+                    className="SeoulKakaoMap"
+                  ></img>
+                  <div className="PortalSearchButtonText">장소 탐색</div>
+                </div>
+              </div>
+              {isHovered && (
+                <div className="SeoulShopBalloonFrame">
+                  <img
+                    src="/img/SeoulShopBalloon.svg"
+                    alt="오류"
+                    className="SeoulShopBalloon"
+                  ></img>
+                  <div className="SeoulShopBalloonText">
+                    정확한 위치 미제공으로, 검색 화면으로 이동합니다.
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  useEffect(() => {
+    const SeoulShopList = async () => {
+      try {
+        const response = await axios.get("/v1/seoul/karaoke", {
+          params: { seoulCountry: englishDistrict },
+        });
+        console.log(response.data);
+        setShops(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    SeoulShopList();
   }, [englishDistrict]);
 
   useEffect(() => {
@@ -164,57 +268,6 @@ function SeoulCyclePage() {
     }
   };
 
-  interface SeoulCycleComponentProps {
-    code: string;
-    count: number;
-    name: string;
-    address: string;
-    kakaoMapUrl: string;
-  }
-
-  const SeoulCycleComponent = ({
-    cycle,
-  }: {
-    cycle: SeoulCycleComponentProps;
-  }) => {
-    const SeoulCycleOnClick = () => {
-      console.log("공공자전거 클릭", cycle.kakaoMapUrl);
-      navigate(cycle.kakaoMapUrl);
-      window.scrollTo(0, 0);
-    };
-    return (
-      <div className="SeoulCycleComponentFrame">
-        <div className="SeoulCycleComponentInner">
-          <div className="SeoulCycleComponentBoxOne">
-            <div className="SeoulCycleComponentTagBox">
-              <div className="SeoulCycleComponentTagText">{cycle.code}</div>
-            </div>
-            <div className="SeoulCycleComponentTagBox">
-              <div className="SeoulCycleComponentTagText">
-                {cycle.count}개의 거치대
-              </div>
-            </div>
-          </div>
-          <div className="SeoulCycleComponentBoxTwo">{cycle.name}</div>
-          <div className="SeoulCycleComponentBoxThree">{cycle.address}</div>
-          <div className="SeoulCycleComponentBoxFour">
-            <div
-              className="SeoulCycleComponentBoxFourInner"
-              onClick={SeoulCycleOnClick}
-            >
-              <img
-                src="/img/SeoulCycleImg-1.svg"
-                alt="none"
-                className="SeoulCycleImg-1"
-              ></img>
-              <div className="SeoulCycleComponentBoxFourText">장소 탐색</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -224,11 +277,9 @@ function SeoulCyclePage() {
       <div className="TrackViewPageInner">
         <div className="SeoulMainBoxOne">
           <div className="SeoulMainTextBox">
-            <div className="SeoulMainTextOne">
-              현재 선택된 카테고리: 따릉이(공공자전거)
-            </div>
+            <div className="SeoulMainTextOne">현재 선택된 카테고리: 음식점</div>
             <div className="SeoulMainTextTwo">
-              {selectedDistrict}에서 {cycles.length}개의 따릉이가 발견되었어요!
+              {selectedDistrict}에서 {shops.length}개의 음식점이 발견되었어요!
             </div>
           </div>
           <div className="SeoulCategoryBasketBox">
@@ -260,9 +311,9 @@ function SeoulCyclePage() {
             정보제공: 서울 열린데이터광장
           </div>
         </div>
-        <div className="SeoulCycleFrame">
-          {cycles.map((cycle) => (
-            <SeoulCycleComponent cycle={cycle} />
+        <div className="ShopListContainer">
+          {shops.map((shop) => (
+            <ShopListBox shop={shop} />
           ))}
         </div>
         <div className="SeoulMoreButtonFrame">
@@ -285,4 +336,4 @@ function SeoulCyclePage() {
   );
 }
 
-export default SeoulCyclePage;
+export default SeoulKaraokePage;

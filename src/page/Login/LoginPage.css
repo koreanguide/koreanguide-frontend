@@ -251,6 +251,10 @@
   display: none;
 }
 
+.MobilePopUpFrame {
+  display: none;
+}
+
 @media only screen and (max-width: 990px) {
   .signinframe {
     width: 100%;

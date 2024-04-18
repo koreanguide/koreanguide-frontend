@@ -23,6 +23,18 @@ function AfterLoginPage() {
   const [couponUsed, setCouponUsed] = useState(false);
   const [level, setLevel] = useState("");
 
+  const [tracks, setTracks] = useState([]);
+  /*{인기트랙}*/
+  // const [PortalTrackRank, setPortalTrackRank] = useState("");
+  // const [PortalTrackId, setPortalTrackId] = useState("");
+  // const [PortalTrackTitle, setPortalTrackTitle] = useState("");
+  // const [PortalTrackPreview, setPortalTrackPreview] = useState("");
+  // const [PortalTrackProfileURL, setPortalTrackProfileURL] = useState("");
+  // const [PortalTrackNickName, setPortalTrackNickName] = useState("");
+  // const [PortalTrackView, setPortalTrackView] = useState("");
+  // const [PortalTrackLike, setPortalTrackLike] = useState("");
+  // const [PortalTrackTags, setPortalTrackTags] = useState([]);
+
   useEffect(() => {
     if (token === null) {
       console.log("세션 스토리지에 토큰이 없습니다.");
@@ -70,9 +82,21 @@ function AfterLoginPage() {
       }
     };
 
-    Promise.all([MainInfo(), MainProfileProgressInfo()]).then(() =>
-      setIsLoading(false)
-    );
+    const MainProfileTrackRankComponent = async () => {
+      try {
+        const response = await axios.get("/v1/track/top");
+        console.log(response.data);
+        setTracks(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    Promise.all([
+      MainInfo(),
+      MainProfileProgressInfo(),
+      MainProfileTrackRankComponent(),
+    ]).then(() => setIsLoading(false));
   }, [token]);
 
   const handleBoxClick = async () => {
@@ -141,63 +165,58 @@ function AfterLoginPage() {
     );
   };
 
-  // const GuidePageTrackComponent = ({ track }: { track: any }) => {
-  const GuidePageTrackComponent = () => {
-    return (
-      <div className="MyTrackComponent">
-        <div className="MyTrackComponentImgBox">
-          <img
-            className="MyTrackComponentStar"
-            src="../img/NoneStar.svg"
-            alt="오류"
-          ></img>
+  interface PortalRankTrackComponentProps {
+    title: string;
+    preview: string;
+    profileUrl: string;
+    nickname: string;
+    view: number;
+    like: number;
+    tags: string[];
+  }
 
-          {/* <img
-            src="../img/eye.svg"
-            className="setting-img"
-            alt="Setting Icon"
-          ></img> */}
-          {/* <img
-            className="MyTrackComponentImg"
-            src={track.primaryImageUrl}
-            alt="오류"
-          ></img> */}
+  const PortalRankTrackComponent = ({
+    track,
+    rank,
+  }: {
+    track: PortalRankTrackComponentProps;
+    rank: number;
+  }) => {
+    return (
+      <div className="PortalRankTrackComponentFrame">
+        <div className="PortalRankCircle">
+          <div className="PortalRankNum">{rank}</div>
         </div>
-        <div className="MyTrackComponentTextBox">
-          {/* <div className="MyTrackComponentTitleText">{track.trackTitle}</div>
-          <div className="MyTrackComponentSubText">{track.trackPreview}</div> */}
-          <div className="MyTrackComponentTitleText">
-            한국의 아름다움을 함께해요
-          </div>
-          <div className="MyTrackComponentSubText">
-            한국의 중심 서울을 구석구석 함께해요
-          </div>
-        </div>
-        <div className="MyTrackComponentContentBox">
-          <div className="MyTrackComponentTagBox">
-            {/* {track.tags.map((tag: string, index: number) => (
-              <span key={index}> #{tag}</span>
-            ))} */}
-          </div>
-          <div className="MyTrackComponentContent">
-            <div className="MyTrackComponentViewBox">
-              <img className="" src="../img/eye.svg" alt="조회수"></img>
-              {/* <div className="MyTrackComponentView">{track.view}</div> */}
-              <div className="MyTrackComponentView">1,034</div>
+        <div className="PortalRankTrackComponentInner">
+          <div className="PortalRankTrackComponentBoxOne"></div>
+          <div className="PortalRankTrackComponentInnerTwo">
+            <div className="PortalRankTrackComponentBoxTwo">{track.title}</div>
+            <div className="PortalRankTrackComponentBoxThree">
+              {track.preview}
             </div>
-            <div className="MyTrackComponentHeartBox">
-              <img
-                className="MyTrackComponentHeartImg"
-                src="../img/MyTrackheart.svg"
-                alt="조회수"
-              ></img>
-              {/* <img
-                src="../img/eye.svg"
-                className="setting-img"
-                alt="Setting Icon"
-              ></img> */}
-              {/* <div className="MyTrackComponentHeart">{track.like}</div> */}
-              <div className="MyTrackComponentHeart">78</div>
+            <div className="PortalRankTrackComponentBoxFour">
+              {track.tags.map((tag) => (
+                <div className="PortalRankTrackComponentBoxTag" key={tag}>
+                  #{tag}
+                </div>
+              ))}
+            </div>
+            <div className="PortalRankTrackComponentBoxFive">
+              <div className="PortalRankTrackComponentBoxSix">
+                <div
+                  className="PortalRankTrackComponentBoxProfileImg"
+                  style={{ backgroundImage: `url(${track.profileUrl})` }}
+                ></div>
+                <div className="PortalRankTrackComponentBoxNickName">
+                  {track.nickname}
+                </div>
+              </div>
+              <div className="PortalRankTrackComponentBoxSeven">
+                <div className="PortalRankTrackComponentBoxViewNum">
+                  {track.view}
+                </div>
+                <img className="eyeImg" src="../img/eye.svg" alt="view"></img>
+              </div>
             </div>
           </div>
         </div>
@@ -217,21 +236,6 @@ function AfterLoginPage() {
               오늘 하루는 어떠셨나요?
             </div>
           </div>
-          {/* <div className="GuideMainPageScheduleBox">
-            <div className="GuideMainPageScheduleContent">
-              <div className="GuideMainPageScheduleContentTwo">
-                <img
-                  className="ScheduleBoxImg"
-                  src="../img/ScheduleBoxImg.svg"
-                  alt=""
-                ></img>
-                <div className="ScheduleBoxText">
-                  다가오는 일정이 있습니다. 여기를 눌러 확인해 보세요!
-                </div>
-              </div>
-              <div className="ScheduleBoxDateText">3 일후</div>
-            </div>
-          </div> */}
           {profileComplete && !couponUsed && (
             <div className="GuideMainPageScheduleBox" onClick={handleBoxClick}>
               <div className="GuideMainPageScheduleContent">
@@ -498,9 +502,9 @@ function AfterLoginPage() {
             </div>
           </div>
           <div className="GuidePageTrackComponentContainer">
-            <GuidePageTrackComponent></GuidePageTrackComponent>
-            <GuidePageTrackComponent></GuidePageTrackComponent>
-            <GuidePageTrackComponent></GuidePageTrackComponent>
+            {tracks.map((track, index) => (
+              <PortalRankTrackComponent track={track} rank={index + 1} />
+            ))}
           </div>
         </div>
       </div>

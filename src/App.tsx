@@ -31,6 +31,9 @@ import SeoulShopPage from "./page/Seoul/Shop/SeoulShop";
 import SeoulTrackCreatePage from "./page/Seoul/Track/SeoulTrack";
 import SeoulSightsPage from "./page/Seoul/Tourist Attractions/TouristAttractions";
 import SeoulHanRiverPage from "./page/Seoul/HanRiver/HanRiver";
+import SeoulCyclePage from "./page/Seoul/Cycle/SeoulCycle";
+import SeoulRestaurantPage from "./page/Seoul/Restaurant/SeoulRestaurant";
+import SeoulKaraokePage from "./page/Seoul/Karaoke/SeoulKaraoke";
 
 function App() {
   return (
@@ -53,6 +56,8 @@ function App() {
           />
 
           {/* Portal */}
+          {/*Loading usefull*/}
+          {/*Checked*/}
           <Route
             path="/portal"
             element={
@@ -61,6 +66,9 @@ function App() {
               </CheckToken>
             }
           />
+
+          {/*Loading usefull*/}
+          {/*Checked*/}
           <Route
             path="/portal/chat"
             element={
@@ -69,6 +77,9 @@ function App() {
               </CheckToken>
             }
           />
+
+          {/*Loading useless*/}
+          {/*Checked*/}
           <Route
             path="/portal/track/new"
             element={
@@ -77,6 +88,8 @@ function App() {
               </CheckToken>
             }
           />
+
+          {/*Loading usefull*/}
           <Route
             path="/portal/track"
             element={
@@ -152,6 +165,12 @@ function App() {
             element={<SeoulTrackCreatePage />}
           />
           <Route path="/portal/seoul/river" element={<SeoulHanRiverPage />} />
+          <Route path="/portal/seoul/cycle" element={<SeoulCyclePage />} />
+          <Route
+            path="/portal/seoul/restaurant"
+            element={<SeoulRestaurantPage />}
+          />
+          <Route path="/portal/seoul/karaoke" element={<SeoulKaraokePage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,8 +4,10 @@ import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LoadPage from "../LoadPage/LoadPage";
+import SeoulHeader from "../../SeoulHeader";
 
 interface Track {
+  star: boolean;
   trackId: string;
   primaryImageUrl: string;
   trackTitle: string;
@@ -14,56 +16,6 @@ interface Track {
   view: number;
   like: number;
 }
-
-export const MyTrackComponent = ({ track }: { track: Track }) => {
-  const navigate = useNavigate();
-
-  const handleTrackClick = () => {
-    navigate(`/portal/track/view/${track.trackId}`);
-  };
-
-  return (
-    <div className="MyTrackComponent" onClick={handleTrackClick}>
-      <div className="MyTrackComponentImgBox">
-        <img
-          className="MyTrackComponentStar"
-          src="../img/NoneStar.svg"
-          alt="오류"
-        />
-        <img
-          className="MyTrackComponentImg"
-          src={track.primaryImageUrl}
-          alt="오류"
-        />
-      </div>
-      <div className="MyTrackComponentTextBox">
-        <div className="MyTrackComponentTitleText">{track.trackTitle}</div>
-        <div className="MyTrackComponentSubText">{track.trackPreview}</div>
-      </div>
-      <div className="MyTrackComponentContentBox">
-        <div className="MyTrackComponentTagBox">
-          {track.tags.map((tag: string, index: number) => (
-            <span key={index}> #{tag}</span>
-          ))}
-        </div>
-        <div className="MyTrackComponentContent">
-          <div className="MyTrackComponentViewBox">
-            <img className="" src="../img/eye.svg" alt="조회수" />
-            <div className="MyTrackComponentView">{track.view}</div>
-          </div>
-          <div className="MyTrackComponentHeartBox">
-            <img
-              className="MyTrackComponentHeartImg"
-              src="../img/MyTrackheart.svg"
-              alt="조회수"
-            />
-            <div className="MyTrackComponentHeart">{track.like}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 function MyTrack() {
   const token = sessionStorage.getItem("access-token");
@@ -78,6 +30,8 @@ function MyTrack() {
     navigate("/portal/track/new");
     window.scrollTo(0, 0);
   };
+
+  const [MyTrackStarImg, setMyTrackStarImg] = useState("");
 
   useEffect(() => {
     const MyTrackInquiry = async () => {
@@ -109,8 +63,89 @@ function MyTrack() {
     return <LoadPage />;
   }
 
+  const MyTrackComponent = ({ track }: { track: Track }) => {
+    if (track.star === true) {
+      setMyTrackStarImg("../img/MyTrackStar.svg");
+    } else {
+      setMyTrackStarImg("../img/NoneStar.svg");
+    }
+    console.log(track.star);
+
+    const navigate = useNavigate();
+    interface StarAccount {
+      trackId: any;
+    }
+    const data: StarAccount = {
+      trackId: track.trackId,
+    };
+    const MyTrackStarPost = async () => {
+      try {
+        console.log("skdhk", track.trackId);
+        console.log("시발 뭔데", data);
+        console.log("tltltltltllqkf", data.trackId);
+        const response = await axios.post("/v1/track/star", data.trackId, {
+          headers: {
+            "X-AUTH-TOKEN": token,
+          },
+        });
+        console.log("대표 트랙 설정 성공", response.data);
+        window.location.reload();
+      } catch (error) {
+        console.error("대표 트랙 설정 실패: " + error);
+      }
+    };
+
+    const handleTrackClick = () => {
+      navigate(`/portal/track/view/${track.trackId}`);
+    };
+
+    return (
+      <div className="MyTrackComponent">
+        <div className="MyTrackComponentImgBox">
+          <img
+            className="MyTrackComponentStar"
+            src={MyTrackStarImg}
+            alt="오류"
+            onClick={MyTrackStarPost}
+          />
+          <img
+            className="MyTrackComponentImg"
+            src={track.primaryImageUrl}
+            alt="오류"
+          />
+        </div>
+        <div className="MyTrackComponentTextBox" onClick={handleTrackClick}>
+          <div className="MyTrackComponentTitleText">{track.trackTitle}</div>
+          <div className="MyTrackComponentSubText">{track.trackPreview}</div>
+        </div>
+        <div className="MyTrackComponentContentBox">
+          <div className="MyTrackComponentTagBox">
+            {track.tags.map((tag: string, index: number) => (
+              <span key={index}> #{tag}</span>
+            ))}
+          </div>
+          <div className="MyTrackComponentContent">
+            <div className="MyTrackComponentViewBox">
+              <img className="" src="../img/eye.svg" alt="조회수" />
+              <div className="MyTrackComponentView">{track.view}</div>
+            </div>
+            <div className="MyTrackComponentHeartBox">
+              <img
+                className="MyTrackComponentHeartImg"
+                src="../img/MyTrackheart.svg"
+                alt="조회수"
+              />
+              <div className="MyTrackComponentHeart">{track.like}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="MyTrackPage">
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className="MyTrackFrame">
         <div className="TextMyTrackBox">
