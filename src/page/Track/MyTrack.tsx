@@ -6,17 +6,6 @@ import { useNavigate } from "react-router-dom";
 import LoadPage from "../LoadPage/LoadPage";
 import SeoulHeader from "../../SeoulHeader";
 
-interface Track {
-  star: boolean;
-  trackId: string;
-  primaryImageUrl: string;
-  trackTitle: string;
-  trackPreview: string;
-  tags: string[];
-  view: number;
-  like: number;
-}
-
 function MyTrack() {
   const token = sessionStorage.getItem("access-token");
 
@@ -30,8 +19,6 @@ function MyTrack() {
     navigate("/portal/track/new");
     window.scrollTo(0, 0);
   };
-
-  const [MyTrackStarImg, setMyTrackStarImg] = useState("");
 
   useEffect(() => {
     const MyTrackInquiry = async () => {
@@ -63,31 +50,34 @@ function MyTrack() {
     return <LoadPage />;
   }
 
-  const MyTrackComponent = ({ track }: { track: Track }) => {
-    if (track.star === true) {
-      setMyTrackStarImg("../img/MyTrackStar.svg");
-    } else {
-      setMyTrackStarImg("../img/NoneStar.svg");
-    }
-    console.log(track.star);
+  interface Track {
+    star: boolean;
+    trackId: string;
+    primaryImageUrl: string;
+    trackTitle: string;
+    trackPreview: string;
+    tags: string[];
+    view: number;
+    like: number;
+  }
 
+  const MyTrackComponent = ({ track }: { track: Track }) => {
     const navigate = useNavigate();
-    interface StarAccount {
-      trackId: any;
-    }
-    const data: StarAccount = {
-      trackId: track.trackId,
-    };
+
     const MyTrackStarPost = async () => {
       try {
-        console.log("skdhk", track.trackId);
-        console.log("시발 뭔데", data);
-        console.log("tltltltltllqkf", data.trackId);
-        const response = await axios.post("/v1/track/star", data.trackId, {
-          headers: {
-            "X-AUTH-TOKEN": token,
-          },
-        });
+        const response = await axios.post(
+          "/v1/track/star",
+          {},
+          {
+            headers: {
+              "X-AUTH-TOKEN": token,
+            },
+            params: {
+              trackId: track.trackId,
+            },
+          }
+        );
         console.log("대표 트랙 설정 성공", response.data);
         window.location.reload();
       } catch (error) {
@@ -104,7 +94,7 @@ function MyTrack() {
         <div className="MyTrackComponentImgBox">
           <img
             className="MyTrackComponentStar"
-            src={MyTrackStarImg}
+            src={track.star ? "../img/MyTrackStar.svg" : "../img/NoneStar.svg"}
             alt="오류"
             onClick={MyTrackStarPost}
           />

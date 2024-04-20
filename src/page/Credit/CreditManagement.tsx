@@ -4,6 +4,7 @@ import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 import cx from "classnames";
 import LoadPage from "../LoadPage/LoadPage";
+import SeoulHeader from "../../SeoulHeader";
 
 function CreditManagement() {
   const token = sessionStorage.getItem("access-token");
@@ -18,16 +19,16 @@ function CreditManagement() {
     useState<boolean>(false);
   const [CreditManagementAmountShortfall, setCreditManagementAmountShortfall] =
     useState<boolean>(false);
-    const [AccountRegisteredComponent, setAccountRegisteredComponent] =
+  const [AccountRegisteredComponent, setAccountRegisteredComponent] =
     useState<boolean>(false);
   const [NoneAccountRegisteredComponent, setNoneAccountRegisteredComponent] =
     useState<boolean>(true);
-    const [CancellationButton, setCancellationButton] = useState<boolean>(false);
-    const [NoneTransactionData, setNoneTransactionData] =
+  const [CancellationButton, setCancellationButton] = useState<boolean>(false);
+  const [NoneTransactionData, setNoneTransactionData] =
     useState<boolean>(false);
   const [NoneTransactionDataShow, setNoneTransactionDataShow] =
     useState<boolean>(true);
-    const [bankAccountNumber, setbankAccountNumber] =
+  const [bankAccountNumber, setbankAccountNumber] =
     useState<string>("계좌번호를 입력해주세요");
   const [bankAccountProvider, setbankAccountProvider] =
     useState<string>("은행을 기입해주세요");
@@ -45,6 +46,8 @@ function CreditManagement() {
   const [ShowSelectTransactionTypeBox, setShowSelectTransactionTypeBox] =
     useState<boolean>(false);
   const [RecentData, setRecentData] = useState<string>("");
+  const [ShowUserCreditUsedHistory, setShowUserCreditUsedHistory] =
+    useState<boolean>(false);
 
   useEffect(() => {
     if (token === null) {
@@ -56,11 +59,15 @@ function CreditManagement() {
 
     const fetchAmount = async () => {
       try {
-        const response = await axios.post("/v1/credit/balance", {}, {
-          headers: {
-            "X-AUTH-TOKEN": token,
-          },
-        });
+        const response = await axios.post(
+          "/v1/credit/balance",
+          {},
+          {
+            headers: {
+              "X-AUTH-TOKEN": token,
+            },
+          }
+        );
         console.log("잔액조회", response.data);
         setAmount(response.data.amount);
       } catch (error) {
@@ -97,6 +104,12 @@ function CreditManagement() {
             "X-AUTH-TOKEN": token,
           },
         });
+        if (response.data.length === 0) {
+          setShowUserCreditUsedHistory(true);
+        } else {
+          setShowUserCreditUsedHistory(false);
+          console.log("??");
+        }
         console.log("사용내역", response.data);
         return response.data;
       } catch (error) {
@@ -151,7 +164,7 @@ function CreditManagement() {
       LastProvision(),
       fetchHistory(),
       PaymentWay(),
-      LastTransactionRequest()
+      LastTransactionRequest(),
     ]).then(() => setIsLoading(false));
   }, [token]);
 
@@ -456,6 +469,7 @@ function CreditManagement() {
 
   return (
     <div className="creditManagementMainFrame">
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className="creditManagementInner">
         <div className="textCreditManagement">크레딧 관리</div>
@@ -612,6 +626,13 @@ function CreditManagement() {
             {filteredData.map((data, index) => (
               <UseredHistoryInfo key={index} data={data} index={index} />
             ))}
+            {ShowUserCreditUsedHistory && (
+              <div className="NoneUsedHistoryTextBox">
+                <div className="NoneUsedHistoryText">
+                  계좌 사용 내역이 존재하지 않습니다.
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

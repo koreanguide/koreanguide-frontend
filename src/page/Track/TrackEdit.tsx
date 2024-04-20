@@ -4,6 +4,7 @@ import "./TrackEdit.css";
 import HeaderTwo from "../../HeaderTwo";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import SeoulHeader from "../../SeoulHeader";
 
 function TrackEdit() {
   const token = sessionStorage.getItem("access-token");
@@ -48,14 +49,29 @@ function TrackEdit() {
   const [EditTrackId, setEditTrackId] = useState("");
   const [EditTitle, setEditTitle] = useState("");
   const [EditPrimaryImage, setEditPrimaryImage] = useState("");
-  const [EdiAdditionalImage, setEditAdditionalImage] = useState("");
+  const [EditAdditionalImage, setEditAdditionalImage] = useState("");
   const [EditPreview, setEditPreview] = useState("");
   const [EditTags, setEditTags] = useState<string[]>([]);
   const [EditContent, setEditContent] = useState("");
   const [EditVisible, setEditVisible] = useState(false);
   const [EditUseAutoTranslate, setEditUseAutoTranslate] = useState(false);
 
-  const [EditMainImgFormFile, setEditMainImgFormFile] = useState("");
+  const [selectedImageOne, setSelectedImageOne] = useState<
+    string | ArrayBuffer | null
+  >(null);
+  const [selectedImageTwo, setSelectedImageTwo] = useState<
+    string | ArrayBuffer | null
+  >(null);
+  const [selectedImageThree, setSelectedImageThree] = useState<
+    string | ArrayBuffer | null
+  >(null);
+  const [selectedImageFour, setSelectedImageFour] = useState<
+    string | ArrayBuffer | null
+  >(null);
+  const [imageFileOne, setImageFileOne] = useState<File | null>(null);
+  const [imageFileTwo, setImageFileTwo] = useState<File | null>(null);
+  const [imageFileThree, setImageFileThree] = useState<File | null>(null);
+  const [imageFileFour, setImageFileFour] = useState<File | null>(null);
 
   interface Tag {
     tagName: string;
@@ -459,7 +475,7 @@ function TrackEdit() {
         });
 
         if (response.status === 200) {
-          setEditMainImgFormFile(response.data);
+          setEditPrimaryImage(response.data);
           return response.data;
         }
       } catch (error) {
@@ -479,7 +495,6 @@ function TrackEdit() {
         const result = loadEvent.target?.result;
         if (typeof result === "string") {
           setEditPrimaryImage(result);
-          // 파일 객체를 API로 전송
           const uploadResult = await uploadImage(file);
           console.log("업로드 결과:", uploadResult);
         }
@@ -494,10 +509,6 @@ function TrackEdit() {
   const onImageBoxClicked = () => {
     fileInputRef.current?.click();
   };
-
-  interface ImageUploaderProps {
-    onImageSelected: (file: File) => void;
-  }
 
   interface Tag {
     tagName: string;
@@ -520,11 +531,16 @@ function TrackEdit() {
   }
 
   const TrackSaveOnClick = async () => {
+    const imageUrlOne = await uploadImage(imageFileOne);
+    const imageUrlTwo = await uploadImage(imageFileTwo);
+    const imageUrlThree = await uploadImage(imageFileThree);
+    const imageUrlFour = await uploadImage(imageFileFour);
+
     const images = [
-      { imageUrl: "" },
-      { imageUrl: "" },
-      { imageUrl: "" },
-      { imageUrl: "" },
+      { imageUrl: imageUrlOne },
+      { imageUrl: imageUrlTwo },
+      { imageUrl: imageUrlThree },
+      { imageUrl: imageUrlFour },
     ].filter((image) => image.imageUrl !== null);
 
     const data: TrackEditSubmitData = {
@@ -534,7 +550,7 @@ function TrackEdit() {
       useAutoTranslate: EditUseAutoTranslate,
       trackId: EditTrackId,
       tags: tags,
-      primaryImageUrl: EditMainImgFormFile,
+      primaryImageUrl: EditPrimaryImage,
       visible: EditVisible,
       images: images,
     };
@@ -555,8 +571,57 @@ function TrackEdit() {
     console.log("가능");
   };
 
+  const handleImageOneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImageOne(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      setImageFileOne(file);
+    }
+  };
+
+  const handleImageTwoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImageTwo(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      setImageFileTwo(file);
+    }
+  };
+
+  const handleImageThreeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImageThree(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      setImageFileThree(file);
+    }
+  };
+
+  const handleImageFourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImageFour(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+      setImageFileFour(file);
+    }
+  };
+
   return (
     <div>
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className="NewTrackpage">
         <div className="NewTrackpageInner">
@@ -647,37 +712,121 @@ function TrackEdit() {
                 }
                 {/* 추가 이미지1 */}
                 <div className="NewTrackAddImageContainer">
-                  <div className="NewTrackAddImageBoxOne">
-                    <img
-                      className="EditPrimaryImage"
-                      src={EdiAdditionalImage[0]}
-                      alt="오류"
-                    ></img>
-                  </div>
+                  {
+                    <div
+                      className="NewTrackAddImageBoxOne"
+                      onClick={() =>
+                        document.getElementById("imageInputOne")?.click()
+                      }
+                    >
+                      {selectedImageOne ? (
+                        <img
+                          src={selectedImageOne.toString()}
+                          alt="오류"
+                          className="selectedImageOne"
+                        />
+                      ) : (
+                        <>
+                          <img
+                            className="EditPrimaryImage"
+                            src={EditAdditionalImage[0]}
+                            alt="오류"
+                          ></img>
+                        </>
+                      )}
+                      <input
+                        id="imageInputOne"
+                        type="file"
+                        accept="image/*"
+                        style={{ display: "none" }}
+                        onChange={handleImageOneChange}
+                      />
+                    </div>
+                  }
 
                   {/* 추가 이미지2 */}
-                  <div className="NewTrackAddImageBoxOne">
-                    <img
-                      className="EditPrimaryImage"
-                      src={EdiAdditionalImage[1]}
-                      alt="오류"
-                    ></img>
+                  <div
+                    className="NewTrackAddImageBoxOne"
+                    onClick={() =>
+                      document.getElementById("imageInputTwo")?.click()
+                    }
+                  >
+                    {selectedImageTwo ? (
+                      <img
+                        src={selectedImageTwo.toString()}
+                        alt="오류"
+                        className="selectedImageTwo"
+                      />
+                    ) : (
+                      <img
+                        className="EditPrimaryImage"
+                        src={EditAdditionalImage[1]}
+                        alt="오류"
+                      ></img>
+                    )}
+                    <input
+                      id="imageInputTwo"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageTwoChange}
+                    />
                   </div>
                   {/* 추가 이미지3 */}
-                  <div className="NewTrackAddImageBoxOne">
-                    <img
-                      className="EditPrimaryImage"
-                      src={EdiAdditionalImage[2]}
-                      alt="오류"
-                    ></img>
+                  <div
+                    className="NewTrackAddImageBoxOne"
+                    onClick={() =>
+                      document.getElementById("imageInputThree")?.click()
+                    }
+                  >
+                    {selectedImageThree ? (
+                      <img
+                        src={selectedImageThree.toString()}
+                        alt="오류"
+                        className="selectedImageThree"
+                      />
+                    ) : (
+                      <img
+                        className="EditPrimaryImage"
+                        src={EditAdditionalImage[2]}
+                        alt="오류"
+                      ></img>
+                    )}
+                    <input
+                      id="imageInputThree"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageThreeChange}
+                    />
                   </div>
                   {/* 추가 이미지4 */}
-                  <div className="NewTrackAddImageBoxOne">
-                    <img
-                      className="EditPrimaryImage"
-                      src={EdiAdditionalImage[3]}
-                      alt="오류"
-                    ></img>
+                  <div
+                    className="NewTrackAddImageBoxOne"
+                    onClick={() =>
+                      document.getElementById("imageInputFour")?.click()
+                    }
+                  >
+                    {selectedImageFour ? (
+                      <img
+                        src={selectedImageFour.toString()}
+                        alt="오류"
+                        className="selectedImageFour"
+                      />
+                    ) : (
+                      <img
+                        className="EditPrimaryImage"
+                        src={EditAdditionalImage[3]}
+                        alt="오류"
+                      ></img>
+                    )}
+                    <input
+                      id="imageInputFour"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageFourChange}
+                    />
                   </div>
                 </div>
               </div>

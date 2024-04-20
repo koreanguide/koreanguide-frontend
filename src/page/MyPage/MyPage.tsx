@@ -2,24 +2,17 @@ import React, { useState, useEffect, ChangeEvent, FocusEvent } from "react";
 import axios from "axios";
 import HeaderTwo from "../../HeaderTwo";
 import "./MyPage.css";
-import { useNavigate } from "react-router-dom";
 import LoadPage from "../LoadPage/LoadPage";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DropDownComponent from "../../SubwayLine/SubwayLine";
+import SeoulHeader from "../../SeoulHeader";
 
 function MyPage() {
   const token = sessionStorage.getItem("access-token");
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [name, setName] = useState("");
   const [nickName, setNickName] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [accountInfo, setAccountInfo] = useState<string>("");
   const [ProfileImg, setProfileImg] = useState("");
-  const [enable, setEnable] = useState(false);
   const [IntroductionTarget, setIntroductionTarget] = useState<string>("");
   const [FixNameConponentShow, setFixNameConponentShow] = useState(false);
   const [target, setTarget] = useState<string>("");
@@ -58,6 +51,8 @@ function MyPage() {
 
   const [seoulCountry, setseoulCountry] = useState("");
 
+  const [currentSelection, setCurrentSelection] = useState("NONE");
+
   useEffect(() => {
     if (token === null) {
       console.log("세션 스토리지에 토큰이 없습니다.");
@@ -74,18 +69,12 @@ function MyPage() {
           },
         });
         console.log("내 정보", response.data);
-        setName(response.data.name);
         setNickName(response.data.nickName);
-        setPhoneNum(response.data.phoneNum);
-        setEmail(response.data.email);
-        setPassword(response.data.password);
         if (response.data.profileUrl === "DEFAULT") {
           setProfileImg("../img/NormalProfile.svg");
         } else {
           setProfileImg(response.data.profileUrl);
         }
-        setAccountInfo(response.data.accountInfo);
-        setEnable(response.data.enable);
         setLoading(false);
         setIntroductionContent(response.data.introduce);
         setbirth(response.data.birth);
@@ -184,7 +173,6 @@ function MyPage() {
     category: string;
     content: string;
     subway: string;
-    setContent: React.Dispatch<React.SetStateAction<string>>;
     children: any;
   };
 
@@ -192,7 +180,6 @@ function MyPage() {
     category,
     content,
     subway,
-    setContent,
     children,
   }) => {
     return (
@@ -216,40 +203,6 @@ function MyPage() {
         </div>
       </div>
     );
-  };
-
-  type ResidenceComponentProps = {
-    category: string;
-    content: string;
-    setContent: React.Dispatch<React.SetStateAction<string>>;
-    children: any;
-  };
-
-  const ResidenceComponent: React.FC<ResidenceComponentProps> = ({
-    category,
-    content,
-    setContent,
-    children,
-  }) => {
-    return (
-      <div className="MyInfoContainer">
-        <div className="MyInfoInnerContainer">
-          <div className="MyInfoCategory">{category}</div>
-          <div
-            className="MyInfoCategoryContent"
-            style={{ color: content === "미등록" ? "red" : "inherit" }}
-          >
-            {content}
-          </div>
-          {children}
-        </div>
-      </div>
-    );
-  };
-
-  const ViewPage = () => {
-    navigate("/portal/view");
-    window.scrollTo(0, 0);
   };
 
   const ProfileImgContainer: React.FC = () => {
@@ -618,40 +571,14 @@ function MyPage() {
     BackGroundBlur();
   };
 
-  interface IDropdownOption {
-    value: string;
-    displayText: string;
-  }
-
-  interface IDropdownProps {
-    options: IDropdownOption[];
-  }
-
-  const Dropdown: React.FC<IDropdownProps> = ({ options }) => {
-    const [currentSelection, setCurrentSelection] = useState<string>("");
-
-    const handleSelectionChange = (
-      event: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-      const newValue = event.target.value;
-      setCurrentSelection(newValue);
-      console.log(`선택된 옵션: ${newValue}`);
-      setseoulCountry(`${newValue}`);
-    };
-
-    return (
-      <select
-        className="addressOption"
-        value={currentSelection}
-        onChange={handleSelectionChange}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.displayText}
-          </option>
-        ))}
-      </select>
-    );
+  const handleSelectionChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setCurrentSelection(event.target.value);
+    const newValue = event.target.value;
+    setCurrentSelection(newValue);
+    console.log(`선택된 옵션: ${newValue}`);
+    setseoulCountry(`${newValue}`);
   };
 
   const dropdownOptions = [
@@ -726,6 +653,7 @@ function MyPage() {
 
   return (
     <div className="MyPageFrame">
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className={`MyPageInner ${blur ? "blur" : ""}`}>
         <div className="TextMyInfo">프로필 관리</div>
@@ -794,7 +722,6 @@ function MyPage() {
             category="근처 지하철 역"
             content={nearSubway}
             subway={subwayLine}
-            setContent={setEmail}
           >
             <div className="ChangeComponentFixButton" onClick={SubwayFixClick}>
               수정
@@ -1049,7 +976,17 @@ function MyPage() {
                   alt="오류"
                 ></img>
               </div>
-              <Dropdown options={dropdownOptions} />
+              <select
+                className="addressOption"
+                value={currentSelection}
+                onChange={handleSelectionChange}
+              >
+                {dropdownOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.displayText}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="IntroductionChangeButtonBox">
               <div

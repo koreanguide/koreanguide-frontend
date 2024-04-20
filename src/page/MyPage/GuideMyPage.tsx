@@ -3,6 +3,7 @@ import HeaderTwo from "../../HeaderTwo";
 import "./GuideMyPage.css";
 import axios from "axios";
 import LoadPage from "../LoadPage/LoadPage";
+import SeoulHeader from "../../SeoulHeader";
 
 function GuideMyPage() {
   const token = sessionStorage.getItem("access-token");
@@ -192,6 +193,7 @@ function GuideMyPage() {
   };
   return (
     <div className="GuideMyPageFrame">
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className={isBlurred ? "GuideMyPageInner" : "GuideMyPageInnerBlur"}>
         <div className="GuideMyPageInnerTextOne">내 정보</div>
@@ -227,7 +229,7 @@ function GuideMyPage() {
             <div className="GuideMyPageInfoBoxOneTextOne">이름</div>
             <div className="GuideMyPageInfoBoxOneInner">
               <div className="GuideMyPageInfoText">
-                {name ? name : <span style={{color: 'red'}}>미등록</span>}
+                {name ? name : <span style={{ color: "red" }}>미등록</span>}
               </div>
               <div
                 className="GuideMyPageInfoBoxButtonOne"
@@ -242,7 +244,11 @@ function GuideMyPage() {
             <div className="GuideMyPageInfoBoxOneTextOne">전화번호</div>
             <div className="GuideMyPageInfoBoxOneInner">
               <div className="GuideMyPageInfoText">
-                {phoneNum ? phoneNum : <span style={{color: 'red'}}>미등록</span>}  
+                {phoneNum ? (
+                  phoneNum
+                ) : (
+                  <span style={{ color: "red" }}>미등록</span>
+                )}
               </div>
               <div
                 className="GuideMyPageInfoBoxButtonOne"
@@ -341,14 +347,14 @@ function GuideMyPage() {
                 <input
                   placeholder="010-XXXX-XXXX 형식으로 입력"
                   className="FixConponentFirstInput"
-                  autoComplete='off'
+                  autoComplete="off"
                   onChange={(e) => setPhonenNumtarget(e.target.value)}
                 ></input>
                 <input
                   className="FixConponentSecondInput"
                   placeholder="현재 비밀번호"
                   type="password"
-                  autoComplete='off'
+                  autoComplete="off"
                   onChange={(e) => setPhoneNumRegisterPassword(e.target.value)}
                 ></input>
               </div>

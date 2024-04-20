@@ -24,16 +24,6 @@ function AfterLoginPage() {
   const [level, setLevel] = useState("");
 
   const [tracks, setTracks] = useState([]);
-  /*{인기트랙}*/
-  // const [PortalTrackRank, setPortalTrackRank] = useState("");
-  // const [PortalTrackId, setPortalTrackId] = useState("");
-  // const [PortalTrackTitle, setPortalTrackTitle] = useState("");
-  // const [PortalTrackPreview, setPortalTrackPreview] = useState("");
-  // const [PortalTrackProfileURL, setPortalTrackProfileURL] = useState("");
-  // const [PortalTrackNickName, setPortalTrackNickName] = useState("");
-  // const [PortalTrackView, setPortalTrackView] = useState("");
-  // const [PortalTrackLike, setPortalTrackLike] = useState("");
-  // const [PortalTrackTags, setPortalTrackTags] = useState([]);
 
   useEffect(() => {
     if (token === null) {
@@ -173,6 +163,7 @@ function AfterLoginPage() {
     view: number;
     like: number;
     tags: string[];
+    primaryUrl: string;
   }
 
   const PortalRankTrackComponent = ({
@@ -188,7 +179,13 @@ function AfterLoginPage() {
           <div className="PortalRankNum">{rank}</div>
         </div>
         <div className="PortalRankTrackComponentInner">
-          <div className="PortalRankTrackComponentBoxOne"></div>
+          <div className="PortalRankTrackComponentBoxOne">
+            <img
+              className="TopTrackPrimaryImg"
+              src={track.primaryUrl}
+              alt="에러"
+            ></img>
+          </div>
           <div className="PortalRankTrackComponentInnerTwo">
             <div className="PortalRankTrackComponentBoxTwo">{track.title}</div>
             <div className="PortalRankTrackComponentBoxThree">
@@ -203,10 +200,12 @@ function AfterLoginPage() {
             </div>
             <div className="PortalRankTrackComponentBoxFive">
               <div className="PortalRankTrackComponentBoxSix">
-                <div
+                <img
                   className="PortalRankTrackComponentBoxProfileImg"
-                  style={{ backgroundImage: `url(${track.profileUrl})` }}
-                ></div>
+                  src={track.profileUrl}
+                  alt="에러"
+                ></img>
+
                 <div className="PortalRankTrackComponentBoxNickName">
                   {track.nickname}
                 </div>

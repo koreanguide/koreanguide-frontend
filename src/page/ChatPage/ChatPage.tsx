@@ -3,6 +3,7 @@ import "./ChatPage.css";
 import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
 import LoadPage from "../LoadPage/LoadPage";
+import SeoulHeader from "../../SeoulHeader";
 
 interface ChatListProps {
   imgName: string;
@@ -100,8 +101,8 @@ function ChatPage() {
       try {
         const response = await axios.get("/v1/chat/list", {
           headers: {
-            "X-AUTH-TOKEN": sessionStorage.getItem("access-token")
-          }
+            "X-AUTH-TOKEN": sessionStorage.getItem("access-token"),
+          },
         });
 
         setChatList(response.data);
@@ -160,6 +161,7 @@ function ChatPage() {
 
   return (
     <div className="ChatFrame">
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className="ChatBox">
         <div className="ChatInfoFrame">
@@ -176,7 +178,11 @@ function ChatPage() {
             {chatList.map((chat) => (
               <ChatListComponent
                 key={chat.chatRoomId}
-                imgName={chat.profileUrl === "DEFAULT" ? "NormalProfile" : chat.profileUrl}
+                imgName={
+                  chat.profileUrl === "DEFAULT"
+                    ? "NormalProfile"
+                    : chat.profileUrl
+                }
                 userName={chat.name}
                 userText={chat.lastMessage}
                 date={formatDate(chat.lastTalkedAt)}

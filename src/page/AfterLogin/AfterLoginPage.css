@@ -368,6 +368,12 @@ body {
   background-color: #616161;
 }
 
+.TopTrackPrimaryImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px 20px 0px 0px;
+}
+
 .PortalRankTrackComponentInnerTwo {
   margin-top: 26px;
   width: 283px;

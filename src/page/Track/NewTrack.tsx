@@ -120,15 +120,19 @@ function NewTrackpage() {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await axios.post("/v1/file/", formData, {
-        headers: {
-          "X-AUTH-TOKEN": token,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      try {
+        const response = await axios.post("/v1/file/", formData, {
+          headers: {
+            "X-AUTH-TOKEN": token,
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
-      if (response.status === 200) {
-        return response.data;
+        if (response.status === 200) {
+          return response.data;
+        }
+      } catch (error) {
+        console.error("이미지 업로드 실패:", error);
       }
     }
 

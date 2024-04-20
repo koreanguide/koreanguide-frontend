@@ -5,6 +5,7 @@ import "./TrackView.css";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import LoadPage from "../LoadPage/LoadPage";
+import SeoulHeader from "../../SeoulHeader";
 
 function TrackViewPage() {
   const { trackId } = useParams();
@@ -83,6 +84,7 @@ function TrackViewPage() {
 
   return (
     <div className="TrackViewPageFrame">
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className="TrackViewPageInner">
         <div className="GoToMyPageButton" onClick={BackToMyPage}>

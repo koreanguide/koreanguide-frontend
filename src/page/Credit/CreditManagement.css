@@ -906,3 +906,20 @@ body::-webkit-scrollbar {
   height: 100px;
   background-color: #f94747;
 }
+
+.NoneUsedHistoryTextBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NoneUsedHistoryText {
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 200px;
+}

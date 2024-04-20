@@ -40,14 +40,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* Guest */}
+          {/* ===Guest=== */}
           <Route path="/" element={<MainPage />} />
 
-          {/* ManagementMainPage */}
+          {/* ===ManagementMainPage=== */}
           <Route path="/admin" element={<ManagementMainPage />} />
           <Route path="/admin/track" element={<ManagementTrackPage />} />
 
-          {/* Portal Auth */}
+          {/* ===Portal Auth=== */}
           <Route path="/portal/signin" element={<LoginPageRoute />} />
           <Route path="/portal/signup" element={<SignUpRoute />} />
           <Route
@@ -55,7 +55,18 @@ function App() {
             element={<PasswordResetRoute />}
           />
 
-          {/* Portal */}
+          {/*===Load===*/}
+          <Route
+            path="/portal/load"
+            element={
+              <CheckToken>
+                <LoadPage />
+              </CheckToken>
+            }
+          />
+
+          {/* ===Portal=== */}
+
           {/*Loading usefull*/}
           {/*Checked*/}
           <Route
@@ -90,6 +101,7 @@ function App() {
           />
 
           {/*Loading usefull*/}
+          {/*Checked*/}
           <Route
             path="/portal/track"
             element={
@@ -98,6 +110,9 @@ function App() {
               </CheckToken>
             }
           />
+
+          {/*Loading usefull*/}
+          {/*Checked*/}
           <Route
             path="/portal/credit"
             element={
@@ -106,6 +121,9 @@ function App() {
               </CheckToken>
             }
           />
+
+          {/*Loading usefull*/}
+          {/*Checked*/}
           <Route
             path="/portal/profile"
             element={
@@ -114,14 +132,9 @@ function App() {
               </CheckToken>
             }
           />
-          <Route
-            path="/portal/load"
-            element={
-              <CheckToken>
-                <LoadPage />
-              </CheckToken>
-            }
-          />
+
+          {/*Loading usefull*/}
+          {/*Checked*/}
           <Route
             path="/portal/mypage"
             element={
@@ -130,6 +143,8 @@ function App() {
               </CheckToken>
             }
           />
+
+          {/* *** 보류 *** */}
           <Route
             path="/portal/unregister"
             element={
@@ -138,9 +153,16 @@ function App() {
               </CheckToken>
             }
           />
+
+          {/*Loading usefull*/}
+          {/*Checked*/}
           <Route
             path="/portal/track/view/:trackId"
-            element={<TrackViewPage />}
+            element={
+              <CheckToken>
+                <TrackViewPage />
+              </CheckToken>
+            }
           />
           <Route path="/portal/track/edit/:trackId" element={<TrackEdit />} />
           <Route path="/portal/track/delete" element={<TrackDeletePage />} />
