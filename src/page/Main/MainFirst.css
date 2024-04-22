@@ -22,6 +22,7 @@
   color: #fff;
   display: flex;
   align-items: center;
+  letter-spacing: -2px;
 }
 
 .FirstText p {
@@ -30,9 +31,10 @@
   font-family: Pretendard;
   font-size: 3.125rem;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 600;
   line-height: normal;
   margin: 0%;
+  letter-spacing: -2px;
 }
 
 .POne {
@@ -53,7 +55,7 @@
 .SecondText {
   position: absolute;
   top: 32.8125rem;
-  width: 26.6875rem;
+  width: 27rem;
   height: 4.25rem;
 }
 
@@ -64,7 +66,7 @@
   font-family: Pretendard;
   font-size: 1.25rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: normal;
 }
 
@@ -76,7 +78,7 @@
   font-family: Pretendard;
   font-size: 1.25rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: normal;
 }
 
@@ -112,7 +114,8 @@
   font-family: Pretendard;
   font-size: 1.25rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
+  letter-spacing: -1px;
   line-height: normal;
 }
 

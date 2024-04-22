@@ -107,8 +107,9 @@
   font-family: Pretendard;
   font-size: 3.125rem;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 600;
   line-height: 1.75;
+  letter-spacing: -2px;
   margin: 0%;
 }
 
@@ -118,7 +119,8 @@
   font-family: Pretendard;
   font-size: 1.25rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
+  letter-spacing: -1px;
   line-height: 2;
   margin: 0%;
 }
