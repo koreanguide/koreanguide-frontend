@@ -49,7 +49,7 @@ function TrackEdit() {
   const [EditTrackId, setEditTrackId] = useState("");
   const [EditTitle, setEditTitle] = useState("");
   const [EditPrimaryImage, setEditPrimaryImage] = useState("");
-  const [EditAdditionalImage, setEditAdditionalImage] = useState("");
+  const [EditAdditionalImage, setEditAdditionalImage] = useState<any>([]);
   const [EditPreview, setEditPreview] = useState("");
   const [EditTags, setEditTags] = useState<string[]>([]);
   const [EditContent, setEditContent] = useState("");
@@ -475,7 +475,6 @@ function TrackEdit() {
         });
 
         if (response.status === 200) {
-          setEditPrimaryImage(response.data);
           return response.data;
         }
       } catch (error) {
@@ -568,7 +567,6 @@ function TrackEdit() {
     } catch (error) {
       console.error("트랙 업데이트 실패:", error);
     }
-    console.log("가능");
   };
 
   const handleImageOneChange = (e: React.ChangeEvent<HTMLInputElement>) => {

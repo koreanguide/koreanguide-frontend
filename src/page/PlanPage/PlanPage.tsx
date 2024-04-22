@@ -97,6 +97,7 @@ function PlanPage() {
       <div className="ScheduleComponentFrame">
         <div className="ScheduleComponentInner">
           {/* 첫번째 박스 Start*/}
+
           <div className="ScheduleComponentBoxOne">
             <ContractBox
               ContractBoxTitle="약속 Id"
@@ -259,7 +260,6 @@ function PlanPage() {
         <div className="AllSchedulesFrame">
           <div className="RecentPlanComponentNum">모든 일정 ({length})</div>
           <div className="SchedulesFrame">
-            <ScheduleComponent></ScheduleComponent>
             <ScheduleComponent></ScheduleComponent>
           </div>
         </div>

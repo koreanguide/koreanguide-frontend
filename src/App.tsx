@@ -164,8 +164,29 @@ function App() {
               </CheckToken>
             }
           />
-          <Route path="/portal/track/edit/:trackId" element={<TrackEdit />} />
-          <Route path="/portal/track/delete" element={<TrackDeletePage />} />
+
+          {/*Loading usefull*/}
+          {/* error */}
+          <Route
+            path="/portal/track/edit/:trackId"
+            element={
+              <CheckToken>
+                <TrackEdit />
+              </CheckToken>
+            }
+          />
+
+          {/* *** 보류 *** */}
+          <Route
+            path="/portal/track/delete"
+            element={
+              <CheckToken>
+                <TrackDeletePage />
+              </CheckToken>
+            }
+          />
+
+          {/* *** 보류 *** */}
           <Route path="/portal/plan" element={<PlanPage />} />
 
           {/* Etc */}

@@ -16,7 +16,7 @@ function HeaderTwo() {
   // const [nickName, setNickName] = useState("");
   const nickName = sessionStorage.getItem("name");
   const [ProfileImg, setProfileImg] = useState("");
-  const [MenuImgState, setMenuImgState] = useState("../img/Menu.svg");
+  // const [MenuImgState, setMenuImgState] = useState("../img/Menu.svg");
 
   useEffect(() => {
     const MyInformation = async () => {
@@ -129,19 +129,19 @@ function HeaderTwo() {
     window.scrollTo(0, 0);
   };
 
-  const MenuClick = () => {
-    if (MenuImgState === "/img/x.svg") {
-      setMenuImgState("/img/Menu.svg");
-      setAnimateFunction(true);
-      setTimeout(() => {
-        setShowPhoneMenu(false);
-      }, 500);
-    } else {
-      setMenuImgState("/img/x.svg");
-      setAnimateFunction(false);
-      setShowPhoneMenu(true);
-    }
-  };
+  // const MenuClick = () => {
+  //   if (MenuImgState === "/img/x.svg") {
+  //     setMenuImgState("/img/Menu.svg");
+  //     setAnimateFunction(true);
+  //     setTimeout(() => {
+  //       setShowPhoneMenu(false);
+  //     }, 500);
+  //   } else {
+  //     setMenuImgState("/img/x.svg");
+  //     setAnimateFunction(false);
+  //     setShowPhoneMenu(true);
+  //   }
+  // };
 
   return (
     <div className="HeaderTwoBoxFrame">
@@ -195,9 +195,9 @@ function HeaderTwo() {
           <UserInformationButton UserName={nickName}></UserInformationButton>
         </div>
         {/* 분리 */}
-        <div className="MenuImgBox" onClick={MenuClick}>
+        {/* <div className="MenuImgBox" onClick={MenuClick}>
           <img src={MenuImgState} alt="none" className="MenuImg"></img>
-        </div>
+        </div> */}
         {HeaderInfoBoxShow && (
           <div className="HeaderInfoBox">
             <div className="HeaderInfoInner">
