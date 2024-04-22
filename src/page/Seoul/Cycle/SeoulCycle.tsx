@@ -3,12 +3,14 @@ import axios from "axios";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import { useLocation, useNavigate } from "react-router-dom";
+import LoadPage from "../../LoadPage/LoadPage";
 import "./SeoulCycle.css";
 
 function SeoulCyclePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const token = sessionStorage.getItem("access-token");
+  const [loading, setLoading] = useState(true);
 
   const { selectedDistrict } = location.state || {};
 
@@ -124,6 +126,7 @@ function SeoulCyclePage() {
         });
         console.log("공공자전거 데이터", response.data);
         setCycles(response.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -172,6 +175,10 @@ function SeoulCyclePage() {
     kakaoMapUrl: string;
   }
 
+  if (loading) {
+    return <LoadPage />;
+  }
+
   const SeoulCycleComponent = ({
     cycle,
   }: {
@@ -197,19 +204,25 @@ function SeoulCyclePage() {
           </div>
           <div className="SeoulCycleComponentBoxTwo">{cycle.name}</div>
           <div className="SeoulCycleComponentBoxThree">{cycle.address}</div>
-          <div className="SeoulCycleComponentBoxFour">
-            <div
-              className="SeoulCycleComponentBoxFourInner"
-              onClick={SeoulCycleOnClick}
+            <a 
+              href={`${cycle.kakaoMapUrl}`}
+              target='_blank'
+              rel="noopener noreferrer"
             >
-              <img
-                src="/img/SeoulCycleImg-1.svg"
-                alt="none"
-                className="SeoulCycleImg-1"
-              ></img>
-              <div className="SeoulCycleComponentBoxFourText">장소 탐색</div>
-            </div>
-          </div>
+              <div className="SeoulCycleComponentBoxFour">
+                <div
+                  className="SeoulCycleComponentBoxFourInner"
+                  onClick={SeoulCycleOnClick}
+                >
+                  <img
+                    src="/img/SeoulCycleImg-1.svg"
+                    alt="none"
+                    className="SeoulCycleImg-1"
+                  ></img>
+                  <div className="SeoulCycleComponentBoxFourText">장소 탐색</div>
+                </div>
+              </div>
+            </a>
         </div>
       </div>
     );
