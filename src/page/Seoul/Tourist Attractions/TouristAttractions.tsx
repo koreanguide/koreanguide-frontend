@@ -5,6 +5,7 @@ import SeoulHeader from "../../../SeoulHeader";
 import "./TouristAttractions.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import LoadPage from "../../LoadPage/LoadPage";
 
 declare global {
   interface Window {
@@ -162,6 +163,7 @@ const SeoulMapSightComponent = ({
 function SeoulSightsPage() {
   const location = useLocation();
   const token = sessionStorage.getItem("access-token");
+  const [loading, setLoading] = useState(true);
 
   const { selectedDistrict } = location.state || {};
 
@@ -266,6 +268,7 @@ function SeoulSightsPage() {
         });
         console.log("관광거리 데이터========================", response.data);
         setAttractions(response.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -312,6 +315,10 @@ function SeoulSightsPage() {
     navigate("/portal/seoul/saved");
     window.scrollTo(0, 0);
   };
+
+  if (loading) {
+    return <LoadPage />;
+  }
 
   return (
     <div className="TrackViewPageFrame">
