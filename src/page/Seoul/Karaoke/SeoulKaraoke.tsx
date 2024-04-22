@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
+import LoadPage from "../../LoadPage/LoadPage";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function SeoulKaraokePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const token = sessionStorage.getItem("access-token");
+  const [loading, setLoading] = useState(true);
 
   const { selectedDistrict } = location.state || {};
 
@@ -228,6 +230,7 @@ function SeoulKaraokePage() {
         });
         console.log(response.data);
         setShops(response.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -268,6 +271,10 @@ function SeoulKaraokePage() {
     }
   };
 
+  if (loading) {
+    return <LoadPage />;
+  }
+
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -277,9 +284,9 @@ function SeoulKaraokePage() {
       <div className="TrackViewPageInner">
         <div className="SeoulMainBoxOne">
           <div className="SeoulMainTextBox">
-            <div className="SeoulMainTextOne">현재 선택된 카테고리: 음식점</div>
+            <div className="SeoulMainTextOne">현재 선택된 카테고리: 노래방</div>
             <div className="SeoulMainTextTwo">
-              {selectedDistrict}에서 {shops.length}개의 음식점이 발견되었어요!
+              {selectedDistrict}에서 {shops.length}개의 노래방이 발견되었어요!
             </div>
           </div>
           <div className="SeoulCategoryBasketBox">
