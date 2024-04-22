@@ -204,25 +204,25 @@ function SeoulCyclePage() {
           </div>
           <div className="SeoulCycleComponentBoxTwo">{cycle.name}</div>
           <div className="SeoulCycleComponentBoxThree">{cycle.address}</div>
-            <a 
-              href={`${cycle.kakaoMapUrl}`}
-              target='_blank'
-              rel="noopener noreferrer"
-            >
-              <div className="SeoulCycleComponentBoxFour">
-                <div
-                  className="SeoulCycleComponentBoxFourInner"
-                  onClick={SeoulCycleOnClick}
-                >
-                  <img
-                    src="/img/SeoulCycleImg-1.svg"
-                    alt="none"
-                    className="SeoulCycleImg-1"
-                  ></img>
-                  <div className="SeoulCycleComponentBoxFourText">장소 탐색</div>
-                </div>
+          <a 
+            href={`${cycle.kakaoMapUrl}`}
+            target='_blank'
+            rel="noopener noreferrer"
+          >
+            <div className="SeoulCycleComponentBoxFour">
+              <div
+                className="SeoulCycleComponentBoxFourInner"
+                onClick={SeoulCycleOnClick}
+              >
+                <img
+                  src="/img/SeoulCycleImg-1.svg"
+                  alt="none"
+                  className="SeoulCycleImg-1"
+                ></img>
+                <div className="SeoulCycleComponentBoxFourText">장소 탐색</div>
               </div>
-            </a>
+            </div>
+          </a>
         </div>
       </div>
     );
