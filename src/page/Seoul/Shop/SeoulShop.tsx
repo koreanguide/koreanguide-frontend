@@ -3,12 +3,14 @@ import axios from "axios";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import "./SeoulShop.css";
+import LoadPage from "../../LoadPage/LoadPage";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function SeoulShopPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const token = sessionStorage.getItem("access-token");
+  const [loading, setLoading] = useState(true);
 
   const { selectedDistrict } = location.state || {};
 
@@ -233,6 +235,7 @@ function SeoulShopPage() {
         });
         console.log(response.data);
         setShops(response.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -272,6 +275,10 @@ function SeoulShopPage() {
       console.error(error);
     }
   };
+
+  if (loading) {
+    return <LoadPage />;
+  }
 
   return (
     <div className="TrackViewPageFrame">
