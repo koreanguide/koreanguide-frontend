@@ -1,0 +1,52 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy_frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Clear npm cache
+      run: npm cache clean --force
+
+    - name: Remove package-lock.json and node_modules (if exists)
+      run: |
+        rm -f package-lock.json
+        rm -rf node_modules
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: CI=false npm run build
+
+    - name: web docker build and push
+      run: |
+          docker login -u ${{ secrets.DOCKER_REPO }} -p ${{ secrets.DOCKER_KEY }}
+          docker build -t ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest .
+          docker push ${{ secrets.DOCKER_REPO }}/koreanguide-frontend
+
+    - name: Deploy to Ubuntu Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        # port: 1115
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          sudo docker stop frontend
+          sudo docker rm frontend
+          sudo docker pull ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest
+          sudo docker run -d -p 80:80 -p 443:443 --net koreanguide -v /etc/letsencrypt:/etc/letsencrypt --name frontend ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest
