@@ -8,9 +8,9 @@ function MainSecond() {
       <InnerBox>
         <div className="Frame">
           <div className="KpopBox">
-            <img src="../img/KpopIMg.svg" alt="" className="KpopImgOne" />
-            <img src="../img/KpopIMg.svg" alt="" className="KpopImgTwo" />
-            <img src="../img/KpopIMg.svg" alt="" className="KpopImgThree" />
+            <img src="../img/KpopImg.svg" alt="" className="KpopImgOne" />
+            <img src="../img/KpopImg.svg" alt="" className="KpopImgTwo" />
+            <img src="../img/KpopImg.svg" alt="" className="KpopImgThree" />
           </div>
           <div className="TextFrame">
             <p className="BigText">
