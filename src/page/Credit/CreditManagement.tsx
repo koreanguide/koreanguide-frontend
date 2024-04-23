@@ -519,7 +519,7 @@ function CreditManagement() {
               <div className="NonNotionBox">
                 <img
                   className="NonNotion"
-                  src="../img/NonNotion.svg"
+                  src="../img/nonNotion.svg"
                   alt="오류"
                 />
                 <div className="NonNotionText">등록된 공지사항이 없습니다.</div>
