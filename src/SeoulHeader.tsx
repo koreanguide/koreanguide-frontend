@@ -118,7 +118,7 @@ function SeoulHeader() {
         </div>
         <div className="SeoulHeaderWeatherBox">
           {isLoading ? (
-            <div>불러오는 중...</div>
+            <div className="weatherLoadMsg">불러오는 중...</div>
           ) : (
             <>
               <div className="TextFineState">

@@ -13,6 +13,12 @@
   background: #fff;
 }
 
+.weatherLoadMsg {
+  font-size: 12px;
+  padding-left: 100px;
+  padding-right: 112px;
+}
+
 .SeoulBox {
   position: relative;
   width: 62.5rem;
