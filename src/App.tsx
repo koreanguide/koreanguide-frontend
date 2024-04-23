@@ -194,26 +194,94 @@ function App() {
           <Route path="/Footer" element={<Footer />} />
           {/* seoul */}
           <Route path="/seoul/header" element={<SeoulHeader />} />
-          <Route path="/portal/seoul" element={<SeoulMain />} />
+          <Route 
+            path="/portal/seoul"
+            element={
+              <CheckToken>
+                <SeoulMain />
+              </CheckToken>
+            } 
+          />
           <Route
             path="/portal/seoul/location"
-            element={<SeoulLocationPage />}
+            element={
+              <CheckToken>
+                <SeoulLocationPage />
+              </CheckToken>
+            }
           />
-          <Route path="/portal/seoul/select" element={<SeoulCategoryPage />} />
-          <Route path="/portal/seoul/saved" element={<SeoulBasketPage />} />
-          <Route path="/portal/seoul/Shop" element={<SeoulShopPage />} />
-          <Route path="/portal/seoul/sights" element={<SeoulSightsPage />} />
+          <Route 
+            path="/portal/seoul/select" 
+            element={
+              <CheckToken>
+                <SeoulCategoryPage />
+              </CheckToken>
+            } 
+          />
+          <Route 
+            path="/portal/seoul/saved" 
+            element={
+              <CheckToken>
+                <SeoulBasketPage />
+              </CheckToken>
+            } 
+          />
+          <Route 
+            path="/portal/seoul/Shop" 
+            element={
+              <CheckToken>
+                <SeoulShopPage />
+              </CheckToken>
+            } 
+          />
+          <Route 
+            path="/portal/seoul/sights" 
+            element={
+              <CheckToken>
+                <SeoulSightsPage />
+              </CheckToken>
+            } 
+          />
           <Route
             path="/portal/seoul/track"
-            element={<SeoulTrackCreatePage />}
+            element={
+              <CheckToken>
+                <SeoulTrackCreatePage />
+              </CheckToken>
+            }
           />
-          <Route path="/portal/seoul/river" element={<SeoulHanRiverPage />} />
-          <Route path="/portal/seoul/cycle" element={<SeoulCyclePage />} />
+          <Route 
+            path="/portal/seoul/river" 
+            element={
+              <CheckToken>
+                <SeoulHanRiverPage />
+              </CheckToken>
+            } 
+          />
+          <Route 
+            path="/portal/seoul/cycle" 
+            element={
+              <CheckToken>
+                <SeoulCyclePage />
+              </CheckToken>
+            } 
+          />
           <Route
             path="/portal/seoul/restaurant"
-            element={<SeoulRestaurantPage />}
+            element={
+              <CheckToken>
+                <SeoulRestaurantPage />
+              </CheckToken>
+            }
           />
-          <Route path="/portal/seoul/karaoke" element={<SeoulKaraokePage />} />
+          <Route 
+            path="/portal/seoul/karaoke" 
+            element={
+              <CheckToken>
+                <SeoulKaraokePage />
+              </CheckToken>
+            } 
+          />
         </Routes>
       </BrowserRouter>
     </div>
