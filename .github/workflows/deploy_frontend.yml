@@ -49,4 +49,4 @@ jobs:
           sudo docker stop frontend
           sudo docker rm frontend
           sudo docker pull ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest
-          sudo docker run -d -p 80:80 -p 443:443 --net koreanguide -v /etc/letsencrypt:/etc/letsencrypt --name frontend ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest
+          sudo docker run -d -p 80:80 -p 443:443 --net koreanguide --name frontend ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest
