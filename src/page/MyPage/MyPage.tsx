@@ -198,47 +198,55 @@ function MyPage() {
   };
 
   const ProfileImgContainer: React.FC = () => {
-    const handleImageUpload = async (
-      e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-      const file = e.target.files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          setProfileImg(reader.result as string);
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const fileSizeInMB = file.size / 1024 / 1024;
 
-          const formData = new FormData();
-          formData.append("file", file);
-
-          try {
-            const response = await axios.post("/v1/file/", formData, {
-              headers: {
-                "X-AUTH-TOKEN": token,
-                "Content-Type": "multipart/form-data",
-              },
-            });
-
-            if (response.status === 200) {
-              const imageUrl = response.data;
-
-              const profileResponse = await axios.post(
-                "/v1/profile/profile",
-                {
-                  target: imageUrl,
-                },
-                {
-                  headers: {
-                    "X-AUTH-TOKEN": token,
-                  },
-                }
-              );
+            if (fileSizeInMB > 3) {
+                alert("3MB 이내의 파일만 업로드할 수 있습니다. 다른 파일을 선택해 주시기 바랍니다.");
+                return;
             }
-          } catch (error) {
-            console.error(error);
-          }
-        };
-        reader.readAsDataURL(file);
-      }
+
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+                setProfileImg(reader.result as string);
+
+                const formData = new FormData();
+                formData.append("file", file);
+
+                try {
+                    const response = await axios.post("/v1/file/", formData, {
+                        headers: {
+                            "X-AUTH-TOKEN": token,
+                            "Content-Type": "multipart/form-data",
+                        },
+                    });
+
+                    if (response.status === 200) {
+                        const imageUrl = response.data;
+
+                        const profileResponse = await axios.post(
+                            "/v1/profile/profile",
+                            {
+                                target: imageUrl,
+                            },
+                            {
+                                headers: {
+                                    "X-AUTH-TOKEN": token,
+                                },
+                            }
+                        );
+
+                        alert("프로필 사진 변경이 완료되었습니다.");
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert("프로필 사진 변경을 완료할 수 없습니다.");
+                }
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     return (
