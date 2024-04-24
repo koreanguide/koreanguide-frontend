@@ -35,7 +35,7 @@ function Login() {
   if (protocol === 'http:') {
       redirect_uri = 'http://localhost:3000/'; // 개발 환경일 경우
   } else if (protocol === 'https:') {
-      redirect_uri = 'https://koreanguide-frontend.vercel.app/'; // 실제 서비스 환경일 경우
+      redirect_uri = 'https://koreanguide.moneyisinvest.kr/'; // 실제 서비스 환경일 경우
   }
 
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
