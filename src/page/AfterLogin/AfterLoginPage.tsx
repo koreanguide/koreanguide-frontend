@@ -26,13 +26,6 @@ function AfterLoginPage() {
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
-    if (token === null) {
-      console.log("세션 스토리지에 토큰이 없습니다.");
-      return;
-    } else {
-      console.log("토큰", token);
-    }
-
     const MainInfo = async () => {
       try {
         const response = await axios.get("/v1/profile/main", {
@@ -57,8 +50,6 @@ function AfterLoginPage() {
           },
         });
 
-        console.log(response);
-
         setFirstLevel(response.data.firstLevel);
         setSecondLevel(response.data.secondLevel);
         setThirdLevel(response.data.thirdLevel);
@@ -75,7 +66,6 @@ function AfterLoginPage() {
     const MainProfileTrackRankComponent = async () => {
       try {
         const response = await axios.get("/v1/track/top");
-        console.log(response.data);
         setTracks(response.data);
       } catch (error) {
         console.error(error);
@@ -102,8 +92,6 @@ function AfterLoginPage() {
       );
 
       if (response.status === 200) {
-        console.log("크레딧 지급 요청 완료");
-        // 페이지 새로고침
         window.location.reload();
       }
     } catch (error) {

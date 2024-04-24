@@ -206,7 +206,6 @@ function TrackEdit() {
   const ShowTagBoxChangeTwo = () => {
     setShowTagOneBox(true);
     setShowTagTwoBox(false);
-    console.log(selectedTags);
   };
 
   useEffect(() => {
@@ -242,8 +241,6 @@ function TrackEdit() {
     const handleToggle = () => {
       const newState = !EditUseAutoTranslate;
       setEditUseAutoTranslate(newState);
-      // setUseAutoTranslate(newState);
-      console.log("자동변역:", newState);
     };
 
     return (
@@ -272,8 +269,6 @@ function TrackEdit() {
     const handleToggle = () => {
       const newState = !EditVisible;
       setEditVisible(newState);
-      // setUseAutoTranslate(newState);
-      console.log("공개 여부:", newState);
     };
 
     return (
@@ -341,7 +336,6 @@ function TrackEdit() {
       });
 
       if (response.status === 200) {
-        console.log(response.data.msg);
         setAI_Answer(response.data.msg);
         setAIFirst(false);
         setAIWait(false);
@@ -413,22 +407,9 @@ function TrackEdit() {
     return () => window.removeEventListener("resize", checkMobile);
   }, [setShowTagOneBox]);
 
-  const gotoTrackDelete = () => {
-    // navigate(`/portal/track/view/${track.trackId}`);
-  };
-
-  // ======================================================================================================================
-
   const { trackId } = useParams();
 
   useEffect(() => {
-    if (token === null) {
-      console.log("세션 스토리지에 토큰이 없습니다.");
-      return;
-    } else {
-      console.log("토큰", token);
-    }
-
     const GetTrackEditInfo = async () => {
       try {
         const response = await axios.get("/v1/track/edit", {
@@ -449,8 +430,6 @@ function TrackEdit() {
         setEditContent(data.content);
         setEditVisible(data.visible);
         setEditUseAutoTranslate(data.useAutoTranslate);
-
-        console.log("***트랙 편집*** 정보 :", response.data);
       } catch (error) {
         console.error(error);
       }
@@ -495,7 +474,6 @@ function TrackEdit() {
         if (typeof result === "string") {
           setEditPrimaryImage(result);
           const uploadResult = await uploadImage(file);
-          console.log("업로드 결과:", uploadResult);
         }
       };
 
@@ -560,10 +538,6 @@ function TrackEdit() {
           "X-AUTH-TOKEN": token,
         },
       });
-
-      if (response.status === 200) {
-        console.log("트랙 업데이트 성공:", response.data);
-      }
     } catch (error) {
       console.error("트랙 업데이트 실패:", error);
     }

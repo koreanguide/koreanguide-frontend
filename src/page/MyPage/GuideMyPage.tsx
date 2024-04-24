@@ -31,13 +31,6 @@ function GuideMyPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token === null) {
-      console.log("세션 스토리지에 토큰이 없습니다.");
-      return;
-    } else {
-      console.log("토큰", token);
-    }
-
     const GuideMyInformation = async () => {
       try {
         const response = await axios.get("/v1/profile/mypage", {
@@ -45,7 +38,6 @@ function GuideMyPage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("내 정보", response.data);
         setName(response.data.name);
         setPhoneNum(response.data.phoneNum);
         setEmail(response.data.email);
@@ -94,7 +86,6 @@ function GuideMyPage() {
       });
 
       if (response.status === 200) {
-        console.log("비밀번호 재설정 성공", response.data);
         window.location.reload();
       }
     } catch (error) {
@@ -134,7 +125,6 @@ function GuideMyPage() {
       });
 
       if (response.status === 200) {
-        console.log("실명등록 성공", response.data);
         window.location.reload();
       }
     } catch (error) {
@@ -173,7 +163,6 @@ function GuideMyPage() {
       });
 
       if (response.status === 200) {
-        console.log("전화등록 성공", response.data);
         window.location.reload();
       }
     } catch (error) {

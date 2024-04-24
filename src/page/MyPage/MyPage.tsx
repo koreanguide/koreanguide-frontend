@@ -54,13 +54,6 @@ function MyPage() {
   const [currentSelection, setCurrentSelection] = useState("NONE");
 
   useEffect(() => {
-    if (token === null) {
-      console.log("세션 스토리지에 토큰이 없습니다.");
-      return;
-    } else {
-      console.log("토큰", token);
-    }
-
     const MyInformation = async () => {
       try {
         const response = await axios.get("/v1/profile/info", {
@@ -68,7 +61,6 @@ function MyPage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("내 정보", response.data);
         setNickName(response.data.nickName);
         if (response.data.profileUrl === "DEFAULT") {
           setProfileImg("../img/NormalProfile.svg");
@@ -240,8 +232,6 @@ function MyPage() {
                   },
                 }
               );
-
-              console.log(profileResponse.data);
             }
           } catch (error) {
             console.error(error);
@@ -287,7 +277,6 @@ function MyPage() {
       });
 
       if (response.status === 200) {
-        console.log("이미지 삭제 성공", response.data);
         window.location.reload();
       }
     } catch (error) {
@@ -330,7 +319,6 @@ function MyPage() {
       });
 
       if (response.status === 200) {
-        console.log("실명등록 성공", response.data);
         window.location.reload();
       }
     } catch (error) {
@@ -370,7 +358,6 @@ function MyPage() {
       });
 
       if (response.status === 200) {
-        console.log("생년월일 성공", response.data);
         window.location.reload();
       }
     } catch (error) {
@@ -412,10 +399,6 @@ function MyPage() {
           "X-AUTH-TOKEN": token,
         },
       });
-
-      if (response.status === 200) {
-        console.log("닉네임등록 성공", response.data);
-      }
     } catch (error) {
       console.error("닉네임등록 실패:", error);
     }
@@ -441,7 +424,6 @@ function MyPage() {
       });
 
       if (response.status === 200) {
-        console.log("소개글 수정 및 등록 성공", response.data);
         window.location.reload();
       }
     } catch (error) {
@@ -493,7 +475,6 @@ function MyPage() {
       });
 
       if (response.status === 200) {
-        console.log("비밀번호 재설정 성공", response.data);
         setShowPasswordChange(false);
         window.location.reload();
       }
@@ -521,29 +502,25 @@ function MyPage() {
 
   const MyDatePicker: React.FC = () => {
     const handleChange = (date: Date | null) => {
-      // date가 Date 타입이거나 null일 수 있음을 명시
       if (date === null) {
         setSelectedDate(null);
-        setSelectedDateStr(null); // date가 null인 경우, 상태를 null로 설정
-        console.log("날짜 선택이 취소되었습니다.");
+        setSelectedDateStr(null);
       } else {
         setSelectedDate(date);
         const formattedDate = formatDate(date);
-        setSelectedDateStr(formattedDate); // date가 유효한 경우, 날짜 형식을 변환하여 상태 업데이트
-        console.log(formattedDate);
+        setSelectedDateStr(formattedDate);
       }
     };
 
     const handleDateChangeRaw = (e: React.FocusEvent<HTMLInputElement>) => {
-      e.preventDefault(); // 이 부분이 사용자가 입력 창에 타이핑하는 것을 방지합니다.
+      e.preventDefault();
     };
 
     const formatDate = (date: Date) => {
       const year = date.getFullYear();
-      const month = date.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더해줍니다.
+      const month = date.getMonth() + 1;
       const day = date.getDate();
 
-      // 각 부분을 문자열로 변환하고, 필요하다면 앞에 '0'을 붙여 두 자리로 만듭니다.
       const formattedYear = `${year}`;
       const formattedMonth = month < 10 ? `0${month}` : `${month}`;
       const formattedDay = day < 10 ? `0${day}` : `${day}`;
@@ -577,7 +554,6 @@ function MyPage() {
     setCurrentSelection(event.target.value);
     const newValue = event.target.value;
     setCurrentSelection(newValue);
-    console.log(`선택된 옵션: ${newValue}`);
     setseoulCountry(`${newValue}`);
   };
 
@@ -640,7 +616,6 @@ function MyPage() {
       });
 
       if (response.status === 200) {
-        console.log("거주지 변경 성공", response.data);
         setAddressChangeShow(false);
         window.location.reload();
       }

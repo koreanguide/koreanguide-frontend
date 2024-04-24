@@ -28,7 +28,6 @@ function MyTrack() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("내 트랙 정보", response.data);
         setTracks(response.data);
 
         if (response.data.length === 0) {
@@ -78,7 +77,6 @@ function MyTrack() {
             },
           }
         );
-        console.log("대표 트랙 설정 성공", response.data);
         window.location.reload();
       } catch (error) {
         console.error("대표 트랙 설정 실패: " + error);

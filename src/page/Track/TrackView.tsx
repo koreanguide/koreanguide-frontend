@@ -30,13 +30,6 @@ function TrackViewPage() {
   };
 
   useEffect(() => {
-    if (token === null) {
-      console.log("세션 스토리지에 토큰이 없습니다.");
-      return;
-    } else {
-      console.log("토큰", token);
-    }
-
     const MainInfo = async () => {
       try {
         const response = await axios.get("/v1/track/detail", {
@@ -57,7 +50,6 @@ function TrackViewPage() {
         setLike(data.like);
         setView(data.view);
         setLoading(false);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }

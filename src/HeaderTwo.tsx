@@ -13,10 +13,8 @@ function HeaderTwo() {
   const [AnimateFunction, setAnimateFunction] = useState<boolean>(false);
   const [Amount, setAmount] = useState(0);
   const [email, setEmail] = useState("");
-  // const [nickName, setNickName] = useState("");
   const nickName = sessionStorage.getItem("name");
   const [ProfileImg, setProfileImg] = useState("");
-  // const [MenuImgState, setMenuImgState] = useState("../img/Menu.svg");
 
   useEffect(() => {
     const MyInformation = async () => {
@@ -26,8 +24,6 @@ function HeaderTwo() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("내 정보", response.data);
-        // setNickName(response.data.name);
         setEmail(response.data.email);
         setAmount(response.data.credit);
         if (response.data.profileUrl === "DEFAULT") {

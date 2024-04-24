@@ -50,13 +50,6 @@ function CreditManagement() {
     useState<boolean>(false);
 
   useEffect(() => {
-    if (token === null) {
-      console.log("세션 스토리지에 토큰이 없습니다.");
-      return;
-    } else {
-      console.log("토큰", token);
-    }
-
     const fetchAmount = async () => {
       try {
         const response = await axios.post(
@@ -68,7 +61,6 @@ function CreditManagement() {
             },
           }
         );
-        console.log("잔액조회", response.data);
         setAmount(response.data.amount);
       } catch (error) {
         console.error("잔액 조회 오류: " + error);
@@ -82,7 +74,6 @@ function CreditManagement() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("크레딧 환급 상태", response.data);
 
         if (response.data.length === 0) {
           setNoneTransactionDataShow(true);
@@ -108,9 +99,7 @@ function CreditManagement() {
           setShowUserCreditUsedHistory(true);
         } else {
           setShowUserCreditUsedHistory(false);
-          console.log("??");
         }
-        console.log("사용내역", response.data);
         return response.data;
       } catch (error) {
         console.error(error);
@@ -132,7 +121,6 @@ function CreditManagement() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("지급방법", response.data);
         setAccountProvider(response.data.accountProvider);
         setAccountNumber(response.data.accountNumber);
         setAccountHolderName(response.data.accountHolderName);
@@ -152,7 +140,6 @@ function CreditManagement() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("리센트 데이터", response.data);
         setRecentData(response.data);
       } catch (error) {
         console.error(error);
@@ -307,7 +294,6 @@ function CreditManagement() {
           amount: Amount,
         },
       });
-      console.log("크레딧 환급신청 성공", response.data);
       setCreditManagementAlertShow(false);
       setCreditManagementAmountShortfall(false);
     } catch (error) {
@@ -321,7 +307,6 @@ function CreditManagement() {
   };
 
   const RegisterButtonClick = () => {
-    console.log("등록하기 버튼 클릭");
     setCancellationButton(true);
     document.body.style.overflow = "hidden";
     window.scrollTo(0, 0);
@@ -341,7 +326,6 @@ function CreditManagement() {
           "X-AUTH-TOKEN": token,
         },
       });
-      console.log("계좌삭제 성공", response.data);
       setNoneAccountRegisteredComponent(true);
       setAccountRegisteredComponent(false);
       window.location.reload();
@@ -357,9 +341,6 @@ function CreditManagement() {
   }
 
   const RealRegisterButtonClick = async () => {
-    console.log(bankAccountNumber);
-    console.log(bankAccountProvider);
-    console.log(name);
     window.location.reload();
 
     const data: RegisterData = {
@@ -373,10 +354,6 @@ function CreditManagement() {
           "X-AUTH-TOKEN": token,
         },
       });
-
-      if (response.status === 200) {
-        console.log("계좌등록", response.data);
-      }
     } catch (error) {
       console.error("계좌등록 실패:", error);
     }
@@ -384,7 +361,6 @@ function CreditManagement() {
 
   const BankItem: React.FC<Bank> = ({ name, value, img }) => {
     const handleClick = () => {
-      console.log(value);
       setBankListBoxClick(false);
       setbankAccountProvider(value);
       setSelectedBank(true);
