@@ -16,8 +16,9 @@ body {
 }
 
 .GuideMainPageFrame {
-  width: 990px;
-  height: 2000px;
+  /* width: 990px; */
+  /* height: 2000px; */
+  padding-bottom: 50px;
   text-align: start;
 }
 

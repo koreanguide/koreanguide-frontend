@@ -1,10 +1,12 @@
 import React from "react";
 import HeaderTwo from "../../HeaderTwo";
 import "./LoadPage.css";
+import SeoulHeader from "../../SeoulHeader";
 
 function LoadPage() {
   return (
     <div className="LoadPageFrame">
+      <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className="LoadPageInner">
         <img src="/img/loadImg.svg" className="loadImg"></img>
