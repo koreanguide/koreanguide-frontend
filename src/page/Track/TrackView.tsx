@@ -89,7 +89,7 @@ function TrackViewPage() {
             <div className="TrackViewPageLikeBox">
               <img
                 className="ViewHeart"
-                src="/img/MyTrackHeart.svg"
+                src="/img/MyTrackheart.svg"
                 alt=""
               ></img>
               <div className="TrackViewPageLikeNum">{like}</div>
