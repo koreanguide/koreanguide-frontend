@@ -407,6 +407,10 @@ function TrackEdit() {
     return () => window.removeEventListener("resize", checkMobile);
   }, [setShowTagOneBox]);
 
+  const gotoTrackDelete = () => {
+    // navigate(`/portal/track/view/${track.trackId}`);
+  };
+
   const { trackId } = useParams();
 
   useEffect(() => {
