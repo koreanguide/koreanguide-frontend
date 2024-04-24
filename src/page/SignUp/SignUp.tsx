@@ -63,6 +63,11 @@ function SignUpPage() {
   const [reSendBox, setreSendBox] = useState(false);
   const [sendFailBox, setsendFailBox] = useState(false);
 
+  const navigateToMain = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
+
   const CertifiedNumberSendClick = async () => {
     setloadBox(true);
     setsendBox(false);
@@ -274,7 +279,7 @@ function SignUpPage() {
     <div className="mainFrame">
       <div className="frame">
         <div className="inner">
-          <div className="logoContainer">
+          <div className="logoContainer" onClick={navigateToMain}>
             <img
               className="signinLogoImg"
               src="../img/PurpleAirplain.svg"

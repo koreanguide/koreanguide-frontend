@@ -17,6 +17,11 @@ function PasswordReset() {
     window.scrollTo(0, 0);
   };
 
+  const navigateToMain = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
+
   interface passwordResetData {
     email: string;
     password: string;
@@ -175,7 +180,7 @@ function PasswordReset() {
     <div className="mainFrame">
       <div className="passwordResetFrame">
         <div className="passwordResetInner">
-          <div className="logoContainer">
+          <div className="logoContainer" onClick={navigateToMain}>
             <img
               className="signinLogoImg"
               src="../img/PurpleAirplain.svg"

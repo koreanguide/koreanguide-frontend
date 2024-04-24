@@ -30,6 +30,7 @@
   height: 1.5rem;
   margin-top: 8.625rem;
   display: flex;
+  cursor: pointer;
   justify-content: space-between;
 }
 

@@ -13,12 +13,19 @@ function Login() {
   const navigate = useNavigate();
 
   window.scrollTo(0, 0);
+
   const goToPasswordReset = () => {
     navigate("/portal/reset_password");
     window.scrollTo(0, 0);
   };
+
   const goToSignUpPage = () => {
     navigate("/portal/signup");
+    window.scrollTo(0, 0);
+  };
+
+  const navigateToMain = () => {
+    navigate("/");
     window.scrollTo(0, 0);
   };
 
@@ -112,7 +119,7 @@ function Login() {
   return (
     <div className="signinframe">
       <div className="Logininner">
-        <div className="logoContainer">
+        <div className="logoContainer" onClick={navigateToMain}>
           <img
             className="signinLogoImg"
             src="../img/PurpleAirplain.svg"
