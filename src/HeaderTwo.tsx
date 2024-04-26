@@ -121,6 +121,7 @@ function HeaderTwo() {
     sessionStorage.removeItem("refresh-token");
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("name");
+    alert("로그아웃이 완료되었습니다.\n메인 페이지로 되돌아갑니다.")
     navigate("/");
     window.scrollTo(0, 0);
   };
