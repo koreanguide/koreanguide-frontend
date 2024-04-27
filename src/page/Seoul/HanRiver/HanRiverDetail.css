@@ -1,0 +1,218 @@
+.SeoulDetailFrameOne {
+  width: 990px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 48px;
+}
+
+.SeoulDetailMapFrame {
+  width: 480px;
+  height: 353px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.SeoulDetailFrameTwo {
+  width: 990px;
+  height: 182px;
+  margin-top: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeoulDetailBoxOne {
+  display: flex;
+  height: 141px;
+  width: 400px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulDetailBoxTwo {
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+.SeoulDetailTextBox {
+  width: 174px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulDetailTextOne {
+  color: var(--KG_TEXT, #80889b);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+.SeoulDetailTextTwo {
+  color: var(--KG_SUBTEXT, #616161);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+.SeoulDetailTextBoxTwo {
+  width: 250px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulDetailBoxThree {
+  width: 262px;
+  height: 182px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  row-gap: 10px;
+}
+
+.SeoulDetailIconFrame {
+  width: 124px;
+  height: 84px;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulDetailIconBox {
+  width: 28px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SeoulDetailIconBoxText {
+  color: var(--KG_TEXT, #80889b);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.44px;
+}
+
+.SDIcon-1 {
+  width: 20px;
+  height: 19.25px;
+  flex-shrink: 0;
+}
+
+.SDIcon-2 {
+  width: 21.999px;
+  height: 17.6px;
+  flex-shrink: 0;
+}
+
+.SDIcon-3 {
+  width: 12.749px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.SDIcon-4 {
+  width: 19.837px;
+  height: 18.667px;
+  flex-shrink: 0;
+}
+
+.SeoulDetailFrameThree {
+  border-radius: 20px 20px 0px 0px;
+  background: #3876c0;
+  margin-top: 30px;
+  width: 990px;
+  height: 52px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulDetailFrameThreeInner {
+  width: 890px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+}
+
+.SeoulDetailFrameThreeTextOne,
+.SeoulDetailFrameThreeTextTwo,
+.SeoulDetailFrameThreeTextThree,
+.SeoulDetailFrameThreeTextFour,
+.SeoulDetailFrameThreeTextFive,
+.SeoulDetailFrameThreeTextSix,
+.SeoulDetailFrameThreeTextSeven,
+.SeoulDetailFrameThreeTextEight {
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+.SeoulDetailFrameThreeTextTwo {
+  margin-left: 183px;
+}
+
+.SeoulDetailFrameThreeTextThree {
+  margin-left: 124px;
+}
+
+.SeoulDetailFrameThreeTextFour {
+  margin-left: 25px;
+}
+
+.SeoulDetailFrameThreeTextFive {
+  margin-left: 27px;
+}
+
+.SeoulDetailFrameThreeTextSix {
+  margin-left: 25px;
+}
+
+.SeoulDetailFrameThreeTextSeven {
+  margin-left: 25px;
+}
+
+.SeoulDetailFrameThreeTextEight {
+  margin-left: 50px;
+}
+
+.SeoulDetailInformationBox {
+  width: 990px;
+  height: 60px;
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SeoulDetailInformationBoxInner {
+  width: 915px;
+  height: 17px;
+  background-color: #80889b;
+}

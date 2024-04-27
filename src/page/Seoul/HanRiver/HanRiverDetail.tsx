@@ -3,9 +3,67 @@ import axios from "axios";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./HanRiver.css";
+import { v4 as uuidv4 } from "uuid";
+import "./HanRiverDetail.css";
 
-function SeoulHanRiverPage() {
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
+interface KakaoMapProps {
+  latitude: any;
+  longitude: any;
+}
+
+const KakaoMap: React.FC<KakaoMapProps> = ({ latitude, longitude }) => {
+  const [uniqueId, setUniqueId] = useState(``);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=4b97895fdc79dc6d392b38a5ada0f7e5&autoload=false";
+    document.head.appendChild(script);
+
+    const id = `map-${uuidv4()}`;
+    setUniqueId(id);
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        const container = document.getElementById(id);
+        if (container) {
+          const options = {
+            center: new window.kakao.maps.LatLng(latitude, longitude),
+            level: 3,
+          };
+
+          const map = new window.kakao.maps.Map(container, options);
+
+          const markerPosition = new window.kakao.maps.LatLng(
+            latitude,
+            longitude
+          );
+
+          const marker = new window.kakao.maps.Marker({
+            position: markerPosition,
+          });
+
+          marker.setMap(map);
+        }
+      });
+    };
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [latitude, longitude]);
+
+  return <div id={uniqueId} style={{ width: "480px", height: "353px" }}></div>;
+};
+
+function SeoulHanRiverDetailPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const token = sessionStorage.getItem("access-token");
@@ -246,25 +304,111 @@ function SeoulHanRiverPage() {
             정보제공: 서울 열린데이터광장
           </div>
         </div>
-        <div className="SeoulMainRiverFrame">
-          <SeoulMainRiverComponent></SeoulMainRiverComponent>
+        <div className="SeoulDetailFrameOne">
+          <div className="SeoulDetailMapFrame">
+            <KakaoMap latitude="37.5487859" longitude="127.1200384"></KakaoMap>
+          </div>
           <SeoulMainRiverComponent></SeoulMainRiverComponent>
         </div>
         <div className="SeoulRiverPageTextBox">
           <div className="SeoulRiverPageTextOne">
-            서울의 다른 자치구의 한강공원도 확인해 보세요!
+            망원한강공원 정보를 알려드려요!
           </div>
           <div className="SeoulRiverPageTextTwo">
-            한강공원은 서울 전역에 넓게 퍼져있기 때문에 위치에 따라 같은
-            자치구여도, 다른 자치구의 한강 공원이 더 가까울 수도 있어요.
+            최종 업데이트: 2024년 04월 10일
           </div>
         </div>
-        <div className="SeoulSubRiverFrame">
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
+        <div className="SeoulDetailFrameTwo">
+          <div className="SeoulDetailBoxOne">
+            <div className="SeoulDetailBoxTwo">
+              <div className="SeoulDetailTextBox">
+                <div className="SeoulDetailTextOne">안내센터</div>
+                <div className="SeoulDetailTextTwo">02-3780-0501~4</div>
+              </div>
+              <div className="SeoulDetailTextBox">
+                <div className="SeoulDetailTextOne">길이</div>
+                <div className="SeoulDetailTextTwo">12km</div>
+              </div>
+            </div>
+            <div className="SeoulDetailBoxTwo">
+              <div className="SeoulDetailTextBox">
+                <div className="SeoulDetailTextOne">면적</div>
+                <div className="SeoulDetailTextTwo">1,554,810㎡</div>
+              </div>
+              <div className="SeoulDetailTextBoxTwo">
+                <div className="SeoulDetailTextOne">주소</div>
+                <div className="SeoulDetailTextTwo">
+                  서울특별시 마포구 마포나루길 467
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="SeoulDetailBoxThree">
+            <div className="SeoulDetailIconFrame">
+              <div className="SeoulDetailIconBox">
+                <img
+                  src="/img/SDIcon-1.svg"
+                  alt="오류"
+                  className="SDIcon-1"
+                ></img>
+                <div className="SeoulDetailIconBoxText">주차장</div>
+              </div>
+            </div>
+            <div className="SeoulDetailIconFrame">
+              <div className="SeoulDetailIconBox">
+                <img
+                  src="/img/SDIcon-2.svg"
+                  alt="오류"
+                  className="SDIcon-2"
+                ></img>
+                <div className="SeoulDetailIconBoxText">화장실</div>
+              </div>
+            </div>
+            <div className="SeoulDetailIconFrame">
+              <div className="SeoulDetailIconBox">
+                <img
+                  src="/img/SDIcon-3.svg"
+                  alt="오류"
+                  className="SDIcon-3"
+                ></img>
+                <div className="SeoulDetailIconBoxText">음수대</div>
+              </div>
+            </div>
+            <div className="SeoulDetailIconFrame">
+              <div className="SeoulDetailIconBox">
+                <img
+                  src="/img/SDIcon-4.svg"
+                  alt="오류"
+                  className="SDIcon-4"
+                ></img>
+                <div className="SeoulDetailIconBoxText">매점</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="SeoulRiverPageTextBox">
+          <div className="SeoulRiverPageTextOne">
+            3개의 주차장 정보가 발견되었어요!
+          </div>
+          <div className="SeoulRiverPageTextTwo">
+            이용 시간 및 요금은 수시로 변동될 수 있으니 해당 주차장으로 문의하여
+            정확한 정보를 확인하시기 바랍니다.
+          </div>
+        </div>
+        <div className="SeoulDetailFrameThree">
+          <div className="SeoulDetailFrameThreeInner">
+            <div className="SeoulDetailFrameThreeTextOne">주차장</div>
+            <div className="SeoulDetailFrameThreeTextTwo">주소</div>
+            <div className="SeoulDetailFrameThreeTextThree">주차면수</div>
+            <div className="SeoulDetailFrameThreeTextFour">이용시간(주중)</div>
+            <div className="SeoulDetailFrameThreeTextFive">이용시간(주말)</div>
+            <div className="SeoulDetailFrameThreeTextSix">기본요금</div>
+            <div className="SeoulDetailFrameThreeTextSeven">추가(10분)</div>
+            <div className="SeoulDetailFrameThreeTextEight">전화번호</div>
+          </div>
+        </div>
+        <div className="SeoulDetailInformationBox">
+          <div className="SeoulDetailInformationBoxInner"></div>
         </div>
         <div className="SeoulMoreButtonFrame">
           <div className="SeoulMoreButton">더 보기</div>
@@ -286,4 +430,4 @@ function SeoulHanRiverPage() {
   );
 }
 
-export default SeoulHanRiverPage;
+export default SeoulHanRiverDetailPage;

@@ -34,6 +34,7 @@ import SeoulHanRiverPage from "./page/Seoul/HanRiver/HanRiver";
 import SeoulCyclePage from "./page/Seoul/Cycle/SeoulCycle";
 import SeoulRestaurantPage from "./page/Seoul/Restaurant/SeoulRestaurant";
 import SeoulKaraokePage from "./page/Seoul/Karaoke/SeoulKaraoke";
+import SeoulHanRiverDetailPage from "./page/Seoul/HanRiver/HanRiverDetail";
 
 function App() {
   return (
@@ -194,13 +195,13 @@ function App() {
           <Route path="/Footer" element={<Footer />} />
           {/* seoul */}
           <Route path="/seoul/header" element={<SeoulHeader />} />
-          <Route 
+          <Route
             path="/portal/seoul"
             element={
               <CheckToken>
                 <SeoulMain />
               </CheckToken>
-            } 
+            }
           />
           <Route
             path="/portal/seoul/location"
@@ -210,37 +211,37 @@ function App() {
               </CheckToken>
             }
           />
-          <Route 
-            path="/portal/seoul/select" 
+          <Route
+            path="/portal/seoul/select"
             element={
               <CheckToken>
                 <SeoulCategoryPage />
               </CheckToken>
-            } 
+            }
           />
-          <Route 
-            path="/portal/seoul/saved" 
+          <Route
+            path="/portal/seoul/saved"
             element={
               <CheckToken>
                 <SeoulBasketPage />
               </CheckToken>
-            } 
+            }
           />
-          <Route 
-            path="/portal/seoul/Shop" 
+          <Route
+            path="/portal/seoul/Shop"
             element={
               <CheckToken>
                 <SeoulShopPage />
               </CheckToken>
-            } 
+            }
           />
-          <Route 
-            path="/portal/seoul/sights" 
+          <Route
+            path="/portal/seoul/sights"
             element={
               <CheckToken>
                 <SeoulSightsPage />
               </CheckToken>
-            } 
+            }
           />
           <Route
             path="/portal/seoul/track"
@@ -250,21 +251,21 @@ function App() {
               </CheckToken>
             }
           />
-          <Route 
-            path="/portal/seoul/river" 
+          <Route
+            path="/portal/seoul/river"
             element={
               <CheckToken>
                 <SeoulHanRiverPage />
               </CheckToken>
-            } 
+            }
           />
-          <Route 
-            path="/portal/seoul/cycle" 
+          <Route
+            path="/portal/seoul/cycle"
             element={
               <CheckToken>
                 <SeoulCyclePage />
               </CheckToken>
-            } 
+            }
           />
           <Route
             path="/portal/seoul/restaurant"
@@ -274,13 +275,21 @@ function App() {
               </CheckToken>
             }
           />
-          <Route 
-            path="/portal/seoul/karaoke" 
+          <Route
+            path="/portal/seoul/karaoke"
             element={
               <CheckToken>
                 <SeoulKaraokePage />
               </CheckToken>
-            } 
+            }
+          />
+          <Route
+            path="/portal/seoul/detail"
+            element={
+              <CheckToken>
+                <SeoulHanRiverDetailPage />
+              </CheckToken>
+            }
           />
         </Routes>
       </BrowserRouter>

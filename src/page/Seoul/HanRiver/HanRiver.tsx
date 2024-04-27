@@ -156,10 +156,10 @@ function SeoulHanRiverPage() {
   useEffect(() => {
     const SeoulShopList = async () => {
       try {
-        const response = await axios.get("/v1/seoul/shop", {
+        const response = await axios.get("/v1/seoul/park", {
           params: { seoulCountry: englishDistrict },
         });
-        console.log(response.data);
+        console.log("한강공원 정보", response.data);
         setShops(response.data);
       } catch (error) {
         console.error(error);
@@ -246,26 +246,30 @@ function SeoulHanRiverPage() {
             정보제공: 서울 열린데이터광장
           </div>
         </div>
-        <div className="SeoulMainRiverFrame">
-          <SeoulMainRiverComponent></SeoulMainRiverComponent>
-          <SeoulMainRiverComponent></SeoulMainRiverComponent>
-        </div>
-        <div className="SeoulRiverPageTextBox">
-          <div className="SeoulRiverPageTextOne">
-            서울의 다른 자치구의 한강공원도 확인해 보세요!
-          </div>
-          <div className="SeoulRiverPageTextTwo">
-            한강공원은 서울 전역에 넓게 퍼져있기 때문에 위치에 따라 같은
-            자치구여도, 다른 자치구의 한강 공원이 더 가까울 수도 있어요.
-          </div>
-        </div>
-        <div className="SeoulSubRiverFrame">
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-          <SeoulSubRiverComponent></SeoulSubRiverComponent>
-        </div>
+        {
+          <>
+            <div className="SeoulMainRiverFrame">
+              <SeoulMainRiverComponent></SeoulMainRiverComponent>
+              <SeoulMainRiverComponent></SeoulMainRiverComponent>
+            </div>
+            <div className="SeoulRiverPageTextBox">
+              <div className="SeoulRiverPageTextOne">
+                서울의 다른 자치구의 한강공원도 확인해 보세요!
+              </div>
+              <div className="SeoulRiverPageTextTwo">
+                한강공원은 서울 전역에 넓게 퍼져있기 때문에 위치에 따라 같은
+                자치구여도, 다른 자치구의 한강 공원이 더 가까울 수도 있어요.
+              </div>
+            </div>
+            <div className="SeoulSubRiverFrame">
+              <SeoulSubRiverComponent></SeoulSubRiverComponent>
+              <SeoulSubRiverComponent></SeoulSubRiverComponent>
+              <SeoulSubRiverComponent></SeoulSubRiverComponent>
+              <SeoulSubRiverComponent></SeoulSubRiverComponent>
+              <SeoulSubRiverComponent></SeoulSubRiverComponent>
+            </div>
+          </>
+        }
         <div className="SeoulMoreButtonFrame">
           <div className="SeoulMoreButton">더 보기</div>
         </div>
