@@ -120,7 +120,7 @@
 }
 
 .NewTrackCheckBoxTextSpan {
-  color: #730ef4;
+  color: #3876c0;
 }
 
 .NewTrackContainerTwo {
@@ -313,7 +313,7 @@
 }
 
 .NewTrackFirstInput:focus {
-  border-color: #730ef4;
+  border-color: #3876c0;
 }
 
 .NewTrackFirstInputSubBox {
@@ -336,7 +336,7 @@
 }
 
 .NewTrackFirstInputTranslateText {
-  color: #730ef4;
+  color: #3876c0;
   font-family: Pretendard;
   font-size: 0.75rem;
   font-style: normal;
@@ -425,7 +425,7 @@
   width: auto;
   height: 1.5625rem;
   border-radius: 1.875rem;
-  background: #730ef4;
+  background: #3876c0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -560,7 +560,7 @@
 }
 
 .NewTrackFirstTextArea:focus {
-  border: 0.0625rem solid #730ef4;
+  border: 0.0625rem solid #3876c0;
 }
 
 .NewTrackFirstTextAreaerror {
@@ -667,7 +667,7 @@
   width: 10.125rem;
   height: 2.625rem;
   border-radius: 0.3125rem 1.25rem 1.25rem 0.3125rem;
-  background: #730ef4;
+  background: #3876c0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -724,7 +724,7 @@
   width: 990px;
   height: 55px;
   border-radius: 10px;
-  background: linear-gradient(90deg, #730ef4 0%, #bb92ee 100%);
+  background: linear-gradient(90deg, #3876c0 0%, #bb92ee 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -773,7 +773,7 @@
   width: 990px;
   height: 346px;
   border-radius: 10px;
-  background: linear-gradient(90deg, #730ef4 0%, #bb92ee 100%);
+  background: linear-gradient(90deg, #3876c0 0%, #bb92ee 100%);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -800,11 +800,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  color: #730ef4;
+  color: #3876c0;
 }
 
 .AIAskInput::placeholder {
-  color: #730ef4;
+  color: #3876c0;
 }
 
 .AIImg4 {
@@ -830,7 +830,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  background: linear-gradient(90deg, #730ef4 0%, #bb92ee 366.67%);
+  background: linear-gradient(90deg, #3876c0 0%, #bb92ee 366.67%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -923,7 +923,7 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 1.75;
-  color: #730ef4;
+  color: #3876c0;
   padding-right: 10px;
 
   overflow: auto;

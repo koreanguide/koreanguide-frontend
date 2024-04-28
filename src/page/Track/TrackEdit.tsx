@@ -152,7 +152,7 @@ function TrackEdit() {
       <div
         className="TagChoiceFrame"
         style={{
-          backgroundColor: selected ? "#730ef4" : "",
+          backgroundColor: selected ? "#3876c0" : "",
           color: selected ? "#fff" : "",
         }}
         onClick={onClick}

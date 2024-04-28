@@ -94,7 +94,7 @@
 .MyInfoFixButton {
   position: absolute;
   right: 0rem;
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -144,7 +144,7 @@
 }
 
 .ProfileImgContainerButton {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -219,7 +219,7 @@
 }
 
 .IntroductionReplace {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -312,7 +312,7 @@
 .ChangeComponentFixButton {
   position: absolute;
   right: 0;
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -442,7 +442,7 @@
   width: 23.4375rem;
   height: 3rem;
   border-radius: 0.625rem;
-  background: #730ef4;
+  background: #3876c0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -577,7 +577,7 @@
   width: 23.4375rem;
   height: 3rem;
   border-radius: 0.625rem;
-  background: #730ef4;
+  background: #3876c0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -723,7 +723,7 @@
   width: 23.4375rem;
   height: 3rem;
   border-radius: 0.625rem;
-  background: #730ef4;
+  background: #3876c0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -743,7 +743,7 @@
 }
 
 .IntroductionChangeTextArea.focused {
-  border-color: #730ef4;
+  border-color: #3876c0;
 }
 
 .ExistIntroductionText {
@@ -885,7 +885,7 @@
   font-weight: 500;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url("../../../public/img/SubwayArrow.svg")
-    no-repeat right 15px center;
+  background: url("../../../public/img/SubwayArrow.svg") no-repeat right 15px
+    center;
   padding-left: 15px;
 }

@@ -101,7 +101,7 @@
 }
 
 .SeoulTrackIntroductionTextArea:focus {
-  border: 1px solid var(--KG_OUTLINE, #730ef4);
+  border: 1px solid var(--KG_OUTLINE, #3876c0);
 }
 
 .SeoulTrackContentBox {
@@ -132,7 +132,7 @@
 }
 
 .SeoulTrackContentTextArea:focus {
-  border: 1px solid var(--KG_OUTLINE, #730ef4);
+  border: 1px solid var(--KG_OUTLINE, #3876c0);
 }
 
 .SeoulBasketToggleButtonMainFrame {

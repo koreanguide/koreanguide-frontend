@@ -102,7 +102,7 @@ body::-webkit-scrollbar {
 }
 
 .refundApplicationButtonText {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -137,7 +137,7 @@ body::-webkit-scrollbar {
   position: relative;
   height: 1.0625rem;
   border-radius: 1.25rem;
-  background: #730ef4;
+  background: #3876c0;
 }
 
 .GaugeBarProgress p {
@@ -146,7 +146,7 @@ body::-webkit-scrollbar {
   top: 1.7rem;
   margin: 0%;
 
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: center;
   font-family: Pretendard;
   font-size: 0.75rem;
@@ -313,7 +313,7 @@ body::-webkit-scrollbar {
   position: absolute;
   left: 1.75rem;
   top: 0.1875rem;
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -352,7 +352,7 @@ body::-webkit-scrollbar {
 }
 
 .ChangeBUtton {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -513,7 +513,7 @@ body::-webkit-scrollbar {
 }
 
 .TransactionType-deposit {
-  color: #730ef4;
+  color: #3876c0;
 }
 
 .TransactionType-withdraw {
@@ -521,7 +521,7 @@ body::-webkit-scrollbar {
 }
 
 .UseredHistoryInfoAcount-positive {
-  color: #730ef4;
+  color: #3876c0;
 }
 
 .UseredHistoryInfoAcount-negative {
@@ -582,7 +582,7 @@ body::-webkit-scrollbar {
   margin-top: 0.5rem;
   margin-left: 4.5rem;
   display: flex;
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -780,7 +780,7 @@ body::-webkit-scrollbar {
   width: 23.4375rem;
   height: 3rem;
   border-radius: 0.625rem;
-  background: #730ef4;
+  background: #3876c0;
 
   color: var(--color-ui-0, #fff);
   text-align: center;
@@ -843,7 +843,7 @@ body::-webkit-scrollbar {
 }
 
 .BankCompanyName {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;

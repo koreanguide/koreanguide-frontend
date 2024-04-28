@@ -24,7 +24,7 @@
 }
 
 .textLogo {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: center;
   font-family: Pretendard;
   font-size: 1.25rem;
@@ -63,7 +63,7 @@
 }
 
 .textBackToLogin {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -101,7 +101,7 @@
   border-radius: 0.625rem;
   display: flex;
   align-items: center;
-  border: 0.0625rem solid #730ef4;
+  border: 0.0625rem solid #3876c0;
 }
 
 .alertImgP {
@@ -110,7 +110,7 @@
 }
 
 .alertTextP {
-  color: #730ef4;
+  color: #3876c0;
   font-family: Pretendard;
   font-size: 0.9375rem;
   font-style: normal;
@@ -169,7 +169,7 @@
 
 .selectBox:hover,
 .selectBox.active {
-  border-color: #730ef4;
+  border-color: #3876c0;
 }
 
 .selectImg {
@@ -190,7 +190,7 @@
 
 .selectBox:hover .textRoll,
 .selectBox.active .textRoll {
-  color: #730ef4;
+  color: #3876c0;
 }
 
 .thirdContainer {
@@ -256,7 +256,7 @@
 
 input:focus {
   outline: none;
-  border-color: #730ef4;
+  border-color: #3876c0;
 }
 
 .emailInputBox,
@@ -285,7 +285,7 @@ input:focus {
   width: 6.875rem;
   height: 3.4375rem;
   border-radius: 0.625rem;
-  background: var(--Primary, #730ef4);
+  background: var(--Primary, #3876c0);
   color: #fff;
   text-align: center;
   font-family: Pretendard;
@@ -300,20 +300,20 @@ input:focus {
 
 .CertifiedNumberSendButton:hover {
   background: #fff;
-  border: 0.0625rem solid #730ef4;
-  color: #730ef4;
+  border: 0.0625rem solid #3876c0;
+  color: #3876c0;
 }
 
 .emailCertifiedButton:hover {
   background: #fff;
-  border: 0.0625rem solid #730ef4;
-  color: #730ef4;
+  border: 0.0625rem solid #3876c0;
+  color: #3876c0;
 }
 
 .CertifiedNumbeReSendButton:hover {
   background: #fff;
-  border: 0.0625rem solid #730ef4;
-  color: #730ef4;
+  border: 0.0625rem solid #3876c0;
+  color: #3876c0;
 }
 
 .CertifiedNumberSendButtonLoad {
@@ -354,7 +354,7 @@ input:focus {
   height: 3.4375rem;
   border-radius: 0.625rem;
   background: #e3e3e3;
-  color: #730ef4;
+  color: #3876c0;
   text-align: center;
   font-family: Pretendard;
   font-size: 0.9375rem;
@@ -495,7 +495,7 @@ input:focus {
   margin-top: 3.75rem;
   height: 2.625rem;
   border-radius: 0.3125rem 1.25rem 1.25rem 0.3125rem;
-  background: var(--Primary, #730ef4);
+  background: var(--Primary, #3876c0);
   border: none;
   color: #fff;
   font-family: Pretendard;
@@ -509,6 +509,6 @@ input:focus {
 
 .SignupButton:hover {
   background: #fff;
-  border: 0.0625rem solid #730ef4;
-  color: #730ef4;
+  border: 0.0625rem solid #3876c0;
+  color: #3876c0;
 }

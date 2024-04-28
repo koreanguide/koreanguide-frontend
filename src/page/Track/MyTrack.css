@@ -27,7 +27,7 @@
 }
 
 .TextCreatNewTrack {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 18px;
@@ -147,7 +147,7 @@
 }
 
 .MyTrackComponentTagBox {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: center;
   font-family: Pretendard;
   font-size: 12px;
@@ -232,7 +232,7 @@
 }
 
 .NoneTrackContainerTextTwo {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 14px;

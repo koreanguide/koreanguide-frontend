@@ -63,7 +63,7 @@
   padding: 0%;
   margin: 0%;
   right: 0%;
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   font-family: Pretendard;
   font-size: 0.875rem;
   font-style: normal;
@@ -76,7 +76,7 @@
 }
 
 .StartButton:hover {
-  background-color: #730ef4;
+  background-color: #3876c0;
   color: white;
   border: 0.125rem solid #fff;
 }

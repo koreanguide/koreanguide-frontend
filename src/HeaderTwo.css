@@ -45,7 +45,7 @@
 }
 
 .HomeButtonTextTwo {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: center;
   font-family: Pretendard;
   font-size: 1.25rem;
@@ -167,7 +167,7 @@
 }
 
 .UserInformationButtonText {
-  color: var(--KG_PRIMARY, #730ef4);
+  color: var(--KG_PRIMARY, #3876c0);
   text-align: center;
   font-family: Pretendard;
   font-size: 1.25rem;
@@ -271,7 +271,7 @@
 }
 
 .HeaderInfoUserAmountNotion {
-  color: #730ef4;
+  color: #3876c0;
   text-align: center;
   font-family: Pretendard;
   font-size: 1rem;
@@ -486,7 +486,7 @@
   }
 
   .HomeButtonTextTwo {
-    color: #730ef4;
+    color: #3876c0;
     text-align: center;
     font-family: Pretendard;
     font-size: 15px;

@@ -35,7 +35,7 @@
 }
 
 .textLogo {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: center;
   font-size: 1.25rem;
   font-style: normal;
@@ -157,7 +157,7 @@
   height: 2.625rem;
   margin-top: 1.875rem;
   border-radius: 0.3125rem 1.25rem 1.25rem 0.3125rem;
-  background: var(--Primary, #730ef4);
+  background: var(--Primary, #3876c0);
   border: none;
   color: #fff;
   font-size: 0.9375rem;
@@ -171,8 +171,8 @@
 .complishmentButton:hover,
 .complishmentButton.clicked {
   background: #fff;
-  border: 0.0625rem solid #730ef4;
-  color: #730ef4;
+  border: 0.0625rem solid #3876c0;
+  color: #3876c0;
 }
 
 .fourthContainer {
@@ -230,7 +230,7 @@
 
 .textLostPassword {
   margin-left: 0.75rem;
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
@@ -281,7 +281,7 @@
   .MobileLoginPageFrame {
     display: flex;
     justify-content: center;
-    background: linear-gradient(168deg, #730ef4 0%, #c1a0ed 100%);
+    background: linear-gradient(168deg, #3876c0 0%, #c1a0ed 100%);
     width: 100%;
     height: 100vh;
     display: flex;
@@ -382,7 +382,7 @@
     align-items: center;
     justify-content: center;
 
-    color: var(--KG_PRIMARY, #730ef4);
+    color: var(--KG_PRIMARY, #3876c0);
     text-align: center;
     font-family: Pretendard;
     font-size: 12px;
@@ -451,7 +451,7 @@
     width: 100px;
     height: 100px;
     border-radius: 15px;
-    background: var(--KG_PRIMARY, #730ef4);
+    background: var(--KG_PRIMARY, #3876c0);
     margin-top: 51px;
     display: flex;
     align-items: center;
@@ -486,7 +486,7 @@
     width: 308px;
     height: 50px;
     border-radius: 100px;
-    background: #730ef4;
+    background: #3876c0;
     display: flex;
     align-items: center;
     justify-content: center;

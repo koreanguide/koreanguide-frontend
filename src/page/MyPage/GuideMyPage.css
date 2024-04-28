@@ -85,7 +85,7 @@
 }
 
 .GuideMyPageInfoBoxButtonOne {
-  color: var(--KG_PRIMARY, #730ef4);
+  color: var(--KG_PRIMARY, #3876c0);
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;
@@ -280,7 +280,7 @@
   width: 375px;
   height: 48px;
   border-radius: 10px;
-  background: #730ef4;
+  background: #3876c0;
   display: flex;
   align-items: center;
   justify-content: center;

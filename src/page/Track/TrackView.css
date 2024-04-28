@@ -26,7 +26,7 @@
 }
 
 .GoToMyPageText {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 15px;
@@ -102,7 +102,7 @@
   width: 93px;
   height: 31px;
   border-radius: 10px;
-  background: var(--KG_PRIMARY, #730ef4);
+  background: var(--KG_PRIMARY, #3876c0);
   margin-left: 30px;
   display: flex;
   align-items: center;
@@ -147,7 +147,7 @@
 }
 
 .ViewPageTag {
-  color: var(--KG_PRIMARY, #730ef4);
+  color: var(--KG_PRIMARY, #3876c0);
   font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
@@ -226,7 +226,7 @@
 }
 
 .selected {
-  border: 3px solid #730ef4;
+  border: 3px solid #3876c0;
 }
 
 .ViewPageContentContainer {

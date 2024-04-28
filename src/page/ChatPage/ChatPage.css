@@ -53,7 +53,7 @@
 }
 
 .TestNewest {
-  color: var(--Primary, #730ef4);
+  color: var(--Primary, #3876c0);
   font-family: Urbanist;
   font-size: 0.9375rem;
   font-style: normal;
@@ -95,7 +95,7 @@
   width: 0.25rem;
   height: 3.1875rem;
   border-radius: 1.875rem;
-  background: var(--Primary, #730ef4);
+  background: var(--Primary, #3876c0);
 }
 .ChatListBoxThree {
   width: 15.6rem;
@@ -110,7 +110,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #730ef4;
+  background-color: #3876c0;
 }
 
 .ChatProfileImg {

@@ -96,7 +96,7 @@
 }
 
 .LowestTemperature {
-  color: var(--KG_SUBTEXT, #730ef4);
+  color: var(--KG_SUBTEXT, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 12px;
@@ -168,7 +168,7 @@
   line-height: normal;
 }
 .SeoulHeaderNewNotificationText {
-  color: var(--KG_PRIMARY, #730ef4);
+  color: var(--KG_PRIMARY, #3876c0);
   text-align: right;
   font-family: Pretendard;
   font-size: 12px;

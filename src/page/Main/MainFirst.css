@@ -1,7 +1,7 @@
 .MainFrameOne {
   width: 100%;
   height: 50rem;
-  background: var(--Primary, #730ef4);
+  background: var(--Primary, #3876c0);
   display: flex;
   justify-content: center;
 }

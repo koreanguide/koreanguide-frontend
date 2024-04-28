@@ -404,7 +404,7 @@ function AfterLoginPage() {
                 InfoBoxUnit="회"
                 InfoBoxstyle={{
                   background:
-                    "linear-gradient(316deg, #730ef4 0%, #bb88fb 100%)",
+                    "linear-gradient(316deg, #3876c0 0%, #bb88fb 100%)",
                 }}
                 InfoBoxTextstyle={{
                   fontSize: "64px",
@@ -428,7 +428,7 @@ function AfterLoginPage() {
                 InfoBoxUnit="크레딧"
                 InfoBoxstyle={{
                   background:
-                    "linear-gradient(316deg, #730ef4 0%, #bb88fb 100%)",
+                    "linear-gradient(316deg, #3876c0 0%, #bb88fb 100%)",
                 }}
                 InfoBoxTextstyle={{
                   fontSize: "45px",
