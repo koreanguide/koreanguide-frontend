@@ -408,7 +408,34 @@ function SeoulHanRiverDetailPage() {
           </div>
         </div>
         <div className="SeoulDetailInformationBox">
-          <div className="SeoulDetailInformationBoxInner"></div>
+          <div className="SeoulDetailInformationBoxInner">
+            <div className="SeoulDetailInformationBoxTextBoxOne">
+              <div className="SeoulDetailInformationBoxText">망원주차장</div>
+            </div>
+            <div className="SeoulDetailInformationBoxTextBoxTwo">
+              <div className="SeoulDetailInformationBoxText">
+                서울 마포구 합정동 352-5(망원동,망원 1-1 공영주차장)
+              </div>
+            </div>
+            <div className="SeoulDetailInformationBoxTextBoxThree">
+              <div className="SeoulDetailInformationBoxText">1490</div>
+            </div>
+            <div className="SeoulDetailInformationBoxTextBoxFour">
+              <div className="SeoulDetailInformationBoxText">06:00~23:00</div>
+            </div>
+            <div className="SeoulDetailInformationBoxTextBoxFive">
+              <div className="SeoulDetailInformationBoxText">06:00~23:00</div>
+            </div>
+            <div className="SeoulDetailInformationBoxTextBoxSix">
+              <div className="SeoulDetailInformationBoxText">1,000원</div>
+            </div>
+            <div className="SeoulDetailInformationBoxTextBoxSeven">
+              <div className="SeoulDetailInformationBoxText">200원</div>
+            </div>
+            <div className="SeoulDetailInformationBoxTextBoxEight">
+              <div className="SeoulDetailInformationBoxText">070-7778-6678</div>
+            </div>
+          </div>
         </div>
         <div className="SeoulMoreButtonFrame">
           <div className="SeoulMoreButton">더 보기</div>

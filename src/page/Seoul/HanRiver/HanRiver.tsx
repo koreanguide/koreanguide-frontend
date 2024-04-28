@@ -160,7 +160,8 @@ function SeoulHanRiverPage() {
           params: { seoulCountry: englishDistrict },
         });
         console.log("한강공원 정보", response.data);
-        setShops(response.data);
+        console.log("한강공원 정보 22", response.data.data.length);
+        setShops(response.data.data.length);
       } catch (error) {
         console.error(error);
       }
@@ -270,9 +271,6 @@ function SeoulHanRiverPage() {
             </div>
           </>
         }
-        <div className="SeoulMoreButtonFrame">
-          <div className="SeoulMoreButton">더 보기</div>
-        </div>
         <div className="BackToIntorButtonContainer" onClick={goToSeoulCategory}>
           <div className="BackToIntorButtonFrame">
             <div className="BackToIntorButtonCircle">

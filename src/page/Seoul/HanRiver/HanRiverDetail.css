@@ -205,14 +205,99 @@
 .SeoulDetailInformationBox {
   width: 990px;
   height: 60px;
-  background-color: aqua;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid #ececec;
 }
 
 .SeoulDetailInformationBoxInner {
+  position: relative;
   width: 915px;
   height: 17px;
-  background-color: #80889b;
+}
+
+.SeoulDetailInformationBoxText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.56px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.SeoulDetailInformationBoxTextBoxOne {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+  width: 110px;
+}
+
+.SeoulDetailInformationBoxTextBoxTwo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 134px;
+  width: 222px;
+}
+
+.SeoulDetailInformationBoxTextBoxThree {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 385px;
+  width: 33px;
+}
+
+.SeoulDetailInformationBoxTextBoxFour {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 445px;
+  width: 90px;
+}
+
+.SeoulDetailInformationBoxTextBoxFive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 550px;
+  width: 90px;
+}
+
+.SeoulDetailInformationBoxTextBoxSix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 648px;
+  width: 65px;
+}
+
+.SeoulDetailInformationBoxTextBoxSeven {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 724px;
+  width: 65px;
+}
+
+.SeoulDetailInformationBoxTextBoxEight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 811px;
+  width: 100px;
 }
