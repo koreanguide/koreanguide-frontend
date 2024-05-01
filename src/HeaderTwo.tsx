@@ -121,24 +121,10 @@ function HeaderTwo() {
     sessionStorage.removeItem("refresh-token");
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("name");
-    alert("로그아웃이 완료되었습니다.\n메인 페이지로 되돌아갑니다.")
+    alert("로그아웃이 완료되었습니다.\n메인 페이지로 되돌아갑니다.");
     navigate("/");
     window.scrollTo(0, 0);
   };
-
-  // const MenuClick = () => {
-  //   if (MenuImgState === "/img/x.svg") {
-  //     setMenuImgState("/img/Menu.svg");
-  //     setAnimateFunction(true);
-  //     setTimeout(() => {
-  //       setShowPhoneMenu(false);
-  //     }, 500);
-  //   } else {
-  //     setMenuImgState("/img/x.svg");
-  //     setAnimateFunction(false);
-  //     setShowPhoneMenu(true);
-  //   }
-  // };
 
   return (
     <div className="HeaderTwoBoxFrame">
@@ -147,11 +133,10 @@ function HeaderTwo() {
           <div className="HomeButtonContainer">
             <button className="HomeButtonTwo" onClick={navigatePortal}>
               <img
-                src="/img/HTL2.png"
+                src="/img/NLSC.svg"
                 alt="none"
-                className="HomeButtonImgTwo"
+                className="HomeButtonImgTwoNLSC"
               ></img>
-              <p className="HomeButtonTextTwo">KOREAN GUIDE</p>
             </button>
           </div>
         }

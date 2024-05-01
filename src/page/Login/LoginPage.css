@@ -11,6 +11,11 @@
   font-family: Urbanist !important;
 }
 
+.signinLogoImgNLSC {
+  width: 176px;
+  height: 26px;
+}
+
 .signinframeEn {
   font-family: Urbanist;
   width: 100%;
@@ -170,9 +175,7 @@
 
 .complishmentButton:hover,
 .complishmentButton.clicked {
-  background: #fff;
-  border: 0.0625rem solid #3876c0;
-  color: #3876c0;
+  opacity: 0.8;
 }
 
 .fourthContainer {

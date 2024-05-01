@@ -23,14 +23,9 @@
   justify-content: space-between;
 }
 
-.textLogo {
-  color: var(--Primary, #3876c0);
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.signinLogoNLSC {
+  width: 179px;
+  height: 26px;
 }
 
 .firstContainer {
@@ -299,21 +294,15 @@ input:focus {
 }
 
 .CertifiedNumberSendButton:hover {
-  background: #fff;
-  border: 0.0625rem solid #3876c0;
-  color: #3876c0;
+  opacity: 0.8;
 }
 
 .emailCertifiedButton:hover {
-  background: #fff;
-  border: 0.0625rem solid #3876c0;
-  color: #3876c0;
+  opacity: 0.8;
 }
 
 .CertifiedNumbeReSendButton:hover {
-  background: #fff;
-  border: 0.0625rem solid #3876c0;
-  color: #3876c0;
+  opacity: 0.8;
 }
 
 .CertifiedNumberSendButtonLoad {
@@ -321,7 +310,7 @@ input:focus {
   width: 6.875rem;
   height: 3.4375rem;
   border-radius: 0.625rem;
-  background: #864fcd;
+  background: #5a93d7;
   color: #fff;
   display: flex;
   justify-content: center;

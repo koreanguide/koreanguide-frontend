@@ -8,8 +8,8 @@
 .MainFifthFrame {
   width: 100%;
   height: 100%;
-  border-radius: 1.25rem;
-  background: linear-gradient(90deg, #f994b3 0%, #864fcd 69.79%, #3876c0 100%);
+  border-radius: 20px;
+  background: linear-gradient(83deg, #d9d9d9 -8.89%, #3876c0 63.89%);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -53,13 +53,13 @@
   font-weight: 500;
   letter-spacing: -1px;
   line-height: normal;
-  background: linear-gradient(
-    90deg,
-    rgba(249, 148, 179, 0.7) -86.59%,
-    rgba(115, 14, 244, 0.7) 117.68%
-  );
+  background: #3876c0;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+}
+
+.GetStartButton:hover {
+  opacity: 0.8;
 }

@@ -146,12 +146,12 @@ function AfterLoginPage() {
   interface PortalRankTrackComponentProps {
     title: string;
     preview: string;
-    profileUrl: string;
+    primaryUrl: string;
     nickname: string;
     view: number;
     like: number;
     tags: string[];
-    primaryUrl: string;
+    profileUrl?: string;
   }
 
   const PortalRankTrackComponent = ({
@@ -161,6 +161,10 @@ function AfterLoginPage() {
     track: PortalRankTrackComponentProps;
     rank: number;
   }) => {
+    const profileUrl =
+      track.profileUrl === "DEFAULT"
+        ? "/img/NormalProfile.svg"
+        : track.profileUrl;
     return (
       <div className="PortalRankTrackComponentFrame">
         <div className="PortalRankCircle">
@@ -190,7 +194,7 @@ function AfterLoginPage() {
               <div className="PortalRankTrackComponentBoxSix">
                 <img
                   className="PortalRankTrackComponentBoxProfileImg"
-                  src={track.profileUrl}
+                  src={profileUrl}
                   alt="에러"
                 ></img>
 
@@ -404,7 +408,7 @@ function AfterLoginPage() {
                 InfoBoxUnit="회"
                 InfoBoxstyle={{
                   background:
-                    "linear-gradient(316deg, #3876c0 0%, #bb88fb 100%)",
+                    "linear-gradient(316deg, #3876C0 26.21%, #A0C5F2 97.94%)",
                 }}
                 InfoBoxTextstyle={{
                   fontSize: "64px",
@@ -428,7 +432,7 @@ function AfterLoginPage() {
                 InfoBoxUnit="크레딧"
                 InfoBoxstyle={{
                   background:
-                    "linear-gradient(316deg, #3876c0 0%, #bb88fb 100%)",
+                    "linear-gradient(316deg, #3876C0 26.21%, #A0C5F2 97.94%)",
                 }}
                 InfoBoxTextstyle={{
                   fontSize: "45px",

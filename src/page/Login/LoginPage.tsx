@@ -35,20 +35,20 @@ function Login() {
   const [MobileLoginError, setMobileLoginError] = useState<boolean>(true);
   const [MobilePopUpShow, setMobilePopUpShow] = useState<boolean>(true);
 
-  const Rest_api_key = '309a47548b21aa409474a400b62810b3';
+  const Rest_api_key = "309a47548b21aa409474a400b62810b3";
   const protocol = window.location.protocol; // 현재 페이지의 프로토콜 확인
   let redirect_uri;
-  
-  if (protocol === 'http:') {
-      redirect_uri = 'http://localhost:3000/'; // 개발 환경일 경우
-  } else if (protocol === 'https:') {
-      redirect_uri = 'https://koreanguide.moneyisinvest.kr/'; // 실제 서비스 환경일 경우
+
+  if (protocol === "http:") {
+    redirect_uri = "http://localhost:3000/"; // 개발 환경일 경우
+  } else if (protocol === "https:") {
+    redirect_uri = "https://koreanguide.moneyisinvest.kr/"; // 실제 서비스 환경일 경우
   }
 
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
   const handleKakaoLogin = () => {
-    window.location.href = kakaoURL
-  }
+    window.location.href = kakaoURL;
+  };
 
   const handleLogin = async () => {
     const data: LoginData = {
@@ -121,11 +121,10 @@ function Login() {
       <div className="Logininner">
         <div className="logoContainer" onClick={navigateToMain}>
           <img
-            className="signinLogoImg"
-            src="../img/PurpleAirplain.svg"
+            className="signinLogoImgNLSC"
+            src="../img/NLSC.svg"
             alt="오류"
           ></img>
-          <div className="textLogo">KOREAN GUIDE</div>
         </div>
         <div className="firstContainer">
           <div className="textWelcome">환영합니다!</div>
@@ -283,7 +282,7 @@ function Login() {
           </div>
         </div>
       )}
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </div>
   );
 }

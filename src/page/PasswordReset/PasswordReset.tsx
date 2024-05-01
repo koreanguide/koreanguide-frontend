@@ -182,11 +182,10 @@ function PasswordReset() {
         <div className="passwordResetInner">
           <div className="logoContainer" onClick={navigateToMain}>
             <img
-              className="signinLogoImg"
-              src="../img/PurpleAirplain.svg"
+              className="signinLogoImgNLSC"
+              src="../img/NLSC.svg"
               alt="오류"
             ></img>
-            <div className="textLogo">KOREAN GUIDE</div>
           </div>
           <div className="firstContainer">
             <div className="textWelcome">비밀번호 재설정</div>

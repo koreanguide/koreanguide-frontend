@@ -281,11 +281,10 @@ function SignUpPage() {
         <div className="inner">
           <div className="logoContainer" onClick={navigateToMain}>
             <img
-              className="signinLogoImg"
-              src="../img/PurpleAirplain.svg"
+              className="signinLogoNLSC"
+              src="../img/NLSC.svg"
               alt="오류"
             ></img>
-            <div className="textLogo">KOREAN GUIDE</div>
           </div>
           <div className="firstContainer">
             <div className="textWelcome">회원가입</div>
@@ -368,7 +367,7 @@ function SignUpPage() {
                   <button className="CertifiedNumberSendButtonLoad">
                     <img
                       className="loadImg"
-                      src="../img/load2.svg"
+                      src="../img/SignUpSeoulColorLoad.svg"
                       alt="오류"
                     ></img>
                   </button>
