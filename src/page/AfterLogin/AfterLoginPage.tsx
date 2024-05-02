@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AfterLoginPage.css";
 import HeaderTwo from "../../HeaderTwo";
 import Footer from "../Footer/Footer";
@@ -22,6 +23,7 @@ function AfterLoginPage() {
   const [profileComplete, setProfileComplete] = useState(false);
   const [couponUsed, setCouponUsed] = useState(false);
   const [level, setLevel] = useState("");
+  const navigate = useNavigate();
 
   const [tracks, setTracks] = useState([]);
 
@@ -144,6 +146,7 @@ function AfterLoginPage() {
   };
 
   interface PortalRankTrackComponentProps {
+    trackId: string;
     title: string;
     preview: string;
     primaryUrl: string;
@@ -165,8 +168,11 @@ function AfterLoginPage() {
       track.profileUrl === "DEFAULT"
         ? "/img/NormalProfile.svg"
         : track.profileUrl;
+    const handleTrackClick = () => {
+      navigate(`/portal/track/view/${track.trackId}`);
+    };
     return (
-      <div className="PortalRankTrackComponentFrame">
+      <div className="PortalRankTrackComponentFrame" onClick={handleTrackClick}>
         <div className="PortalRankCircle">
           <div className="PortalRankNum">{rank}</div>
         </div>
