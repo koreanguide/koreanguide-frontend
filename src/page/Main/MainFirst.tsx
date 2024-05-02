@@ -22,7 +22,7 @@ function MainFirst() {
           <p className="PTwo">어떤 이에겐 소중하고</p>
           <p className="PThree">새로운 경험이 될 수 있어요.</p>
         </div>
-        <img src="../img/TwoPeople.png" alt="" className="MainOneImg"></img>
+        <img src="../img/NMI.svg" alt="" className="MainOneImg"></img>
         <div className="SecondText">
           <p className="PFour">
             당연한 일상을 우리나라에 방문하는 이들에게 공유하고,

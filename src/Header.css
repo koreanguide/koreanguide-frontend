@@ -1,5 +1,6 @@
 .HeaderBoxFrame {
-  position: fixed;
+  position: absolute;
+  top: 52px;
   width: 100%;
   height: 6.375rem;
   display: flex;
@@ -25,7 +26,7 @@
 }
 
 .HeaderBoxGoToGuideButton {
-  width: 123px;
+  width: 163px;
   height: 32px;
   border-radius: 20px;
   background: #fff;
