@@ -326,6 +326,7 @@ body {
 }
 
 .PortalRankTrackComponentFrame {
+  cursor: pointer;
   position: relative;
   width: 330px;
   height: 306px;
