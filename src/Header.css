@@ -1,5 +1,6 @@
 .HeaderBoxFrame {
   position: fixed;
+  top: 52px;
   width: 100%;
   height: 6.375rem;
   display: flex;
