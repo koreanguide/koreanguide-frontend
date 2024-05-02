@@ -15,7 +15,7 @@ function Header() {
         <img className="HeaderBoxNLW" src="../img/NLW.svg" alt=""></img>
         <div className="HeaderBoxGoToGuideButton">
           <div className="HeaderBoxGoToGuideButtonText" onClick={goToStart}>
-            시작하기
+            가이드로 시작하기
           </div>
         </div>
       </div>
