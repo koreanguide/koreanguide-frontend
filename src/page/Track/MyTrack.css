@@ -59,7 +59,10 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  row-gap: 35px;
 }
 
 .MyTrackComponent {
