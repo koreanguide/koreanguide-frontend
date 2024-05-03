@@ -1,162 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./ChatPage.css";
 import HeaderTwo from "../../HeaderTwo";
-import axios from "axios";
-import LoadPage from "../LoadPage/LoadPage";
 import SeoulHeader from "../../SeoulHeader";
-
-interface ChatListProps {
-  imgName: string;
-  userName: string;
-  userText: string;
-  date: string;
-}
-
-const ChatListComponent: React.FC<ChatListProps> = ({
-  imgName,
-  userName,
-  userText,
-  date,
-}) => {
-  return (
-    <div className="ChatListBoxOne">
-      <div className="ChatListBoxTwo">
-        <div className="PurpleLine"></div>
-        <div className="ChatListBoxThree">
-          <div className="ChatImgBox">
-            <img
-              className="ChatProfileImg"
-              src={`../img/${imgName}.svg`}
-              alt=""
-            ></img>
-          </div>
-          <div className="ChatListUserName">{userName}</div>
-          <div className="ChatListUserText">{userText}</div>
-          <div className="ChatListDate">{date}</div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-interface ChatMainProfileProps {
-  imgName: string;
-  userName: string;
-  time: string;
-}
-
-const ChatMainProfile: React.FC<ChatMainProfileProps> = ({
-  imgName,
-  userName,
-  time,
-}) => {
-  return (
-    <div className="ChatMainProfileFrame">
-      <div className="ChatMainImgBox">
-        <img
-          className="ChatMainProfileImg"
-          src={`../img/${imgName}.svg`}
-          alt=""
-        ></img>
-      </div>
-      <div className="ChatMainUserName">KOREAN GUIDE</div>
-      <div className="ChatMainLastUse">현재 활동중</div>
-    </div>
-  );
-};
-
-const ChatTimeInfoProps = () => {
-  return (
-    <div className="ChatTimeInfoPropsFrame">
-      <img
-        className="ChatTimeInfoPropsImg"
-        src={`../img/night.svg`}
-        alt=""
-      ></img>
-      <div className="TimeAnnouncementText">심야안내</div>
-      <div className="TimeExactAnnouncementText">
-        상대방의 현지 시간은 오전 2시입니다.
-      </div>
-    </div>
-  );
-};
-
-interface ChatList {
-  chatRoomId: string;
-  profileUrl: string;
-  name: string;
-  lastMessage: string;
-  lastTalkedAt: string;
-}
+import Footer from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 function ChatPage() {
-  const [inputText, setInputText] = useState("");
-  const [chatTexts, setChatTexts] = useState<string[]>([]);
-  const [timeStr, setTimeStr] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [chatList, setChatList] = useState<ChatList[]>([]);
+  const ChatTime: React.FC = () => {
+    const today = new Date();
+    const formattedDate = `${today.getMonth() + 1}/${today.getDate()}`;
 
-  useEffect(() => {
-    const fetchChatList = async () => {
-      try {
-        const response = await axios.get("/v1/chat/list", {
-          headers: {
-            "X-AUTH-TOKEN": sessionStorage.getItem("access-token"),
-          },
-        });
-
-        setChatList(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchChatList();
-  }, []);
-
-  if (loading) {
-    return <LoadPage />;
-  }
-
-  const formatDate = (dateStr: string) => {
-    if (dateStr === "알 수 없음") return dateStr;
-    const date = new Date(dateStr);
-    return `${date.getMonth() + 1}/${date.getDate()}`;
+    return (
+      <div className="ChatTime">
+        <p>{formattedDate}</p>
+      </div>
+    );
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
+  const ChatBoxTime: React.FC = () => {
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}년 ${
+      today.getMonth() + 1
+    }월 ${today.getDate()}일`;
+
+    return (
+      <div className="ChatBoxTime">
+        <p>{formattedDate}</p>
+      </div>
+    );
   };
 
-  const handleButtonClick = () => {
-    if (!inputText) return;
-    setChatTexts((prevChatTexts) => [...prevChatTexts, inputText]);
-    setInputText("");
+  const navigate = useNavigate();
 
-    const now = new Date();
-
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-
-    setTimeStr(`${hours}:${minutes}`);
-
-    console.log(timeStr);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleButtonClick();
-    }
-
-    const now = new Date();
-
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-
-    setTimeStr(`${hours}:${minutes}`);
-
-    console.log(timeStr);
+  const goToMainPage = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -182,10 +60,121 @@ function ChatPage() {
                   alt="error"
                 ></img>
               </div>
+              <div className="ChatSideBoxThree">
+                <div className="ChatSideBoxThreeTextOne">KOREAN GUIDE</div>
+                <div className="ChatSideBoxThreeTextTwo">
+                  가이드님! KOREAN GUIDE에 오...
+                </div>
+              </div>
+              <ChatTime></ChatTime>
+            </div>
+          </div>
+        </div>
+        <div className="ChatLine"></div>
+        <div className="ChatMainBoxFrame">
+          <div className="ChatMainBoxOne">
+            <div className="ChatMainBoxTwo">
+              <div className="ChatMainBoxTwoCircle">
+                <img
+                  className="ChatMainBoxTwoCircleImg"
+                  src="../img/OnlyWhiteLogoImg.svg"
+                  alt="error"
+                ></img>
+              </div>
+              <div className="ChatMainBoxTwoTextBox">
+                <div className="ChatMainBoxTwoTextOne">KOREAN GUIDE</div>
+                <div className="ChatMainBoxTwoTextTwoBox">
+                  <div className="ChatMainBoxTwoTextBoxCircle"></div>
+                  <div className="ChatMainBoxTwoTextTwo">현재 활동중</div>
+                </div>
+              </div>
+            </div>
+            <div className="ChatInfoButton" onClick={goToMainPage}>
+              <img
+                className="ChatInfoButtonImg"
+                src="../img/CPII.svg"
+                alt="error"
+              ></img>
+              <div className="ChatInfoText">정보</div>
+            </div>
+          </div>
+          <div className="ChatMainBoxLine"></div>
+          <div className="ChatScrollableDiv">
+            <div className="ChatScrollableDivInner">
+              <ChatBoxTime></ChatBoxTime>
+              <div className="ChatMassageBox">
+                <div className="ChatMassageBoxCircle">
+                  <img
+                    className="ChatMassageBoxCircleImg"
+                    src="../img/OnlyWhiteLogoImg.svg"
+                    alt="error"
+                  ></img>
+                </div>
+                <div className="ChatMassageBoxTwo">
+                  <div className="ChatMassageBoxTwoInner">
+                    <div className="ChatMassageBoxTextOne">
+                      김찬주 가이드님!
+                      <br />
+                      <br />
+                      KOREAN GUIDE에 오신 것을 환영합니다.
+                      <br />
+                      <br />
+                      많은 관광객이 KOREAN GUIDE와 함께하고 있어요.
+                      <br />
+                      새로운 트랙을 생성하여 수 많은 관광객에게 노출하고, 일정을
+                      함께하며 경험을 쌓아보세요!
+                      <br />
+                      <br />
+                      도움이 필요하다면 언제든 저에게 질문해 주세요. 감사합니다.
+                    </div>
+                    <div className="ChatMassageBoxTextTwo">
+                      <img
+                        className="TranslateImg"
+                        src="../img/TranslateImg.svg"
+                        alt="error"
+                      ></img>
+                      <div className="ChatMassageBoxTextTwoText">
+                        Guide 김찬주!
+                        <br />
+                        <br />
+                        Welcome to KOREA GUIDE.
+                        <br />
+                        <br />A lot of tourists are with KOREA GUIDE.
+                        <br />
+                        Create a new track to expose it to countless tourists,
+                        share the schedule, and gain experience!
+                        <br />
+                        <br />
+                        If you need any help, feel free to ask me any questions.
+                        <br />
+                        Thank you.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="ChatMassageTextRecent">방금</div>
+              </div>
+            </div>
+          </div>
+          <div className="ChatMainBoxFour">
+            <img className="CSFI-1" src="../img/CSFI-1.svg" alt="error"></img>
+            <img className="CSFI-2" src="../img/CSFI-2.svg" alt="error"></img>
+            <img className="CSFI-3" src="../img/CSFI-3.svg" alt="error"></img>
+          </div>
+          <div className="ChatMassageTextInputBox">
+            <div className="ChatMassageTextInputCircle">
+              <img className="CMPI" src="../img/CMPI.svg" alt="error"></img>
+            </div>
+            <div className="ChatMassageTextInputPlaceholder">
+              상담직원과는 대화가 불가능합니다.
+            </div>
+            <div className="ChatMassageTextInputCircle">
+              <img className="CSBI" src="../img/CSBI.svg" alt="error"></img>
             </div>
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }
