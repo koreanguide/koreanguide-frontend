@@ -7,416 +7,94 @@
 }
 
 .ChatBox {
-  margin-top: 7.8125rem;
+  margin-top: 140px;
   display: flex;
-  width: 75rem;
-  height: 51.625rem;
-  border-radius: 0.625rem;
-  margin-bottom: 6.25rem;
+  align-items: center;
+  width: 990px;
+  height: 651px;
+  margin-bottom: 100px;
+  background-color: aqua;
+}
+
+.ChatSideBox {
+  width: 288px;
+  height: 651px;
+  background-color: aquamarine;
+}
+
+.ChatSideTopBox {
+  width: 288px;
+  height: 30px;
+  background-color: bisque;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
-.ChatInfoFrame {
-  width: 18.125rem;
-  height: 51.625rem;
+.ChatSideTopBoxText {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
 }
 
-.ChatInfoHeaderFrame {
-  width: 100%;
-  height: 1.875rem;
+.ChatSideTopBoxTwo {
   display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ChatSideTopBoxTwoText {
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.3px;
+}
+
+.ChatSideBoxTwo {
+  margin-top: 34px;
+  width: 288px;
+  height: 69px;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.ChatInfoHeaderFrameBoxOne {
-  width: 15.375rem;
-  height: 100%;
+.ChatSideBoxTwoInner {
+  width: 267px;
+  height: 51px;
+  background-color: aliceblue;
   display: flex;
-  justify-content: space-between;
-}
-
-.TextChat {
-  color: #000;
-  font-family: Urbanist;
-  font-size: 1.5625rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.NewestBox {
-  width: 75px;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.TestNewest {
-  color: var(--Primary, #3876c0);
-  font-family: Urbanist;
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+.ChatSideBoxTwoInnerline {
+  width: 4px;
+  height: 51px;
+  border-radius: 30px;
+  background: #3876c0;
 }
 
-.ChatListFrame {
-  width: 100%;
-  height: 47.3125rem;
-  margin-top: 2.3125rem;
-  overflow: auto;
-  padding-right: 20px;
-  overflow-x: hidden;
+.ChatSideBoxTwoImg {
+  width: 20px;
+  height: 20px;
 }
 
-.ChatListBoxOne {
-  width: 17.9rem;
-  height: 4.3125rem;
+.ChatSideBoxTwoImgBox {
+  width: 46px;
+  height: 46px;
+  margin-left: 16px;
+  border-radius: 46px;
+  background: #3876c0;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  border-radius: 0.625rem;
-  border: 0.1rem solid #e3e3e3;
-  margin-bottom: 0.625rem;
-  background-color: white;
-
-  cursor: pointer;
-}
-
-.ChatListBoxTwo {
-  width: 16.6rem;
-  height: 3.1875rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.PurpleLine {
-  width: 0.25rem;
-  height: 3.1875rem;
-  border-radius: 1.875rem;
-  background: var(--Primary, #3876c0);
-}
-.ChatListBoxThree {
-  width: 15.6rem;
-  height: 3.1875rem;
-  position: relative;
-}
-
-.ChatImgBox {
-  width: 3.1875rem;
-  height: 3.1875rem;
-  border-radius: 3.1875rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #3876c0;
-}
-
-.ChatProfileImg {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.ChatListUserName {
-  position: absolute;
-  top: 0.4rem;
-  left: 4rem;
-  color: #000;
-  font-family: Urbanist;
-  font-size: 0.8125rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-.ChatListUserText {
-  position: absolute;
-  top: 1.9rem;
-  left: 4rem;
-  color: rgba(0, 0, 0, 0.7);
-  font-family: Urbanist;
-  font-size: 0.6875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.ChatListDate {
-  position: absolute;
-  top: 0.6rem;
-  right: 0rem;
-  color: rgba(0, 0, 0, 0.4);
-  text-align: right;
-  font-family: Urbanist;
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.ChatMainFrame {
-  width: 54.1875rem;
-  height: 100%;
-}
-
-.ChatMainHeader {
-  width: 100%;
-  height: 3.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
-}
-
-.ChatMainProfileFrame {
-  position: relative;
-  width: 20rem;
-  height: 3.75rem;
-}
-
-.ChatMainImgBox {
-  position: relative;
-  left: 0rem;
-  width: 3.75rem;
-  height: 3.75rem;
-  border-radius: 3.75rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ChatMainProfileImg {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.ChatMainUserName {
-  position: absolute;
-  left: 5rem;
-  top: 0.6875rem;
-  color: #000;
-  font-family: Urbanist;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.ChatMainLastUse {
-  position: absolute;
-  left: 5rem;
-  top: 1.9375rem;
-  color: rgba(0, 0, 0, 0.7);
-  font-family: Pretendard;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.MuteAndInfoBox {
-  width: 8.4375rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.MuteBox {
-  width: 3.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  cursor: pointer;
-}
-
-.TextMute {
-  color: #f00;
-  font-family: Urbanist;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.InfoBox {
-  width: 3.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  cursor: pointer;
-}
-
-.TextInfo {
-  color: #000;
-  font-family: Urbanist;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.ChatTimeInfoFrame {
-  margin-top: 0.625rem;
-  width: 100%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  background-color: white;
-  border-top: 0.1rem solid #e3e3e3;
-  border-bottom: 0.1rem solid #e3e3e3;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(0.125rem);
-}
-
-.ChatTimeInfoPropsFrame {
-  position: relative;
-  width: 100%;
-  height: 0.9375rem;
-  display: flex;
-  align-items: center;
-}
-
-.ChatTimeInfoPropsImg {
-  position: absolute;
-  left: 1.75rem;
-}
-
-.TimeAnnouncementText {
-  position: absolute;
-  left: 3.625rem;
-  color: #000;
-  font-family: Pretendard;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.TimeExactAnnouncementText {
-  position: absolute;
-  left: 7.0625rem;
-  color: rgba(0, 0, 0, 0.7);
-  font-family: Pretendard;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.MassageTextinfoFrame {
-  position: relative;
-  width: 100%;
-  height: 43.4rem;
-  margin-top: 0.625rem;
-}
-
-.MassageTextInputBox {
-  position: absolute;
-  bottom: 0%;
-  display: flex;
-  width: 100%;
-  height: 3.5rem;
-  border-radius: 0.625rem;
-  background: var(--Sub, #f4f4f4);
-}
-
-.plusButtonImg {
-  width: 1.75rem;
-  height: 1.75rem;
-  margin-left: 1.875rem;
-  margin-top: 0.875rem;
-
-  cursor: pointer;
-}
-
-.MassageTextInput {
-  width: 44rem;
-  margin-left: 1.25rem;
-  border: none;
-  background: var(--Sub, #f4f4f4);
-  outline: none;
-}
-
-.textButtonImg {
-  width: 1.75rem;
-  height: 1.75rem;
-  margin-left: 1.875rem;
-  margin-top: 0.875rem;
-
-  cursor: pointer;
-}
-
-.MessageHistoryFrame {
-  position: absolute;
-  width: 100%;
-  height: 39.9rem;
-  overflow: auto;
-  overflow-x: hidden;
-}
-
-.BigMassageTextBox {
-  margin-top: 1rem;
-  display: block;
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: right;
-  gap: 0.625rem;
-}
-
-.MassageTextBox {
-  display: inline-block;
-  width: auto;
-  height: auto;
-  border-radius: 0.625rem;
-  border: 0.125rem solid #e3e3e3;
-}
-
-.MassageTextBoxText {
-  margin: 0.45rem;
-  color: #000;
-  text-align: right;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.BigMassageTextBox {
-  margin-right: 0.625rem;
-  color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 0.8rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.MassageTextBoxTimeBox {
-  width: 3.125rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end; /* 수평 방향으로 오른쪽 정렬 */
-  justify-content: flex-end;
-}
-
-.MassageTextBoxTime {
-  width: 3.125rem;
-  color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
 }

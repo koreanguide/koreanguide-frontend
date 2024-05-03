@@ -59,8 +59,8 @@ const ChatMainProfile: React.FC<ChatMainProfileProps> = ({
           alt=""
         ></img>
       </div>
-      <div className="ChatMainUserName">{userName}</div>
-      <div className="ChatMainLastUse">{time}시간전 활동</div>
+      <div className="ChatMainUserName">KOREAN GUIDE</div>
+      <div className="ChatMainLastUse">현재 활동중</div>
     </div>
   );
 };
@@ -164,86 +164,24 @@ function ChatPage() {
       <SeoulHeader></SeoulHeader>
       <HeaderTwo></HeaderTwo>
       <div className="ChatBox">
-        <div className="ChatInfoFrame">
-          <div className="ChatInfoHeaderFrame">
-            <div className="ChatInfoHeaderFrameBoxOne">
-              <div className="TextChat">Chat</div>
-              <div className="NewestBox">
-                <img className="NewestImg" src="../img/newest.svg" alt=""></img>
-                <div className="TestNewest">Newest</div>
-              </div>
+        <div className="ChatSideBox">
+          <div className="ChatSideTopBox">
+            <div className="ChatSideTopBoxText">채팅</div>
+            <div className="ChatSideTopBoxTwo">
+              <img className="CPI-1" src="../img/CPI-1.svg" alt="error"></img>
+              <div className="ChatSideTopBoxTwoText">최근 순</div>
             </div>
           </div>
-          <div className="ChatListFrame">
-            {chatList.map((chat) => (
-              <ChatListComponent
-                key={chat.chatRoomId}
-                imgName={
-                  chat.profileUrl === "DEFAULT"
-                    ? "NormalProfile"
-                    : chat.profileUrl
-                }
-                userName={chat.name}
-                userText={chat.lastMessage}
-                date={formatDate(chat.lastTalkedAt)}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="ChatMainFrame">
-          <div className="ChatMainHeader">
-            <ChatMainProfile
-              imgName="profile2"
-              userName="Chanju Kim"
-              time="3"
-            ></ChatMainProfile>
-            <div className="MuteAndInfoBox">
-              <div className="MuteBox">
-                <img className="MuteImg" src="../img/mute.svg" alt=""></img>
-                <div className="TextMute">차단</div>
+          <div className="ChatSideBoxTwo">
+            <div className="ChatSideBoxTwoInner">
+              <div className="ChatSideBoxTwoInnerline"></div>
+              <div className="ChatSideBoxTwoImgBox">
+                <img
+                  className="ChatSideBoxTwoImg"
+                  src="../img/OnlyWhiteLogoImg.svg"
+                  alt="error"
+                ></img>
               </div>
-              <div className="InfoBox">
-                <img className="InfoImg" src="../img/info.png" alt=""></img>
-                <div className="TextInfo">정보</div>
-              </div>
-            </div>
-          </div>
-          <div className="ChatTimeInfoFrame">
-            <ChatTimeInfoProps></ChatTimeInfoProps>
-          </div>
-          <div className="MassageTextinfoFrame">
-            <div className="MassageTextInputBox">
-              <img
-                className="plusButtonImg"
-                src="../img/plusButton.svg"
-                alt=""
-              ></img>
-              <input
-                type="text"
-                className="MassageTextInput"
-                placeholder="여기에 체팅을 입력하세요!"
-                value={inputText}
-                onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
-              ></input>
-              <img
-                className="textButtonImg"
-                src="../img/textButton.svg"
-                alt=""
-                onClick={handleButtonClick}
-              ></img>
-            </div>
-            <div className="MessageHistoryFrame">
-              {chatTexts.map((text, index) => (
-                <div className="BigMassageTextBox">
-                  <div className="MassageTextBoxTimeBox">
-                    <div className="MassageTextBoxTime">{timeStr}</div>
-                  </div>
-                  <div className="MassageTextBox" key={index}>
-                    <div className="MassageTextBoxText">{text}</div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
