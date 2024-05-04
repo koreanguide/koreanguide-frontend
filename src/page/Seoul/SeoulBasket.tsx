@@ -108,6 +108,7 @@ function SeoulBasketPage() {
         });
         setSavedData(response.data);
         setlength(response.data.length);
+        console.log(token);
       } catch (error) {
         console.error(error);
       }

@@ -67,6 +67,7 @@ function SeoulHanRiverDetailPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const token = sessionStorage.getItem("access-token");
+  const { riverPark } = location.state || {};
 
   const { selectedDistrict } = location.state || {};
 
@@ -80,7 +81,6 @@ function SeoulHanRiverDetailPage() {
     window.scrollTo(0, 0);
   };
 
-  const [shops, setShops] = useState<Array<any>>([]);
   const [SeoulShopBasketNum, setSeoulShopBasketNum] = useState("");
 
   type DistrictKey =
@@ -173,43 +173,71 @@ function SeoulHanRiverDetailPage() {
   const englishDistrict: DistrictEnglish | "UNKNOWN" =
     convertDistrictToEnglish(selectedDistrict);
 
+  interface SeoulAttractionData {
+    address: string;
+    category: string;
+    value: string;
+  }
+
+  const SeoulAttractionSaveButton = async () => {
+    const data: SeoulAttractionData = {
+      address: address,
+      value: name + "한강공원",
+      category: "한강공원",
+    };
+    try {
+      const response = await axios.post("/v1/saved/add", data, {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+      console.log("장바구니 담기 성공", response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const SeoulMainRiverComponent = () => {
     return (
       <div className="SeoulMainRiverComponentFrame">
         <div className="SeoulMainRiverComponentImgbox">
           <img
-            src="/img/NanGiRiver.svg"
+            src={`/img/${riverPark}.svg`}
             alt="none"
             className="NanGiRiver"
           ></img>
         </div>
         <div className="SeoulMainRiverComponentTextbox">
-          <div className="SeoulMainRiverComponentTitle">난지 한강공원</div>
-          <div className="SeoulMainRiverComponentContent">
-            서울특별시 마포구 한강난지로 162
+          <div className="SeoulMainRiverComponentSaveBox">
+            <div className="SeoulMainRiverComponentTitle">{name} 한강공원</div>
+            <div
+              className="ShopListBoxContainmentFrame"
+              onClick={SeoulAttractionSaveButton}
+            >
+              <img
+                src="/img/BasketTwo.svg"
+                alt="오류"
+                className="BasketTwo"
+              ></img>
+              <div className="TextContainment">담기</div>
+            </div>
           </div>
+          <div className="SeoulMainRiverComponentContent">{address}</div>
         </div>
       </div>
     );
   };
 
-  const SeoulSubRiverComponent = () => {
-    return (
-      <div className="SeoulSubRiverComponentFrame">
-        <img
-          src="/img/GwangnaruRiver.svg"
-          alt="none"
-          className="GwangnaruRiver"
-        ></img>
-        <div className="SeoulSubRiverComponentTextBox">
-          <div className="SeoulSubRiverComponentTextOne">광나루 한강공원</div>
-          <div className="SeoulSubRiverComponentTextTwo">
-            서울특별시 강동구 선사로 83-106
-          </div>
-        </div>
-      </div>
-    );
-  };
+  const [phoneNum, setPhoneNum] = useState("");
+  const [length, setLength] = useState("");
+  const [area, setArea] = useState("");
+  const [address, setAddress] = useState("");
+  const [name, setName] = useState("");
+  const [parkX, setParkX] = useState("");
+  const [parkY, setParkY] = useState("");
+  const [parkingLotNum, setParkingLotNum] = useState("0");
+
+  // const [attractions, setAttractions] = useState<Array<any>>([]);
 
   useEffect(() => {
     const SeoulShopList = async () => {
@@ -218,16 +246,11 @@ function SeoulHanRiverDetailPage() {
           params: { seoulCountry: englishDistrict },
         });
         console.log(response.data);
-        setShops(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    SeoulShopList();
-  }, [englishDistrict]);
-
-  useEffect(() => {
     const SeoulShopBasket = async () => {
       try {
         const response = await axios.get("/v1/saved/count", {
@@ -242,8 +265,30 @@ function SeoulHanRiverDetailPage() {
       }
     };
 
+    const SeoulRiverDetailAPI = async () => {
+      try {
+        const response = await axios.get("/v1/seoul/park/detail", {
+          params: { riverPark: riverPark },
+        });
+        console.log("디테일 정보", response.data);
+        setPhoneNum(response.data.phoneNum);
+        setLength(response.data.length);
+        setArea(response.data.area);
+        setAddress(response.data.address);
+        setName(response.data.name);
+        setParkX(response.data.parkX);
+        setParkY(response.data.parkY);
+        setParkingLots(response.data.parkingData);
+        setParkingLotNum(response.data.parkingData.length);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    SeoulRiverDetailAPI();
+    SeoulShopList();
     SeoulShopBasket();
-  }, [SeoulShopBasketNum, token]);
+  }, [SeoulShopBasketNum, token, englishDistrict, riverPark]);
 
   const SeoulBasketDelete = async () => {
     try {
@@ -259,6 +304,72 @@ function SeoulHanRiverDetailPage() {
     }
   };
 
+  const [parkingLots, setParkingLots] = useState<Array<any>>([]);
+
+  interface SeoulDetailInformationDivProps {
+    name: string;
+    address: string;
+    available: string;
+    week: string;
+    weekend: string;
+    startFee: string;
+    additionalFee: string;
+    phoneNum: string;
+  }
+
+  const SeoulDetailInformationDiv = ({
+    parkingLot,
+  }: {
+    parkingLot: SeoulDetailInformationDivProps;
+  }) => {
+    return (
+      <div className="SeoulDetailInformationBox">
+        <div className="SeoulDetailInformationBoxInner">
+          <div className="SeoulDetailInformationBoxTextBoxOne">
+            <div className="SeoulDetailInformationBoxText">
+              {parkingLot.name}
+            </div>
+          </div>
+          <div className="SeoulDetailInformationBoxTextBoxTwo">
+            <div className="SeoulDetailInformationBoxText">
+              {parkingLot.address}
+            </div>
+          </div>
+          <div className="SeoulDetailInformationBoxTextBoxThree">
+            <div className="SeoulDetailInformationBoxText">
+              {parkingLot.available}
+            </div>
+          </div>
+          <div className="SeoulDetailInformationBoxTextBoxFour">
+            <div className="SeoulDetailInformationBoxText">
+              {parkingLot.week}
+            </div>
+          </div>
+          <div className="SeoulDetailInformationBoxTextBoxFive">
+            <div className="SeoulDetailInformationBoxText">
+              {parkingLot.weekend}
+            </div>
+          </div>
+          <div className="SeoulDetailInformationBoxTextBoxSix">
+            <div className="SeoulDetailInformationBoxText">
+              {parkingLot.startFee}원
+            </div>
+          </div>
+          <div className="SeoulDetailInformationBoxTextBoxSeven">
+            <div className="SeoulDetailInformationBoxText">
+              {parkingLot.additionalFee}원
+            </div>
+          </div>
+          <div className="SeoulDetailInformationBoxTextBoxEight">
+            <div className="SeoulDetailInformationBoxText">
+              {parkingLot.phoneNum}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -272,7 +383,7 @@ function SeoulHanRiverDetailPage() {
               현재 선택된 카테고리: 한강공원
             </div>
             <div className="SeoulMainTextTwo">
-              {selectedDistrict}에는 {shops.length}개의 한강공원이 있어요.
+              {name}한강공원에 대한 정보에요.
             </div>
           </div>
           <div className="SeoulCategoryBasketBox">
@@ -306,7 +417,7 @@ function SeoulHanRiverDetailPage() {
         </div>
         <div className="SeoulDetailFrameOne">
           <div className="SeoulDetailMapFrame">
-            <KakaoMap latitude="37.5487859" longitude="127.1200384"></KakaoMap>
+            <KakaoMap latitude={parkX} longitude={parkY}></KakaoMap>
           </div>
           <SeoulMainRiverComponent></SeoulMainRiverComponent>
         </div>
@@ -323,23 +434,21 @@ function SeoulHanRiverDetailPage() {
             <div className="SeoulDetailBoxTwo">
               <div className="SeoulDetailTextBox">
                 <div className="SeoulDetailTextOne">안내센터</div>
-                <div className="SeoulDetailTextTwo">02-3780-0501~4</div>
+                <div className="SeoulDetailTextTwo">{phoneNum}</div>
               </div>
               <div className="SeoulDetailTextBox">
                 <div className="SeoulDetailTextOne">길이</div>
-                <div className="SeoulDetailTextTwo">12km</div>
+                <div className="SeoulDetailTextTwo">{length}km</div>
               </div>
             </div>
             <div className="SeoulDetailBoxTwo">
               <div className="SeoulDetailTextBox">
                 <div className="SeoulDetailTextOne">면적</div>
-                <div className="SeoulDetailTextTwo">1,554,810㎡</div>
+                <div className="SeoulDetailTextTwo">{area}㎡</div>
               </div>
               <div className="SeoulDetailTextBoxTwo">
                 <div className="SeoulDetailTextOne">주소</div>
-                <div className="SeoulDetailTextTwo">
-                  서울특별시 마포구 마포나루길 467
-                </div>
+                <div className="SeoulDetailTextTwo">{address}</div>
               </div>
             </div>
           </div>
@@ -388,7 +497,7 @@ function SeoulHanRiverDetailPage() {
         </div>
         <div className="SeoulRiverPageTextBox">
           <div className="SeoulRiverPageTextOne">
-            3개의 주차장 정보가 발견되었어요!
+            {parkingLotNum}개의 주차장 정보가 발견되었어요!
           </div>
           <div className="SeoulRiverPageTextTwo">
             이용 시간 및 요금은 수시로 변동될 수 있으니 해당 주차장으로 문의하여
@@ -407,39 +516,11 @@ function SeoulHanRiverDetailPage() {
             <div className="SeoulDetailFrameThreeTextEight">전화번호</div>
           </div>
         </div>
-        <div className="SeoulDetailInformationBox">
-          <div className="SeoulDetailInformationBoxInner">
-            <div className="SeoulDetailInformationBoxTextBoxOne">
-              <div className="SeoulDetailInformationBoxText">망원주차장</div>
-            </div>
-            <div className="SeoulDetailInformationBoxTextBoxTwo">
-              <div className="SeoulDetailInformationBoxText">
-                서울 마포구 합정동 352-5(망원동,망원 1-1 공영주차장)
-              </div>
-            </div>
-            <div className="SeoulDetailInformationBoxTextBoxThree">
-              <div className="SeoulDetailInformationBoxText">1490</div>
-            </div>
-            <div className="SeoulDetailInformationBoxTextBoxFour">
-              <div className="SeoulDetailInformationBoxText">06:00~23:00</div>
-            </div>
-            <div className="SeoulDetailInformationBoxTextBoxFive">
-              <div className="SeoulDetailInformationBoxText">06:00~23:00</div>
-            </div>
-            <div className="SeoulDetailInformationBoxTextBoxSix">
-              <div className="SeoulDetailInformationBoxText">1,000원</div>
-            </div>
-            <div className="SeoulDetailInformationBoxTextBoxSeven">
-              <div className="SeoulDetailInformationBoxText">200원</div>
-            </div>
-            <div className="SeoulDetailInformationBoxTextBoxEight">
-              <div className="SeoulDetailInformationBoxText">070-7778-6678</div>
-            </div>
-          </div>
-        </div>
-        <div className="SeoulMoreButtonFrame">
-          <div className="SeoulMoreButton">더 보기</div>
-        </div>
+
+        {parkingLots.map((parkingLot) => (
+          <SeoulDetailInformationDiv parkingLot={parkingLot} />
+        ))}
+
         <div className="BackToIntorButtonContainer" onClick={goToSeoulCategory}>
           <div className="BackToIntorButtonFrame">
             <div className="BackToIntorButtonCircle">

@@ -301,3 +301,10 @@
   left: 811px;
   width: 100px;
 }
+
+.SeoulMainRiverComponentSaveBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 403px;
+}

@@ -14,6 +14,8 @@
   flex-direction: column;
   border-radius: 10px;
   border: 1px solid var(--KG_OUTLINE, #ececec);
+
+  cursor: pointer;
 }
 
 .SeoulMainRiverComponentImgbox {
@@ -98,6 +100,8 @@
   border: 1px solid var(--KG_OUTLINE, #ececec);
   display: flex;
   align-items: center;
+
+  cursor: pointer;
 }
 
 .SeoulSubRiverComponentTextBox {
@@ -143,4 +147,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.FooterSpaceDiv {
+  width: 100%;
+  height: 150px;
 }
