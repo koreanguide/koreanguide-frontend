@@ -45,8 +45,6 @@ function PlanPage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("일정 정보", response.data);
-        console.log(token);
         setappointmentId(response.data[0].appointmentId);
         setcancel(response.data[0].cancel);
         setchatRoomId(response.data[0].chatRoomId);
@@ -286,7 +284,7 @@ function PlanPage() {
                   onClick={goToMain}
                 >
                   <div className="NoneTrackContainerTextTwo">
-                    홈페이지로 돌아가기
+                    포털로 돌아가기
                   </div>
                   <img
                     className="NewTrackRegisterImg"

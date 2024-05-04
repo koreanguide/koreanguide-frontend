@@ -124,7 +124,6 @@ function SeoulCyclePage() {
         const response = await axios.get("/v1/seoul/bicycle", {
           params: { seoulCountry: englishDistrict },
         });
-        console.log("공공자전거 데이터", response.data);
         setCycles(response.data);
         setLoading(false);
       } catch (error) {
@@ -143,7 +142,6 @@ function SeoulCyclePage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("장바구니 갯수", response.data);
         setSeoulShopBasketNum(response.data);
       } catch (error) {
         console.error(error);
@@ -160,7 +158,7 @@ function SeoulCyclePage() {
           "X-AUTH-TOKEN": token,
         },
       });
-      console.log("장바구니 비우기 성공", response.data);
+      alert("장바구니의 모든 항목을 삭제했습니다.");
       window.location.reload();
     } catch (error) {
       console.error(error);
@@ -185,7 +183,6 @@ function SeoulCyclePage() {
     cycle: SeoulCycleComponentProps;
   }) => {
     const SeoulCycleOnClick = () => {
-      console.log("공공자전거 클릭", cycle.kakaoMapUrl);
       navigate(cycle.kakaoMapUrl);
       window.scrollTo(0, 0);
     };

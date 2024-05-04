@@ -27,7 +27,6 @@ function SeoulBasketPage() {
 
     const handleToggle = () => {
       setIsToggled(!isToggled);
-      console.log(`${index} ${!isToggled}`);
     };
 
     const SeoulSavedDataDelete = async (id: string) => {
@@ -42,7 +41,8 @@ function SeoulBasketPage() {
           params: deleteData,
         });
         if (response.status === 200) {
-          console.log("제거 성공", response.data);
+          alert("장바구니에서 해당 항목을 제거했습니다.");
+          window.location.reload();
         }
       } catch (error) {
         console.error(error);
@@ -50,7 +50,6 @@ function SeoulBasketPage() {
     };
 
     const handleDeleteClick = () => {
-      console.log(data.id);
       SeoulSavedDataDelete(data.id);
     };
 
@@ -108,7 +107,6 @@ function SeoulBasketPage() {
         });
         setSavedData(response.data);
         setlength(response.data.length);
-        console.log(token);
       } catch (error) {
         console.error(error);
       }

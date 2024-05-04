@@ -191,8 +191,10 @@ function SeoulHanRiverDetailPage() {
           "X-AUTH-TOKEN": token,
         },
       });
-      console.log("장바구니 담기 성공", response.data);
+      alert("장바구니에 해당 항목을 담았습니다.");
+      window.location.reload();
     } catch (error) {
+      alert("장바구니가 꽉 찼거나, 담을 수 없는 항목입니다.");
       console.error(error);
     }
   };
@@ -237,15 +239,12 @@ function SeoulHanRiverDetailPage() {
   const [parkY, setParkY] = useState("");
   const [parkingLotNum, setParkingLotNum] = useState("0");
 
-  // const [attractions, setAttractions] = useState<Array<any>>([]);
-
   useEffect(() => {
     const SeoulShopList = async () => {
       try {
         const response = await axios.get("/v1/seoul/shop", {
           params: { seoulCountry: englishDistrict },
         });
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -258,7 +257,6 @@ function SeoulHanRiverDetailPage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("장바구니 갯수", response.data);
         setSeoulShopBasketNum(response.data);
       } catch (error) {
         console.error(error);
@@ -270,7 +268,6 @@ function SeoulHanRiverDetailPage() {
         const response = await axios.get("/v1/seoul/park/detail", {
           params: { riverPark: riverPark },
         });
-        console.log("디테일 정보", response.data);
         setPhoneNum(response.data.phoneNum);
         setLength(response.data.length);
         setArea(response.data.area);
@@ -297,7 +294,7 @@ function SeoulHanRiverDetailPage() {
           "X-AUTH-TOKEN": token,
         },
       });
-      console.log("장바구니 비우기 성공", response.data);
+      alert("장바구니의 모든 항목을 삭제했습니다.");
       window.location.reload();
     } catch (error) {
       console.error(error);

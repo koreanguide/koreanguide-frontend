@@ -209,8 +209,6 @@ function SeoulHanRiverPage() {
         const response = await axios.get("/v1/seoul/park", {
           params: { seoulCountry: englishDistrict },
         });
-        console.log("한강공원 정보", response.data);
-        console.log("한강공원 정보 22", response.data.data.length);
         setParks(response.data.data);
         setSubParks(response.data.recommend);
         setShops(response.data.data.length);
@@ -235,7 +233,6 @@ function SeoulHanRiverPage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("장바구니 갯수", response.data);
         setSeoulShopBasketNum(response.data);
       } catch (error) {
         console.error(error);
@@ -252,7 +249,7 @@ function SeoulHanRiverPage() {
           "X-AUTH-TOKEN": token,
         },
       });
-      console.log("장바구니 비우기 성공", response.data);
+      alert("장바구니의 모든 항목을 삭제했습니다.");
       window.location.reload();
     } catch (error) {
       console.error(error);

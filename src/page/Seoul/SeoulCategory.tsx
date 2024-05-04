@@ -72,7 +72,6 @@ function SeoulCategoryPage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("장바구니 갯수", response.data);
         setSeoulShopBasketNum(response.data);
       } catch (error) {
         console.error(error);
@@ -114,7 +113,7 @@ function SeoulCategoryPage() {
           "X-AUTH-TOKEN": token,
         },
       });
-      console.log("장바구니 비우기 성공", response.data);
+      alert("장바구니의 모든 항목을 삭제했습니다.");
       window.location.reload();
     } catch (error) {
       console.error(error);

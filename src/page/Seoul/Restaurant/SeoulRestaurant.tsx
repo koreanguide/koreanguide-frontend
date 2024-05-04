@@ -138,8 +138,8 @@ function SeoulRestaurantPage() {
       let setSeoulSaveItemAddress = shop.address.toString();
 
       const data: SeoulItemData = {
-        address: SeoulSaveItemValue,
-        value: setSeoulSaveItemAddress,
+        address: setSeoulSaveItemAddress,
+        value: SeoulSaveItemValue,
         category: "음식점",
       };
       try {
@@ -148,8 +148,10 @@ function SeoulRestaurantPage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("장바구니 담기 성공", response.data);
+        alert("장바구니에 해당 항목을 담았습니다.");
+        window.location.reload();
       } catch (error) {
+        alert("장바구니가 꽉 찼거나, 담을 수 없는 항목입니다.");
         console.error(error);
       }
     };
@@ -245,7 +247,6 @@ function SeoulRestaurantPage() {
         const response = await axios.get("/v1/seoul/food", {
           params: { seoulCountry: englishDistrict },
         });
-        console.log(response.data);
         setShops(response.data);
         setLoading(false);
       } catch (error) {
@@ -264,7 +265,6 @@ function SeoulRestaurantPage() {
             "X-AUTH-TOKEN": token,
           },
         });
-        console.log("장바구니 갯수", response.data);
         setSeoulShopBasketNum(response.data);
       } catch (error) {
         console.error(error);
@@ -285,7 +285,7 @@ function SeoulRestaurantPage() {
           "X-AUTH-TOKEN": token,
         },
       });
-      console.log("장바구니 비우기 성공", response.data);
+      alert("장바구니의 모든 항목을 삭제했습니다.");
       window.location.reload();
     } catch (error) {
       console.error(error);
