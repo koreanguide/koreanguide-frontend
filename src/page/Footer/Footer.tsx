@@ -12,7 +12,7 @@ function Footer() {
     return (
       <div className="AppButtonSize">
         <div className="AppButtonContainerOne">
-          <img className="AppImg" src={`../img/${imgName}.svg`} alt=""></img>
+          <img className="AppImg" src={`/img/${imgName}.svg`} alt=""></img>
           <div className="AppText">{text}</div>
         </div>
       </div>

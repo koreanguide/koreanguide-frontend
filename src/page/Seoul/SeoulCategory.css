@@ -129,3 +129,11 @@
   border-radius: 0px 0px 20px 20px;
   border: 1px solid var(--KG_OUTLINE, #ececec);
 }
+
+.TrackViewPageInnerTwo {
+  width: 990px;
+  height: 1070px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}

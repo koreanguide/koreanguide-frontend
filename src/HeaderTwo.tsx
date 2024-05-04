@@ -106,6 +106,11 @@ function HeaderTwo() {
     window.scrollTo(0, 0);
   };
 
+  const goToPlanPage = () => {
+    navigate("/portal/plan");
+    window.scrollTo(0, 0);
+  };
+
   const goToMyTrack = () => {
     navigate("/portal/track");
     window.scrollTo(0, 0);
@@ -219,8 +224,8 @@ function HeaderTwo() {
         {ActivityBoxShow && (
           <div className="ActivityBox">
             <div className="ActivityInnerBox">
-              <div className="ActivityBoxMenuText" onClick={goToMyPage}>
-                리뷰관리
+              <div className="ActivityBoxMenuText" onClick={goToPlanPage}>
+                일정 관리
               </div>
               <div className="ActivityBoxLine"></div>
               <div

@@ -88,6 +88,19 @@ function Login() {
           className="signinCompanyLogoImg"
           src={`../img/${imageName}.svg`}
           alt="오류"
+          // onClick={handleKakaoLogin}
+        ></img>
+      </div>
+    );
+  };
+
+  const KaKaoLoginIcon = ({ imageName }: LoginIconProps) => {
+    return (
+      <div className="KakaoLoginIconFrame">
+        <img
+          className="signinCompanyLogoImg"
+          src={`../img/${imageName}.svg`}
+          alt="오류"
           onClick={handleKakaoLogin}
         ></img>
       </div>
@@ -171,7 +184,7 @@ function Login() {
               또는 다음의 로그인 방법을 사용할 수 있습니다.
             </div>
             <div className="iconContainer">
-              <LoginIcon imageName="Logo-1"></LoginIcon>
+              <KaKaoLoginIcon imageName="Logo-1"></KaKaoLoginIcon>
               <LoginIcon imageName="Logo-2"></LoginIcon>
               <LoginIcon imageName="Logo-3"></LoginIcon>
               <LoginIcon imageName="Logo-4"></LoginIcon>

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./PlanPage.css";
 import HeaderTwo from "../../HeaderTwo";
 import axios from "axios";
+import SeoulHeader from "../../SeoulHeader";
+import Footer from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 function PlanPage() {
   const token = sessionStorage.getItem("access-token");
@@ -32,6 +35,8 @@ function PlanPage() {
   const [selectedItem, setSelectedItem] = useState<string>("모든 일정");
   const [isHovered, setIsHovered] = useState(false);
 
+  const [selectedItemTwo, setSelectedItemTwo] = useState<string>("모든 일정");
+
   useEffect(() => {
     const MyTrackInquiry = async () => {
       try {
@@ -41,6 +46,7 @@ function PlanPage() {
           },
         });
         console.log("일정 정보", response.data);
+        console.log(token);
         setappointmentId(response.data[0].appointmentId);
         setcancel(response.data[0].cancel);
         setchatRoomId(response.data[0].chatRoomId);
@@ -73,6 +79,14 @@ function PlanPage() {
 
   const handleItemClick = (itemName: string) => {
     setSelectedItem(itemName);
+    setSelectedItemTwo(itemName);
+  };
+
+  const navigate = useNavigate();
+
+  const goToMain = () => {
+    navigate("/portal");
+    window.scrollTo(0, 0);
   };
 
   const ScheduleComponent = () => {
@@ -225,46 +239,68 @@ function PlanPage() {
   };
 
   return (
-    <div className="MyTrackPage">
-      <HeaderTwo></HeaderTwo>
-      <div className="MyTrackFrame">
-        <div className="TextMyTrackBox">
-          <div className="TextMyTrack">일정 관리</div>
-          <div className="PlanBar">
-            <div
-              className={`PlanBarItem ${
-                selectedItem === "모든 일정" ? "selected" : ""
-              }`}
-              onClick={() => handleItemClick("모든 일정")}
-            >
-              모든 일정
-            </div>
-            <div
-              className={`PlanBarItem ${
-                selectedItem === "완료 일정" ? "selected" : ""
-              }`}
-              onClick={() => handleItemClick("완료 일정")}
-            >
-              완료 일정
-            </div>
-            <div
-              className={`PlanBarItem ${
-                selectedItem === "취소 일정" ? "selected" : ""
-              }`}
-              onClick={() => handleItemClick("취소 일정")}
-            >
-              취소 일정
+    <>
+      <div className="MyTrackPage">
+        <SeoulHeader></SeoulHeader>
+        <HeaderTwo></HeaderTwo>
+        <div className="MyTrackFrame">
+          <div className="TextMyTrackBox">
+            <div className="TextMyTrack">일정 관리</div>
+            <div className="PlanBar">
+              <div
+                className={`PlanBarItem ${
+                  selectedItem === "모든 일정" ? "selected" : ""
+                }`}
+                onClick={() => handleItemClick("모든 일정")}
+              >
+                모든 일정
+              </div>
+              <div
+                className={`PlanBarItem ${
+                  selectedItem === "완료 일정" ? "selected" : ""
+                }`}
+                onClick={() => handleItemClick("완료 일정")}
+              >
+                완료 일정
+              </div>
+              <div
+                className={`PlanBarItem ${
+                  selectedItem === "취소 일정" ? "selected" : ""
+                }`}
+                onClick={() => handleItemClick("취소 일정")}
+              >
+                취소 일정
+              </div>
             </div>
           </div>
-        </div>
-        <div className="AllSchedulesFrame">
-          <div className="RecentPlanComponentNum">모든 일정 ({length})</div>
-          <div className="SchedulesFrame">
-            <ScheduleComponent></ScheduleComponent>
+          <div className="AllSchedulesFrame">
+            <div className="RecentPlanComponentNum">{selectedItemTwo} (0)</div>
+            <div className="SchedulesFrame">
+              {/* <ScheduleComponent></ScheduleComponent> */}
+              <div className="NoneSchedulesFrame">
+                등록된 일정이 없어요 :(
+                <br />전 세계 관람객들과 새로운 일정을 생성하고, 수익도 창출해
+                보세요!
+                <div
+                  className="NoneTrackContainerTextTwoBox"
+                  onClick={goToMain}
+                >
+                  <div className="NoneTrackContainerTextTwo">
+                    홈페이지로 돌아가기
+                  </div>
+                  <img
+                    className="NewTrackRegisterImg"
+                    src="../img/NewTrackRegisterImg.svg"
+                    alt="error"
+                  ></img>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer></Footer>
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulLocation.css";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 interface SeoulLocationSelectButtonProps {
   districtName: string;
@@ -71,68 +72,74 @@ function SeoulLocationPage() {
   };
 
   return (
-    <div className="TrackViewPageFrame">
-      <div className="SeoulMainHeaderBox">
-        <SeoulHeader />
-        <HeaderTwo />
-      </div>
-      <div className="SeoulLocationPageInner">
-        <div className="SeoulLocationTextOne">
-          수도 서울 컨텐츠를 선택해 트랙 자동 생성
+    <>
+      <div className="TrackViewPageFrame">
+        <div className="SeoulMainHeaderBox">
+          <SeoulHeader />
+          <HeaderTwo />
         </div>
-        <div className="SeoulLocationTextTwo">자치구를 선택해 주세요</div>
-        <div className="SeoulLocationBoxOne">
-          <div className="SeoulLocationBoxOneInner">
-            <div className="SeoulLocationBoxTwo">
-              <img
-                src="/img/SeoulAirplane.svg"
-                alt="none"
-                className="SeoulAirplane"
-              />
-              <div className="SeoulLocationBoxOneText">
-                등록된 활동 지역으로 빠르게 시작하기
+        <div className="SeoulLocationPageInner">
+          <div className="SeoulLocationTextOne">
+            수도 서울 컨텐츠를 선택해 트랙 자동 생성
+          </div>
+          <div className="SeoulLocationTextTwo">자치구를 선택해 주세요</div>
+          <div className="SeoulLocationBoxOne">
+            <div className="SeoulLocationBoxOneInner">
+              <div className="SeoulLocationBoxTwo">
+                <img
+                  src="/img/SeoulAirplane.svg"
+                  alt="none"
+                  className="SeoulAirplane"
+                />
+                <div className="SeoulLocationBoxOneText">
+                  등록된 활동 지역으로 빠르게 시작하기
+                </div>
               </div>
+              <div className="SeoulLocationBoxOneSelected">
+                {selectedDistrict}
+              </div>{" "}
             </div>
-            <div className="SeoulLocationBoxOneSelected">
-              {selectedDistrict}
-            </div>{" "}
           </div>
-        </div>
-        <div className="SeoulLocationBoxThree">
-          {districts.map((district) => (
-            <SeoulLocationSelectButton
-              key={district}
-              districtName={district}
-              onSelect={() => handleSelectDistrict(district)}
-              isSelected={selectedDistrict === district}
-            />
-          ))}
-        </div>
-        <div className="BackToIntorButtonContainer">
-          <div className="BackToIntorButtonFrame" onClick={goToSeoulMain}>
-            <div className="BackToIntorButtonCircle">
-              <img
-                src="/img/SeoulBackIcon.svg"
-                alt="none"
-                className="SeoulBackIcon"
+          <div className="SeoulLocationBoxThree">
+            {districts.map((district) => (
+              <SeoulLocationSelectButton
+                key={district}
+                districtName={district}
+                onSelect={() => handleSelectDistrict(district)}
+                isSelected={selectedDistrict === district}
               />
-            </div>
-            <div className="SeoulBackText">소개 페이지</div>
+            ))}
           </div>
+          <div className="BackToIntorButtonContainer">
+            <div className="BackToIntorButtonFrame" onClick={goToSeoulMain}>
+              <div className="BackToIntorButtonCircle">
+                <img
+                  src="/img/SeoulBackIcon.svg"
+                  alt="none"
+                  className="SeoulBackIcon"
+                />
+              </div>
+              <div className="SeoulBackText">소개 페이지</div>
+            </div>
 
-          <div className="SeoulNextStepButtonFrame" onClick={goToSeoulCategory}>
-            <div className="SeoulNextStepButtonCircle">
-              <img
-                src="/img/SeoulBackIcon.svg"
-                alt="none"
-                className="SeoulNextIcon"
-              />
+            <div
+              className="SeoulNextStepButtonFrame"
+              onClick={goToSeoulCategory}
+            >
+              <div className="SeoulNextStepButtonCircle">
+                <img
+                  src="/img/SeoulBackIcon.svg"
+                  alt="none"
+                  className="SeoulNextIcon"
+                />
+              </div>
+              <div className="SeoulNextStepButtonText">다음 단계</div>
             </div>
-            <div className="SeoulNextStepButtonText">다음 단계</div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer></Footer>
+    </>
   );
 }
 

@@ -25,6 +25,8 @@ function SeoulHanRiverPage() {
   const [shops, setShops] = useState<Array<any>>([]);
   const [SeoulShopBasketNum, setSeoulShopBasketNum] = useState("");
 
+  const [ShowMainRiver, setShowMainRiver] = useState(false);
+
   type DistrictKey =
     | "강남구"
     | "강동구"
@@ -115,39 +117,65 @@ function SeoulHanRiverPage() {
   const englishDistrict: DistrictEnglish | "UNKNOWN" =
     convertDistrictToEnglish(selectedDistrict);
 
-  const SeoulMainRiverComponent = () => {
+  const [parks, setParks] = useState<Array<any>>([]);
+
+  interface SeoulMainRiverComponentProps {
+    name: string;
+    address: string;
+    riverPark: string;
+  }
+
+  const SeoulMainRiverComponent = ({
+    park,
+  }: {
+    park: SeoulMainRiverComponentProps;
+  }) => {
     return (
       <div className="SeoulMainRiverComponentFrame">
         <div className="SeoulMainRiverComponentImgbox">
           <img
-            src="/img/NanGiRiver.svg"
+            src={`/img/${park.riverPark}.svg`}
             alt="none"
             className="NanGiRiver"
           ></img>
         </div>
         <div className="SeoulMainRiverComponentTextbox">
-          <div className="SeoulMainRiverComponentTitle">난지 한강공원</div>
-          <div className="SeoulMainRiverComponentContent">
-            서울특별시 마포구 한강난지로 162
+          <div className="SeoulMainRiverComponentTitle">
+            {park.name} 한강공원
           </div>
+          <div className="SeoulMainRiverComponentContent">{park.address}</div>
         </div>
       </div>
     );
   };
 
-  const SeoulSubRiverComponent = () => {
+  const [subParks, setSubParks] = useState<Array<any>>([]);
+
+  interface SeoulSubRiverComponentProps {
+    name: string;
+    address: string;
+    riverPark: string;
+  }
+
+  const SeoulSubRiverComponent = ({
+    subPark,
+  }: {
+    subPark: SeoulSubRiverComponentProps;
+  }) => {
     return (
       <div className="SeoulSubRiverComponentFrame">
-        <img
-          src="/img/GwangnaruRiver.svg"
-          alt="none"
-          className="GwangnaruRiver"
-        ></img>
+        <div className="subParkImgFrame">
+          <img
+            src={`/img/${subPark.riverPark}.svg`}
+            alt="none"
+            className="subParkImg"
+          ></img>
+        </div>
         <div className="SeoulSubRiverComponentTextBox">
-          <div className="SeoulSubRiverComponentTextOne">광나루 한강공원</div>
-          <div className="SeoulSubRiverComponentTextTwo">
-            서울특별시 강동구 선사로 83-106
+          <div className="SeoulSubRiverComponentTextOne">
+            {subPark.name} 한강공원
           </div>
+          <div className="SeoulSubRiverComponentTextTwo">{subPark.address}</div>
         </div>
       </div>
     );
@@ -161,7 +189,14 @@ function SeoulHanRiverPage() {
         });
         console.log("한강공원 정보", response.data);
         console.log("한강공원 정보 22", response.data.data.length);
+        setParks(response.data.data);
+        setSubParks(response.data.recommend);
         setShops(response.data.data.length);
+        if (response.data.data.length === 0) {
+          setShowMainRiver(false);
+        } else {
+          setShowMainRiver(true);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -215,7 +250,7 @@ function SeoulHanRiverPage() {
               현재 선택된 카테고리: 한강공원
             </div>
             <div className="SeoulMainTextTwo">
-              {selectedDistrict}에는 {shops.length}개의 한강공원이 있어요.
+              {selectedDistrict}에는 {shops}개의 한강공원이 있어요.
             </div>
           </div>
           <div className="SeoulCategoryBasketBox">
@@ -249,10 +284,13 @@ function SeoulHanRiverPage() {
         </div>
         {
           <>
-            <div className="SeoulMainRiverFrame">
-              <SeoulMainRiverComponent></SeoulMainRiverComponent>
-              <SeoulMainRiverComponent></SeoulMainRiverComponent>
-            </div>
+            {ShowMainRiver && (
+              <div className="SeoulMainRiverFrame">
+                {parks.map((park) => (
+                  <SeoulMainRiverComponent park={park} />
+                ))}
+              </div>
+            )}
             <div className="SeoulRiverPageTextBox">
               <div className="SeoulRiverPageTextOne">
                 서울의 다른 자치구의 한강공원도 확인해 보세요!
@@ -263,11 +301,9 @@ function SeoulHanRiverPage() {
               </div>
             </div>
             <div className="SeoulSubRiverFrame">
-              <SeoulSubRiverComponent></SeoulSubRiverComponent>
-              <SeoulSubRiverComponent></SeoulSubRiverComponent>
-              <SeoulSubRiverComponent></SeoulSubRiverComponent>
-              <SeoulSubRiverComponent></SeoulSubRiverComponent>
-              <SeoulSubRiverComponent></SeoulSubRiverComponent>
+              {subParks.map((subPark) => (
+                <SeoulSubRiverComponent subPark={subPark} />
+              ))}
             </div>
           </>
         }

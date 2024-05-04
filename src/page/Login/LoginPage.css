@@ -210,6 +210,17 @@
   height: 3.025rem;
   border-radius: 3.125rem;
   background-color: white;
+  opacity: 0.4;
+}
+
+.KakaoLoginIconFrame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.025rem;
+  height: 3.025rem;
+  border-radius: 3.125rem;
+  background-color: white;
 
   cursor: pointer;
 }
