@@ -46,6 +46,16 @@ li {
   padding-bottom: 1.25rem;
 }
 
+li a {
+  color: #000000;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
 .FooterRightTopContainer {
   width: 27.625rem;
   height: 337px;
@@ -100,7 +110,7 @@ li {
 .AppText {
   color: #000;
   text-align: right;
-  font-family: Pretendard;
+  font-family: 'Urbanist';
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;

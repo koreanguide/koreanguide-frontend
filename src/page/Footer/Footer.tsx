@@ -27,6 +27,16 @@ function Footer() {
           <ul>
             <li>KOREAN GUIDE for Korean</li>
             <li>KOREAN GUIDE for Visitor</li>
+            <li>
+              <a href="/terms">
+                서비스 이용약관
+              </a>
+            </li>
+            <li>
+              <a href="/privacypolicy">
+                개인정보 처리방침
+              </a>
+            </li>
           </ul>
         </div>
         <div className="FooterRightTopContainer">

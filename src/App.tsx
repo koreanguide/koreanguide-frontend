@@ -35,6 +35,8 @@ import SeoulCyclePage from "./page/Seoul/Cycle/SeoulCycle";
 import SeoulRestaurantPage from "./page/Seoul/Restaurant/SeoulRestaurant";
 import SeoulKaraokePage from "./page/Seoul/Karaoke/SeoulKaraoke";
 import SeoulHanRiverDetailPage from "./page/Seoul/HanRiver/HanRiverDetail";
+import PrivacyPolicy from "./page/Terms/PrivacyPolicy";
+import Terms from "./page/Terms/Terms";
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
         <Routes>
           {/* ===Guest=== */}
           <Route path="/" element={<MainPage />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
 
           {/* ===ManagementMainPage=== */}
           <Route path="/admin" element={<ManagementMainPage />} />

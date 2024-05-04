@@ -1,0 +1,43 @@
+.TermsInner {
+    position: relative;
+    width: 62.5rem;
+    height: 100%;
+}
+
+.TermsFrame {
+    padding-top: 200px;
+    padding-bottom: 100px;
+    background: var(--Primary, #3876c0);
+    display: flex;
+    justify-content: center;
+}
+
+.TermsFrame h1 {
+    color: #ffffff;
+    text-align: left;
+    letter-spacing: -1px;
+}
+
+.TermsContents {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    font-family: Pretendard;
+}
+
+.TermsContents h1 {
+    padding-top: 20px;
+    font-size: 20px;
+    letter-spacing: -1px;
+}
+
+.TermsContents p {
+    font-size: 16px;
+    line-height: 35px;
+}
+
+.TermsContents .tab {
+    padding-left: 20px;
+}

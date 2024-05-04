@@ -23,6 +23,7 @@
 .HeaderBoxNLW {
   width: 176px;
   height: 27px;
+  cursor: pointer;
 }
 
 .HeaderBoxGoToGuideButton {
