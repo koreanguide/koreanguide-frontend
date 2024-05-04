@@ -20,6 +20,7 @@ function TrackViewPage() {
   const [content, setContent] = useState("");
   const [like, setLike] = useState("");
   const [view, setView] = useState("");
+  const [own, setOwn] = useState(true);
   const [loading, setLoading] = useState(true);
 
   const maxAdditionalImages = 5;
@@ -37,7 +38,7 @@ function TrackViewPage() {
             "X-AUTH-TOKEN": token,
           },
           params: {
-            trackId: trackId, // 여기를 수정
+            trackId: trackId,
           },
         });
         const data = response.data;
@@ -49,6 +50,7 @@ function TrackViewPage() {
         setContent(data.content);
         setLike(data.like);
         setView(data.view);
+        setOwn(data.own);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -98,17 +100,18 @@ function TrackViewPage() {
               <img className="ViewEye" src="/img/eye.svg" alt=""></img>
               <div className="TrackViewPageLViewNum">{view}</div>
             </div>
-            <div
-              className="TrackViewPageSettingBox"
-              onClick={gotoTrackSettings}
-            >
-              <img
-                src="/img/ViewSetting.svg"
-                className="ViewSetting"
-                alt="Setting Icon"
-              ></img>
-              <div className="TrackViewPageTextSetting">관리</div>
-            </div>
+            {
+              own ? 
+                <div className="TrackViewPageSettingBox" onClick={gotoTrackSettings}>
+                  <img
+                    src="/img/ViewSetting.svg"
+                    className="ViewSetting"
+                    alt="Setting Icon"
+                  ></img>
+                  <div className="TrackViewPageTextSetting">관리</div>
+                </div>
+              : null
+            }
           </div>
         </div>
         <div className="PreviewBox">{preview}</div>

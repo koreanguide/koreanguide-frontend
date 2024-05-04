@@ -17,11 +17,10 @@
 .GoToMyPageButton {
   width: 178px;
   height: 18px;
-  margin-top: 136px;
+  margin-top: 176px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   cursor: pointer;
 }
 
@@ -234,11 +233,21 @@
   height: auto;
   margin-top: 57px;
   margin-bottom: 150px;
-
   color: #000;
   font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
-  font-weight: 600;
-  line-height: 30px;
+  line-height: 45px;
+}
+
+.ViewPageContentContainer h1 {
+  font-size: 30px;
+}
+
+.ViewPageContentContainer h2 {
+  font-size: 24px;
+}
+
+.ViewPageContentContainer p {
+  font-size: 18px;
 }
