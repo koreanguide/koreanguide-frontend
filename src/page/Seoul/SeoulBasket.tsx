@@ -9,6 +9,10 @@ function SeoulBasketPage() {
   const [savedData, setSavedData] = useState([]);
   const [length, setlength] = useState("");
 
+  const [OptionOne, setOptionOne] = useState<boolean>(false);
+  const [OptionTwo, setOptionTwo] = useState<boolean>(false);
+  const [OptionThree, setOptionThree] = useState<boolean>(false);
+
   interface SeoulSavedComponentProps {
     data: {
       address: string;
@@ -96,10 +100,11 @@ function SeoulBasketPage() {
     window.scrollTo(0, 0);
   };
 
-  const goToSeoulTrackCreate = () => {
-    navigate("/portal/seoul");
-    window.scrollTo(0, 0);
-  };
+  const [BasketItemIdList, setBasketItemIdList] = useState<string[]>([]);
+  const [uniqueList, setUniqueList] = useState<string[]>([]);
+  useEffect(() => {
+    setUniqueList(Array.from(new Set(BasketItemIdList)));
+  }, [BasketItemIdList]);
 
   useEffect(() => {
     const fetchSavedData = async () => {
@@ -110,6 +115,10 @@ function SeoulBasketPage() {
         });
         setSavedData(response.data);
         setlength(response.data.length);
+        if (response.data.length > 0) {
+          const ids = response.data.map((item: any) => item.id);
+          setBasketItemIdList(ids);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -145,11 +154,26 @@ function SeoulBasketPage() {
   const toggleOption = (id: number) => {
     const newOptions = options.map((option) => {
       if (option.id === id) {
-        return { ...option, isSelected: !option.isSelected };
+        const updatedOption = { ...option, isSelected: !option.isSelected };
+        switch (id) {
+          case 1:
+            setOptionOne(!option.isSelected);
+            break;
+          case 2:
+            setOptionTwo(!option.isSelected);
+            break;
+          case 3:
+            setOptionThree(!option.isSelected);
+            break;
+          default:
+            break;
+        }
+        return updatedOption;
       }
       return option;
     });
     setOptions(newOptions);
+    console.log(newOptions);
   };
 
   const selectedOptionNum = options.filter(
@@ -160,19 +184,21 @@ function SeoulBasketPage() {
 
   interface SeoulTrackItemData {
     requiredSavedId: any;
-    savedId: any;
+    savedId: any[];
     useCanStartVisitorsLocationOptions: any;
     useChangeLocationOptions: any;
     useHotelOptions: any;
   }
 
   const SeoulTrackPostApi = async () => {
+    console.log(uniqueList);
+    console.log("2번째 리스트", BasketItemIdList);
     const data: SeoulTrackItemData = {
       requiredSavedId: selectedId,
       savedId: [],
-      useCanStartVisitorsLocationOptions: true,
-      useChangeLocationOptions: true,
-      useHotelOptions: true,
+      useCanStartVisitorsLocationOptions: OptionOne,
+      useChangeLocationOptions: OptionTwo,
+      useHotelOptions: OptionThree,
     };
 
     const token = sessionStorage.getItem("access-token");
@@ -185,7 +211,6 @@ function SeoulBasketPage() {
       });
       console.log("됨???", response.data);
       // alert("트랙생성 중 -> 완료");
-      window.location.reload();
     } catch (error) {
       alert("트랙 생성 실패");
       console.error(error);
