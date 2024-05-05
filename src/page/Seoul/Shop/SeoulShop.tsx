@@ -143,7 +143,7 @@ function SeoulShopPage() {
         category: "쇼핑몰",
       };
       try {
-        const response = await axios.post("/v1/saved/add", data, {
+        await axios.post("/v1/saved/add", data, {
           headers: {
             "X-AUTH-TOKEN": token,
           },
@@ -264,7 +264,7 @@ function SeoulShopPage() {
 
   const SeoulBasketDelete = async () => {
     try {
-      const response = await axios.delete("/v1/saved/reset", {
+      await axios.delete("/v1/saved/reset", {
         headers: {
           "X-AUTH-TOKEN": token,
         },

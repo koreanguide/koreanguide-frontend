@@ -113,7 +113,7 @@ function ChatPage() {
                 <div className="ChatMassageBoxTwo">
                   <div className="ChatMassageBoxTwoInner">
                     <div className="ChatMassageBoxTextOne">
-                      김찬주 가이드님!
+                      가이드님!
                       <br />
                       <br />
                       KOREAN GUIDE에 오신 것을 환영합니다.
@@ -134,7 +134,7 @@ function ChatPage() {
                         alt="error"
                       ></img>
                       <div className="ChatMassageBoxTextTwoText">
-                        Guide 김찬주!
+                        Guide!
                         <br />
                         <br />
                         Welcome to KOREA GUIDE.

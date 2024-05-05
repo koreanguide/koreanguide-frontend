@@ -19,16 +19,20 @@ function SeoulBasketPage() {
     index: number;
   }
 
-  const SeoulSavedComponent: React.FC<SeoulSavedComponentProps> = ({
-    data,
-    index,
-  }) => {
-    const [isToggled, setIsToggled] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
 
-    const handleToggle = () => {
-      setIsToggled(!isToggled);
-    };
+  const handleToggle = (id: any) => {
+    if (selectedId === id) {
+      setSelectedId(null);
+    } else {
+      setSelectedId(id);
+      console.log(id);
+    }
+  };
 
+  const SeoulSavedComponent: React.FC<
+    SeoulSavedComponentProps & { isToggled: boolean; onToggle: () => void }
+  > = ({ data, index, isToggled, onToggle }) => {
     const SeoulSavedDataDelete = async (id: string) => {
       const deleteData = {
         itemId: id,
@@ -59,8 +63,7 @@ function SeoulBasketPage() {
           <div className="SeoulSavedComponentCategory">{data.category}</div>
           <div className="SeoulSavedComponentClassification">{data.value}</div>
           <div className="SeoulSavedComponentAddress">{data.address}</div>
-
-          <div className="SeoulSavedComponentVisit" onClick={handleToggle}>
+          <div className="SeoulSavedComponentVisit" onClick={onToggle}>
             <div
               className={`SeoulBasketToggleButtonMainFrame ${
                 isToggled ? "active" : ""
@@ -115,6 +118,80 @@ function SeoulBasketPage() {
     fetchSavedData();
   }, []);
 
+  interface Option {
+    id: number;
+    text: string;
+    isSelected: boolean;
+  }
+
+  const [options, setOptions] = useState<Option[]>([
+    {
+      id: 1,
+      text: "관광객을 위해 강남구의 인기있는 호텔을 추천할게요",
+      isSelected: false,
+    },
+    {
+      id: 2,
+      text: "관광객이 원한다면 방문 장소를 변경할 수 있어요",
+      isSelected: false,
+    },
+    {
+      id: 3,
+      text: "관광객이 원하는 곳으로 찾아가 관광을 시작할게요.",
+      isSelected: false,
+    },
+  ]);
+
+  const toggleOption = (id: number) => {
+    const newOptions = options.map((option) => {
+      if (option.id === id) {
+        return { ...option, isSelected: !option.isSelected };
+      }
+      return option;
+    });
+    setOptions(newOptions);
+  };
+
+  const selectedOptionNum = options.filter(
+    (option) => option.isSelected
+  ).length;
+
+  // {Track-Post}
+
+  interface SeoulTrackItemData {
+    requiredSavedId: any;
+    savedId: any;
+    useCanStartVisitorsLocationOptions: any;
+    useChangeLocationOptions: any;
+    useHotelOptions: any;
+  }
+
+  const SeoulTrackPostApi = async () => {
+    const data: SeoulTrackItemData = {
+      requiredSavedId: selectedId,
+      savedId: [],
+      useCanStartVisitorsLocationOptions: true,
+      useChangeLocationOptions: true,
+      useHotelOptions: true,
+    };
+
+    const token = sessionStorage.getItem("access-token");
+
+    try {
+      const response = await axios.post("/v1/seoul/", data, {
+        headers: {
+          "X-AUTH-TOKEN": token,
+        },
+      });
+      console.log("됨???", response.data);
+      // alert("트랙생성 중 -> 완료");
+      window.location.reload();
+    } catch (error) {
+      alert("트랙 생성 실패");
+      console.error(error);
+    }
+  };
+
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -154,7 +231,13 @@ function SeoulBasketPage() {
           </div>
           <div className="SeoulBasketSavedContainerLine"></div>
           {savedData.map((item, index) => (
-            <SeoulSavedComponent key={index} data={item} index={index} />
+            <SeoulSavedComponent
+              key={index}
+              data={item}
+              index={index}
+              isToggled={selectedId === (item as any).id}
+              onToggle={() => handleToggle((item as any).id)}
+            />
           ))}
         </div>
         <div className="SeoulMainBoxTwo">
@@ -168,25 +251,25 @@ function SeoulBasketPage() {
             </div>
           </div>
           <div className="SeoulMainBoxFourTwo">
-            <div className="SeoulMainBoxFourText">1개의 옵션이 선택됨</div>
+            <div className="SeoulMainBoxFourText">
+              {selectedOptionNum}개의 옵션이 선택됨
+            </div>
           </div>
         </div>
         <div className="SeoulSavedSelectFrame">
-          <div className="SeoulSavedSelectBox">
-            <div className="SeoulSavedSelectBoxText">
-              관광객을 위해 강남구의 인기있는 호텔을 추천할게요
+          {options.map((option) => (
+            <div
+              key={option.id}
+              className="SeoulSavedSelectBox"
+              style={{
+                backgroundColor: option.isSelected ? "#3876c0" : "#F7F7F7",
+                color: option.isSelected ? "#fff" : "#3876c0",
+              }}
+              onClick={() => toggleOption(option.id)}
+            >
+              <div className="SeoulSavedSelectBoxText">{option.text}</div>
             </div>
-          </div>
-          <div className="SeoulSavedSelectBox">
-            <div className="SeoulSavedSelectBoxText">
-              관광객을 위해 강남구의 인기있는 호텔을 추천할게요
-            </div>
-          </div>
-          <div className="SeoulSavedSelectBox">
-            <div className="SeoulSavedSelectBoxText">
-              관광객을 위해 강남구의 인기있는 호텔을 추천할게요
-            </div>
-          </div>
+          ))}
         </div>
         <div className="BackToIntorButtonContainer">
           <div className="BackToIntorButtonFrame" onClick={goToSeoulSelect}>
@@ -199,8 +282,7 @@ function SeoulBasketPage() {
             </div>
             <div className="SeoulBackText">카테고리 선택</div>
           </div>
-
-          <div className="SeoulTrackButtonFrame" onClick={goToSeoulTrackCreate}>
+          <div className="SeoulTrackButtonFrame" onClick={SeoulTrackPostApi}>
             <div className="SeoulNextStepButtonCircle">
               <img
                 src="/img/SeoulBackIcon.svg"
