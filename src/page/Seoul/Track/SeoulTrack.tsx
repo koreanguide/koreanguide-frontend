@@ -2,6 +2,7 @@ import React from "react";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import "./SeoulTrack.css";
+import store from "../Redux/store";
 
 function SeoulTrackCreatePage() {
   interface SeoulTrackTextTypeOneProps {
@@ -12,6 +13,9 @@ function SeoulTrackCreatePage() {
   }) => {
     return <div className="SeoulTrackTextTypeOne">{content}</div>;
   };
+
+  const currentState = store.getState();
+  console.log(currentState);
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -55,6 +59,7 @@ function SeoulTrackCreatePage() {
             <textarea className="SeoulTrackContentTextArea"></textarea>
           </div>
         </div>
+        <div className="MovementInformationBox"></div>
         {/* 트랙 컴포넌트 */}
         {/* <div className="NewTrackContainerFiveInputBox">
           <div className="HashBox">#</div>

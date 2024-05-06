@@ -4,6 +4,11 @@ import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulBasket.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setResponseData } from "./Redux/actions";
+import store from "./Redux/store";
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
 
 function SeoulBasketPage() {
   const [savedData, setSavedData] = useState([]);
@@ -191,11 +196,13 @@ function SeoulBasketPage() {
   }
 
   const SeoulTrackPostApi = async () => {
+    const dispatch = useDispatch<any>();
+
     console.log(uniqueList);
     console.log("2번째 리스트", BasketItemIdList);
     const data: SeoulTrackItemData = {
       requiredSavedId: selectedId,
-      savedId: [],
+      savedId: uniqueList,
       useCanStartVisitorsLocationOptions: OptionOne,
       useChangeLocationOptions: OptionTwo,
       useHotelOptions: OptionThree,
@@ -210,7 +217,7 @@ function SeoulBasketPage() {
         },
       });
       console.log("됨???", response.data);
-      // alert("트랙생성 중 -> 완료");
+      store.dispatch(setResponseData(response.data));
     } catch (error) {
       alert("트랙 생성 실패");
       console.error(error);

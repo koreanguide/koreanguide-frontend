@@ -183,3 +183,9 @@
 .SeoulBasketCircle.active {
   left: calc(100% - 19px);
 }
+
+.MovementInformationBox {
+  width: 300px;
+  height: 300px;
+  background-color: aqua;
+}
