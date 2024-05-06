@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AfterLoginPage.css";
+import "./Portal.css";
 import HeaderTwo from "../../HeaderTwo";
 import Footer from "../Footer/Footer";
 import axios from "axios";
 import LoadPage from "../LoadPage/LoadPage";
 import SeoulHeader from "../../SeoulHeader";
 
-function AfterLoginPage() {
+function Portal() {
   const token = sessionStorage.getItem("access-token");
   const nickName = sessionStorage.getItem("name");
   const [ShowProgressBox, setShowProgressBox] = useState<boolean>(false);
@@ -510,4 +510,4 @@ function AfterLoginPage() {
   );
 }
 
-export default AfterLoginPage;
+export default Portal;

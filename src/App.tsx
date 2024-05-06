@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MainPage from "./page/Main/MainPage";
-import AfterLoginPage from "./page/AfterLogin/AfterLoginPage";
+import Portal from "./page/Portal/Portal";
 import ChatPage from "./page/ChatPage/ChatPage";
 import HeaderTwo from "./HeaderTwo";
 import Footer from "./page/Footer/Footer";
@@ -72,7 +72,7 @@ function App() {
             path="/portal"
             element={
               <CheckToken>
-                <AfterLoginPage />
+                <Portal />
               </CheckToken>
             }
           />
