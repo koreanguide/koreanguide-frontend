@@ -26,7 +26,7 @@ const SeoulLocationSelectButton: React.FC<SeoulLocationSelectButtonProps> = ({
 );
 
 function SeoulLocationPage() {
-  const [selectedDistrict, setSelectedDistrict] = useState<string>("강서구");
+  const [selectedDistrict, setSelectedDistrict] = useState<string>("강남구");
   const districts = [
     "강남구",
     "강동구",

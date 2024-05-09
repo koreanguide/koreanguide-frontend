@@ -108,7 +108,7 @@ function SeoulCategoryPage() {
 
   const SeoulBasketDelete = async () => {
     try {
-      const response = await axios.delete("/v1/saved/reset", {
+      await axios.delete("/v1/saved/reset", {
         headers: {
           "X-AUTH-TOKEN": token,
         },

@@ -189,3 +189,7 @@
   height: 300px;
   background-color: aqua;
 }
+
+.inputErrorTwo {
+  border: 1px solid red;
+}

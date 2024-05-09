@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulBasket.css";
@@ -8,6 +8,14 @@ import axios from "axios";
 // eslint-disable-next-line react-hooks/rules-of-hooks
 
 function SeoulBasketPage() {
+  const location = useLocation();
+  const goToSeoulTrack = () => {
+    navigate("/portal/seoul/track", { state: { SeoulTrackGolbalData } });
+    window.scrollTo(0, 0);
+  };
+
+  var { SeoulTrackGolbalData } = location.state || {};
+
   const [savedData, setSavedData] = useState([]);
   const [length, setlength] = useState("");
 
@@ -193,6 +201,7 @@ function SeoulBasketPage() {
   }
 
   const SeoulTrackPostApi = async () => {
+    const timeout = 500000;
     console.log(uniqueList);
     console.log("2번째 리스트", BasketItemIdList);
     const data: SeoulTrackItemData = {
@@ -210,11 +219,26 @@ function SeoulBasketPage() {
         headers: {
           "X-AUTH-TOKEN": token,
         },
+        timeout: timeout,
       });
       console.log("이동할 값", response.data);
+      SeoulTrackGolbalData = response.data;
+      goToSeoulTrack();
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        // Axios 에러인지 확인
+        if (
+          error.code === "ECONNABORTED" ||
+          error.message.includes("timeout")
+        ) {
+          console.log("요청이 타임아웃되었습니다.");
+        } else {
+          console.error("요청 실패:", error.message);
+        }
+      } else {
+        console.error("예상치 못한 에러:", error);
+      }
       alert("트랙 생성 실패");
-      console.error(error);
     }
   };
 
