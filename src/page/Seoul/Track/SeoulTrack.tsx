@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import HeaderTwo from "../../../HeaderTwo";
 import SeoulHeader from "../../../SeoulHeader";
 import "./SeoulTrack.css";
-import store from "../Redux/store";
 
 function SeoulTrackCreatePage() {
-  const [ShowNotificationFive, setShowNotificationFive] =
-    useState<boolean>(true);
-  const [ShowTagOneBox, setShowTagOneBox] = useState<boolean>(
-    window.innerWidth >= 655
-  );
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [ShowTagTwoBox, setShowTagTwoBox] = useState<boolean>(false);
-  const [tags, setTags] = useState<Tag[]>([{ tagName: "tag1" }]);
-
   interface SeoulTrackTextTypeOneProps {
     content: string;
   }
@@ -23,123 +13,6 @@ function SeoulTrackCreatePage() {
     return <div className="SeoulTrackTextTypeOne">{content}</div>;
   };
 
-  const currentState = store.getState();
-  console.log(currentState);
-
-  interface NewTrackContainerPropsOneI {
-    Title: string;
-    TitleSub: string;
-    children: any;
-  }
-  const NewTrackContainerPropsOne: React.FC<NewTrackContainerPropsOneI> = ({
-    Title,
-    children,
-    TitleSub,
-  }) => {
-    return (
-      <div className="NewTrackContainerPropsOne">
-        <div className="NewTrackContainerTitleBox">
-          <div className="NewTrackContainerTitle">{Title}</div>
-          {children}
-        </div>
-        <div className="NewTrackContainerTitleSupplementBox">{TitleSub}</div>
-      </div>
-    );
-  };
-
-  const ShowTagBoxChangeTwo = () => {
-    setShowTagOneBox(true);
-    setShowTagTwoBox(false);
-    console.log(selectedTags);
-  };
-
-  const tagsTwo: string[] = [
-    "CLUB",
-    "식도락",
-    "관광지",
-    "맛집",
-    "재미",
-    "사진",
-    "휴양",
-    "K-pop",
-    "스토어",
-    "유흥",
-    "핫플",
-    "주점",
-    "문화",
-    "쇼핑",
-    "Custom",
-    "SNS",
-    // "MOOD",
-  ];
-
-  interface TagChoiceProps {
-    tagName: string;
-    selected: boolean;
-    onClick: () => void;
-  }
-
-  const TagChoice: React.FC<TagChoiceProps> = ({
-    tagName,
-    selected,
-    onClick,
-  }) => {
-    return (
-      <div
-        className="TagChoiceFrame"
-        style={{
-          backgroundColor: selected ? "#3876c0" : "",
-          color: selected ? "#fff" : "",
-        }}
-        onClick={onClick}
-      >
-        <div className="TagChoiceText">{tagName}</div>
-      </div>
-    );
-  };
-
-  const handleTagClick = (tagName: string) => {
-    if (selectedTags.includes(tagName)) {
-      setSelectedTags(selectedTags.filter((tag) => tag !== tagName));
-    } else if (selectedTags.length < 3) {
-      setSelectedTags([...selectedTags, tagName]);
-    }
-  };
-
-  const ShowTagBoxChange = () => {
-    setShowTagOneBox(false);
-    setShowTagTwoBox(true);
-  };
-
-  useEffect(() => {
-    if (selectedTags.length >= 1) {
-      setShowNotificationFive(false);
-      setTags(selectedTags.map((tagName) => ({ tagName })));
-    } else {
-      setShowNotificationFive(true);
-    }
-  }, [selectedTags]);
-
-  interface Image {
-    imageUrl: string;
-  }
-
-  interface Tag {
-    tagName: string;
-  }
-
-  interface TrackCreateSubmitData {
-    agreePrivacyPolicy: boolean;
-    agreePublicTerms: boolean;
-    agreeTerms: boolean;
-    images: Image[];
-    primaryImageUrl: string;
-    tags: Tag[];
-    trackContent: string;
-    trackPreview: string;
-    trackTitle: string;
-    useAutoTranslate: boolean;
-  }
   return (
     <div className="TrackViewPageFrame">
       <div className="SeoulMainHeaderBox">
@@ -183,87 +56,7 @@ function SeoulTrackCreatePage() {
             <textarea className="SeoulTrackContentTextArea"></textarea>
           </div>
         </div>
-        <div className="NewTrackContainerThreeTag">
-          <div className="NewTrackContainerFiveInner">
-            <NewTrackContainerPropsOne
-              Title="트랙에 대한 태그를 작성해 주세요."
-              TitleSub="트랙을 간단히 표현할 수 있는 태그를 달아주세요. 예) food, club"
-            >
-              {ShowNotificationFive && (
-                <div className="NewTrackContainerNotificationBox">
-                  <img
-                    className="RedNotificationImg"
-                    src="../../img/RedNotification.svg"
-                    alt="오류"
-                  ></img>
-                  <div className="RedNotificationText">
-                    트랙 태그는 반드시 3개 이상 추가되어야 합니다
-                  </div>
-                </div>
-              )}
-            </NewTrackContainerPropsOne>
-            <div className="NewTrackContainerFiveInputBox">
-              <div className="HashBox">#</div>
-              {ShowTagTwoBox && (
-                <div className="HaskTagSelectFrame">
-                  <div
-                    className="HaskTagSelectFrameBoxOne"
-                    onClick={ShowTagBoxChangeTwo}
-                  >
-                    <div className="HaskTagSelectButtonBox">
-                      <div className="HaskTagSelectButtonText">
-                        트랙에 알맞는 태그를 선택해 주세요
-                      </div>
-                      <img
-                        className="TrackTagImg"
-                        src="../../img/TrackTagImg.svg"
-                        alt="오류"
-                      ></img>
-                    </div>
-                  </div>
-                  <div className="HaskTagSelectFrameBoxTwo">
-                    <div className="HaskTagSelectFrameBoxTwoInner">
-                      <div className="HaskTagSelectFrameContainerOne">
-                        {tagsTwo.map((tagName) => (
-                          <TagChoice
-                            key={tagName}
-                            tagName={tagName}
-                            selected={selectedTags.includes(tagName)}
-                            onClick={() => handleTagClick(tagName)}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              {ShowTagOneBox && (
-                <div className="HaskTagSelectButton" onClick={ShowTagBoxChange}>
-                  <div
-                    className="HaskTagSelectButtonBox"
-                    onClick={ShowTagBoxChange}
-                  >
-                    <div className="HaskTagSelectButtonText">
-                      트랙에 알맞는 태그를 선택해 주세요
-                    </div>
-                    <img
-                      className="TrackTagImg"
-                      src="../../img/TrackTagImg.svg"
-                      alt="오류"
-                    ></img>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="TagedItemContainer">
-              {selectedTags.map((tagName) => (
-                <div key={tagName} className="TagedItem">
-                  {tagName}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <p>값이 들어갈 자리</p>
       </div>
     </div>
   );

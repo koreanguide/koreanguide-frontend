@@ -4,9 +4,6 @@ import HeaderTwo from "../../HeaderTwo";
 import SeoulHeader from "../../SeoulHeader";
 import "./SeoulBasket.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setResponseData } from "./Redux/actions";
-import store from "./Redux/store";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 
@@ -196,8 +193,6 @@ function SeoulBasketPage() {
   }
 
   const SeoulTrackPostApi = async () => {
-    const dispatch = useDispatch<any>();
-
     console.log(uniqueList);
     console.log("2번째 리스트", BasketItemIdList);
     const data: SeoulTrackItemData = {
@@ -216,8 +211,7 @@ function SeoulBasketPage() {
           "X-AUTH-TOKEN": token,
         },
       });
-      console.log("됨???", response.data);
-      store.dispatch(setResponseData(response.data));
+      console.log("이동할 값", response.data);
     } catch (error) {
       alert("트랙 생성 실패");
       console.error(error);
