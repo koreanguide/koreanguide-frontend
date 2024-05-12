@@ -35,6 +35,7 @@ import SeoulKaraokePage from "./page/Seoul/Karaoke/SeoulKaraoke";
 import SeoulHanRiverDetailPage from "./page/Seoul/HanRiver/HanRiverDetail";
 import PrivacyPolicy from "./page/Terms/PrivacyPolicy";
 import Terms from "./page/Terms/Terms";
+import SeoulLoadPage from "./page/Seoul/Load/SeoulLoad";
 
 function App() {
   return (
@@ -60,6 +61,16 @@ function App() {
             element={
               <CheckToken>
                 <LoadPage />
+              </CheckToken>
+            }
+          />
+
+          {/*===Load===*/}
+          <Route
+            path="/portal/seoul/load"
+            element={
+              <CheckToken>
+                <SeoulLoadPage />
               </CheckToken>
             }
           />

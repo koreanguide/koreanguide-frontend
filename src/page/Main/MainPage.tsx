@@ -26,7 +26,6 @@ function MainPage() {
             sessionStorage.setItem("refresh-token", response.data.refreshToken);
             sessionStorage.setItem("email", response.data.email);
             sessionStorage.setItem("name", response.data.name);
-            console.log("로그인 성공");
             navigate("/portal");
           }
         } catch (error) {

@@ -6,6 +6,7 @@ import "./TouristAttractions.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import LoadPage from "../../LoadPage/LoadPage";
+import Footer from "../../Footer/Footer";
 
 declare global {
   interface Window {
@@ -93,7 +94,7 @@ const SeoulMapSightComponent = ({
       category: "관광거리",
     };
     try {
-      const response = await axios.post("/v1/saved/add", data, {
+      await axios.post("/v1/saved/add", data, {
         headers: {
           "X-AUTH-TOKEN": token,
         },
@@ -135,26 +136,43 @@ const SeoulMapSightComponent = ({
             {attraction.address}
           </div>
           <div className="SeoulMapSightComponentBoxFour">
-            <div className="PortalSearchButton">
-              <div className="PortalSearchButtonInner">
-                <img
-                  src="/img/SeoulNaver.svg"
-                  alt="오류"
-                  className="SeoulNaver"
-                ></img>
-                <div className="PortalSearchButtonText">포털 검색</div>
+            <a
+              href={`https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=${encodeURIComponent(
+                attraction.title
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="PortalSearchButton">
+                <div className="PortalSearchButtonInner">
+                  <img
+                    src="/img/SeoulNaver.svg"
+                    alt="오류"
+                    className="SeoulNaver"
+                  ></img>
+                  <div className="PortalSearchButtonText">포털 검색</div>
+                </div>
               </div>
-            </div>
-            <div className="PortalKakaoSearchButton">
-              <div className="PortalSearchButtonInner">
-                <img
-                  src="/img/SeoulKakaoMap.svg"
-                  alt="오류"
-                  className="SeoulKakaoMap"
-                ></img>
-                <div className="PortalSearchButtonText">장소 탐색</div>
+            </a>
+
+            <a
+              href={`https://map.kakao.com/link/search/${encodeURIComponent(
+                attraction.title
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="PortalKakaoSearchButton">
+                <div className="PortalSearchButtonInner">
+                  <img
+                    src="/img/SeoulKakaoMap.svg"
+                    alt="오류"
+                    className="SeoulKakaoMap"
+                  ></img>
+                  <div className="PortalSearchButtonText">장소 탐색</div>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -297,7 +315,7 @@ function SeoulSightsPage() {
 
   const SeoulBasketDelete = async () => {
     try {
-      const response = await axios.delete("/v1/saved/reset", {
+      await axios.delete("/v1/saved/reset", {
         headers: {
           "X-AUTH-TOKEN": token,
         },
@@ -321,54 +339,61 @@ function SeoulSightsPage() {
   }
 
   return (
-    <div className="TrackViewPageFrame">
-      <HeaderTwo></HeaderTwo>
-      <SeoulHeader></SeoulHeader>
-      <div className="TrackViewPageInner">
-        <div className="SeoulMainBoxOne">
-          <div className="SeoulMainTextBox">
-            <div className="SeoulMainTextOne">
-              현재 선택된 카테고리: 관광거리
+    <>
+      <div className="TrackViewPageFrame">
+        <HeaderTwo></HeaderTwo>
+        <SeoulHeader></SeoulHeader>
+        <div className="TrackViewPageInner">
+          <div className="SeoulMainBoxOne">
+            <div className="SeoulMainTextBox">
+              <div className="SeoulMainTextOne">
+                현재 선택된 카테고리: 관광거리
+              </div>
+              <div className="SeoulMainTextTwo">
+                {selectedDistrict}에서 {attractions.length}개의 관광거리가
+                발견되었어요!
+              </div>
             </div>
-            <div className="SeoulMainTextTwo">
-              {selectedDistrict}에서 {attractions.length}개의 관광거리가
-              발견되었어요!
-            </div>
-          </div>
-          <div className="SeoulCategoryBasketBox">
-            <div className="BasketRemoveButton" onClick={SeoulBasketDelete}>
-              비우기
-            </div>
-            <div className="BasketNumFrame" onClick={gotoSeoulBasket}>
-              <div className="BasketNumInner">
-                <img
-                  src="/img/BasketTwo.svg"
-                  alt="none"
-                  className="BasketTwo"
-                ></img>
-                <div className="TextBasket">장바구니</div>
-                <div className="TextBasketNumFrame">
-                  <div className="TextBasketNum">{SeoulShopBasketNum}</div>
+            <div className="SeoulCategoryBasketBox">
+              <div className="BasketRemoveButton" onClick={SeoulBasketDelete}>
+                비우기
+              </div>
+              <div className="BasketNumFrame" onClick={gotoSeoulBasket}>
+                <div className="BasketNumInner">
+                  <img
+                    src="/img/BasketTwo.svg"
+                    alt="none"
+                    className="BasketTwo"
+                  ></img>
+                  <div className="TextBasket">장바구니</div>
+                  <div className="TextBasketNumFrame">
+                    <div className="TextBasketNum">{SeoulShopBasketNum}</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="SeoulShopInformationBox">
-          <img
-            src="/img/ShopAlertImg.svg"
-            alt="오류"
-            className="ShopAlertImg"
-          ></img>
-          <div className="SeoulShopInformationText">
-            정보제공: 서울 열린데이터광장
+          <div className="SeoulShopInformationBox">
+            <img
+              src="/img/ShopAlertImg.svg"
+              alt="오류"
+              className="ShopAlertImg"
+            ></img>
+            <div className="SeoulShopInformationText">
+              정보제공: 서울 열린데이터광장
+            </div>
           </div>
+          {attractions.map((attraction) => (
+            <SeoulMapSightComponent
+              key={attraction.id}
+              attraction={attraction}
+            />
+          ))}
         </div>
-        {attractions.map((attraction) => (
-          <SeoulMapSightComponent key={attraction.id} attraction={attraction} />
-        ))}
       </div>
-    </div>
+      <div className="FooterSpaceBox"></div>
+      <Footer></Footer>
+    </>
   );
 }
 

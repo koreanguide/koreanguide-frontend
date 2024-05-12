@@ -143,7 +143,7 @@ function SeoulRestaurantPage() {
         category: "음식점",
       };
       try {
-        const response = await axios.post("/v1/saved/add", data, {
+        await axios.post("/v1/saved/add", data, {
           headers: {
             "X-AUTH-TOKEN": token,
           },
@@ -186,9 +186,11 @@ function SeoulRestaurantPage() {
               <div className="ShopListBoxTextTwo">{shop.address}</div>
             </div>
             <div className="SeoulSearchFrame">
-              <a 
-                href={`https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=${encodeURIComponent(shop.nameKor)}`}
-                target='_blank'
+              <a
+                href={`https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=${encodeURIComponent(
+                  shop.nameKor
+                )}`}
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <div className="PortalSearchButton">
@@ -202,9 +204,11 @@ function SeoulRestaurantPage() {
                   </div>
                 </div>
               </a>
-              <a 
-                href={`https://map.kakao.com/link/search/${encodeURIComponent(shop.nameKor)}`}
-                target='_blank'
+              <a
+                href={`https://map.kakao.com/link/search/${encodeURIComponent(
+                  shop.nameKor
+                )}`}
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <div
@@ -280,7 +284,7 @@ function SeoulRestaurantPage() {
 
   const SeoulBasketDelete = async () => {
     try {
-      const response = await axios.delete("/v1/saved/reset", {
+      await axios.delete("/v1/saved/reset", {
         headers: {
           "X-AUTH-TOKEN": token,
         },

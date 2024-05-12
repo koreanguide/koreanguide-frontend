@@ -64,8 +64,6 @@ function Login() {
         sessionStorage.setItem("refresh-token", response.data.refreshToken);
         sessionStorage.setItem("email", response.data.email);
         sessionStorage.setItem("name", response.data.name);
-        console.log("로그인 성공");
-        console.log(response.data.accessToken);
         navigate("/portal");
         window.scrollTo(0, 0);
         setLoginFailed(false);

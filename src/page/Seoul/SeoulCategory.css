@@ -29,6 +29,9 @@
 
   cursor: pointer;
 }
+.BasketNumFrame:hover {
+  opacity: 0.7;
+}
 
 .BasketNumInner {
   width: 121px;
@@ -77,6 +80,9 @@
   border-radius: 20px;
 
   cursor: pointer;
+}
+.SeoulAlgorithmsFrame:hover {
+  opacity: 0.7;
 }
 
 .SeoulAlgorithmsImg {
@@ -136,4 +142,8 @@
   display: flex;
   flex-direction: column;
   text-align: start;
+}
+
+.ShopListBoxContainmentFrame:hover {
+  opacity: 0.7;
 }

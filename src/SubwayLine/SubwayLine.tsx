@@ -29,7 +29,6 @@ const DropDownComponent: React.FC = () => {
       });
 
       if (response.status === 200) {
-        console.log("지하철 등록 성공", response.data);
         window.location.reload();
       }
     } catch (error) {
@@ -516,28 +515,26 @@ const DropDownComponent: React.FC = () => {
         </div>
         <div className="SubWaySelectDropsetFrame">
           <div>
-          <select
-            className="dropdown-first"
-            value={firstOption}
-            onChange={(e) => {
-              setFirstOption(e.target.value);
-              console.log("첫 번째 드롭다운 선택:", e.target.value);
-              setsubwayLine(e.target.value);
-            }}
-          >
-            {firstOptions.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+            <select
+              className="dropdown-first"
+              value={firstOption}
+              onChange={(e) => {
+                setFirstOption(e.target.value);
+                setsubwayLine(e.target.value);
+              }}
+            >
+              {firstOptions.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
 
             <select
               className="dropdown-second"
               value={secondOption}
               onChange={(e) => {
                 setSecondOption(e.target.value);
-                console.log("두 번째 드롭다운 선택:", e.target.value);
                 setstation(e.target.value);
               }}
             >

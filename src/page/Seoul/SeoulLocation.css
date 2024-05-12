@@ -103,6 +103,7 @@
 
 .SeoulLocationSelectButtonFrame:hover {
   background-color: #ececec;
+  opacity: 0.7;
 }
 
 .SeoulLocationSelectButtonText {
@@ -132,6 +133,10 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.BackToIntorButtonFrame:hover {
+  opacity: 0.7;
 }
 
 .BackToIntorButtonCircle {
@@ -169,6 +174,9 @@
 
   flex-direction: row-reverse;
   cursor: pointer;
+}
+.SeoulNextStepButtonFrame:hover {
+  opacity: 0.7;
 }
 
 .SeoulNextStepButtonCircle {

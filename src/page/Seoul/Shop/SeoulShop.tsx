@@ -186,30 +186,47 @@ function SeoulShopPage() {
               <div className="ShopListBoxTextTwo">{shop.address}</div>
             </div>
             <div className="SeoulSearchFrame">
-              <div className="PortalSearchButton">
-                <div className="PortalSearchButtonInner">
-                  <img
-                    src="/img/SeoulNaver.svg"
-                    alt="오류"
-                    className="SeoulNaver"
-                  ></img>
-                  <div className="PortalSearchButtonText">포털 검색</div>
-                </div>
-              </div>
-              <div
-                className="PortalKakaoSearchButton"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+              <a
+                href={`https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=${encodeURIComponent(
+                  shop.nameKor
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <div className="PortalSearchButtonInner">
-                  <img
-                    src="/img/SeoulKakaoMap.svg"
-                    alt="오류"
-                    className="SeoulKakaoMap"
-                  ></img>
-                  <div className="PortalSearchButtonText">장소 탐색</div>
+                <div className="PortalSearchButton">
+                  <div className="PortalSearchButtonInner">
+                    <img
+                      src="/img/SeoulNaver.svg"
+                      alt="오류"
+                      className="SeoulNaver"
+                    ></img>
+                    <div className="PortalSearchButtonText">포털 검색</div>
+                  </div>
                 </div>
-              </div>
+              </a>
+
+              <a
+                href={`https://map.kakao.com/link/search/${encodeURIComponent(
+                  shop.nameKor
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div
+                  className="PortalKakaoSearchButton"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <div className="PortalSearchButtonInner">
+                    <img
+                      src="/img/SeoulKakaoMap.svg"
+                      alt="오류"
+                      className="SeoulKakaoMap"
+                    ></img>
+                    <div className="PortalSearchButtonText">장소 탐색</div>
+                  </div>
+                </div>
+              </a>
               {isHovered && (
                 <div className="SeoulShopBalloonFrame">
                   <img

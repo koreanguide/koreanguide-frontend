@@ -236,3 +236,7 @@
   flex-direction: row-reverse;
   cursor: pointer;
 }
+
+.SeoulTrackButtonFrame:hover {
+  opacity: 0.7;
+}

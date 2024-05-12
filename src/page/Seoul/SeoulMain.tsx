@@ -107,19 +107,25 @@ function SeoulMain() {
                   <div className="SeoulMainNavTextOne">
                     서울 열린데이터 광장
                   </div>
-                  <div
-                    className="SeoulMainNavButton"
-                    onClick={goToSeoulOpenData}
+                  <a
+                    href="https://data.seoul.go.kr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <div className="SeoulMainNavButtonText">
-                      홈페이지 바로가기
+                    <div
+                      className="SeoulMainNavButton"
+                      onClick={goToSeoulOpenData}
+                    >
+                      <div className="SeoulMainNavButtonText">
+                        홈페이지 바로가기
+                      </div>
+                      <img
+                        src="/img/SeoulNavButton.svg"
+                        alt="none"
+                        className="SeoulReview"
+                      ></img>
                     </div>
-                    <img
-                      src="/img/SeoulNavButton.svg"
-                      alt="none"
-                      className="SeoulReview"
-                    ></img>
-                  </div>
+                  </a>
                 </div>
                 <div className="SeoulMainNavBoxTwo">
                   사용자에게 ‘서울 열린데이터 광장'에서 제공하는 정확한 데이터를
@@ -133,16 +139,25 @@ function SeoulMain() {
               <div className="SeoulMainNavInnerBox">
                 <div className="SeoulMainNavBoxOne">
                   <div className="SeoulMainNavTextOne">공공데이터포털</div>
-                  <div className="SeoulMainNavButton" onClick={goToPublicData}>
-                    <div className="SeoulMainNavButtonText">
-                      홈페이지 바로가기
+                  <a
+                    href="https://www.data.go.kr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div
+                      className="SeoulMainNavButton"
+                      onClick={goToPublicData}
+                    >
+                      <div className="SeoulMainNavButtonText">
+                        홈페이지 바로가기
+                      </div>
+                      <img
+                        src="/img/SeoulNavButton.svg"
+                        alt="none"
+                        className="SeoulReview"
+                      ></img>
                     </div>
-                    <img
-                      src="/img/SeoulNavButton.svg"
-                      alt="none"
-                      className="SeoulReview"
-                    ></img>
-                  </div>
+                  </a>
                 </div>
                 <div className="SeoulMainNavBoxTwo">
                   공공데이터포털은 공공기관이 생성 또는 취득하여 관리하고 있는

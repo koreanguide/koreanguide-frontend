@@ -141,7 +141,7 @@ function SeoulKaraokePage() {
         category: "노래방",
       };
       try {
-        const response = await axios.post("/v1/saved/add", data, {
+        await axios.post("/v1/saved/add", data, {
           headers: {
             "X-AUTH-TOKEN": token,
           },
@@ -181,30 +181,47 @@ function SeoulKaraokePage() {
               <div className="ShopListBoxTextTwo">{shop.address}</div>
             </div>
             <div className="SeoulSearchFrame">
-              <div className="PortalSearchButton">
-                <div className="PortalSearchButtonInner">
-                  <img
-                    src="/img/SeoulNaver.svg"
-                    alt="오류"
-                    className="SeoulNaver"
-                  ></img>
-                  <div className="PortalSearchButtonText">포털 검색</div>
-                </div>
-              </div>
-              <div
-                className="PortalKakaoSearchButton"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+              <a
+                href={`https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=${encodeURIComponent(
+                  shop.name
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <div className="PortalSearchButtonInner">
-                  <img
-                    src="/img/SeoulKakaoMap.svg"
-                    alt="오류"
-                    className="SeoulKakaoMap"
-                  ></img>
-                  <div className="PortalSearchButtonText">장소 탐색</div>
+                <div className="PortalSearchButton">
+                  <div className="PortalSearchButtonInner">
+                    <img
+                      src="/img/SeoulNaver.svg"
+                      alt="오류"
+                      className="SeoulNaver"
+                    ></img>
+                    <div className="PortalSearchButtonText">포털 검색</div>
+                  </div>
                 </div>
-              </div>
+              </a>
+
+              <a
+                href={`https://map.kakao.com/link/search/${encodeURIComponent(
+                  shop.name
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div
+                  className="PortalKakaoSearchButton"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <div className="PortalSearchButtonInner">
+                    <img
+                      src="/img/SeoulKakaoMap.svg"
+                      alt="오류"
+                      className="SeoulKakaoMap"
+                    ></img>
+                    <div className="PortalSearchButtonText">장소 탐색</div>
+                  </div>
+                </div>
+              </a>
               {isHovered && (
                 <div className="SeoulShopBalloonFrame">
                   <img
@@ -259,7 +276,7 @@ function SeoulKaraokePage() {
 
   const SeoulBasketDelete = async () => {
     try {
-      const response = await axios.delete("/v1/saved/reset", {
+      await axios.delete("/v1/saved/reset", {
         headers: {
           "X-AUTH-TOKEN": token,
         },

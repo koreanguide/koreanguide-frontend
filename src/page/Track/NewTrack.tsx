@@ -148,7 +148,6 @@ function NewTrackpage() {
       ShowNotificationFive ||
       ShowNotificationSix
     ) {
-      console.log("불가능");
     } else {
       const imageUrlOne = await uploadImage(imageFileOne);
       const imageUrlTwo = await uploadImage(imageFileTwo);
@@ -183,13 +182,11 @@ function NewTrackpage() {
         });
 
         if (response.status === 200) {
-          console.log("트랙 생성 반환 성공:", response.data);
           goToMyTrack();
         }
       } catch (error) {
         console.error("트랙 생성 반환 실패:", error);
       }
-      console.log("가능");
     }
   };
 
@@ -461,7 +458,6 @@ function NewTrackpage() {
   const ShowTagBoxChangeTwo = () => {
     setShowTagOneBox(true);
     setShowTagTwoBox(false);
-    console.log(selectedTags);
   };
 
   // 본문 컴포넌트
@@ -560,7 +556,6 @@ function NewTrackpage() {
       });
 
       if (response.status === 200) {
-        console.log(response.data.msg);
         setAI_Answer(response.data.msg);
         setAIFirst(false);
         setAIWait(false);

@@ -131,6 +131,10 @@
   outline: none;
 }
 
+.SeoulTrackContentTextArea::-webkit-scrollbar {
+  display: none;
+}
+
 .SeoulTrackContentTextArea:focus {
   border: 1px solid var(--KG_OUTLINE, #3876c0);
 }
@@ -192,4 +196,133 @@
 
 .inputErrorTwo {
   border: 1px solid red;
+}
+
+.SeoulTrackTagsFrame {
+  width: 990px;
+  display: flex;
+  height: 210px;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.SeoulTrackTagsInnerFrame {
+  width: 990px;
+  height: 167px;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.SeoulTrackTagsInnerFrameTwo {
+  display: flex;
+  width: 918px;
+  height: 91px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulImageSelectTextBox {
+  width: 700px;
+  height: 1.1875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.875rem;
+}
+
+.SeoulTrackCreateButtonFrame {
+  width: 990px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.SeoulNewTrackContainerTwo {
+  margin-top: 30px;
+  width: 990px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  margin-bottom: 30px;
+}
+
+.SeoulTrackCreatePageInner {
+  width: 990px;
+  height: 2000px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.SeoulTrackConsentButtonFrame {
+  width: 990px;
+  height: 209px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulTrackConsentButtonFrameText {
+  color: var(--KG_PRIMARY, #730ef4);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulTrackConsentButtonFrameTextTwo {
+  color: var(--KG_TEXT, #80889b);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.SeoulTrackConsentButtonBoxOne {
+  width: 990px;
+  height: 182px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SeoulTrackConsentButtonOne {
+  width: 990px;
+  height: 86px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.SeoulTrackConsentButtonOneText {
+  width: 896px;
+  height: 24px;
+  color: var(--seoul, #3876c0);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+a {
+  text-decoration-line: none;
 }

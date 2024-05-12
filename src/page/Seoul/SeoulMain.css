@@ -72,6 +72,10 @@
   cursor: pointer;
 }
 
+.StartNowButton:hover {
+  opacity: 0.7;
+}
+
 .SeoulMainBoxThree {
   width: 300px;
   height: 59px;

@@ -52,7 +52,6 @@ function PasswordReset() {
       const response = await axios.put("/v1/reset/password", data);
 
       if (response.status === 200) {
-        console.log("put 성공");
         setmessage(response.data.ko);
         setPositiveAlertBoxShow(true);
         setAlertBoxShow(false);
