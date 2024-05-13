@@ -205,7 +205,7 @@ function SeoulBasketPage() {
   }
 
   const SeoulTrackPostApi = async () => {
-    const timeout = 500000;
+    // const timeout = 500000;
     const data: SeoulTrackItemData = {
       requiredSavedId: selectedId,
       savedId: uniqueList,
@@ -222,7 +222,7 @@ function SeoulBasketPage() {
         headers: {
           "X-AUTH-TOKEN": token,
         },
-        timeout: timeout,
+        // timeout: timeout,
       });
       SeoulTrackGolbalData = response.data;
       goToSeoulTrack();
