@@ -31,6 +31,10 @@ function Portal() {
     navigate('/portal/credit');
   };
 
+  const navigateTrack = () => {
+    navigate('/portal/track');
+  };
+
   useEffect(() => {
     const MainInfo = async () => {
       try {
@@ -412,30 +416,34 @@ function Portal() {
 
           {
             <div className="GuideMainPageInfoContainer">
-              <GuideMainPageInfoBox
-                InfoBoxTitle="모든 트랙 조회 수"
-                InfoBoxFigure={totalView.toLocaleString()}
-                InfoBoxUnit="회"
-                InfoBoxstyle={{
-                  background:
-                    "linear-gradient(316deg, #3876C0 26.21%, #A0C5F2 97.94%)",
-                }}
-                InfoBoxTextstyle={{
-                  fontSize: "64px",
-                }}
-              ></GuideMainPageInfoBox>
-              <GuideMainPageInfoBox
-                InfoBoxTitle="모든 트랙 관심 수"
-                InfoBoxFigure={totalLiked.toLocaleString()}
-                InfoBoxUnit="회"
-                InfoBoxstyle={{
-                  background:
-                    "linear-gradient(135deg, #ff1414 0%, #f46363 100%)",
-                }}
-                InfoBoxTextstyle={{
-                  fontSize: "64px",
-                }}
-              ></GuideMainPageInfoBox>
+              <div onClick={navigateTrack} className="hasNavigateOption">
+                <GuideMainPageInfoBox
+                  InfoBoxTitle="모든 트랙 조회 수"
+                  InfoBoxFigure={totalView.toLocaleString()}
+                  InfoBoxUnit="회"
+                  InfoBoxstyle={{
+                    background:
+                      "linear-gradient(316deg, #3876C0 26.21%, #A0C5F2 97.94%)",
+                  }}
+                  InfoBoxTextstyle={{
+                    fontSize: "64px",
+                  }}
+                ></GuideMainPageInfoBox>
+              </div>
+              <div onClick={navigateTrack} className="hasNavigateOption">
+                <GuideMainPageInfoBox
+                  InfoBoxTitle="모든 트랙 관심 수"
+                  InfoBoxFigure={totalLiked.toLocaleString()}
+                  InfoBoxUnit="회"
+                  InfoBoxstyle={{
+                    background:
+                      "linear-gradient(135deg, #ff1414 0%, #f46363 100%)",
+                  }}
+                  InfoBoxTextstyle={{
+                    fontSize: "64px",
+                  }}
+                ></GuideMainPageInfoBox>
+              </div>
               <div onClick={navigateCredit} className="hasNavigateOption">
                 <GuideMainPageInfoBox
                   InfoBoxTitle="내 크레딧"

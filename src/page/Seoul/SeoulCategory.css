@@ -78,11 +78,12 @@
   width: 307px;
   height: 239px;
   border-radius: 20px;
-
+  scale: 1;
+  transition: 0.5s;
   cursor: pointer;
 }
 .SeoulAlgorithmsFrame:hover {
-  opacity: 0.7;
+  scale: 1.03;
 }
 
 .SeoulAlgorithmsImg {

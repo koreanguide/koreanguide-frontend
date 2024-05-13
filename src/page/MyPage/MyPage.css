@@ -37,6 +37,10 @@
   align-content: space-between;
 }
 
+.MyInfoContainer:hover {
+  scale: 1.03;
+}
+
 .MyInfoContainer {
   width: 30rem;
   height: 6.3125rem;
@@ -46,6 +50,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  scale: 1;
+  transition: 0.5s;
 }
 
 .MyInfoInnerContainer {
@@ -108,6 +114,10 @@
   cursor: pointer;
 }
 
+.ProfileImgContainer:hover {
+  scale: 1.03;
+}
+
 .ProfileImgContainer {
   width: 30rem;
   height: 10rem;
@@ -116,6 +126,8 @@
   box-shadow: 0rem 0rem 0.1875rem 0.0625rem rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
+  scale: 1;
+  transition: 0.5s;
 }
 
 .ProfileImgContainerText {
@@ -185,6 +197,10 @@
   justify-content: space-between;
 }
 
+.IntroductionContainer:hover {
+  scale: 1.03;
+}
+
 .IntroductionContainer {
   width: 30rem;
   height: 18.4375rem;
@@ -194,6 +210,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  scale: 1;
+  transition: 0.5s;
 }
 
 .IntroductionInnerContainer {
