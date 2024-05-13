@@ -227,19 +227,19 @@ function SeoulBasketPage() {
       SeoulTrackGolbalData = response.data;
       goToSeoulTrack();
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        // Axios 에러인지 확인
+      if (axios.isAxiosError(error)) { // Axios 에러인지 확인
         if (
           error.code === "ECONNABORTED" ||
           error.message.includes("timeout")
         ) {
+          console.log('요청이 타임아웃되었습니다.'); // 타임아웃 처리
         } else {
-          console.error("요청 실패:", error.message);
+          console.error("요청 실패:", error.message); // 기타 에러 처리
         }
       } else {
-        console.error("예상치 못한 에러:", error);
+        console.error("예상치 못한 에러:", error); // 비 Axios 에러 처리
       }
-      alert("트랙 생성 실패");
+      alert("트랙 생성 실패"); // 사용자에게 실패 알림
     }
   };
 
