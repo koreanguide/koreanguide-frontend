@@ -648,7 +648,12 @@ body {
   }
 }
 
+.hasNavigateOption:hover {
+  scale: 1.05;
+}
 
 .hasNavigateOption {
   cursor: pointer;
+  scale: 1;
+  transition: 0.5s;
 }
