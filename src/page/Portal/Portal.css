@@ -647,3 +647,8 @@ body {
     flex-direction: column;
   }
 }
+
+
+.hasNavigateOption {
+  cursor: pointer;
+}

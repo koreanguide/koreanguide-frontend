@@ -27,6 +27,10 @@ function Portal() {
 
   const [tracks, setTracks] = useState([]);
 
+  const navigateCredit = () => {
+    navigate('/portal/credit');
+  };
+
   useEffect(() => {
     const MainInfo = async () => {
       try {
@@ -432,18 +436,20 @@ function Portal() {
                   fontSize: "64px",
                 }}
               ></GuideMainPageInfoBox>
-              <GuideMainPageInfoBox
-                InfoBoxTitle="내 크레딧"
-                InfoBoxFigure={credit.toLocaleString()}
-                InfoBoxUnit="크레딧"
-                InfoBoxstyle={{
-                  background:
-                    "linear-gradient(316deg, #3876C0 26.21%, #A0C5F2 97.94%)",
-                }}
-                InfoBoxTextstyle={{
-                  fontSize: "45px",
-                }}
-              ></GuideMainPageInfoBox>
+              <div onClick={navigateCredit} className="hasNavigateOption">
+                <GuideMainPageInfoBox
+                  InfoBoxTitle="내 크레딧"
+                  InfoBoxFigure={credit.toLocaleString()}
+                  InfoBoxUnit="크레딧"
+                  InfoBoxstyle={{
+                    background:
+                      "linear-gradient(316deg, #3876C0 26.21%, #A0C5F2 97.94%)",
+                  }}
+                  InfoBoxTextstyle={{
+                    fontSize: "45px",
+                  }}
+                ></GuideMainPageInfoBox>
+              </div>
             </div>
           }
           {
