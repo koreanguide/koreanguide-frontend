@@ -271,7 +271,7 @@ function PlanPage() {
               </div>
             </div>
           </div>
-          <div className="AllSchedulesFrame">
+          {/* <div className="AllSchedulesFrame">
             <div className="RecentPlanComponentNum">{selectedItemTwo} (0)</div>
             <div className="SchedulesFrame">
               <ScheduleComponent></ScheduleComponent>
@@ -294,7 +294,7 @@ function PlanPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer></Footer>
