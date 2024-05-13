@@ -169,7 +169,7 @@ function PlanPage() {
             <div className="ContractBoxCreditInfo">
               <ContractBox
                 ContractBoxTitle="거래 크레딧"
-                ContractBoxId={`${credit} 크레딧`}
+                ContractBoxId={`${credit.toLocaleString()} 크레딧`}
               ></ContractBox>
               <ContractBox
                 ContractBoxTitle="안전 거래 예치금 비율"
@@ -219,7 +219,7 @@ function PlanPage() {
             ></ContractBox>
             <ContractBox
               ContractBoxTitle="총 거래 크레딧"
-              ContractBoxId={totalCredit}
+              ContractBoxId={totalCredit.toLocaleString()}
             ></ContractBox>
             <ContractBox
               ContractBoxTitle="약속 생성일"
