@@ -271,11 +271,11 @@ function PlanPage() {
               </div>
             </div>
           </div>
-          {/* <div className="AllSchedulesFrame">
+          <div className="AllSchedulesFrame">
             <div className="RecentPlanComponentNum">{selectedItemTwo} (0)</div>
             <div className="SchedulesFrame">
               <ScheduleComponent></ScheduleComponent>
-              <div className="NoneSchedulesFrame">
+              {/* <div className="NoneSchedulesFrame">
                 등록된 일정이 없어요 :(
                 <br />전 세계 관람객들과 새로운 일정을 생성하고, 수익도 창출해
                 보세요!
@@ -292,9 +292,9 @@ function PlanPage() {
                     alt="error"
                   ></img>
                 </div>
-              </div>
+              </div> */}
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
       <Footer></Footer>
