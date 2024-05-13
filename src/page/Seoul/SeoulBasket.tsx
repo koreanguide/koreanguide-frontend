@@ -218,7 +218,7 @@ function SeoulBasketPage() {
 
     try {
       goToSeoulLoad();
-      const response = await axios.post("/v1/seoul", data, {
+      const response = await axios.post("/v1/seoul/", data, {
         headers: {
           "X-AUTH-TOKEN": token,
         },
