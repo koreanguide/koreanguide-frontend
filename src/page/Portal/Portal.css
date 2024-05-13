@@ -90,6 +90,10 @@ body {
   line-height: normal;
 }
 
+.GuideMainPageProgressBox:hover {
+  scale: 1.05;
+}
+
 .GuideMainPageProgressBox {
   margin-top: 60px;
   width: 100%;
@@ -99,7 +103,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  scale: 1;
+  transition: 0.5s;
   cursor: pointer;
 }
 
@@ -229,11 +234,17 @@ body {
   margin-top: 32px;
 }
 
+.OnClickProgressBox:hover {
+  scale: 1.05;
+}
+
 .OnClickProgressBox {
   margin-top: 60px;
   width: 990px;
   height: 179px;
   border-radius: 20px;
+  transition: 0.5s;
+  scale: 1;
   background: linear-gradient(90deg, #96c272 0%, #55a36b 100%);
 }
 
@@ -325,11 +336,17 @@ body {
   line-height: normal;
 }
 
+.PortalRankTrackComponentFrame:hover {
+  scale: 1.01;
+}
+
 .PortalRankTrackComponentFrame {
   cursor: pointer;
   position: relative;
   width: 330px;
   height: 306px;
+  scale: 1;
+  transition: 0.5s;
 }
 
 .PortalRankCircle {
