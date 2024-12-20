@@ -9,3 +9,6 @@
 | :------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: |
 | <img width="150px" src="https://avatars.githubusercontent.com/u/57185499?v=4" /> | <img width="150px" src="https://avatars.githubusercontent.com/u/129511216?v=4" /> |
 |                    [@yunh03](https://github.com/yunh03)                    |                       [@Chanju03](https://github.com/Chanju03)                        |
+
+### Information Architecture
+![info](https://github.com/koreanguide/assets/blob/main/information_architecture.jpg?raw=true)
