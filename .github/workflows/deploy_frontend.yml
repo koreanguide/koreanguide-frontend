@@ -32,7 +32,7 @@ jobs:
     - name: Build
       run: CI=false npm run build
 
-    - name: web docker build and push
+    - name: Web docker build and push
       run: |
           docker login -u ${{ secrets.DOCKER_REPO }} -p ${{ secrets.DOCKER_KEY }}
           docker build -t ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest .
@@ -45,7 +45,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          sudo docker stop frontend
-          sudo docker rm frontend
-          sudo docker pull ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest
-          sudo docker run -d -p 80:80 -p 443:443 --net koreanguide -v /etc/letsencrypt:/etc/letsencrypt --name frontend ${{ secrets.DOCKER_REPO }}/koreanguide-frontend:latest
+          cd /path/to/your/docker-compose-directory
+          sudo docker-compose pull koreanguide-frontend
+          sudo docker-compose up -d koreanguide-frontend
