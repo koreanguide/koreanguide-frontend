@@ -5,7 +5,7 @@
 한국 전통 문화, 잘 알려진 쇼핑 거리도 좋지만, 클럽이나 술집 등 우리들만이 즐기는 문화를 KOREAN GUIDE를 통해 외국인에게 알릴 수 있을 뿐 아니라, 외국인과 직접 소통하며 외국어 능력 향상의 경험도 할 수 있어요.
 
 ### Project Contributors
-| 👑 백엔드 개발(파트장) | 백엔드 개발 |
-|:--:|:--:|:--:|
-| <a href="https://github.com/yunh03"><img src="https://avatars.githubusercontent.com/u/57185499?v=4" width="140px;" alt="yunh03"/> | <a href="https://github.com/Chanju03"><img src="https://avatars.githubusercontent.com/u/129511216?v=4" width="140px;" alt="Chanju03"/>  |
-| 전윤환 | 김찬주 |
+|                                      전윤환                                      |                                      김찬주                                       |
+| :------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: |
+| <img width="150px" src="https://avatars.githubusercontent.com/u/57185499?v=4" /> | <img width="150px" src="https://avatars.githubusercontent.com/u/129511216?v=4" /> |
+|                    [@yunh03](https://github.com/yunh03)                    |                       [@Chanju03](https://github.com/Chanju03)                        |
