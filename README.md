@@ -1,4 +1,4 @@
-![main](https://github.com/koreanguide/assets/blob/main/Group%202513.jpg?raw=true)
+![main](https://github.com/koreanguide/assets/blob/main/Frame%202136.jpg?raw=true)
 
 ## KOREAN GUIDE
 우리가 외국에 방문할 때, 그 지역 사람들이 주로 즐기는 문화(먹거리, 문화생활 등)를 직접 체험하거나 즐길 기회가 부족할 뿐더러, 알지 못 하는 경우가 많아요. 대한민국에 방문하는 외국인도 마찬가지예요.
